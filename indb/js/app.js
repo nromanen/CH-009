@@ -73,10 +73,7 @@ $(function(){
 		
 	});
 	
-	App.Collections.Product = Backbone.Collection.extend({
-	
-	model: App.Models.Product
-	});
+	App.Collections.Product = Backbone.Collection.extend({ model: App.Models.Product });
 	
 	App.Views.Products = Backbone.View.extend({
 		tagName: 'ul',
@@ -100,7 +97,7 @@ $(function(){
 	
 	App.Views.AddProduct = Backbone.View.extend({
 		el: '#productAdd',
-		
+				
 		events: {
 			'click #add' : 'addProductItem'
 		},
@@ -113,7 +110,7 @@ $(function(){
 			
 			var newMaterial = $('#product').val();
 			var newPrice = $('#productPrice').val();
-		
+			//var newID = this.collection.length;
 			var newProduct = new App.Models.Product({ material: newMaterial, price: newPrice });
 			this.collection.add(newProduct); 
 			//add to bd

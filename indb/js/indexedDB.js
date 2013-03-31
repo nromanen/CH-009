@@ -66,9 +66,9 @@ function addProduct(material, price) {
 		console.log(store);
 	  
 		if (localDatabase != null && localDatabase.db != null) {
-			var request = store.put({
-				matIndex : material,
-				priceIndex : price,
+			var request = store.add({
+				"product" : material,
+				"productPrice" : price,
 			});
 			request.onsuccess = function(e) {
 				result.innerHTML = "Product record was added successfully.";
@@ -157,13 +157,14 @@ function fetchAllProduct_ver2() {
 		result.innerHTML = "";
 		
 		if (localDatabase != null && localDatabase.db != null) {
-			var store = localDatabase.db.transaction("products").objectStore("products");
+			var transaction = localDatabase.db.transaction("products", "readwrite");
+			var store = transaction.objectStore("products");
 			var request = store.openCursor();
 			request.onsuccess = function(evt) {  
 			    var cursor = evt.target.result;  
 			    if (cursor) {
 			    	var productItem = cursor.value;
-			    	var jsonStr = "id: " + cursor.key + " Material: " + cursor.value.matIndex + " Price: " + cursor.value.priceIndex;
+			    	var jsonStr = "id: " + productItem.id + " Material: " + productItem.product + " Price: " + productItem.productPrice;
 			    	result.innerHTML = result.innerHTML + "<br/>" + jsonStr;         
 			        cursor.continue();  
 			    }  
@@ -175,7 +176,58 @@ function fetchAllProduct_ver2() {
 	}
 }
 
+function deleteProduct() {
+	try {
+		var result = document.getElementById("result");
+		result.innerHTML = "";
+		var id = 1;
+		var transaction = localDatabase.db.transaction("products", "readwrite");
+		var store = transaction.objectStore("products");
+		if (localDatabase != null && localDatabase.db != null) {
+			var request = store.delete(id);
+			request.onsuccess = function(evt) {
+				console.log("product deleted");
+			};
+			request.onerror = function(evt) {
+					console.log(evt.value);
+				};		
+						
+		};
+	}
+	
+	catch(e){
+		console.log(e);
+	}
+}
+    
 
+
+function deleteProductById() {
+	try {
+		var result = document.getElementById("result");
+		result.innerHTML = "";
+		var id = 1;
+		var transaction = localDatabase.db.transaction("products", "readwrite");
+		var store = transaction.objectStore("products");
+		if (localDatabase != null && localDatabase.db != null) {
+			var request = store.delete(id);
+			request.onsuccess = function(evt) {
+				console.log("product deleted");
+			};
+			request.onerror = function(evt) {
+					console.log(evt.value);
+				};		
+						
+		};
+	}
+	
+	catch(e){
+		console.log(e);
+	}
+}
+
+
+/*
 function deleteProduct(material) {
      try {
          var result = document.getElementById("result");
@@ -188,11 +240,11 @@ function deleteProduct(material) {
              var request = store.openCursor();
              request.onsuccess = function(evt) {
                  var cursor = evt.target.result;
-                 console.log(cursor.value.matIndex);
-                 console.log(material);
+                 console.log(cursor.value.product);
+                 //console.log(material);
                  if(cursor){
-                     if(cursor.value.matIndex == material){
-                         var delReq = store.delete(cursor.value.matIndex);
+                     if(cursor.value.product == material){
+                         var delReq = store.delete(cursor.value.product);
 
                          delReq.onsuccess = function(evt) {
                              console.log('Deleted!');
@@ -215,30 +267,5 @@ function deleteProduct(material) {
          console.log(e);
      }
 }
-
-/*
-function deleteProduct(id) {
-	try {
-		var result = document.getElementById("result");
-		result.innerHTML = "";
-		var transaction = localDatabase.db.transaction("products", "readwrite");
-		var store = transaction.objectStore("products");
-		if (localDatabase != null && localDatabase.db != null) {
-			var request = store.remove(id);
-			request.onsuccess = function(evt) {
-				console.log("product deleted");
-			};
-			request.onerror = function(evt) {
-					console.log(evt.value);
-				};		
-						
-		};
-	}
-	
-	catch(e){
-		console.log(e);
-	}
-}
 */
-
 
