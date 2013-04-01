@@ -86,8 +86,9 @@ var dbConnector = dbConnector || {};
 			
 		},
 		addModel: function ( model ) {
+		  alert(model.get("material") + model.get("price"));
 			this.add( model );
-			dbConnector.addProduct ( model.attributes.material, model.attributes.price );
+			dbConnector.addProduct ( model.get("material"), model.get("price"));
 		}
 	});
 	

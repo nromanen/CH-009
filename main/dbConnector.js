@@ -16,7 +16,7 @@ var App = App || {};
 
 	dbConnector.openDatabase = function () {
 	
-		var openRequest = localDatabase.indexedDB.open( dbName, 1 );
+		var openRequest = localDatabase.indexedDB.open( dbName);
 		
 		openRequest.onerror = function (e) {
 			console.log("Database error: " + e.target.errorCode);
@@ -31,22 +31,40 @@ var App = App || {};
 		};	
 	}
 
-	dbConnector.createDatabase = function () {
-		
-		console.log('Deleting local database');
+    dbConnector.Delete = function(){
+        
+        	console.log('Deleting local database');
 		
 		var deleteDbRequest = localDatabase.indexedDB.deleteDatabase(dbName);
-		
+		 
 		deleteDbRequest.onsuccess = function ( event ) {
+        
+		}
 		
-			console.log('Database deleted');
-			var openRequest = localDatabase.indexedDB.open(dbName,1);
+		deleteDbRequest.onerror = function (e) {
+			console.log("Database error: " + e.target.errorCode);
+		}
+        
+        
+    };
+
+
+
+
+	dbConnector.createDatabase = function () {
+		
+	
+		 
+			
+			var openRequest = localDatabase.indexedDB.open(dbName);
 			
 			openRequest.onerror = function (e) {
+			 
 				console.log("Database error: " + e.target.errorCode);
 			}
 			
 			openRequest.onsuccess = function ( event ) {
+		
 				console.log("Database created");
 				localDatabase.db = openRequest.result;
 			}
@@ -60,13 +78,9 @@ var App = App || {};
 				productStore.createIndex("matIndex", "product", { unique: false });        
 				productStore.createIndex("priceIndex", "productPrice", { unique: false });
 				
+                              
 			}
-		
-		}
-		
-		deleteDbRequest.onerror = function (e) {
-			console.log("Database error: " + e.target.errorCode);
-		}
+	
 		
 	}
 		
@@ -81,10 +95,10 @@ var App = App || {};
 			console.log(store);
 		  
 			if (localDatabase != null && localDatabase.db != null) {
-			
-				var request = store.put ({
-					matIndex : material,
-					priceIndex : price,
+		         
+				var request = store.add({
+					product : material,
+					productPrice : price
 				});
 				
 				request.onsuccess = function (e) {
@@ -119,8 +133,9 @@ var App = App || {};
 			var pointer = -1;
 			
 			var Product = function ( config ) {
-				this.material = config.material;
-				this.price = config.price;
+			 alert(config);
+				this.material = config.product;
+				this.price = config.productPrice;
 			}
 			
 			request.onsuccess = function( evt ) {
@@ -162,7 +177,8 @@ var App = App || {};
 				var products = new Array();
 				var pointer = -1;
 				
-				var Product = function ( config ) {
+				var Product = function (config) {
+				    
 					this.material = config.material;
 					this.price = config.price;
 				}
@@ -173,10 +189,11 @@ var App = App || {};
 					pointer++;
 					
 					if ( cursor ) {
-					
+					       
+                          
 						products[pointer] = new Product ({	
-							material : cursor.value.matIndex,
-							price : cursor.value.priceIndex
+							material : cursor.value.product,
+							price : cursor.value.productPrice
 						});
 						
 						cursor.continue(); 				
@@ -188,8 +205,11 @@ var App = App || {};
 				
 			}
 			catch (e) {
+			 
 				console.log('need to create db!');
+                
 				dbConnector.createDatabase();
+                
 			}
 		}
 		
@@ -198,8 +218,9 @@ var App = App || {};
 			console.log ( products );
 		}
 		
-	}	
-
+	}
+ //dbConnector.Delete();	
+ dbConnector.createDatabase();
 })();
 
-// dbConnector.createDatabase();
+
