@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Materials & Prices Module</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+
+    <h1>Warehouse</h1>
+    <br>
+    <div id="addMaterial">
+        <div class="fl">Material:</div>
+        <div class="fle"><input class="textbox" id="material" type="text"></div>
+        <div class="clear"></div>
+        <div class="fl">Price:</div> 
+        <div class="fle"><input class="textbox" id="price" type="text"></div> 
+     </div>
+	 
+     <div id="table_holder">
+	 
+     </div>
+
+		<script type="text/template" id="material-price">
+			  <div class="holder">
+				<div class="material"><%= material %></div>
+				<div class="price"><%= price %></div>
+				<div class="delete" title="Delete <%= material %> material"></div>
+			  </div> 
+		</script>
+	
+		<script src="jquery.js"></script>
+		<script src="underscore.js"></script>
+		<script src="backbone.js"></script>
+		<script src="dbConnector.js"></script>
+		<script src="materials.js"></script>
+		
+	</body>
+</html>
