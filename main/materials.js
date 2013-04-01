@@ -80,13 +80,12 @@ var dbConnector = dbConnector || {};
 			
 		},
 		destroyModel: function ( model ) {
-			
-			dbConnector.deleteProduct( model.attributes.material );
+			dbConnector.deleteProduct( model.get('material'));
 			model.destroy();
 			
 		},
 		addModel: function ( model ) {
-		  alert(model.get("material") + model.get("price"));
+		  
 			this.add( model );
 			dbConnector.addProduct ( model.get("material"), model.get("price"));
 		}

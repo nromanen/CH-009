@@ -133,7 +133,7 @@ var App = App || {};
 			var pointer = -1;
 			
 			var Product = function ( config ) {
-			 alert(config);
+			
 				this.material = config.product;
 				this.price = config.productPrice;
 			}
@@ -144,7 +144,7 @@ var App = App || {};
 				
 				if ( cursor ) {
 				
-					if ( cursor.value.matIndex ===  material ) {
+					if ( cursor.value.product ===  material ) {
 						
 						var deleteRequest = localDatabase.db.transaction( ["products"] , "readwrite" ).objectStore("products").delete( cursor.key );
 						deleteRequest.onsuccess = function( ev ) {
@@ -179,7 +179,7 @@ var App = App || {};
 				
 				var Product = function (config) {
 				    
-					this.material = config.material;
+				    this.material = config.material;
 					this.price = config.price;
 				}
 				
