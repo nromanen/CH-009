@@ -1,4 +1,3 @@
-var dbConnector = dbConnector || {};
 var App = App || {};
 
 (function () {
@@ -14,7 +13,7 @@ var App = App || {};
 		console.log( "Database error: " + e.target.errorCode );
 	};
 
-	dbConnector.openDatabase = function () {
+	App.dbConnector.openDatabase = function () {
 	
 		var openRequest = localDatabase.indexedDB.open( dbName);
 		
@@ -31,82 +30,74 @@ var App = App || {};
 		};	
 	}
 
-    dbConnector.Delete = function(){
+    App.dbConnector.deleteDatabase = function(){
         
-        	console.log('Deleting local database');
+        console.log('Deleting local database');
 		
 		var deleteDbRequest = localDatabase.indexedDB.deleteDatabase(dbName);
 		 
 		deleteDbRequest.onsuccess = function ( event ) {
-        
+			console.log('Local Database deleted!');
 		}
 		
 		deleteDbRequest.onerror = function (e) {
 			console.log("Database error: " + e.target.errorCode);
 		}
-        
-        
+    
     };
 
+	App.dbConnector.createDatabase = function () {
 
-
-
-	dbConnector.createDatabase = function () {
-		
-	
-		 
-			
 			var openRequest = localDatabase.indexedDB.open(dbName);
 			
 			openRequest.onerror = function (e) {
 			 
 				console.log("Database error: " + e.target.errorCode);
+			
 			}
 			
 			openRequest.onsuccess = function ( event ) {
 		
 				console.log("Database created");
 				localDatabase.db = openRequest.result;
+			
 			}
 			
 			openRequest.onupgradeneeded = function (evt) {  
 			
-				console.log('Creating object stores');
+			console.log('Creating object stores');
 				
-          var productStore = evt.currentTarget.result.createObjectStore
-                    ("products", {keyPath: "id", autoIncrement: true});
-                    productStore.createIndex("matIndex", "product", { unique: true });        
-                    productStore.createIndex("priceIndex", "productPrice", { unique: false });
+			var productStore = evt.currentTarget.result.createObjectStore
+					("products", {keyPath: "id", autoIncrement: true});
+					productStore.createIndex("matIndex", "product", { unique: true });        
+					productStore.createIndex("priceIndex", "productPrice", { unique: false });
 				
-					var blockStore = evt.currentTarget.result.createObjectStore
-                    ("bloks", {keyPath: "id", autoIncrement: true});
-                    blockStore.createIndex("blockName", "blockName", { unique: false });        
-                    blockStore.createIndex("count", "count", { unique: false });
-                    blockStore.createIndex("blockID", "blockID", { unique: false });
-                    
-          var blockNameStore = evt.currentTarget.result.createObjectStore
-                    ("bloksNameStore", {keyPath: "id", autoIncrement: true});
-                    blockNameStore.createIndex("blockName", "blockName", { unique: true });        
-                  
-          var tovarStore = evt.currentTarget.result.createObjectStore
-                    ("Tovaru", {keyPath: "id", autoIncrement: true});
-                   tovarStore.createIndex("tovarName", "tovarName", { unique: false });        
-                   tovarStore.createIndex("count", "count", { unique: false });
-                   tovarStore.createIndex("tovarID", "tovarID", { unique: false });
-                   
-                    
-          var tovarNameStore = evt.currentTarget.result.createObjectStore
-                    ("TovarNameStore", {keyPath: "id", autoIncrement: true});
-                    tovarNameStore.createIndex("tovarName", "tovarName", { unique: true });                 
-                   
-                              
+			var blockStore = evt.currentTarget.result.createObjectStore
+					("bloks", {keyPath: "id", autoIncrement: true});
+					blockStore.createIndex("blockName", "blockName", { unique: false });        
+					blockStore.createIndex("count", "count", { unique: false });
+					blockStore.createIndex("blockID", "blockID", { unique: false });
+					
+			var blockNameStore = evt.currentTarget.result.createObjectStore
+					("bloksNameStore", {keyPath: "id", autoIncrement: true});
+					blockNameStore.createIndex("blockName", "blockName", { unique: true });        
+				  
+			var tovarStore = evt.currentTarget.result.createObjectStore
+					("Tovaru", {keyPath: "id", autoIncrement: true});
+				   tovarStore.createIndex("tovarName", "tovarName", { unique: false });        
+				   tovarStore.createIndex("count", "count", { unique: false });
+				   tovarStore.createIndex("tovarID", "tovarID", { unique: false });
+				   
+					
+			var tovarNameStore = evt.currentTarget.result.createObjectStore
+					("TovarNameStore", {keyPath: "id", autoIncrement: true});
+					tovarNameStore.createIndex("tovarName", "tovarName", { unique: true });                 
+				   						  
 			}
 	
+	}	
 		
-	}
-		
-		
-	dbConnector.addProduct = function ( material, price ) {
+	App.dbConnector.addProduct = function ( material, price ) {
 
 		try {
 
@@ -143,10 +134,9 @@ var App = App || {};
 		
 	}
 	
-	dbConnector.deleteProduct = function ( material ) {
+	App.dbConnector.deleteProduct = function ( material ) {
 
-		if ( localDatabase != null && localDatabase.db != null ) {
-			
+		if ( localDatabase != null && localDatabase.db != null ) {		
 			
 			var store = localDatabase.db.transaction("products").objectStore("products");
 			var request = store.openCursor();
@@ -183,7 +173,7 @@ var App = App || {};
 		}		
 	}
 
-	dbConnector.fetchAll = function () {
+	App.dbConnector.fetchAll = function () {
 	
 		console.log('fetching');
 			
@@ -202,6 +192,7 @@ var App = App || {};
 				    
 				    this.material = config.material;
 					this.price = config.price;
+					
 				}
 				
 				request.onsuccess = function( evt ) {
@@ -229,7 +220,7 @@ var App = App || {};
 			 
 				console.log('need to create db!');
                 
-				dbConnector.createDatabase();
+				App.dbConnector.createDatabase();
                 
 			}
 		}
@@ -239,9 +230,10 @@ var App = App || {};
 			console.log ( products );
 		}
 		
-	}
-// dbConnector.Delete();	
- dbConnector.createDatabase();
+	}	
+	
+	App.dbConnector.createDatabase();
+	
 })();
 
 
