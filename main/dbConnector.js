@@ -73,11 +73,32 @@ var App = App || {};
 			
 				console.log('Creating object stores');
 				
-				var productStore = evt.currentTarget.result.createObjectStore
-					("products", {keyPath: "id", autoIncrement: true});
-				productStore.createIndex("matIndex", "product", { unique: false });        
-				productStore.createIndex("priceIndex", "productPrice", { unique: false });
+          var productStore = evt.currentTarget.result.createObjectStore
+                    ("products", {keyPath: "id", autoIncrement: true});
+                    productStore.createIndex("matIndex", "product", { unique: true });        
+                    productStore.createIndex("priceIndex", "productPrice", { unique: false });
 				
+					var blockStore = evt.currentTarget.result.createObjectStore
+                    ("bloks", {keyPath: "id", autoIncrement: true});
+                    blockStore.createIndex("blockName", "blockName", { unique: false });        
+                    blockStore.createIndex("count", "count", { unique: false });
+                    blockStore.createIndex("blockID", "blockID", { unique: false });
+                    
+          var blockNameStore = evt.currentTarget.result.createObjectStore
+                    ("bloksNameStore", {keyPath: "id", autoIncrement: true});
+                    blockNameStore.createIndex("blockName", "blockName", { unique: true });        
+                  
+          var tovarStore = evt.currentTarget.result.createObjectStore
+                    ("Tovaru", {keyPath: "id", autoIncrement: true});
+                   tovarStore.createIndex("tovarName", "tovarName", { unique: false });        
+                   tovarStore.createIndex("count", "count", { unique: false });
+                   tovarStore.createIndex("tovarID", "tovarID", { unique: false });
+                   
+                    
+          var tovarNameStore = evt.currentTarget.result.createObjectStore
+                    ("TovarNameStore", {keyPath: "id", autoIncrement: true});
+                    blockNameStore.createIndex("tovarName", "tovarName", { unique: true });                 
+                   
                               
 			}
 	
@@ -219,7 +240,7 @@ var App = App || {};
 		}
 		
 	}
- //dbConnector.Delete();	
+// dbConnector.Delete();	
  dbConnector.createDatabase();
 })();
 
