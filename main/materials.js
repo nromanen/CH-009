@@ -11,6 +11,14 @@ var App = App || {};
 	
 	});
 	
+	App.Models.Block = Backbone.Model.extend({
+	
+		material: '',
+		count: 0
+	
+	});
+	
+	
 	App.Views.Material = Backbone.View.extend({ // это вид модели
 		tagName: 'li',
 		initialize: function () {
@@ -79,6 +87,17 @@ var App = App || {};
 			this.add( model );
 			App.dbConnector.addProduct ( model.get("material"), model.get("price"));
 		}
+	});
+	
+	App.Collections.Bloks = Backbone.Collection.extend({
+	
+		model: App.Models.Block,
+		initialize: function () {
+			
+			//evets here
+			
+		}
+	
 	});
 	
 	App.Views.List = Backbone.View.extend({  // это вид коллекции
@@ -162,6 +181,12 @@ var App = App || {};
 			$('#material').focus();
 		}
 	});	
+	
+	App.Views.Block = Backbone.View.extend({
+	
+		
+	
+	});
 	
 	var Materials = new App.Collections.List;
 	var addMaterial = new App.Views.AddMaterial( { collection: Materials } );
