@@ -97,7 +97,7 @@ var App = App || {};
                     
           var tovarNameStore = evt.currentTarget.result.createObjectStore
                     ("TovarNameStore", {keyPath: "id", autoIncrement: true});
-                    blockNameStore.createIndex("tovarName", "tovarName", { unique: true });                 
+                    tovarNameStore.createIndex("tovarName", "tovarName", { unique: true });                 
                    
                               
 			}
