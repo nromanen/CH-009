@@ -30,21 +30,21 @@ var App = App || {};
 		};	
 	}
 
-    App.dbConnector.deleteDatabase = function(){
+	App.dbConnector.deleteDatabase = function() {
         
-        console.log('Deleting local database');
-		
+		console.log('Deleting local database');
+
 		var deleteDbRequest = localDatabase.indexedDB.deleteDatabase(dbName);
 		 
 		deleteDbRequest.onsuccess = function ( event ) {
 			console.log('Local Database deleted!');
 		}
-		
+
 		deleteDbRequest.onerror = function (e) {
 			console.log("Database error: " + e.target.errorCode);
 		}
     
-    };
+	};
 
 	App.dbConnector.createDatabase = function () {
 

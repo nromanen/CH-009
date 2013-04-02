@@ -1,18 +1,8 @@
 var App = App || {};
-var dbConnector = dbConnector || {};
 
 (function () {
 	
 	// создаем пространство имен (NameSpace)
-	
-	App = {
-	
-		Models: {},
-		Views: {},
-		Collections: {},
-		Events : _.extend( {}, Backbone.Events )
-	
-	};
 	
 	App.Models.Material = Backbone.Model.extend({ 
 
@@ -57,12 +47,12 @@ var dbConnector = dbConnector || {};
 			App.Events.on( 'fetchProducts', this.fetchProducts, this );
 			App.Events.on( 'writeProducts', this.writeProducts, this );
 			
-			dbConnector.openDatabase();
+			App.dbConnector.openDatabase();
 			
 		},
 		fetchProducts: function () {
 			
-			dbConnector.fetchAll();
+			App.dbConnector.fetchAll();
 			
 		},
 		writeProducts: function ( products ) {
@@ -80,14 +70,14 @@ var dbConnector = dbConnector || {};
 			
 		},
 		destroyModel: function ( model ) {
-			dbConnector.deleteProduct( model.get('material'));
+			App.dbConnector.deleteProduct( model.get('material'));
 			model.destroy();
 			
 		},
 		addModel: function ( model ) {
 		  
 			this.add( model );
-			dbConnector.addProduct ( model.get("material"), model.get("price"));
+			App.dbConnector.addProduct ( model.get("material"), model.get("price"));
 		}
 	});
 	
