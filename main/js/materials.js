@@ -2,8 +2,6 @@ var App = App || {};
 
 (function () {
 	
-	// создаем пространство имен (NameSpace)
-	
 	App.Models.Material = Backbone.Model.extend({ 
 
 		material: 'empty',
@@ -143,7 +141,7 @@ var App = App || {};
 			
 			for ( var i = 0; i < this.collection.length; i++ ) {
 				
-				if ( strMaterial === this.collection.models[i].attributes.material ) {
+				if ( strMaterial === this.collection.models[i].get ( 'material' ) ) {
 					
 					alert ( 'Материал ' + strMaterial + ' уже существует! Повторений НЕ должно быть!' );
 					$('#material').focus();
