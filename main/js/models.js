@@ -9,10 +9,18 @@ var App = App || {};
 	
 	});
 	
-	App.Models.Unit = Backbone.Model.extend({
+	App.Models.UnitItem = Backbone.Model.extend({
 	
+		unitID: 1,
 		material: '',
 		count: 0
+	
+	});
+	
+	App.Models.Unit = Backbone.Model.extend({
+	
+		id: 1,
+		name: 'unit'
 	
 	});
 

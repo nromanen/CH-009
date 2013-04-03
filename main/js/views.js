@@ -116,5 +116,88 @@ var App = App || {};
 		
 	
 	});
+	
+	App.Views.AddUnit = Backbone.View.extend({
+		el: '#addUnit',
+		tagName: 'addUnit',
+		events: {
+			'keypress input': 'inputKeypress',
+		},
+		inputKeypress: function(e) {
+			if (e.which === 13) {
+				console.log('key on units is pressed!');
+				this.validateItem();
+			}
+		},
+		validateItem: function () {
+		
+			var strUnit = $('#unit').val().trim(); 	
+			
+			if ( strUnit === "" ) {
+				alert ( 'Пожалуйста, введите имя Юнита!' );
+				$('#unit').val('');
+				$('#unit').focus();
+				return false;
+			}
+			console.log('item validated');
+			this.addItem ( strUnit );
+		
+		},
+		addItem: function( strUnit ) {
+			
+			var modelUnit = new App.Models.Unit ({
+				
+				id: 1,
+				name: strUnit
+				
+			});
+			console.log('sending trigger');
+			App.Events.trigger( 'addUnit', modelUnit );
+			console.log('trigger sent');
+			this.clearTextBoxes();
+		},
+		clearTextBoxes: function() {
+			$('#unit').val('');
+			$('#unit').focus();
+		}
+	});
+	
+	
+	App.Views.Unit = Backbone.View.extend({
+	
+		tagName: 'li',
+		initialize: function () {
+			//initialize
+		},
+		template: _.template( $('#unit-name').html() ),
+		render: function () {
+			var strTemplate = this.template( this.model.toJSON() );
+			this.$el.html( strTemplate );
+		} 
+	
+	});
+	
+	App.Views.UnitsList = Backbone.View.extend({  // это вид коллекции
+	
+		tagName: 'ul',
+		initialize: function () {
+			this.collection.on('add', this.render, this);
+		},
+		render: function () {
+			
+			//var strTemplate = this.template( { id: 1, name: 'something' } );
+			//this.$el.html( strTemplate );
+			//$('#units_holder').html( strTemplate );
+			this.collection.each( this.addOne, this );
+			return this;
+		},
+		addOne: function( modelUnit ) {
+			var UnitView = new App.Views.Unit({ model: modelUnit });
+			UnitView.render();
+			this.$el.append( UnitView.el );
+		}
+	
+	});
+	
 
 }()); 

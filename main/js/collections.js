@@ -50,8 +50,14 @@ var App = App || {};
 		model: App.Models.Unit,
 		initialize: function () {
 			
-			//evets here
+			App.Events.on( 'addUnit', this.addModel, this );
 			
+		},
+		addModel: function ( model ) {
+			console.log('addModel function performing');
+			console.log( model.toJSON() );
+			console.log( this );
+			this.add( model ) ;
 		}
 	
 	});

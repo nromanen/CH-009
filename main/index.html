@@ -8,7 +8,16 @@
 	<body>
 
     <h1>Warehouse</h1>
-    <br>
+	<br>
+	<div id="addUnit">
+		<div class="fl">New unit:</div>
+		<div class="fle"><input class="textbox" id="unit" type="text"></div>
+	</div>	
+	<br>
+	<div id="units_holder">
+	
+    </div>
+    <br><br><br><br><br>
     <div id="addMaterial">
         <div class="fl">Material:</div>
         <div class="fle"><input class="textbox" id="material" type="text"></div>
@@ -20,7 +29,21 @@
      <div id="table_holder">
 	 
      </div>
-
+	 
+		<script type="text/template" id="unit-name">
+			<div class="unit_holder">
+				<div class="unit_name"><%= name %></div>
+			</div> 
+		</script>
+		
+		<script type="text/template" id="unit-count">
+			  <div class="holder">
+				<div class="material"><%= material %></div>
+				<div class="count"><%= count %></div>
+				<div class="delete" title="Delete <%= material %> material"></div>
+			  </div> 
+		</script>
+	 
 		<script type="text/template" id="material-price">
 			  <div class="holder">
 				<div class="material"><%= material %></div>
@@ -34,7 +57,10 @@
 		<script src="js/backbone.js"></script>
 		<script src="js/defaults.js"></script>
 		<script src="js/dbConnector.js"></script>
-		<script src="js/materials.js"></script>
+		<script src="js/models.js"></script>
+		<script src="js/collections.js"></script>
+		<script src="js/views.js"></script>
+		<script src="js/app.js"></script>
 		
 	</body>
 </html>
