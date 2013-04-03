@@ -1,18 +1,6 @@
 var App = App || {};
-var dbConnector = dbConnector || {};
 
 (function () {
-	
-	// создаем пространство имен (NameSpace)
-	
-	App = {
-	
-		Models: {},
-		Views: {},
-		Collections: {},
-		Events : _.extend( {}, Backbone.Events )
-	
-	};
 	
 	App.Models.Material = Backbone.Model.extend({ 
 
@@ -20,6 +8,14 @@ var dbConnector = dbConnector || {};
 		price: 0
 	
 	});
+	
+	App.Models.Block = Backbone.Model.extend({
+	
+		material: '',
+		count: 0
+	
+	});
+	
 	
 	App.Views.Material = Backbone.View.extend({ // это вид модели
 		tagName: 'li',
@@ -57,12 +53,12 @@ var dbConnector = dbConnector || {};
 			App.Events.on( 'fetchProducts', this.fetchProducts, this );
 			App.Events.on( 'writeProducts', this.writeProducts, this );
 			
-			dbConnector.openDatabase();
+			App.dbConnector.openDatabase();
 			
 		},
 		fetchProducts: function () {
 			
-			dbConnector.fetchAll();
+			App.dbConnector.fetchAll();
 			
 		},
 		writeProducts: function ( products ) {
@@ -80,15 +76,26 @@ var dbConnector = dbConnector || {};
 			
 		},
 		destroyModel: function ( model ) {
-			dbConnector.deleteProduct( model.get('material'));
+			App.dbConnector.deleteProduct( model.get('material'));
 			model.destroy();
 			
 		},
 		addModel: function ( model ) {
 		  
 			this.add( model );
-			dbConnector.addProduct ( model.get("material"), model.get("price"));
+			App.dbConnector.addProduct ( model.get("material"), model.get("price"));
 		}
+	});
+	
+	App.Collections.Bloks = Backbone.Collection.extend({
+	
+		model: App.Models.Block,
+		initialize: function () {
+			
+			//evets here
+			
+		}
+	
 	});
 	
 	App.Views.List = Backbone.View.extend({  // это вид коллекции
@@ -134,7 +141,7 @@ var dbConnector = dbConnector || {};
 			
 			for ( var i = 0; i < this.collection.length; i++ ) {
 				
-				if ( strMaterial === this.collection.models[i].attributes.material ) {
+				if ( strMaterial === this.collection.models[i].get ( 'material' ) ) {
 					
 					alert ( 'Материал ' + strMaterial + ' уже существует! Повторений НЕ должно быть!' );
 					$('#material').focus();
@@ -172,6 +179,12 @@ var dbConnector = dbConnector || {};
 			$('#material').focus();
 		}
 	});	
+	
+	App.Views.Block = Backbone.View.extend({
+	
+		
+	
+	});
 	
 	var Materials = new App.Collections.List;
 	var addMaterial = new App.Views.AddMaterial( { collection: Materials } );
