@@ -170,8 +170,7 @@ var App = App || {};
 			//initialize
 		},
 		template: _.template( $('#unit-name').html() ),
-		render: function () {
-		      
+		render: function () {	      
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
 		} 
@@ -182,83 +181,60 @@ var App = App || {};
 	
 		tagName: 'ul',
 		initialize: function () {
-			this.collection.bind('add', this.render, this);
+			this.collection.on('add', this.render, this);
 		},
 		render: function () {
 			
-			//var strTemplate = this.template( { id: 1, name: 'something' } );
-			//this.$el.html( strTemplate );
-			//$('#units_holder').html( strTemplate );
-            this.$el.html("");
-            console.log(this.collection);
+            this.$el.html('');
+            console.log( this.collection );
           	this.collection.each( this.addOne, this );
 			return this;
+			
 		},
 		addOne: function( modelUnit ) {
 		  
 			var UnitView = new App.Views.Unit({ model: modelUnit });
-		
-            
-			this.$el.append( UnitView.el );
+			this.$el.prepend( UnitView.el );
             UnitView.render();
+			
 		}
 	
 	});
 	
     App.Views.ControlView = Backbone.View.extend({
-      
-      
-      
-      initialize: function (){
-       console.log("create show all voew"); 
-      this.$el.append($('#navigation').html());
-      this.showUnit();
-      },
-      events:{
-        "click #showMaterial":"showMaterials",
-       "click #showUnit":"showUnit",
-        
-        
-      },
-      
-      
-      showMaterials: function(){
-        
-            
-            this.$el.html("");
-            this.$el.append($('#navigation').html());
-            this.$el.append($("#temlateMaterials").html());
-            var addMaterial = new App.Views.AddMaterial( { collection: Materials } );
-           	var viewMaterials = new App.Views.List( { collection: Materials } );
-            viewMaterials.render();
-             $('#table_holder').html( viewMaterials.el );
-             
-      },
-      showUnit:function(){
-         
-            this.$el.html("");
-            this.$el.append($('#navigation').html());
-            this.$el.append($("#temlateUnits").html());
-            var addUnit = new App.Views.AddUnit ( { collection: Units } );
-            var viewUnits = new App.Views.UnitsList( { collection: Units } );
-            viewUnits.render();
-            $('#units_holder').html( viewUnits.el );
-        
-        
-        
-      }
-            
-       
-        
-       
-       
-        
-        
-        
-        
-        
+
+		initialize: function (){
+			console.log("create show all voew"); 
+			this.$el.append($('#navigation').html());
+			this.showUnit();
+		},
+		events:{
+			"click #showMaterial":"showMaterials",
+			"click #showUnit":"showUnit",
+		},
+		showMaterials: function(){
+			 
+			this.$el.html('');
+			this.$el.append( $( '#navigation' ).html() );
+			this.$el.append( $( "#temlateMaterials" ).html() );
+			var addMaterial = new App.Views.AddMaterial( { collection: Materials } );
+			var viewMaterials = new App.Views.List( { collection: Materials } );
+			viewMaterials.render();
+			$('#table_holder').html( viewMaterials.el );
+			 
+		},
+		showUnit:function(){
+		 
+			this.$el.html('');
+			this.$el.append( $('#navigation').html() );
+			this.$el.append( $("#temlateUnits").html() );
+			var addUnit = new App.Views.AddUnit ( { collection: Units } );
+			var viewUnits = new App.Views.UnitsList( { collection: Units } );
+			viewUnits.render();
+			$('#units_holder').html( viewUnits.el );
+
+		}
+                
     });
     
- 
-
 }()); 

@@ -87,12 +87,10 @@ var App = App || {};
 				   tovarStore.createIndex("tovarName", "tovarName", { unique: false });        
 				   tovarStore.createIndex("count", "count", { unique: false });
 				   tovarStore.createIndex("tovarID", "tovarID", { unique: false });
-				   
-					
+				   					
 			var tovarNameStore = evt.currentTarget.result.createObjectStore
 					("TovarNameStore", {keyPath: "id", autoIncrement: true});
-					tovarNameStore.createIndex("tovarName", "tovarName", { unique: true });                 
-				   						  
+					tovarNameStore.createIndex("tovarName", "tovarName", { unique: true });                 	   						  
 			}
 	
 	}	
