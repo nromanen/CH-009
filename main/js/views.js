@@ -193,7 +193,7 @@ var App = App || {};
 				
 			});
 			
-			console.log ( this.collection );
+			var newUnitCollection = new App.Collections.
 			
 			//this.collection.add ( newUnitItem );
 		
@@ -241,10 +241,6 @@ var App = App || {};
 			this.$el.html('');
 			this.$el.append( $( '#navigation' ).html() );
 			this.$el.append( $( "#temlateMaterials" ).html() );
-			var addMaterial = new App.Views.AddMaterial( { collection: Materials } );
-			var viewMaterials = new App.Views.List( { collection: Materials } );
-			viewMaterials.render();
-			$('#table_holder').html( viewMaterials.el );
 			 
 		},
 		showUnit:function(){
