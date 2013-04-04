@@ -147,7 +147,7 @@ var App = App || {};
 			
 			var modelUnit = new App.Models.Unit ({
 				
-				id: 1,
+                uid:"",
 				name: strUnit
 				
 			});
@@ -182,21 +182,25 @@ var App = App || {};
 	
 		tagName: 'ul',
 		initialize: function () {
-			this.collection.on('add', this.render, this);
+			this.collection.bind('add', this.render, this);
 		},
 		render: function () {
 			
 			//var strTemplate = this.template( { id: 1, name: 'something' } );
 			//this.$el.html( strTemplate );
 			//$('#units_holder').html( strTemplate );
+            this.$el.html("");
+            console.log(this.collection);
           	this.collection.each( this.addOne, this );
 			return this;
 		},
 		addOne: function( modelUnit ) {
 		  
 			var UnitView = new App.Views.Unit({ model: modelUnit });
-			UnitView.render();
+		
+            
 			this.$el.append( UnitView.el );
+            UnitView.render();
 		}
 	
 	});

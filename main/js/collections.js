@@ -54,10 +54,11 @@ var App = App || {};
 			
 		},
 		addModel: function ( model ) {
+		  
 			console.log('addModel function performing');
 			console.log( model.toJSON() );
-			console.log( this );
-			this.add( model ) ;
+			console.log(this);
+			this.add(model) ;
 		}
 	
 	});

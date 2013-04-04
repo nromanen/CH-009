@@ -19,7 +19,7 @@ var App = App || {};
 	
 	App.Models.Unit = Backbone.Model.extend({
 	
-		id: 1,
+		uid: 1,
 		name: 'unit'
 	
 	});
