@@ -51,7 +51,7 @@ var App = App || {};
 		initialize: function () {
 			
 			App.Events.on( 'addUnit', this.addModel, this );
-			App.Events.on( 'deleteUnit', this.deleteModel, this );
+			App.Events.on( 'unitDelete', this.deleteModel, this );
 			
 		},
 		addModel: function ( model ) {
@@ -60,10 +60,10 @@ var App = App || {};
 			this.add( model );
 			 
 		},
-		deleteModel: function ( model ) {
+		deleteModel: function( model ) {
 		
+			comodel.destroy();
 			
-		
 		}
 	
 	});
@@ -75,6 +75,7 @@ var App = App || {};
 			
 			App.Events.on( 'addUnitItem', this.addModel, this );
 			
+			
 		},
 		addModel: function ( model ) {
 			
@@ -84,13 +85,6 @@ var App = App || {};
 	
 	});
 	
-	/*
-	App.Collection.UnitItems = Backbone.Collection.extend({
-	
-		
-	
-	});
-	*/
 
 
 }()); 

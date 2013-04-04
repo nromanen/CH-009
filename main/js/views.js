@@ -111,12 +111,6 @@ var App = App || {};
 		}
 	});	
 	
-	App.Views.Block = Backbone.View.extend({
-	
-		
-	
-	});
-	
 	App.Views.AddUnit = Backbone.View.extend({
 		el: '#addUnit',
 		tagName: 'addUnit',
@@ -170,7 +164,6 @@ var App = App || {};
 			
 			console.log('sending trigger');
 			App.Events.trigger( 'addUnit', modelUnit );
-			
 			console.log('trigger sent');
 			this.clearTextBoxes();
 		},
@@ -180,17 +173,34 @@ var App = App || {};
 		}
 	});
 	
+	/* App.Views.deleteUnit = Backbone.View.extend({
+	
+		el: '.delete_unit',
+		events{
+		
+			'click .delete_unit' : 'deletUnit'
+		
+		},
+		deleteUnit: function() {
+		
+			
+		
+		}
+	
+	}); */
+	
 	
 	App.Views.Unit = Backbone.View.extend({
 	
 		tagName: 'li',
 		initialize: function () {
 			//initialize
+			this.model.on( 'destroy', this.unitDeleteItem, this );
 		},
 		events: {
 			'click .unit_name' : 'unitToggle',
-			'click .add_unitItem' : 'unitAddItem'
-			//'ckick .delete_unitItem' : 'unitDeleteItem'
+			'click .add_unitItem' : 'unitAddItem',
+			'click .delete_unit' : 'unitDeleteItem'
 		},
 		template: _.template( $('#unit-name').html() ),
 		render: function () {	      
@@ -219,14 +229,13 @@ var App = App || {};
 			
 			console.log ( this.model.get ( 'mcollection' ).toJSON() );
 		
+		},
+		unitDeleteItem: function() {
+		
+			this.$el.remove();
+			App.Events.trigger( 'unitDelete');
+		
 		}
-		//unitDeleteItem: function {
-		
-			
-		
-			//App.Events.trigger( 'deleteUnitItem', UnitItem );
-		
-		
 		
 	});
 	
