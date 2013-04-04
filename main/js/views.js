@@ -171,9 +171,6 @@ var App = App || {};
 			console.log('sending trigger');
 			App.Events.trigger( 'addUnit', modelUnit );
 			
-			var newUnitItemsList = new App.Views.UnitItemsList( { collection: newUnitCollection  } ) ;
-			newUnitItemsList.render();
-			
 			console.log('trigger sent');
 			this.clearTextBoxes();
 		},
@@ -198,6 +195,9 @@ var App = App || {};
 		render: function () {	      
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
+			var newUnitItemsList = new App.Views.UnitItemsList( { collection: this.model.get( 'mcollection' )  } ) ;
+			this.$('.unit_info').append( newUnitItemsList.el );
+			newUnitItemsList.render();
 		}, 
 		unitToggle: function () {
 			
