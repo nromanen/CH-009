@@ -51,6 +51,7 @@ var App = App || {};
 		initialize: function () {
 			
 			App.Events.on( 'addUnit', this.addModel, this );
+			App.Events.on( 'deleteUnit', this.deleteModel, this );
 			
 		},
 		addModel: function ( model ) {
@@ -58,6 +59,11 @@ var App = App || {};
 			console.log('addModel function performing'); 
 			this.add( model );
 			 
+		},
+		deleteModel: function ( model ) {
+		
+			
+		
 		}
 	
 	});

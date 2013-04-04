@@ -190,6 +190,7 @@ var App = App || {};
 		events: {
 			'click .unit_name' : 'unitToggle',
 			'click .add_unitItem' : 'unitAddItem'
+			//'ckick .delete_unitItem' : 'unitDeleteItem'
 		},
 		template: _.template( $('#unit-name').html() ),
 		render: function () {	      
@@ -219,6 +220,13 @@ var App = App || {};
 			console.log ( this.model.get ( 'mcollection' ).toJSON() );
 		
 		}
+		//unitDeleteItem: function {
+		
+			
+		
+			//App.Events.trigger( 'deleteUnitItem', UnitItem );
+		
+		
 		
 	});
 	
