@@ -59,6 +59,22 @@ var App = App || {};
 			console.log( model.toJSON() );
 			console.log(this);
 			this.add( model );
+			 
+		}
+	
+	});
+	
+	App.Collections.UnitItems = Backbone.Collection.extend({
+	
+		model: App.Models.UnitItem,
+		initialize: function () {
+			
+			App.Events.on( 'addUnitItem', this.addModel, this );
+			
+		},
+		addModel: function ( model ) {
+			
+			this.add( model );
 			
 		}
 	
