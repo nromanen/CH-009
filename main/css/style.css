@@ -98,11 +98,20 @@ h1 span{
   float: left;
   padding: 10px;
   font-size:34px;
-  color:#333;
-  text-shadow:1px 1px 1px #fff;
+  color:#000;
   text-align:left;
   font-weight:bold;
   width: 140px;
+}
+.unit_name:hover {
+  float: left;
+  padding: 10px;
+  font-size:34px;
+  color:green;
+  text-align:left;
+  font-weight:bold;
+  width: 140px;
+  cursor: pointer;
 }
 .clear {
   clear: both;
@@ -110,6 +119,17 @@ h1 span{
 #table_holder {
     width: 500px;
     margin: 0 auto;
+}
+
+.material_in_unit {
+    float: left;
+    width: 220px;
+    padding: 10px;
+    font-size:34px;
+    color:#333;
+    text-shadow:1px 1px 1px #fff;
+    text-align:left;
+    font-weight:400;
 }
 .material {
     float: left;
@@ -140,6 +160,14 @@ h1 span{
     text-shadow:1px 1px 1px #fff;
     text-align:center;
     font-weight:400; 
+}
+.add_unitItem  {
+    float: left;
+    width:26px;
+    height:26px;
+    background: url('plus.png');
+    margin-top: 16px;
+    cursor:pointer;
 }
 .delete  {
     float: left;

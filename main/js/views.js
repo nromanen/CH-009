@@ -169,12 +169,36 @@ var App = App || {};
 		initialize: function () {
 			//initialize
 		},
+		events: {
+			'click .unit_name' : 'unitToggle',
+			'click .add_unitItem' : 'unitAddItem'
+		},
 		template: _.template( $('#unit-name').html() ),
 		render: function () {	      
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
-		} 
-	
+		}, 
+		unitToggle: function () {
+			
+			this.$('.unit_info').toggle();
+			
+		},
+		unitAddItem: function () {
+		
+			var newUnitItem = new App.Models.UnitItem({
+				
+				unitID: 1,
+				material: 'material',
+				count: 12
+				
+			});
+			
+			console.log ( this.collection );
+			
+			//this.collection.add ( newUnitItem );
+		
+		}
+		
 	});
 	
 	App.Views.UnitsList = Backbone.View.extend({  // это вид коллекции
@@ -228,10 +252,6 @@ var App = App || {};
 			this.$el.html('');
 			this.$el.append( $('#navigation').html() );
 			this.$el.append( $("#temlateUnits").html() );
-			var addUnit = new App.Views.AddUnit ( { collection: Units } );
-			var viewUnits = new App.Views.UnitsList( { collection: Units } );
-			viewUnits.render();
-			$('#units_holder').html( viewUnits.el );
 
 		}
                 
