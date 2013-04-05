@@ -44,13 +44,16 @@
         </script> 
    
 		<script type="text/template" id="unit-name">
-			<div class="unit_holder">
-				<div class="unit_name"><%= name %></div>
-				<div class="add_unitItem"></div>
-				<div class="delete_unit"></div>
-				<div class="clear"></div>
-				<div class="unit_info"></div>
+			<div class="unit_wrapper">
+				<div class="unit_holder">
+					<div class="unit_name"><%= name %></div>
+					<div class="add_unitItem"></div>
+					<div class="clear"></div>
+					<div class="unit_info"></div>
+				</div>
+				<div class="materials_holder"></div>
 			</div>
+			<div class="clear"></div>	
 			<div style="height:15px;"></div>
 		</script>
 		
@@ -60,6 +63,15 @@
 				<div class="count"><%= count %></div>
 				<div class="delete" title="Delete <%= material %> material"></div>
 			  </div> 
+		</script>
+		
+		<script type="text/template" id="material-price-plus">
+			  <div class="holder">
+				<div class="plus" title="Add <%= material %> to the unit"></div>
+				<div class="material"><%= material %></div>
+				<div class="price"><%= price %></div>
+			  </div>
+			  <div class="clear"></div>
 		</script>
 	 
 		<script type="text/template" id="material-price">
