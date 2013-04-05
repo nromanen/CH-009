@@ -34,14 +34,16 @@ var App = App || {};
 			
 		},
 		destroyModel: function ( model ) {
-			App.dbConnector.deleteProduct( model.get('material'));
+		
+			App.dbConnector.deleteProduct( model.get('material') );
 			model.destroy();
 			
 		},
 		addModel: function ( model ) {
 		  
 			this.add( model );
-			App.dbConnector.addProduct ( model.get("material"), model.get("price"));
+			App.dbConnector.addProduct ( model.get("material"), model.get("price") );
+			
 		}
 	});
 	

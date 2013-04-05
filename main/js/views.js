@@ -194,8 +194,9 @@ var App = App || {};
 	
 		tagName: 'li',
 		initialize: function () {
-			//initialize
+		
 			this.model.on( 'destroy', this.unitRemoveItem, this );
+			
 		},
 		events: {
 			'click .unit_name' : 'unitToggle',
