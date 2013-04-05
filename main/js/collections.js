@@ -62,7 +62,7 @@ var App = App || {};
 		},
 		deleteModel: function( model ) {
 		
-			comodel.destroy();
+			model.destroy();
 			
 		}
 	

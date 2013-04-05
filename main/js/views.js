@@ -195,7 +195,7 @@ var App = App || {};
 		tagName: 'li',
 		initialize: function () {
 			//initialize
-			this.model.on( 'destroy', this.unitDeleteItem, this );
+			this.model.on( 'destroy', this.unitRemoveItem, this );
 		},
 		events: {
 			'click .unit_name' : 'unitToggle',
@@ -232,8 +232,12 @@ var App = App || {};
 		},
 		unitDeleteItem: function() {
 		
+			App.Events.trigger( 'unitDelete', this.model );
+		
+		},
+		unitRemoveItem: function() {
+		
 			this.$el.remove();
-			App.Events.trigger( 'unitDelete');
 		
 		}
 		
