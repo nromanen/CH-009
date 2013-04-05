@@ -111,6 +111,12 @@ var App = App || {};
 		}
 	});	
 	
+	App.Views.Block = Backbone.View.extend({
+	
+		
+	
+	});
+	
 	App.Views.AddUnit = Backbone.View.extend({
 		el: '#addUnit',
 		tagName: 'addUnit',
@@ -160,11 +166,16 @@ var App = App || {};
 				
 			});
 			
-			App.globalVar = modelUnit;
-			
-			console.log('sending trigger');
 			App.Events.trigger( 'addUnit', modelUnit );
-			console.log('trigger sent');
+			
+			$('.units .unit').each( function () {
+				
+				$(this).find('.unit_info').toggle();
+				$(this).find('.materials_holder').toggle();
+				$(this).find('.unit_wrapper').css('width', '550px');
+				
+			});
+			
 			this.clearTextBoxes();
 		},
 		clearTextBoxes: function() {
@@ -173,47 +184,38 @@ var App = App || {};
 		}
 	});
 	
-	/* App.Views.deleteUnit = Backbone.View.extend({
-	
-		el: '.delete_unit',
-		events{
-		
-			'click .delete_unit' : 'deletUnit'
-		
-		},
-		deleteUnit: function() {
-		
-			
-		
-		}
-	
-	}); */
-	
 	
 	App.Views.Unit = Backbone.View.extend({
 	
 		tagName: 'li',
 		initialize: function () {
-		
-			this.model.on( 'destroy', this.unitRemoveItem, this );
-			
+			//initialize
 		},
+		className: 'unit',
 		events: {
 			'click .unit_name' : 'unitToggle',
-			'click .add_unitItem' : 'unitAddItem',
-			'click .delete_unit' : 'unitDeleteItem'
+			'click .add_unitItem' : 'unitAddItem'
 		},
 		template: _.template( $('#unit-name').html() ),
 		render: function () {	      
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
+			
 			var newUnitItemsList = new App.Views.UnitItemsList( { collection: this.model.get( 'mcollection' )  } ) ;
 			this.$('.unit_info').append( newUnitItemsList.el );
 			newUnitItemsList.render();
+			
 		}, 
 		unitToggle: function () {
 			
 			this.$('.unit_info').toggle();
+			this.$('.materials_holder').toggle();
+			
+			if ( this.$('.unit_wrapper').css('width') === '1100px' ) {
+				this.$('.unit_wrapper').css('width', '550px');
+			} else {
+				this.$('.unit_wrapper').css('width', '1100px');
+			}
 			
 		},
 		unitAddItem: function () {
@@ -230,16 +232,6 @@ var App = App || {};
 			
 			console.log ( this.model.get ( 'mcollection' ).toJSON() );
 		
-		},
-		unitDeleteItem: function() {
-		
-			App.Events.trigger( 'unitDelete', this.model );
-		
-		},
-		unitRemoveItem: function() {
-		
-			this.$el.remove();
-		
 		}
 		
 	});
@@ -247,6 +239,7 @@ var App = App || {};
 	App.Views.UnitsList = Backbone.View.extend({  // это вид коллекции
 	
 		tagName: 'ul',
+		className: 'units',
 		initialize: function () {
 			this.collection.on('add', this.render, this);
 		},

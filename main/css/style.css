@@ -169,15 +169,6 @@ h1 span{
     margin-top: 16px;
     cursor:pointer;
 }
-.delete_unit  {
-    float: left;
-    width:26px;
-    height:26px;
-    background: url('deleteUnit.png');
-	margin-left:250px;
-    margin-top: 16px;
-    cursor:pointer;
-}
 .delete  {
     float: left;
     width:16px;
@@ -197,12 +188,32 @@ h1 span{
     opacity: 1;
 }
 
+.unit_wrapper {
+	margin: 0 auto;
+	width: 1100px;
+}
+
 .unit_holder {
 	width: 500px;
-	margin: 0 auto;
+	float:left;
     padding: 20px 10px;
 	background-color:#f3f5fb;
 	border:10px solid #0B6121;
+	overflow-y: auto;
+	overflow-x:hidden;
+	border-radius:10px;
+	-moz-box-shadow: 1px 1px 10px #999 ;
+	-webkit-box-shadow: 1px 1px 10px #999 ;
+	box-shadow: 1px 1px 10px #999 ;
+} 
+
+.materials_holder {
+	width: 500px;
+	float:left;
+	margin-left: 20px;
+    padding: 20px 10px;
+	background-color:#f3f5fb;
+	border:10px solid #6d7aa1;
 	overflow-y: auto;
 	overflow-x:hidden;
 	border-radius:10px;
