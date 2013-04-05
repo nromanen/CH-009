@@ -34,14 +34,16 @@ var App = App || {};
 			
 		},
 		destroyModel: function ( model ) {
-			App.dbConnector.deleteProduct( model.get('material'));
+		
+			App.dbConnector.deleteProduct( model.get('material') );
 			model.destroy();
 			
 		},
 		addModel: function ( model ) {
 		  
 			this.add( model );
-			App.dbConnector.addProduct ( model.get("material"), model.get("price"));
+			App.dbConnector.addProduct ( model.get("material"), model.get("price") );
+			
 		}
 	});
 	
@@ -51,6 +53,7 @@ var App = App || {};
 		initialize: function () {
 			
 			App.Events.on( 'addUnit', this.addModel, this );
+			App.Events.on( 'unitDelete', this.deleteModel, this );
 			
 		},
 		addModel: function ( model ) {
@@ -58,6 +61,11 @@ var App = App || {};
 			console.log('addModel function performing'); 
 			this.add( model );
 			 
+		},
+		deleteModel: function( model ) {
+		
+			model.destroy();
+			
 		}
 	
 	});
@@ -69,6 +77,7 @@ var App = App || {};
 			
 			App.Events.on( 'addUnitItem', this.addModel, this );
 			
+			
 		},
 		addModel: function ( model ) {
 			
@@ -78,13 +87,6 @@ var App = App || {};
 	
 	});
 	
-	/*
-	App.Collection.UnitItems = Backbone.Collection.extend({
-	
-		
-	
-	});
-	*/
 
 
 }()); 
