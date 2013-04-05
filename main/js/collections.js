@@ -77,14 +77,6 @@ var App = App || {};
 		}
 	
 	});
-	
-	/*
-	App.Collection.UnitItems = Backbone.Collection.extend({
-	
-		
-	
-	});
-	*/
 
 
 }()); 
