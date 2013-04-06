@@ -138,9 +138,7 @@ try {
 		  
 			if (localDatabase != null && localDatabase.db != null) {
 		      	var b = JSON.stringify(model.get("mcollection"));
-				console.log(b);
 				var c = JSON.parse(b);
-				console.log(c);
 				var request = store.put({unitName:model.get("name"), unitCollection:JSON.stringify(model.get("mcollection"))});
 				
 				request.onsuccess = function (e) {
