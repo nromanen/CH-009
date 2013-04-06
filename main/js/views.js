@@ -159,12 +159,7 @@ var App = App || {};
 		}
 	});	
 	
-	App.Views.Block = Backbone.View.extend({
-	
-		
-	
-	});
-	
+
 	App.Views.AddUnit = Backbone.View.extend({
 		el: '#addUnit',
 		tagName: 'addUnit',
@@ -203,7 +198,7 @@ var App = App || {};
 			
 			var modelUnit = new App.Models.Unit ({
 				
-                uid:'',
+               
 				name: strUnit,
 				mcollection: newUnitCollection
 				

@@ -57,7 +57,7 @@ var App = App || {};
 		  
 			console.log('addModel function performing'); 
 			this.add( model );
-			 
+			App.dbConnector.AddToDb("Units", model);
 		}
 	
 	});
