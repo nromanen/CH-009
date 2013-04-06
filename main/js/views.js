@@ -29,6 +29,35 @@ var App = App || {};
 		}
 	});
 	
+	App.Views.MaterialPlus = Backbone.View.extend({ // это вид модели
+		tagName: 'li',
+		initialize: function () {
+			//this.model.on('change:material', this.render, this);
+			//this.model.on('change:price', this.render, this);
+			this.model.on( 'plus', this.plus, this );
+		},
+		events: {
+			'click .plus' : 'confirmQuantity'
+		},
+		template: _.template( $('#material-price-plus').html() ),
+		render: function () {
+			var strTemplate = this.template( this.model.toJSON() );
+			this.$el.html( strTemplate );
+		},
+		confirmQuantity: function () {
+			var strQuantity = prompt( 'Пожалуйста, укажите количество ' + this.model.get ( 'material' )  );
+			if ( ( strQuantity !== '' ) && ( strQuantity !== null ) ) {
+				this.model.set ( { count: strQuantity } )
+				App.Events.trigger( 'addUnitItem', this.model );  
+			}	
+		},
+		plus: function () {
+		
+			
+		
+		}
+	});
+	
 	App.Views.List = Backbone.View.extend({  // это вид коллекции
 	
 		tagName: 'ul',
@@ -41,6 +70,25 @@ var App = App || {};
 		},
 		addOne: function(modelMaterial) {
 			var MaterialView = new App.Views.Material({ model: modelMaterial });
+			MaterialView.render();
+			this.$el.append( MaterialView.el );
+		}
+	
+	});
+	
+	
+	App.Views.AddMaterialsList = Backbone.View.extend({
+	
+		tagName: 'ul',
+		initialize: function () {
+			this.collection.on('add', this.addOne, this);
+		},
+		render: function () {
+			this.collection.each(this.addOne, this);
+			return this;
+		},
+		addOne: function(modelMaterial) {
+			var MaterialView = new App.Views.MaterialPlus({ model: modelMaterial });
 			MaterialView.render();
 			this.$el.append( MaterialView.el );
 		}
@@ -111,6 +159,7 @@ var App = App || {};
 		}
 	});	
 	
+
 	App.Views.AddUnit = Backbone.View.extend({
 		el: '#addUnit',
 		tagName: 'addUnit',
@@ -142,29 +191,29 @@ var App = App || {};
 			var newUnitCollection = new App.Collections.UnitItems([
 				{
 					unitID: 1,
-					material: 'stone',
-					count: 12	
-				},
-				{
-					unitID: 2,
-					material: 'wood',
-					count: 16
+					material: 'empty',
+					count: 0	
 				}
 			]);
 			
 			var modelUnit = new App.Models.Unit ({
 				
-                uid:'',
+               
 				name: strUnit,
 				mcollection: newUnitCollection
 				
 			});
 			
-			App.globalVar = modelUnit;
-			
-			console.log('sending trigger');
 			App.Events.trigger( 'addUnit', modelUnit );
-			console.log('trigger sent');
+			
+			$('.units .unit').each( function () {
+				
+				$(this).find('.unit_info').toggle();
+				$(this).find('.materials_holder').toggle();
+				$(this).find('.unit_wrapper').css('width', '550px');
+				
+			});
+			
 			this.clearTextBoxes();
 		},
 		clearTextBoxes: function() {
@@ -173,47 +222,49 @@ var App = App || {};
 		}
 	});
 	
-	/* App.Views.deleteUnit = Backbone.View.extend({
-	
-		el: '.delete_unit',
-		events{
-		
-			'click .delete_unit' : 'deletUnit'
-		
-		},
-		deleteUnit: function() {
-		
-			
-		
-		}
-	
-	}); */
-	
 	
 	App.Views.Unit = Backbone.View.extend({
 	
 		tagName: 'li',
 		initialize: function () {
+<<<<<<< HEAD
 		
 			this.model.on( 'destroy', this.unitRemoveItem, this );
 			
+=======
+			//initialize
+>>>>>>> f510adeb7819724128fba9ec9484ab30a11640d7
 		},
+		className: 'unit',
 		events: {
 			'click .unit_name' : 'unitToggle',
-			'click .add_unitItem' : 'unitAddItem',
-			'click .delete_unit' : 'unitDeleteItem'
+			'click .add_unitItem' : 'unitAddItem'
 		},
 		template: _.template( $('#unit-name').html() ),
 		render: function () {	      
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
+			
 			var newUnitItemsList = new App.Views.UnitItemsList( { collection: this.model.get( 'mcollection' )  } ) ;
 			this.$('.unit_info').append( newUnitItemsList.el );
 			newUnitItemsList.render();
+			
+			var viewMaterials = new App.Views.AddMaterialsList( { collection: App.Materials } );
+			viewMaterials.render();
+			$('.materials_holder').html('');
+			$('.materials_holder') .append( viewMaterials.el );
+			
 		}, 
 		unitToggle: function () {
 			
 			this.$('.unit_info').toggle();
+			this.$('.materials_holder').toggle();
+			
+			if ( this.$('.unit_wrapper').css('width') === '1020px' ) {
+				this.$('.unit_wrapper').css('width', '550px');
+			} else {
+				this.$('.unit_wrapper').css('width', '1020px');
+			}
 			
 		},
 		unitAddItem: function () {
@@ -227,6 +278,7 @@ var App = App || {};
 			});
 			
 			App.Events.trigger( 'addUnitItem', newUnitItem );
+<<<<<<< HEAD
 			
 			console.log ( this.model.get ( 'mcollection' ).toJSON() );
 		
@@ -239,6 +291,8 @@ var App = App || {};
 		unitRemoveItem: function() {
 		
 			this.$el.remove();
+=======
+>>>>>>> f510adeb7819724128fba9ec9484ab30a11640d7
 		
 		}
 		
@@ -247,6 +301,7 @@ var App = App || {};
 	App.Views.UnitsList = Backbone.View.extend({  // это вид коллекции
 	
 		tagName: 'ul',
+		className: 'units',
 		initialize: function () {
 			this.collection.on('add', this.render, this);
 		},
@@ -262,7 +317,7 @@ var App = App || {};
 		  
 			var UnitView = new App.Views.Unit({ model: modelUnit });
 			this.$el.prepend( UnitView.el );
-            UnitView.render();
+			UnitView.render();
 			
 		}
 	
@@ -337,3 +392,5 @@ var App = App || {};
     });
     
 }()); 
+
+/////////////////////////////////////////////////////////////////////////

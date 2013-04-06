@@ -72,25 +72,20 @@ var App = App || {};
 					productStore.createIndex("matIndex", "product", { unique: true });        
 					productStore.createIndex("priceIndex", "productPrice", { unique: false });
 				
-			var blockStore = evt.currentTarget.result.createObjectStore
-					("bloks", {keyPath: "id", autoIncrement: true});
-					blockStore.createIndex("blockName", "blockName", { unique: false });        
-					blockStore.createIndex("count", "count", { unique: false });
-					blockStore.createIndex("blockID", "blockID", { unique: false });
+			var unitStore = evt.currentTarget.result.createObjectStore
+					("Units", {keyPath: "id", autoIncrement: true});
+					unitStore.createIndex("unitName", "unitName", { unique: true});        
+					unitStore.createIndex("unitCollection", "unitCollection", { unique: false });
 					
-			var blockNameStore = evt.currentTarget.result.createObjectStore
-					("bloksNameStore", {keyPath: "id", autoIncrement: true});
-					blockNameStore.createIndex("blockName", "blockName", { unique: true });        
+					
+			   
 				  
 			var tovarStore = evt.currentTarget.result.createObjectStore
 					("Tovaru", {keyPath: "id", autoIncrement: true});
 				   tovarStore.createIndex("tovarName", "tovarName", { unique: false });        
-				   tovarStore.createIndex("count", "count", { unique: false });
-				   tovarStore.createIndex("tovarID", "tovarID", { unique: false });
-				   					
-			var tovarNameStore = evt.currentTarget.result.createObjectStore
-					("TovarNameStore", {keyPath: "id", autoIncrement: true});
-					tovarNameStore.createIndex("tovarName", "tovarName", { unique: true });                 	   						  
+				   tovarStore.createIndex("tovarCollection", "tovarColecton", { unique: false });
+				 				   					
+			            	   						  
 			}
 	
 	}	
@@ -131,6 +126,57 @@ var App = App || {};
 		}
 		
 	}
+	
+	App.dbConnector.AddToDb = function (objStor, model){
+		
+try {
+
+			var transaction = localDatabase.db.transaction(objStor, "readwrite");
+			var store = transaction.objectStore(objStor);            
+			
+			console.log(store);
+		  
+			if (localDatabase != null && localDatabase.db != null) {
+		      	var b = JSON.stringify(model.get("mcollection"));
+				var c = JSON.parse(b);
+				var request = store.put({unitName:model.get("name"), unitCollection:JSON.stringify(model.get("mcollection"))});
+				
+				request.onsuccess = function (e) {
+					addProductHandler ( true );
+				};
+				
+				request.onerror = function (e) {
+					console.log(e.value);
+					addProductHandler ( false );
+				};
+			}
+		}
+		
+		catch (e) {
+			console.log(e);
+		}
+	
+	
+		var addProductHandler = function ( result ) {
+			console.log( result );
+		}
+	
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	App.dbConnector.deleteProduct = function ( material ) {
 
@@ -229,7 +275,7 @@ var App = App || {};
 		}
 		
 	}	
-	
+		
 	App.dbConnector.createDatabase();
 	
 })();

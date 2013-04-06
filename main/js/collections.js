@@ -53,19 +53,22 @@ var App = App || {};
 		initialize: function () {
 			
 			App.Events.on( 'addUnit', this.addModel, this );
-			App.Events.on( 'unitDelete', this.deleteModel, this );
 			
 		},
 		addModel: function ( model ) {
 		  
 			console.log('addModel function performing'); 
 			this.add( model );
+<<<<<<< HEAD
 			 
 		},
 		deleteModel: function( model ) {
 		
 			model.destroy();
 			
+=======
+			App.dbConnector.AddToDb("Units", model);
+>>>>>>> f510adeb7819724128fba9ec9484ab30a11640d7
 		}
 	
 	});
@@ -77,7 +80,6 @@ var App = App || {};
 			
 			App.Events.on( 'addUnitItem', this.addModel, this );
 			
-			
 		},
 		addModel: function ( model ) {
 			
@@ -86,7 +88,6 @@ var App = App || {};
 		}
 	
 	});
-	
 
 
 }()); 

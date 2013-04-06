@@ -19,7 +19,6 @@ var App = App || {};
 	
 	App.Models.Unit = Backbone.Model.extend({
 	
-		uid: 1,
 		name: 'unit',
 		mcollection: ''
 	
