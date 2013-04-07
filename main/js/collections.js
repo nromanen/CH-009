@@ -59,16 +59,16 @@ var App = App || {};
 		  
 			console.log('addModel function performing'); 
 			this.add( model );
-<<<<<<< HEAD
+
 			 
 		},
 		deleteModel: function( model ) {
 		
 			model.destroy();
 			
-=======
+
 			App.dbConnector.AddToDb("Units", model);
->>>>>>> f510adeb7819724128fba9ec9484ab30a11640d7
+
 		}
 	
 	});
