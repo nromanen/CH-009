@@ -227,18 +227,17 @@ var App = App || {};
 	
 		tagName: 'li',
 		initialize: function () {
-<<<<<<< HEAD
 		
 			this.model.on( 'destroy', this.unitRemoveItem, this );
 			
-=======
 			//initialize
->>>>>>> f510adeb7819724128fba9ec9484ab30a11640d7
+
 		},
 		className: 'unit',
 		events: {
 			'click .unit_name' : 'unitToggle',
-			'click .add_unitItem' : 'unitAddItem'
+			'click .add_unitItem' : 'unitAddItem',
+			'click .deleteUnit' : 'unitDeleteItem'
 		},
 		template: _.template( $('#unit-name').html() ),
 		render: function () {	      
@@ -278,7 +277,6 @@ var App = App || {};
 			});
 			
 			App.Events.trigger( 'addUnitItem', newUnitItem );
-<<<<<<< HEAD
 			
 			console.log ( this.model.get ( 'mcollection' ).toJSON() );
 		
@@ -291,8 +289,6 @@ var App = App || {};
 		unitRemoveItem: function() {
 		
 			this.$el.remove();
-=======
->>>>>>> f510adeb7819724128fba9ec9484ab30a11640d7
 		
 		}
 		
@@ -392,5 +388,3 @@ var App = App || {};
     });
     
 }()); 
-
-/////////////////////////////////////////////////////////////////////////
