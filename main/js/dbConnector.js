@@ -26,7 +26,8 @@ var App = App || {};
 			localDatabase.db = openRequest.result;
 			console.log("database is open");
 			App.Events.trigger( 'fetchProducts' );
-			
+			App.Events.trigger( 'fetchUnit' );
+		
 		};	
 	}
 
@@ -133,6 +134,7 @@ try {
 
 			var transaction = localDatabase.db.transaction(objStor, "readwrite");
 			var store = transaction.objectStore(objStor);            
+		
 			
 			console.log(store);
 		  
@@ -164,19 +166,42 @@ try {
 	
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	App.dbConnector.fetchUnit = function()	{
+			
+					var store = localDatabase.db.transaction("Units").objectStore("Units");
+					var request = store.openCursor();
+					var units = new Array();
+					var pointer = -1;
+					
+						var Units = function(config){
+							this.name = config.name;
+							this.mcollection = config.mcollection;
+						
+						}
+						request.onsuccess =  function(event){
+								var cursor = event.target.result;
+								pointer++;
+								
+								if(cursor){
+								console.log(cursor.value.unitName+JSON.parse(cursor.value.unitCollection));
+									units[pointer++] = new Units ({
+									name:cursor.value.unitName,
+									mcollection:JSON.parse(cursor.value.unitCollection)
+									});
+								
+								cursor.continue(); 	
+								}else{
+								  onSuccessHandler ( units );
+								}
+						
+						
+						}
+						var onSuccessHandler = function ( units ) {
+							App.Events.trigger( 'writeUnits', units );
+							console.log (units );
+		}
+						
+	}
 	
 	App.dbConnector.deleteProduct = function ( material ) {
 
@@ -232,19 +257,19 @@ try {
 				var products = new Array();
 				var pointer = -1;
 				
-				var Product = function (config) {
+									var Product = function (config) {
 				    
-				    this.material = config.material;
-					this.price = config.price;
+												this.material = config.material;
+												this.price = config.price;
 					
-				}
+									}
 				
-				request.onsuccess = function( evt ) {
+									request.onsuccess = function( evt ) {
+							
+												var cursor = evt.target.result;
+												pointer++;
 					
-					var cursor = evt.target.result;
-					pointer++;
-					
-					if ( cursor ) {
+												if ( cursor ) {
 					       
                           
 						products[pointer] = new Product ({	
@@ -258,8 +283,8 @@ try {
 						onSuccessHandler ( products );
 					}
 				};
-				
-			}
+				}
+			
 			catch (e) {
 			 
 				console.log('need to create db!');
@@ -275,7 +300,7 @@ try {
 		}
 		
 	}	
-		
+
 	App.dbConnector.createDatabase();
 	
 })();
