@@ -230,8 +230,6 @@ var App = App || {};
 		
 			this.model.on( 'destroy', this.unitRemoveItem, this );
 			
-			//initialize
-
 		},
 		className: 'unit',
 		events: {
@@ -277,6 +275,7 @@ var App = App || {};
 			});
 			
 			App.Events.trigger( 'addUnitItem', newUnitItem );
+
 			
 			console.log ( this.model.get ( 'mcollection' ).toJSON() );
 		
@@ -289,7 +288,7 @@ var App = App || {};
 		unitRemoveItem: function() {
 		
 			this.$el.remove();
-		
+=======		
 		}
 		
 	});
