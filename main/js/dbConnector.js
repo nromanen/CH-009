@@ -76,10 +76,7 @@ var App = App || {};
 			var unitStore = evt.currentTarget.result.createObjectStore
 					("Units", {keyPath: "id", autoIncrement: true});
 					unitStore.createIndex("unitName", "unitName", { unique: true});        
-					unitStore.createIndex("unitCollection", "unitCollection", { unique: false });
-					
-					
-			   
+					unitStore.createIndex("unitCollection", "unitCollection", { unique: false }); 
 				  
 			var tovarStore = evt.currentTarget.result.createObjectStore
 					("Tovaru", {keyPath: "id", autoIncrement: true});
@@ -255,15 +252,19 @@ try {
 			
 				this.unitTitle = config.unitName;
 				this.mcollection = config.unitCollection;
+				
 			}
 			
 			request.onsuccess = function( evt ) {
-				
+
 				var cursor = evt.target.result;
 				
-				if ( cursor ) {
+				// console.log ( cursor );
 				
-					if ( cursor.value.product ===  unitTitle ) {
+				if ( cursor ) {
+		
+				
+					if ( cursor.value.unitName ===  unitTitle ) {
 						
 						var deleteRequest = localDatabase.db.transaction( ["Units"] , "readwrite" ).objectStore("Units").delete( cursor.key );
 						deleteRequest.onsuccess = function( ev ) {
@@ -339,17 +340,10 @@ try {
 		}
 		
 	}	
-<<<<<<< HEAD
 
-	//App.dbConnector.deleteDatabase();
-=======
-<<<<<<< HEAD
-	
-	//App.dbConnector.deleteDatabase();
-=======
- //App.dbConnector.deleteDatabase();
->>>>>>> de6ea910a1311a72263e074fb6d64fa29be8e09a
->>>>>>> c82a5ed064735c76a3f9f0161b11f1ba20b712be
+
+  //App.dbConnector.deleteDatabase();
+
 	App.dbConnector.createDatabase();
 	
 })();

@@ -5,7 +5,7 @@ var App = App || {};
 	App.Collections.List = Backbone.Collection.extend({
 		model: App.Models.Material,
 		initialize: function () {
-			
+		
 			App.Events.on( 'destroyModel', this.destroyModel, this );
 			App.Events.on( 'addModel', this.addModel, this );
 			App.Events.on( 'fetchProducts', this.fetchProducts, this );

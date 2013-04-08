@@ -301,13 +301,6 @@ var App = App || {};
 		unitRemoveItem: function() {
 		
 			this.$el.remove();
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> c82a5ed064735c76a3f9f0161b11f1ba20b712be
-		
-		}
-=======
 	
 		},
 		changeUnitName: function () {
@@ -334,8 +327,6 @@ var App = App || {};
 				this.close(); 
 			}
 		},
-				
->>>>>>> de6ea910a1311a72263e074fb6d64fa29be8e09a
 		
 	});
 	
