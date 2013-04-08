@@ -13,7 +13,6 @@ var App = App || {};
 		className: 'unit',
 		events: {
 			'click .unit_name' : 'unitToggle',
-			'click .add_unitItem' : 'unitAddItem',
 			'click .deleteUnit' : 'unitDeleteItem',
 			'click .edit_unitItem' : 'changeUnitName',
 			'keypress .edit_unit_name': 'updateOnEnter',
@@ -65,20 +64,6 @@ var App = App || {};
 			
 			}
 			
-		},
-		unitAddItem: function () {
-		
-			var newUnitItem = new App.Models.UnitItem({
-				
-				unitID: 1,
-				material: 'material',
-				count: 12
-				
-			});
-
-			var MaterialCollection = this.model.get ( 'mcollection' );
-			MaterialCollection.add ( newUnitItem );
-		
 		},
 		unitDeleteItem: function() {
 		
