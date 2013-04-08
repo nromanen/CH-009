@@ -48,7 +48,8 @@ var App = App || {};
 			var strQuantity = prompt( 'Пожалуйста, укажите количество ' + this.model.get ( 'material' )  );
 			if ( ( strQuantity !== '' ) && ( strQuantity !== null ) ) {
 				this.model.set ( { count: strQuantity } )
-				App.Events.trigger( 'addUnitItem', this.model );  
+				this.collection.add ( this.model ); 
+				//App.Events.trigger( 'addUnitItem', this.model );  
 			}	
 		},
 		plus: function () {
@@ -56,6 +57,26 @@ var App = App || {};
 			
 		
 		}
+	});
+	
+	App.Views.AddMaterialsList = Backbone.View.extend({
+	
+		tagName: 'ul',
+		initialize: function () {
+			this.collection.on('add', this.addOne, this);
+		},
+		render: function () {
+			this.collection.each(this.addOne, this);
+			return this;
+		},
+		addOne: function(modelMaterial) {
+			var MaterialsCollection = this.model.get ( 'mcollection' );
+			var MaterialView = new App.Views.MaterialPlus({ model: modelMaterial, collection: MaterialsCollection });
+			MaterialView.render();
+			this.$el.append( MaterialView.el );
+			//console.log ( this.model );
+		}
+	
 	});
 	
 	App.Views.List = Backbone.View.extend({  // это вид коллекции
@@ -76,24 +97,6 @@ var App = App || {};
 	
 	});
 	
-	
-	App.Views.AddMaterialsList = Backbone.View.extend({
-	
-		tagName: 'ul',
-		initialize: function () {
-			this.collection.on('add', this.addOne, this);
-		},
-		render: function () {
-			this.collection.each(this.addOne, this);
-			return this;
-		},
-		addOne: function(modelMaterial) {
-			var MaterialView = new App.Views.MaterialPlus({ model: modelMaterial });
-			MaterialView.render();
-			this.$el.append( MaterialView.el );
-		}
-	
-	});
 	
 	App.Views.AddMaterial = Backbone.View.extend({
 		el: '#addMaterial',
@@ -246,7 +249,8 @@ var App = App || {};
 			this.$('.unit_info').append( newUnitItemsList.el );
 			newUnitItemsList.render();
 			
-			var viewMaterials = new App.Views.AddMaterialsList( { collection: App.Materials } );
+			var viewMaterials = new App.Views.AddMaterialsList( { collection: App.Materials, model : this.model	} );
+			//console.log ( viewMaterials.model );
 			viewMaterials.render();
 			$('.materials_holder').html('');
 			$('.materials_holder') .append( viewMaterials.el );
@@ -274,10 +278,16 @@ var App = App || {};
 				
 			});
 			
-			App.Events.trigger( 'addUnitItem', newUnitItem );
-
+			//var newMaterials = new App.
 			
-			console.log ( this.model.get ( 'mcollection' ).toJSON() );
+			//App.Events.trigger( 'addUnitItem', newUnitItem );
+			
+			var MaterialCollection = this.model.get ( 'mcollection' );
+			MaterialCollection.add ( newUnitItem );
+			
+			//var viewMaterials = new App.Views.AddMaterialsList( { collection: App.Materials, model: this.model } );
+			
+			//console.log ( viewMaterials.model );
 		
 		},
 		unitDeleteItem: function() {
@@ -288,7 +298,7 @@ var App = App || {};
 		unitRemoveItem: function() {
 		
 			this.$el.remove();
-=======		
+		
 		}
 		
 	});
