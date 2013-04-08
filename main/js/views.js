@@ -230,7 +230,7 @@ var App = App || {};
 	
 		tagName: 'li',
 		initialize: function () {
-		
+			this.model.on( 'change', this.render, this);
 			this.model.on( 'destroy', this.unitRemoveItem, this );
 			
 		},
@@ -238,7 +238,10 @@ var App = App || {};
 		events: {
 			'click .unit_name' : 'unitToggle',
 			'click .add_unitItem' : 'unitAddItem',
-			'click .deleteUnit' : 'unitDeleteItem'
+			'click .deleteUnit' : 'unitDeleteItem',
+			'click .edit_unitItem ' : 'changeUnitName',
+			'keypress .edit_unit_name': 'updateOnEnter',
+			'blur .edit_unit_name': 'close'
 		},
 		template: _.template( $('#unit-name').html() ),
 		render: function () {	      
@@ -254,7 +257,7 @@ var App = App || {};
 			viewMaterials.render();
 			$('.materials_holder').html('');
 			$('.materials_holder') .append( viewMaterials.el );
-			
+			this.$input = this.$('.edit_unit_name');
 		}, 
 		unitToggle: function () {
 			
@@ -298,8 +301,41 @@ var App = App || {};
 		unitRemoveItem: function() {
 		
 			this.$el.remove();
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> c82a5ed064735c76a3f9f0161b11f1ba20b712be
 		
 		}
+=======
+	
+		},
+		changeUnitName: function () {
+			this.$el.addClass('editing');
+			this.$input.focus();
+			
+		},
+		close: function () {
+			var value = this.$input.val().trim();
+			
+			if ( value =='' ) {
+			this.$el.removeClass('editing');
+			return;
+			};
+			if  ( ! value ) {
+			this.$el.removeClass('editing');
+			return;
+			}
+			this.model.set({ name: value });
+			this.$el.removeClass('editing');
+		},
+		updateOnEnter: function (e) {
+			if (e.keyCode == 13) {
+				this.close(); 
+			}
+		},
+				
+>>>>>>> de6ea910a1311a72263e074fb6d64fa29be8e09a
 		
 	});
 	
