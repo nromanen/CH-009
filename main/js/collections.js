@@ -109,6 +109,7 @@ var App = App || {};
 		initialize: function () {
 			
 			App.Events.on( 'addUnitItem', this.addModel, this );
+			App.Events.on( 'destroyItemModel', this.destroyModel, this );
 			
 				
 		},
@@ -117,6 +118,12 @@ var App = App || {};
 			this.add( model );
 			
 		},
+		destroyModel: function ( model ) {
+		
+			//App.dbConnector.deleteProduct( model.get('material') );
+			model.destroy();
+		
+		} 
 
 	});
 
