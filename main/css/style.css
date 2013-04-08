@@ -170,12 +170,12 @@ h1 span{
     cursor:pointer;
 }
 .deleteUnit  {
-    float: left;
+    float: right;
     width:26px;
     height:26px;
     background: url('deleteUnit.png');
     margin-top: 16px;
-    margin-left: 100px;
+    margin-left: 10px;
     cursor:pointer;
 }
 .edit_unit_name {
@@ -256,7 +256,7 @@ h1 span{
 
 .unit_holder {
 	width: 500px;
-	float:left;
+	margin: 0 auto;
     padding: 20px 10px;
 	background-color:#f3f5fb;
 	border:10px solid #0B6121;
