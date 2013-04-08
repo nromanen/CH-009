@@ -291,6 +291,10 @@ var App = App || {};
 		unitRemoveItem: function() {
 		
 			this.$el.remove();
+<<<<<<< HEAD
+		
+		}
+=======
 	
 		},
 		changeUnitName: function () {
@@ -318,6 +322,7 @@ var App = App || {};
 			}
 		},
 				
+>>>>>>> de6ea910a1311a72263e074fb6d64fa29be8e09a
 		
 	});
 	
