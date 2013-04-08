@@ -117,9 +117,7 @@ var App = App || {};
 			this.add( model );
 			
 		},
-		
-		
-	
+
 	});
 
 
