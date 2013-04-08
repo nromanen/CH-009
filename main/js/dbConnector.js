@@ -300,7 +300,7 @@ try {
 		}
 		
 	}	
-
+ //App.dbConnector.deleteDatabase();
 	App.dbConnector.createDatabase();
 	
 })();
