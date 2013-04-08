@@ -339,8 +339,12 @@ try {
 		}
 		
 	}	
+<<<<<<< HEAD
 	
 	//App.dbConnector.deleteDatabase();
+=======
+ //App.dbConnector.deleteDatabase();
+>>>>>>> de6ea910a1311a72263e074fb6d64fa29be8e09a
 	App.dbConnector.createDatabase();
 	
 })();
