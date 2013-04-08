@@ -241,6 +241,45 @@ try {
 			}	
 		}		
 	}
+	
+	App.dbConnector.deleteUnit = function ( unitTitle ) {
+
+		if ( localDatabase != null && localDatabase.db != null ) {		
+			
+			var store = localDatabase.db.transaction("Units").objectStore("Units");
+			var request = store.openCursor();
+			var products = new Array();
+			var pointer = -1;
+			
+			var Unit = function ( config ) {
+			
+				this.unitTitle = config.unitName;
+				this.mcollection = config.unitCollection;
+			}
+			
+			request.onsuccess = function( evt ) {
+				
+				var cursor = evt.target.result;
+				
+				if ( cursor ) {
+				
+					if ( cursor.value.product ===  unitTitle ) {
+						
+						var deleteRequest = localDatabase.db.transaction( ["Units"] , "readwrite" ).objectStore("Units").delete( cursor.key );
+						deleteRequest.onsuccess = function( ev ) {
+							
+							console.log("deleted id:" + cursor.key + " !");
+							
+						}
+					
+					}
+					
+					cursor.continue(); 				
+				
+				}
+			}	
+		}		
+	}
 
 	App.dbConnector.fetchAll = function () {
 	
@@ -300,7 +339,8 @@ try {
 		}
 		
 	}	
-
+	
+	//App.dbConnector.deleteDatabase();
 	App.dbConnector.createDatabase();
 	
 })();

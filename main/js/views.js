@@ -288,7 +288,7 @@ var App = App || {};
 		unitRemoveItem: function() {
 		
 			this.$el.remove();
-=======		
+		
 		}
 		
 	});

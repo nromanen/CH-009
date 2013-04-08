@@ -94,7 +94,7 @@ var App = App || {};
 		
 		},
 		deleteModel: function( model ) {
-		
+			App.dbConnector.deleteUnit( model.get("unitName") );
 			model.destroy();
 			// виклик видалення моделі колекцій із бази
 
