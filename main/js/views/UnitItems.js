@@ -6,13 +6,26 @@ var App = App || {};
 	
 		tagName: 'li',
 		initialize: function (){
-			//
+			this.model.on( 'destroy', this.remove, this );
+		},
+		events: {
+			'click .delete' : 'confirmRemove'
 		},
 		template: _.template( $('#unit-count').html() ),
 		render: function () {
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
 		},
+		confirmRemove: function () {
+			if ( confirm('Вы действительно хотите удалить данную запись?') ) {
+				App.Events.trigger( 'destroyItemModel', this.model );  
+			}	
+		},
+		remove: function () {
+		
+			this.$el.remove();
+		
+		}
 	
 	});
 	
