@@ -178,6 +178,38 @@ h1 span{
     margin-left: 100px;
     cursor:pointer;
 }
+.edit_unit_name {
+	float: left;
+  	display: none;
+	padding: 10px;
+    font-size:34px;
+    text-align:left;
+    width: 140px;
+
+}
+.edit_unitItem  {
+    float: right;
+    width:26px;
+    height:26px;
+    background: url('edit.png');
+    margin-top: 16px;
+    cursor:pointer;
+}
+.editing .edit_unit_name {
+	display: block;
+	float: left;
+	padding: 10px;
+	font-size:34px;
+	color:#000;
+	text-align:left;
+	font-weight:bold;
+	width: 140px;
+	
+}
+
+.editing .unit_name{
+	display: none;
+}
 .delete  {
     float: left;
     width:16px;
