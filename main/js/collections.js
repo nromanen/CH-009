@@ -89,12 +89,12 @@ var App = App || {};
 				});
 			
 				this.add(mUnit);
-	i++;
+				i++;
 			}
 		
 		},
 		deleteModel: function( model ) {
-			App.dbConnector.deleteUnit( model.get("unitName") );
+			App.dbConnector.deleteUnit( model.get( "name" ) );
 			model.destroy();
 			// виклик видалення моделі колекцій із бази
 

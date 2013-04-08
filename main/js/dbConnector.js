@@ -81,7 +81,7 @@ var App = App || {};
 			var tovarStore = evt.currentTarget.result.createObjectStore
 					("Tovaru", {keyPath: "id", autoIncrement: true});
 				   tovarStore.createIndex("tovarName", "tovarName", { unique: false });        
-				   tovarStore.createIndex("tovarCollection", "tovarColecton", { unique: false });
+				   tovarStore.createIndex("tovarCollection", "tovarCollecton", { unique: false });
 				 				   					
 			            	   						  
 			}
@@ -240,6 +240,7 @@ try {
 	}
 	
 	App.dbConnector.deleteUnit = function ( unitTitle ) {
+			console.log(unitTitle);
 
 		if ( localDatabase != null && localDatabase.db != null ) {		
 			
