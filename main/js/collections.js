@@ -77,9 +77,7 @@ var App = App || {};
 			
 				var unitCollection = new App.Collections.UnitItems();
 				
-			
 				unitCollection.add(units[i].mcollection);
-				
 				
 				console.log(unitCollection);
 				var mUnit = new App.Models.Unit({
@@ -98,7 +96,6 @@ var App = App || {};
 			model.destroy();
 			// виклик видалення моделі колекцій із бази
 
-			
 		}
 	
 	});
@@ -110,8 +107,7 @@ var App = App || {};
 			
 			App.Events.on( 'addUnitItem', this.addModel, this );
 			App.Events.on( 'destroyItemModel', this.destroyModel, this );
-			
-				
+		
 		},
 		addModel: function ( model ) {
 			

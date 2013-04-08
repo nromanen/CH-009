@@ -48,7 +48,8 @@ var App = App || {};
 				AddMaterialsList.render();
 				
 				$('.AddMaterialsList').html('');
-				$('.AddMaterialsList') .append( viewMaterials.el );
+				$('.AddMaterialsList').append( AddMaterialsList.el );
+				console.log ( AddMaterialsList.el );
 				
 			} else {
 				console.log('not visible');
