@@ -1,6 +1,26 @@
 var App = App || {};
 
 (function () {	
+
+	App.Views.AddMaterialsList = Backbone.View.extend({
+	
+		tagName: 'ul',
+		initialize: function () {
+			this.collection.on('add', this.addOne, this);
+		},
+		render: function () {
+			this.collection.each(this.addOne, this);
+			return this;
+		},
+		addOne: function(modelMaterial) {
+			var MaterialsCollection = this.model.get ( 'mcollection' );
+			var MaterialView = new App.Views.MaterialPlus({ model: modelMaterial, collection: MaterialsCollection });
+			MaterialView.render();
+			this.$el.append( MaterialView.el );
+			//console.log ( this.model );
+		}
+	
+	});
 	
 	App.Views.MaterialPlus = Backbone.View.extend({ // это вид модели
 		tagName: 'li',
@@ -30,26 +50,6 @@ var App = App || {};
 		
 		
 		}
-	});
-	
-	App.Views.AddMaterialsList = Backbone.View.extend({
-	
-		tagName: 'ul',
-		initialize: function () {
-			this.collection.on('add', this.addOne, this);
-		},
-		render: function () {
-			this.collection.each(this.addOne, this);
-			return this;
-		},
-		addOne: function(modelMaterial) {
-			var MaterialsCollection = this.model.get ( 'mcollection' );
-			var MaterialView = new App.Views.MaterialPlus({ model: modelMaterial, collection: MaterialsCollection });
-			MaterialView.render();
-			this.$el.append( MaterialView.el );
-			//console.log ( this.model );
-		}
-	
 	});
 	
 }());

@@ -15,7 +15,7 @@ var App = App || {};
 			'click .unit_name' : 'unitToggle',
 			'click .add_unitItem' : 'unitAddItem',
 			'click .deleteUnit' : 'unitDeleteItem',
-			'click .edit_unitItem ' : 'changeUnitName',
+			'click .edit_unitItem' : 'changeUnitName',
 			'keypress .edit_unit_name': 'updateOnEnter',
 			'blur .edit_unit_name': 'close'
 		},
@@ -28,16 +28,31 @@ var App = App || {};
 			this.$('.unit_info').append( newUnitItemsList.el );
 			newUnitItemsList.render();
 			
-			//var viewMaterials = new App.Views.AddMaterialsList( { collection: App.Materials, model : this.model	} );
-
-			//viewMaterials.render();
-			//$('.materials_holder').html('');
-			//$('.materials_holder') .append( viewMaterials.el );
+			
 			this.$input = this.$('.edit_unit_name');
 		}, 
 		unitToggle: function () {
 			
-			this.$('.unit_info').toggle();
+			var jq_unit_info = '.unit_info';
+			var jq_visible = ':visible';
+			
+			this.$( jq_unit_info ).toggle();
+			
+			if ( this.$( jq_unit_info ).is( jq_visible ) === true ) {
+			
+				$ ( jq_unit_info ).hide();
+				this.$( jq_unit_info ).show();
+				
+				var AddMaterialsList = new App.Views.AddMaterialsList( { collection: App.Materials, model : this.model	} );
+
+				AddMaterialsList.render();
+				
+				$('.AddMaterialsList').html('');
+				$('.AddMaterialsList') .append( viewMaterials.el );
+				
+			} else {
+				console.log('not visible');
+			}
 			
 		},
 		unitAddItem: function () {
