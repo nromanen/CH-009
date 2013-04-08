@@ -22,6 +22,7 @@ var App = App || {};
 			var viewMaterials = new App.Views.List( { collection: App.Materials } );
 			viewMaterials.render();
 			$('#table_holder').html( viewMaterials.el );
+			$( '.AddMaterialsList' ).hide();
 			 
 		},
 		showUnit:function(){
@@ -33,6 +34,8 @@ var App = App || {};
 			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
 			viewUnits.render();
 			$('#units_holder').html( viewUnits.el );
+			$( '.AddMaterialsList' ).draggable ();
+			$( '.AddMaterialsList' ).hide();
 
 		}
                 

@@ -33,8 +33,10 @@ var App = App || {};
 		}, 
 		unitToggle: function () {
 			
+			var jq_unit_holder = '.unit_holder';
 			var jq_unit_info = '.unit_info';
 			var jq_visible = ':visible';
+			var jq_AddMaterialsList = '.AddMaterialsList';
 			
 			this.$( jq_unit_info ).toggle();
 			
@@ -47,12 +49,20 @@ var App = App || {};
 
 				AddMaterialsList.render();
 				
-				$('.AddMaterialsList').html('');
-				$('.AddMaterialsList').append( AddMaterialsList.el );
-				console.log ( AddMaterialsList.el );
+				$( jq_AddMaterialsList ).html('');
+				$( jq_AddMaterialsList ).append( AddMaterialsList.el );
+				
+				$(  jq_AddMaterialsList  ).show();	
+					var positionTop = this.$( jq_unit_holder ).position().top;
+					var positionLeft = this.$( jq_unit_info ).position().left + 530;
+				$(  jq_AddMaterialsList  ).css ( { 'top' : positionTop,  'left' : positionLeft } ); 
+				
+				console.log ( this.$( jq_unit_holder ).position().left );
 				
 			} else {
-				console.log('not visible');
+			
+				$(  jq_AddMaterialsList  ).hide();
+			
 			}
 			
 		},
