@@ -10,7 +10,6 @@ var App = App || {};
 		},
 		inputKeypress: function(e) {
 			if (e.which === 13) {
-				console.log('key on units is pressed!');
 				this.validateItem();
 			}
 		},
@@ -24,7 +23,7 @@ var App = App || {};
 				$('#unit').focus();
 				return false;
 			}
-			console.log('item validated');
+			
 			this.addItem ( strUnit );
 		
 		},

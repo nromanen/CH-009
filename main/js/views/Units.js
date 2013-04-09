@@ -26,9 +26,8 @@ var App = App || {};
 			var newUnitItemsList = new App.Views.UnitItemsList( { collection: this.model.get( 'mcollection' )  } ) ;
 			this.$('.unit_info').append( newUnitItemsList.el );
 			newUnitItemsList.render();
-			
-			
 			this.$input = this.$('.edit_unit_name');
+			
 		}, 
 		unitToggle: function () {
 			
@@ -55,8 +54,6 @@ var App = App || {};
 					var positionTop = this.$( jq_unit_holder ).position().top;
 					var positionLeft = this.$( jq_unit_info ).position().left + 530;
 				$(  jq_AddMaterialsList  ).css ( { 'top' : positionTop,  'left' : positionLeft } ); 
-				
-				console.log ( this.$( jq_unit_holder ).position().left );
 				
 			} else {
 			
@@ -112,7 +109,6 @@ var App = App || {};
 		render: function () {
 			
             this.$el.html('');
-            console.log( this.collection );
           	this.collection.each( this.addOne, this );
 			return this;
 			
@@ -123,6 +119,9 @@ var App = App || {};
 			this.$el.prepend( UnitView.el );
 			UnitView.render();
 			
+			var jq_unit_info = '.unit_info';
+			this.$el.find( jq_unit_info ).hide();
+
 		}
 	
 	});

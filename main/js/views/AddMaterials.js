@@ -17,7 +17,6 @@ var App = App || {};
 			var MaterialView = new App.Views.MaterialPlus({ model: modelMaterial, collection: MaterialsCollection });
 			MaterialView.render();
 			this.$el.append( MaterialView.el );
-			//console.log ( this.model );
 		}
 	
 	});

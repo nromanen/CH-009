@@ -60,7 +60,6 @@ var App = App || {};
 		},
 		addModel: function ( model ) {
 
-			console.log('addModel function performing'); 
 			this.add( model );
 			App.dbConnector.AddToDb("Units", model);
 			 
@@ -71,7 +70,6 @@ var App = App || {};
 		
 		},
 		writeCollection: function(units){
-		console.log(units);
 		
 			for(i=0; i<=units.length-1;i++){
 			
@@ -79,7 +77,6 @@ var App = App || {};
 				
 				unitCollection.add(units[i].mcollection);
 				
-				console.log(unitCollection);
 				var mUnit = new App.Models.Unit({
 					name:units[i].name,
 					mcollection:unitCollection 

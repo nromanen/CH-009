@@ -5,7 +5,6 @@ var App = App || {};
     App.Views.ControlView = Backbone.View.extend({
 
 		initialize: function (){
-			console.log("create show all voew"); 
 			this.$el.append($('#navigation').html());
 			this.showUnit();
 		},
@@ -23,7 +22,7 @@ var App = App || {};
 			viewMaterials.render();
 			$('#table_holder').html( viewMaterials.el );
 			$( '.AddMaterialsList' ).hide();
-			 
+			
 		},
 		showUnit:function(){
 		 
@@ -34,9 +33,11 @@ var App = App || {};
 			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
 			viewUnits.render();
 			$('#units_holder').html( viewUnits.el );
-			$( '.AddMaterialsList' ).draggable ();
+			$( '.AddMaterialsList' ).draggable();
 			$( '.AddMaterialsList' ).hide();
-
+			$( '.unit' ).each ( function () {
+				$( this ).find( '.unit_info' ).hide();
+			});
 		}
                 
     });

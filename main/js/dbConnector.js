@@ -94,8 +94,6 @@ var App = App || {};
 
 			var transaction = localDatabase.db.transaction("products", "readwrite");
 			var store = transaction.objectStore("products");            
-			
-			console.log(store);
 		  
 			if (localDatabase != null && localDatabase.db != null) {
 		         
@@ -131,9 +129,6 @@ try {
 
 			var transaction = localDatabase.db.transaction(objStor, "readwrite");
 			var store = transaction.objectStore(objStor);            
-		
-			
-			console.log(store);
 		  
 			if (localDatabase != null && localDatabase.db != null) {
 		      	var b = JSON.stringify(model.get("mcollection"));
@@ -180,7 +175,7 @@ try {
 								pointer++;
 								
 								if(cursor){
-								console.log(cursor.value.unitName+JSON.parse(cursor.value.unitCollection));
+								//console.log(cursor.value.unitName+JSON.parse(cursor.value.unitCollection));
 									units[pointer++] = new Units ({
 									name:cursor.value.unitName,
 									mcollection:JSON.parse(cursor.value.unitCollection)
@@ -195,7 +190,7 @@ try {
 						}
 						var onSuccessHandler = function ( units ) {
 							App.Events.trigger( 'writeUnits', units );
-							console.log (units );
+							//console.log (units );
 		}
 						
 	}
@@ -259,8 +254,6 @@ try {
 			request.onsuccess = function( evt ) {
 
 				var cursor = evt.target.result;
-				
-				// console.log ( cursor );
 				
 				if ( cursor ) {
 		
@@ -337,7 +330,7 @@ try {
 		
 		var onSuccessHandler = function ( products ) {
 			App.Events.trigger( 'writeProducts', products );
-			console.log ( products );
+			//console.log ( products );
 		}
 		
 	}	
