@@ -154,8 +154,41 @@ var App = App || {};
 		var addProductHandler = function ( result ) {
 			console.log( result );
 		}
+
+	}
+	
+	App.dbConnector.EditUnitItem = function (objStor, model) {
+		
+		try {
+
+			var transaction = localDatabase.db.transaction(objStor, "readwrite");
+			var store = transaction.objectStore(objStor);            
+		  
+			if (localDatabase != null && localDatabase.db != null) {
+		      	var b = JSON.stringify(model.get("mcollection"));
+				var c = JSON.parse(b);
+				var request = store.put({unitName:model.get("name"), unitCollection:JSON.stringify(model.get("mcollection"))});
+				
+				request.onsuccess = function (e) {
+					addProductHandler ( true );
+				};
+				
+				request.onerror = function (e) {
+					console.log(e.value);
+					addProductHandler ( false );
+				};
+			}
+		}
+		
+		catch (e) {
+			console.log(e);
+		}
 	
 	
+		var addProductHandler = function ( result ) {
+			console.log( result );
+		}
+
 	}
 	
 	App.dbConnector.fetchUnit = function()	{
@@ -361,7 +394,7 @@ var App = App || {};
 		}
 	}		
 
-  //App.dbConnector.deleteDatabase();
+    //App.dbConnector.deleteDatabase();
 
 	App.dbConnector.createDatabase();
 	
