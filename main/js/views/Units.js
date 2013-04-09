@@ -79,7 +79,6 @@ var App = App || {};
 		},
 		close: function () {
 			var value = this.$input.val().trim();
-			
 			if ( value =='' ) {
 			this.$el.removeClass('editing');
 			return;
@@ -88,8 +87,7 @@ var App = App || {};
 			this.$el.removeClass('editing');
 			return;
 			}
-			App.dbConnector.editUnitName(this.model.get( 'name' ), value );
-			this.model.set({ name: value });
+			App.Events.trigger('editUnitName', this.model, value);
 			this.$el.removeClass('editing');
 		},
 		updateOnEnter: function (e) {

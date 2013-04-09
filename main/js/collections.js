@@ -56,6 +56,7 @@ var App = App || {};
 			App.Events.on( 'unitDelete', this.deleteModel, this );
 			App.Events.on( 'fetchUnit', this.fetchUnits, this );
 			App.Events.on( 'writeUnits', this.writeCollection, this );
+			App.Events.on( 'editUnitName', this.changeName, this );
 			App.dbConnector.openDatabase();
 		},
 		addModel: function ( model ) {
@@ -93,6 +94,11 @@ var App = App || {};
 			model.destroy();
 			// виклик видалення моделі колекцій із бази
 
+		},
+		
+		changeName: function (model, value) {
+			App.dbConnector.editUnitName(model.get( 'name' ), value );
+			model.set({ name: value });
 		}
 	
 	});
