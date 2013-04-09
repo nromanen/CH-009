@@ -82,7 +82,7 @@ var App = App || {};
 				
 			}
 			
-			if ( isNaN( strPrice ) || strPrice < 0 )  {
+			if ( isNaN( strPrice ) || strPrice < 0 || strPrice === "" )  {
 			
 				alert ( 'Цена указана неверно!' );
 				$('#price').focus();
