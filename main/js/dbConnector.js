@@ -123,6 +123,45 @@ var App = App || {};
 		
 	}
 	
+	App.dbConnector.EditUnitItem = function(model){
+	
+	
+	try {
+		   
+			var transaction = localDatabase.db.transaction("Units", "readwrite");
+			var store = transaction.objectStore("Units");
+			if (localDatabase != null && localDatabase.db != null) {
+			var request = store.openCursor();
+			
+				request.onsuccess = function( evt ) {
+					var cursor = evt.target.result;
+					if ( cursor ) {
+						if ( cursor.value.unitName ===  model.get('name') ) {
+							var newValue = cursor.value;
+							newValue.unitName =  model.get('name');
+							newValue.unitCollection = model.get('mcollection');
+							store.put(newValue);
+							console.log("Unit rename succesfull");
+							return;
+						}	
+					}
+					cursor.continue(); 				
+				}	
+			}
+		}
+		catch(e){
+		   console.log(e);
+		}
+	 
+	
+	
+	
+	
+	
+	}
+	
+	
+	
 	App.dbConnector.AddUnit = function (objStor, model) {
 		
 		try {
@@ -366,6 +405,9 @@ var App = App || {};
 		}
 		
 	}	
+	
+	
+	
 	App.dbConnector.editUnitName = function( oldName, newName )  {
 		try {
 		   
