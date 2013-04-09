@@ -153,7 +153,7 @@ h1 span{
 }
 .count {
     float: left;
-    width: 220px;
+    width: 200px;
     padding: 10px;
     font-size:34px;
     color:#333;
@@ -179,13 +179,7 @@ h1 span{
     cursor:pointer;
 }
 .edit_unit_name {
-	float: left;
   	display: none;
-	padding: 10px;
-    font-size:34px;
-    text-align:left;
-    width: 140px;
-
 }
 .edit_unitItem  {
     float: right;
@@ -208,6 +202,31 @@ h1 span{
 }
 
 .editing .unit_name{
+	display: none;
+}
+.editMaterialCount {
+  	display: none;
+}
+.editCount  {
+    float: right;
+    width:16px;
+    height:16px;
+    background: url('edit16.png');
+    margin-top: 23px;
+    cursor:pointer;
+}
+.editingCount .editMaterialCount {
+	display: block;
+	float: left;
+	padding: 10px;
+	font-size:34px;
+	color:#000;
+	text-align:left;
+	font-weight:bold;
+	width: 200px;
+	
+}
+.editingCount .editCount{
 	display: none;
 }
 .delete  {
