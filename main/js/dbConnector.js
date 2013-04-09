@@ -123,9 +123,9 @@ var App = App || {};
 		
 	}
 	
-	App.dbConnector.AddToDb = function (objStor, model){
+	App.dbConnector.AddUnit = function (objStor, model) {
 		
-try {
+		try {
 
 			var transaction = localDatabase.db.transaction(objStor, "readwrite");
 			var store = transaction.objectStore(objStor);            
@@ -291,33 +291,32 @@ try {
 				var products = new Array();
 				var pointer = -1;
 				
-									var Product = function (config) {
-				    
-												this.material = config.material;
-												this.price = config.price;
-					
-									}
-				
-									request.onsuccess = function( evt ) {
-							
-												var cursor = evt.target.result;
-												pointer++;
-					
-												if ( cursor ) {
-					       
-                          
-						products[pointer] = new Product ({	
-							material : cursor.value.product,
-							price : cursor.value.productPrice
-						});
-						
-						cursor.continue(); 				
-					
-					} else {
-						onSuccessHandler ( products );
-					}
-				};
+				var Product = function (config) {
+
+							this.material = config.material;
+							this.price = config.price;
+
 				}
+
+				request.onsuccess = function( evt ) {
+		
+							var cursor = evt.target.result;
+							pointer++;
+
+							if ( cursor ) {
+	   
+								products[pointer] = new Product ({	
+									material : cursor.value.product,
+									price : cursor.value.productPrice
+								});
+								
+								cursor.continue(); 				
+							
+							} else {
+								onSuccessHandler ( products );
+							}
+				};
+			}
 			
 			catch (e) {
 			 

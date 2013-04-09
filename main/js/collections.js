@@ -61,7 +61,7 @@ var App = App || {};
 		addModel: function ( model ) {
 
 			this.add( model );
-			App.dbConnector.AddToDb("Units", model);
+			App.dbConnector.AddUnit ( "Units", model );
 			 
 		},
 		fetchUnits: function(){
