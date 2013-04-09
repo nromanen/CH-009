@@ -333,7 +333,33 @@ var App = App || {};
 		}
 		
 	}	
-
+	App.dbConnector.editUnitName = function( oldName, newName )  {
+		try {
+		   
+			var transaction = localDatabase.db.transaction("Units", "readwrite");
+			var store = transaction.objectStore("Units");
+			if (localDatabase != null && localDatabase.db != null) {
+			var request = store.openCursor();
+			
+				request.onsuccess = function( evt ) {
+					var cursor = evt.target.result;
+					if ( cursor ) {
+						if ( cursor.value.unitName ===  oldName ) {
+							var newValue = cursor.value;
+							newValue.unitName = newName;
+							store.put(newValue);
+							console.log("Unit rename succesfull");
+							return;
+						}	
+					}
+					cursor.continue(); 				
+				}	
+			}
+		}
+		catch(e){
+		   console.log(e);
+		}
+	}		
 
   //App.dbConnector.deleteDatabase();
 

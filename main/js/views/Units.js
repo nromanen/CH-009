@@ -88,6 +88,7 @@ var App = App || {};
 			this.$el.removeClass('editing');
 			return;
 			}
+			App.dbConnector.editUnitName(this.model.get( 'name' ), value );
 			this.model.set({ name: value });
 			this.$el.removeClass('editing');
 		},
