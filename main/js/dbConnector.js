@@ -152,11 +152,6 @@ var App = App || {};
 		catch(e){
 		   console.log(e);
 		}
-	 
-	
-	
-	
-	
 	
 	}
 	

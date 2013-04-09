@@ -7,7 +7,7 @@ var App = App || {};
 		tagName: 'ul',
 		initialize: function () {
 			this.collection.on('add', this.addOne, this);
-			this.model.on('change:mcollection', this.saveUnitCollection, this);
+			this.model.on('change', this.saveUnitCollection, this);
 		},
 		render: function () {
 			this.collection.each(this.addOne, this);
@@ -15,15 +15,16 @@ var App = App || {};
 		},
 		addOne: function(modelMaterial) {
 			var MaterialsCollection = this.model.get ( 'mcollection' );
-			var MaterialView = new App.Views.MaterialPlus({ model: modelMaterial, collection: MaterialsCollection });
-			console.log( this.model );
+			var MaterialView = new App.Views.MaterialPlus({ model: modelMaterial, collection: MaterialsCollection, something: this.model.get( 'name' ) });
+			//console.log( this.model );
 			MaterialView.render();
 			this.$el.append( MaterialView.el );
 			
 		},
 		saveUnitCollection: function () {
 		
-			
+			App.dbConnector.EditUnitItem ( this.model );
+			console.log('App.dbConnector.EditUnitItem triggered!');
 		
 		}
 	
@@ -49,8 +50,11 @@ var App = App || {};
 			if ( ( strQuantity !== '' ) && ( strQuantity !== null ) ) {
 				this.model.set ( { count: strQuantity } )
 				this.collection.add ( this.model );
+				App.dbConnector.EditUnitItem (  );
+				//console.log ( this.options.something ); 
 				
-				 
+				//вызываем event
+				
 			}	
 		},
 		plus: function () {

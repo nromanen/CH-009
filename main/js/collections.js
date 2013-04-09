@@ -110,7 +110,8 @@ var App = App || {};
 			
 			App.Events.on( 'addUnitItem', this.addModel, this );
 			App.Events.on( 'destroyItemModel', this.destroyModel, this );
-		
+			this.on('add', this.saveUnitCollection, this);
+			
 		},
 		addModel: function ( model ) {
 			
@@ -122,7 +123,13 @@ var App = App || {};
 			//App.dbConnector.deleteProduct( model.get('material') );
 			model.destroy();
 		
-		} 
+		},
+		saveUnitCollection: function () {
+		
+			//App.dbConnector.EditUnitItem ( this.model );
+			console.log('App.dbConnector.EditUnitItem triggered!');
+		
+		}
 
 	});
 
