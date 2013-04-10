@@ -119,10 +119,11 @@ var App = App || {};
 			
 		},
 		destroyModel: function ( model ) {
-		
 			//App.dbConnector.deleteProduct( model.get('material') );
 			model.destroy();
-		
+			this.remove(model); 
+			//App.dbConnector.AddUnit("Units", model);
+			//App.dbConnector.EditUnitItem( model );
 		},
 		saveUnitCollection: function () {
 		

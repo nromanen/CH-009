@@ -132,8 +132,7 @@ var App = App || {};
 			var store = transaction.objectStore("Units");
 			if (localDatabase != null && localDatabase.db != null) {
 			var request = store.openCursor();
-				alert(model);
-			console.log(model);
+				//console.log(model);
 			
 				request.onsuccess = function( evt ) {
 					var cursor = evt.target.result;

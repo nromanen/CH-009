@@ -18,11 +18,12 @@ var App = App || {};
 		},
 		confirmRemove: function () {
 			if ( confirm('Вы действительно хотите удалить данную запись?') ) {
+				console.log(this.model);
 				App.Events.trigger( 'destroyItemModel', this.model );  
 			}	
 		},
 		remove: function () {
-		
+			
 			this.$el.remove();
 		
 		}
