@@ -22,7 +22,6 @@ var App = App || {};
 			
 		},
 		saveUnitCollection: function () {
-			alert(12);
 			App.dbConnector.EditUnitItem ( this.model );
 			console.log('App.dbConnector.EditUnitItem triggered!');
 		
@@ -47,9 +46,9 @@ var App = App || {};
 			this.$el.html( strTemplate );
 		},
 		confirmQuantity: function () {
-			var strQuantity = prompt( 'Пожалуйста, укажите количество ' + this.model.get ( 'material' )  );
-			if ( ( strQuantity !== '' ) && ( strQuantity !== null ) ) {
-				this.model.set ( { count: strQuantity } )
+			var quantity = prompt( 'Please enter the quantity of ' + this.model.get ( 'material' )  );
+			if ( ( quantity !== '' ) && ( quantity !== null ) ) {
+				this.model.set ( { count: quantity } )
 				this.collection.add ( this.model );
 				//App.dbConnector.EditUnitItem (  );
 				this.options.something.set("mcollection", this.collection);
@@ -61,11 +60,9 @@ var App = App || {};
 		},
 		saveUnitCollection: function () {
 			
-			
-			console.log(this.options.something);
+
 			App.dbConnector.EditUnitItem (this.options.something);
 			console.log('App.dbConnector.EditUnitItem triggered!');
-		
 		},
 		
 		

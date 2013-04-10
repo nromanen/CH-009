@@ -8,7 +8,9 @@ var App = App || {};
 		initialize: function () {
 			this.model.on( 'change', this.render, this);
 			this.model.on( 'destroy', this.unitRemoveItem, this );
+
 			App.Events.on( 'editCountDb', this.changeCount, this);
+
 		},
 		className: 'unit',
 		events: {
@@ -23,7 +25,7 @@ var App = App || {};
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
 			
-			var newUnitItemsList = new App.Views.UnitItemsList( { collection: this.model.get( 'mcollection' )  } ) ;
+			var newUnitItemsList = new App.Views.UnitItemsList( { collection: this.model.get( 'mcollection' ), model: this.model  } ) ;
 			this.$('.unit_info').append( newUnitItemsList.el );
 			newUnitItemsList.render();
 			this.$input = this.$('.edit_unit_name');
@@ -64,12 +66,15 @@ var App = App || {};
 		},
 		unitDeleteItem: function() {
 		
-			App.Events.trigger( 'unitDelete', this.model );
+			if ( confirm('Are you sure you want to delete this Unit?') ) {
+				App.Events.trigger( 'unitDelete', this.model );
+			}
 		
 		},
 		unitRemoveItem: function() {
 		
 			this.$el.remove();
+			$('.AddMaterialsList').hide();
 	
 		},
 		changeUnitName: function () {

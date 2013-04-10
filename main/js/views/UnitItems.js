@@ -22,12 +22,13 @@ var App = App || {};
 			this.$input = this.$('.editMaterialCount');
 		},
 		confirmRemove: function () {
-			if ( confirm('Вы действительно хотите удалить данную запись?') ) {
-				App.Events.trigger( 'destroyItemModel', this.model );  
+			if ( confirm('Are you sure you want to delete this Unit Item?') ) {
+				this.model.destroy();
+				App.dbConnector.EditUnitItem( this.options.unitModel );
 			}	
 		},
 		remove: function () {
-		
+			
 			this.$el.remove();
 		
 		},
@@ -57,13 +58,14 @@ var App = App || {};
 		tagName: 'ul',
 		initialize: function () {
 			this.collection.on('add', this.addOne, this);
+			
 		},
 		render: function () {
 			this.collection.each(this.addOne, this);
 			return this;
 		},
 		addOne: function( modelUnitItem ) {
-			var unitItemView = new App.Views.UnitItem({ model: modelUnitItem });
+			var unitItemView = new App.Views.UnitItem({ model: modelUnitItem, unitModel: this.model });
 			unitItemView.render();
 			this.$el.append( unitItemView.el );
 		}
