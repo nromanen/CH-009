@@ -17,7 +17,7 @@ var App = App || {};
 			this.$el.html( strTemplate );
 		},
 		confirmRemove: function () {
-			if ( confirm('Вы действительно хотите удалить данную запись?') ) {
+			if ( confirm('Are you sure you want to delete this Unit Item?') ) {
 				this.model.destroy();
 				App.dbConnector.EditUnitItem( this.options.unitModel );
 			}	
