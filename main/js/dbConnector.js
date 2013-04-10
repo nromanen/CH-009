@@ -373,11 +373,11 @@ var App = App || {};
 	
 	
 	
-	App.dbConnector.editUnitName = function( oldName, newName )  {
+	App.dbConnector.editField = function( objStor, field, oldName, newName )  {
 		try {
 		   
-			var transaction = localDatabase.db.transaction("Units", "readwrite");
-			var store = transaction.objectStore("Units");
+			var transaction = localDatabase.db.transaction(objStor, "readwrite");
+			var store = transaction.objectStore(objStor);
 			if (localDatabase != null && localDatabase.db != null) {
 			var request = store.openCursor();
 			
@@ -386,9 +386,9 @@ var App = App || {};
 					if ( cursor ) {
 						if ( cursor.value.unitName ===  oldName ) {
 							var newValue = cursor.value;
-							newValue.unitName = newName;
+							newValue[field] = newName;
 							store.put(newValue);
-							console.log("Unit rename succesfull");
+							console.log("Field rename succesfull");
 							return;
 						}	
 					}

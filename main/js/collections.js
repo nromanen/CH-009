@@ -97,7 +97,7 @@ var App = App || {};
 		},
 		
 		changeName: function (model, value) {
-			App.dbConnector.editUnitName(model.get( 'name' ), value );
+			App.dbConnector.editField( 'Units', 'unitName', model.get( 'name' ), value );
 			model.set({ name: value });
 		}
 	
@@ -110,6 +110,7 @@ var App = App || {};
 			
 			App.Events.on( 'addUnitItem', this.addModel, this );
 			App.Events.on( 'destroyItemModel', this.destroyModel, this );
+			App.Events.on('newMaterialCount', this.editCount, this);
 			this.on('add', this.saveUnitCollection, this);
 			
 		},
@@ -129,6 +130,10 @@ var App = App || {};
 			//App.dbConnector.EditUnitItem ( this.model );
 			console.log('App.dbConnector.EditUnitItem triggered!');
 		
+		},
+		editCount: function (model, value) {
+			App.dbConnector.editField(model.get( 'name' ), value );
+			model.set({ count: value });
 		}
 
 	});

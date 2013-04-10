@@ -7,14 +7,19 @@ var App = App || {};
 		tagName: 'li',
 		initialize: function (){
 			this.model.on( 'destroy', this.remove, this );
+			this.model.on( 'change', this.render, this);
 		},
 		events: {
-			'click .delete' : 'confirmRemove'
+			'click .delete' : 'confirmRemove',
+			'click .editCount' : 'changeCount',
+			'keypress .editMaterialCount': 'updateOnEnter',
+			'blur .editMaterialCount': 'close'
 		},
 		template: _.template( $('#unit-count').html() ),
 		render: function () {
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
+			this.$input = this.$('.editMaterialCount');
 		},
 		confirmRemove: function () {
 			if ( confirm('Вы действительно хотите удалить данную запись?') ) {
@@ -25,7 +30,31 @@ var App = App || {};
 		
 			this.$el.remove();
 		
-		}
+		},
+		changeCount: function () {
+			this.$el.addClass('editingCount');
+			this.$input.focus();
+			
+		},
+		close: function () {
+			var value = this.$input.val().trim();
+			if ( value =='' ) {
+			this.$el.removeClass('editingCount');
+			return;
+			};
+			if  ( ! value ) {
+			this.$el.removeClass('editingCount');
+			return;
+			}
+			App.Events.trigger('newMaterialCount', this.model, value);
+			this.$el.removeClass('editingCount');
+		},
+		updateOnEnter: function (e) {
+			if (e.keyCode == 13) {
+				this.close(); 
+			}
+		},
+		
 	
 	});
 	
