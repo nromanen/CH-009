@@ -380,14 +380,14 @@ var App = App || {};
 			
 				request.onsuccess = function( evt ) {
 					var cursor = evt.target.result;
-					if ( cursor ) {
+					
 						if ( cursor.value.unitName ===  oldName ) {
 							var newValue = cursor.value;
 							newValue["unitName"] = newName;
 							store.put(newValue);
 							return;
 						}	
-					}
+					
 					cursor.continue(); 				
 				}	
 			}
@@ -398,7 +398,6 @@ var App = App || {};
 	}	
 	
 	App.dbConnector.changeCount = function( inputModel )  {
-		console.log(inputModel.model);
 		try {
 		   	var transaction = localDatabase.db.transaction( "Units" , "readwrite");
 			var store = transaction.objectStore( "Units" );
@@ -407,10 +406,12 @@ var App = App || {};
 			
 				request.onsuccess = function( evt ) {
 					var cursor = evt.target.result;
-					if ( cursor ) {
+					if ( cursor.value.unitName ===  inputModel.model.get ( 'name' ) ) {
 						{
-							store.put({unitName:inputModel.model.get("name"), unitCollection:JSON.stringify(inputModel.model.get("mcollection"))});
-							console.log(JSON.stringify(inputModel.model.get("mcollection")));
+							var newValue = cursor.value;
+							newValue["unitCollection"] = JSON.stringify(inputModel.model.get("mcollection"));
+							store.put(newValue);
+							//store.put({unitName:inputModel.model.get("name"), unitCollection:JSON.stringify(inputModel.model.get("mcollection"))});
 							return;
 						}	
 					}
