@@ -96,8 +96,8 @@ var App = App || {};
 
 		},
 		
-		changeName: function (model, value) {
-			App.dbConnector.editField( 'Units', 'unitName', model.get( 'name' ), value );
+		changeName: function ( model, value ) {
+			App.dbConnector.changeUnitName( model.get( 'name' ), value );
 			model.set({ name: value });
 		}
 	
@@ -132,8 +132,8 @@ var App = App || {};
 		
 		},
 		editCount: function (model, value) {
-			App.dbConnector.editField(model.get( 'name' ), value );
 			model.set({ count: value });
+			App.Events.trigger( 'editCountDb', this );
 		}
 
 	});

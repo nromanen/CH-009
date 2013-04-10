@@ -38,16 +38,10 @@ var App = App || {};
 		},
 		close: function () {
 			var value = this.$input.val().trim();
-			if ( value =='' ) {
-			this.$el.removeClass('editingCount');
-			return;
-			};
-			if  ( ! value ) {
-			this.$el.removeClass('editingCount');
-			return;
-			}
-			App.Events.trigger('newMaterialCount', this.model, value);
-			this.$el.removeClass('editingCount');
+			// if ( value ) {}
+				App.Events.trigger('newMaterialCount', this.model, value);
+				this.$el.removeClass('editingCount');
+			
 		},
 		updateOnEnter: function (e) {
 			if (e.keyCode == 13) {

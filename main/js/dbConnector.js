@@ -169,7 +169,8 @@ var App = App || {};
 			if (localDatabase != null && localDatabase.db != null) {
 		      	var b = JSON.stringify(model.get("mcollection"));
 				var c = JSON.parse(b);
-				var request = store.put({unitName:model.get("name"), unitCollection:JSON.stringify(model.get("mcollection"))});
+				var request =store.put({unitName:model.get("name"), unitCollection:JSON.stringify(model.get("mcollection"))}); 
+				
 				
 				request.onsuccess = function (e) {
 					addProductHandler ( true );
@@ -370,14 +371,12 @@ var App = App || {};
 		}
 		
 	}	
-	
-	
-	
-	App.dbConnector.editField = function( objStor, field, oldName, newName )  {
+		
+	App.dbConnector.changeUnitName = function( oldName, newName )  {
 		try {
 		   
-			var transaction = localDatabase.db.transaction(objStor, "readwrite");
-			var store = transaction.objectStore(objStor);
+			var transaction = localDatabase.db.transaction( "Units" , "readwrite");
+			var store = transaction.objectStore( "Units" );
 			if (localDatabase != null && localDatabase.db != null) {
 			var request = store.openCursor();
 			
@@ -386,9 +385,34 @@ var App = App || {};
 					if ( cursor ) {
 						if ( cursor.value.unitName ===  oldName ) {
 							var newValue = cursor.value;
-							newValue[field] = newName;
+							newValue["unitName"] = newName;
 							store.put(newValue);
-							console.log("Field rename succesfull");
+							return;
+						}	
+					}
+					cursor.continue(); 				
+				}	
+			}
+		}
+		catch(e){
+		   console.log(e);
+		}
+	}	
+	
+	App.dbConnector.changeCount = function( inputModel )  {
+		console.log(inputModel.model);
+		try {
+		   	var transaction = localDatabase.db.transaction( "Units" , "readwrite");
+			var store = transaction.objectStore( "Units" );
+			if (localDatabase != null && localDatabase.db != null) {
+			var request = store.openCursor();
+			
+				request.onsuccess = function( evt ) {
+					var cursor = evt.target.result;
+					if ( cursor ) {
+						{
+							store.put({unitName:inputModel.model.get("name"), unitCollection:JSON.stringify(inputModel.model.get("mcollection"))});
+							console.log(JSON.stringify(inputModel.model.get("mcollection")));
 							return;
 						}	
 					}
