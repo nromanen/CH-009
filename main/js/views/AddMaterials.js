@@ -46,7 +46,7 @@ var App = App || {};
 			this.$el.html( strTemplate );
 		},
 		confirmQuantity: function () {
-			var quantity = prompt( 'Пожалуйста, укажите количество ' + this.model.get ( 'material' )  );
+			var quantity = prompt( 'Please enter the quantity of ' + this.model.get ( 'material' )  );
 			if ( ( quantity !== '' ) && ( quantity !== null ) ) {
 				this.model.set ( { count: quantity } )
 				this.collection.add ( this.model );
