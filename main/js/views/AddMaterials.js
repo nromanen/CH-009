@@ -15,14 +15,14 @@ var App = App || {};
 		},
 		addOne: function(modelMaterial) {
 			var MaterialsCollection = this.model.get ( 'mcollection' );
-			var MaterialView = new App.Views.MaterialPlus({ model: modelMaterial, collection: MaterialsCollection, something: this.model.get( 'name' ) });
+			var MaterialView = new App.Views.MaterialPlus({ model: modelMaterial, collection: MaterialsCollection, something: this.model });
 			//console.log( this.model );
 			MaterialView.render();
 			this.$el.append( MaterialView.el );
 			
 		},
 		saveUnitCollection: function () {
-		
+			alert(12);
 			App.dbConnector.EditUnitItem ( this.model );
 			console.log('App.dbConnector.EditUnitItem triggered!');
 		
@@ -35,6 +35,7 @@ var App = App || {};
 		initialize: function () {
 			//this.model.on('change:material', this.render, this);
 			//this.model.on('change:price', this.render, this);
+			this.collection.on('add', this.saveUnitCollection, this);
 			this.model.on( 'plus', this.plus, this );
 		},
 		events: {
@@ -50,13 +51,24 @@ var App = App || {};
 			if ( ( strQuantity !== '' ) && ( strQuantity !== null ) ) {
 				this.model.set ( { count: strQuantity } )
 				this.collection.add ( this.model );
-				App.dbConnector.EditUnitItem (  );
-				//console.log ( this.options.something ); 
+				//App.dbConnector.EditUnitItem (  );
+				this.options.something.set("mcollection", this.collection);
+				console.log ( this.options.something ); 
 				
 				//вызываем event
 				
 			}	
 		},
+		saveUnitCollection: function () {
+			
+			
+			console.log(this.options.something);
+			App.dbConnector.EditUnitItem (this.options.something);
+			console.log('App.dbConnector.EditUnitItem triggered!');
+		
+		},
+		
+		
 		plus: function () {
 		
 		
