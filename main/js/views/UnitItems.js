@@ -18,8 +18,8 @@ var App = App || {};
 		},
 		confirmRemove: function () {
 			if ( confirm('Вы действительно хотите удалить данную запись?') ) {
-				console.log(this.model);
-				App.Events.trigger( 'destroyItemModel', this.model );  
+				this.model.destroy();
+				App.dbConnector.EditUnitItem( this.options.unitModel );
 			}	
 		},
 		remove: function () {
@@ -41,7 +41,7 @@ var App = App || {};
 			return this;
 		},
 		addOne: function( modelUnitItem ) {
-			var unitItemView = new App.Views.UnitItem({ model: modelUnitItem });
+			var unitItemView = new App.Views.UnitItem({ model: modelUnitItem, unitModel: this.model });
 			unitItemView.render();
 			this.$el.append( unitItemView.el );
 		}

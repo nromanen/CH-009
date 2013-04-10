@@ -123,8 +123,7 @@ var App = App || {};
 		
 	}
 	
-	App.dbConnector.EditUnitItem = function(model){
-	
+	App.dbConnector.EditUnitItem = function ( model ) {
 	
 	try {
 		   
