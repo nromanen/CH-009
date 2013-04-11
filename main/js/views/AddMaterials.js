@@ -50,13 +50,11 @@ var App = App || {};
 			if ( ( quantity !== '' ) && ( quantity !== null ) ) {
 				this.model.set ( { count: quantity } )
 				this.collection.add ( this.model );
-				//App.dbConnector.EditUnitItem (  );
 				this.options.something.set("mcollection", this.collection);
-				console.log ( this.options.something ); 
-				
-				//вызываем event
-				
-			}	
+				console.log ( this.options.something ); 	
+			} else {
+				alert( 'You have not entered a correct value!' );
+			}
 		},
 		saveUnitCollection: function () {
 			
