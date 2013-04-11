@@ -40,8 +40,9 @@ var App = App || {};
 		},
 		close: function () {
 			var value = this.$input.val().trim();
-			 if ( isNaN ( value )  || value <0 ) {
+			 if ( isNaN ( value )  || value <0 || value == '') {
 				this.$el.removeClass('editingCount');
+				this.render();
 				return;
 			}	
 			App.Events.trigger('newMaterialCount', this.model, value);
