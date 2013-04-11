@@ -406,10 +406,9 @@ var App = App || {};
 			
 				request.onsuccess = function( evt ) {
 					var cursor = evt.target.result;
-					if ( cursor.value.unitName ===  inputModel.model.get ( 'name' ) ) {
-						{
-							var newValue = cursor.value;
-							newValue["unitCollection"] = JSON.stringify(inputModel.model.get("mcollection"));
+					if ( cursor.value.unitName ===  inputModel.get ( 'name' ) ) {
+						{	var newValue = cursor.value;
+							newValue["unitCollection"] = JSON.stringify(inputModel.get("mcollection"));
 							store.put(newValue);
 							//store.put({unitName:inputModel.model.get("name"), unitCollection:JSON.stringify(inputModel.model.get("mcollection"))});
 							return;

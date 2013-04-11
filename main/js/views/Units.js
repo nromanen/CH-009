@@ -9,8 +9,6 @@ var App = App || {};
 			this.model.on( 'change', this.render, this);
 			this.model.on( 'destroy', this.unitRemoveItem, this );
 
-			App.Events.on( 'editCountDb', this.changeCount, this);
-
 		},
 		className: 'unit',
 		events: {
@@ -100,9 +98,6 @@ var App = App || {};
 				this.close(); 
 			}
 		},
-		changeCount: function ( model ) {
-			App.dbConnector.changeCount( this );
-		}
 		
 	});
 	

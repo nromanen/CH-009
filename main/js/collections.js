@@ -134,7 +134,6 @@ var App = App || {};
 		},
 		editCount: function (model, value) {
 			model.set({ count: value });
-			App.Events.trigger( 'editCountDb', this );
 		}
 
 	});

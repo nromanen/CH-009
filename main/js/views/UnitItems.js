@@ -40,7 +40,9 @@ var App = App || {};
 		close: function () {
 			var value = this.$input.val().trim();
 			// if ( value ) {}
+			
 				App.Events.trigger('newMaterialCount', this.model, value);
+				App.dbConnector.changeCount( this.options.unitModel );
 				this.$el.removeClass('editingCount');
 			
 		},
@@ -71,5 +73,6 @@ var App = App || {};
 		}
 	
 	});
+	
 
 }());
