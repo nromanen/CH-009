@@ -9,10 +9,11 @@ var App = App || {};
 			this.showUnit();
 		},
 		events:{
-			"click #showMaterial":"showMaterials",
-			"click #showUnit":"showUnit",
+			"click #showMaterial" : "showMaterials",
+			"click #showUnit" : "showUnit",
+			"click #showGoods" : "showGoods"
 		},
-		showMaterials: function(){
+		showMaterials: function() {
 			 
 			this.$el.html('');
 			this.$el.append( $( '#navigation' ).html() );
@@ -24,7 +25,7 @@ var App = App || {};
 			$( '.AddMaterialsList' ).hide();
 			
 		},
-		showUnit:function(){
+		showUnit: function() {
 		 
 			this.$el.html('');
 			this.$el.append( $('#navigation').html() );
@@ -38,6 +39,15 @@ var App = App || {};
 			$( '.unit' ).each ( function () {
 				$( this ).find( '.unit_info' ).hide();
 			});
+		},
+		showGoods: function() {
+		
+			this.$el.html('');
+			this.$el.append( $('#navigation').html() );
+			this.$el.append( $("#temlateGoods").html() );
+			var addGood = new App.Views.AddGoods ( { collection: App.Goods } );
+			var viewGoods = new App.Views.GoodsList( { collection: App.Goods } );
+		
 		}
                 
     });
