@@ -137,6 +137,44 @@ var App = App || {};
 		}
 
 	});
+  
+  App.Collections.Goods = Backbone.Collection.extend({
+      
+      model:App.Models.Goods,
+      
+      initialize: function(){
+      
+      
+      
+      
+      
+      
+      },
+      
+      
+      
+      
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  });
+
+
+
+
+
+
+
+
+
+
 
 
 }()); 

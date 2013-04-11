@@ -24,6 +24,19 @@ var App = App || {};
 	
 	});
 	
+	App.Models.Goods = BackBone.Model.extend({
+	
+	
+	
+     GoodsName:"",
+     GoodsCollection:""
+	
+	
+	});
+	
+	
+	
+	
 
 
 }()); 
