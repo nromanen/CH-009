@@ -24,7 +24,7 @@ var App = App || {};
 	
 	});
 	
-	App.Models.Goods = BackBone.Model.extend({
+	App.Models.Goods = Backbone.Model.extend({
 	
 	
 	
