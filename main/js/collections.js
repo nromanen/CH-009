@@ -2,7 +2,7 @@ var App = App || {};
 
 (function () {
 
-	App.Collections.List = Backbone.Collection.extend({
+	App.Collections.List = Backbone.Collection.extend({     //Матеріали
 		model: App.Models.Material,
 		initialize: function () {
 		
@@ -47,7 +47,7 @@ var App = App || {};
 		}
 	});
 	
-	App.Collections.Units = Backbone.Collection.extend({
+	App.Collections.Units = Backbone.Collection.extend({	//Юніти
 	
 		model: App.Models.Unit,
 		initialize: function () {
@@ -103,7 +103,7 @@ var App = App || {};
 	
 	});
 	
-	App.Collections.UnitItems = Backbone.Collection.extend({
+	App.Collections.UnitItems = Backbone.Collection.extend({	//Матеріали в юнітах
 	
 		model: App.Models.UnitItem,
 		initialize: function () {
@@ -137,6 +137,26 @@ var App = App || {};
 		}
 
 	});
+	
+	App.Collections.Goods = Backbone.Collection.extend({
+	
+		model:App.Models.Goods,
+		initialize: function () {
+		
+			App.Events.on( 'addGoodsItem', this.addModel, this );
+		
+		},
+		addModel: function () {
+		
+			//code here
+		
+		}
+	
+	});
 
-
+	App.Collections.GoodsItems = Backbone.Collection.extend({
+	
+		
+	
+	});
 }()); 

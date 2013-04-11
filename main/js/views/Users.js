@@ -45,9 +45,9 @@ var App = App || {};
 			this.$el.html('');
 			this.$el.append( $('#navigation').html() );
 			this.$el.append( $("#temlateGoods").html() );
-			var addGood = new App.Views.AddGoods ( { collection: App.Goods } );
+			var addGoods = new App.Views.AddGoods ( { collection: App.Goods } );
 			var viewGoods = new App.Views.GoodsList( { collection: App.Goods } );
-		
+			viewGoods.render();
 		}
                 
     });

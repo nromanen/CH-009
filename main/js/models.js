@@ -24,6 +24,13 @@ var App = App || {};
 	
 	});
 	
+	App.Models.Goods = Backbone.Model.extend({
+	
+		name: 'Goods',
+		goodsCollection: ''
+	
+	});
+	
 
 
 }()); 
