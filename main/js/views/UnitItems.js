@@ -20,6 +20,7 @@ var App = App || {};
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
 			this.$input = this.$('.editMaterialCount');
+			this.$input.val( this.model.get( 'count' ) );
 		},
 		confirmRemove: function () {
 			if ( confirm('Are you sure you want to delete this Unit Item?') ) {
@@ -39,11 +40,13 @@ var App = App || {};
 		},
 		close: function () {
 			var value = this.$input.val().trim();
-			// if ( value ) {}
-			
-				App.Events.trigger('newMaterialCount', this.model, value);
-				App.dbConnector.changeCount( this.options.unitModel );
+			 if ( isNaN ( value )  || value <0 ) {
 				this.$el.removeClass('editingCount');
+				return;
+			}	
+			App.Events.trigger('newMaterialCount', this.model, value);
+			App.dbConnector.changeCount( this.options.unitModel );
+			this.$el.removeClass('editingCount');
 			
 		},
 		updateOnEnter: function (e) {
