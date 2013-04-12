@@ -84,7 +84,7 @@
 			<div class="holder">
 				<div class="units_in_Goods"><%= goods %></div>
 				<div class="count"><%= count %></div>
-				<input class="editUnitsCount">
+				<input class="editMaterialCount">
 				
 				<div class="delete" title="Delete <%= goods %> material"></div>
 				<div class="editCount"></div>

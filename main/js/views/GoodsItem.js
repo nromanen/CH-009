@@ -2,9 +2,9 @@ var App = App || {};
 
 (function () {
 
-	App.Views.UnitItem = Backbone.View.extend({
+	App.Views.GoodsItem = Backbone.View.extend({
 	
-		tagName: 'li',
+	tagName: 'li',
 		initialize: function (){
 			this.model.on( 'destroy', this.remove, this );
 			this.model.on( 'change', this.render, this);
@@ -12,20 +12,20 @@ var App = App || {};
 		events: {
 			'click .delete' : 'confirmRemove',
 			'click .editCount' : 'changeCount',
-			'keypress .editMaterialCount': 'updateOnEnter',
-			'blur .editMaterialCount': 'close'
+			'keypress .editGoodsCount': 'updateOnEnter',
+			'blur .editGoodsCount': 'close'
 		},
-		template: _.template( $('#unit-count').html() ),
+		template: _.template( $('#goods-count').html() ),
 		render: function () {
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
-			this.$input = this.$('.editMaterialCount');
+			this.$input = this.$('.editGoodsCount');
 			this.$input.val( this.model.get( 'count' ) );
 		},
 		confirmRemove: function () {
-			if ( confirm('Are you sure you want to delete this Unit Item?') ) {
+			if ( confirm('Are you sure you want to delete this Goods Item?') ) {
 				this.model.destroy();
-				App.dbConnector.EditUnitItem( this.options.unitModel );
+				App.dbConnector.EditGoodsItem( this.options.goodsModel );
 			}	
 		},
 		remove: function () {
@@ -59,9 +59,9 @@ var App = App || {};
 	
 	});
 	
-	App.Views.UnitItemsList = Backbone.View.extend({  // это вид коллекции
+	App.Views.GoodsItemsList = Backbone.View.extend({  // это вид коллекции
 	
-		tagName: 'ul',
+	tagName: 'ul',
 		initialize: function () {
 			this.collection.on('add', this.addOne, this);
 			
@@ -70,10 +70,11 @@ var App = App || {};
 			this.collection.each(this.addOne, this);
 			return this;
 		},
-		addOne: function( modelUnitItem ) {
-			var unitItemView = new App.Views.UnitItem({ model: modelUnitItem, unitModel: this.model });
-			unitItemView.render();
-			this.$el.append( unitItemView.el );
+		addOne: function( modelGoodsItem ) {
+	
+			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
+			goodsItemView.render();
+			this.$el.append( goodsItemView.el );
 		}
 	
 	});
