@@ -144,7 +144,7 @@ var App = App || {};
 		initialize: function () {
 		
 			App.Events.on( 'addGoods', this.addModel, this );
-		
+			App.Events.on('goodsDelete', this.deleteModel, this)
 		},
 		addModel: function (model) {
 			
@@ -153,7 +153,16 @@ var App = App || {};
 		//	App.dbConnector.AddUnit ( "Units", model );
 			//code here
 		
+		},
+		deleteModel: function(model){
+			
+				model.destroy();
+			
+			   this.remove(model); 			
+			
+			
 		}
+		
 	
 	});
 

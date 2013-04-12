@@ -14,7 +14,7 @@ var App = App || {};
 		className: 'good',
 		events: {
 			'click .goods_name' : 'goodsToggle',
-			'click .deleteUnit' : 'goodsDeleteItem',
+			'click .deleteGoods' : 'goodsDeleteItem',
 			'click .edit_goodsItem' : 'changeGoodsName',
 			'keypress .edit_goods_name': 'updateOnEnter',
 			'blur .edit_goods_name': 'close'
@@ -23,7 +23,7 @@ var App = App || {};
 		render: function () {	      
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
-			console.log(this.model.get( 'goodsCollection' ));
+			
 			var newGoodsItemsList = new App.Views.GoodsItemsList( { collection: this.model.get( 'goodsCollection' ), model: this.model  } ) ;
 			this.$('.goods_info').append( newGoodsItemsList.el );
 			newGoodsItemsList.render();

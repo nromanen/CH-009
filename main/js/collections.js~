@@ -144,16 +144,25 @@ var App = App || {};
 		initialize: function () {
 		
 			App.Events.on( 'addGoods', this.addModel, this );
-		
+			App.Events.on('goodsDelete', this.deleteModel, this)
 		},
 		addModel: function (model) {
 			
 			this.add( model );
-			console.log(this);
+		
 		//	App.dbConnector.AddUnit ( "Units", model );
 			//code here
 		
+		},
+		deleteModel: function(model){
+				console.log(model);
+				model.destroy();
+				console.log(this);
+			   this.remove(model); 			
+			console.log(this);
+			
 		}
+		
 	
 	});
 

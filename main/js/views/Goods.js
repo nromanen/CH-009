@@ -8,13 +8,13 @@ var App = App || {};
 		tagName: 'li',
 		initialize: function () {
 			this.model.on( 'change', this.render, this);
-			this.model.on( 'destroy', this.unitRemoveItem, this );
+			this.model.on( 'destroy', this.goodsRemoveItem, this );
 
 		},
 		className: 'good',
 		events: {
 			'click .goods_name' : 'goodsToggle',
-			'click .deleteUnit' : 'goodsDeleteItem',
+			'click .deleteGoods' : 'goodsDeleteItem',
 			'click .edit_goodsItem' : 'changeGoodsName',
 			'keypress .edit_goods_name': 'updateOnEnter',
 			'blur .edit_goods_name': 'close'
