@@ -1,9 +1,10 @@
 var App = App || {};
+
 (function () {
 
-	App.Views.AddGoods = Backbone.View.extend({
-		
+	App.Views.AddGoods= Backbone.View.extend({
 		el: '#addGoods',
+		tagName: 'addGoods',
 		events: {
 			'keypress input': 'inputKeypress',
 		},
@@ -14,40 +15,40 @@ var App = App || {};
 		},
 		validateItem: function () {
 		
-			var goodsName = $('#goods').val().trim(); 	
+			var strUnit = $('#goods').val().trim(); 	
 			
-			if ( goodsName === "" ) {
-				alert ( 'Полен введення даних не може бути порожнім' );
+			if ( strUnit === "" ) {
+				alert ( 'Пожалуйста, введите имя Товара!' );
 				$('#goods').val('');
 				$('#goods').focus();
 				return false;
 			}
 			
-			this.addItem ( goodsName );
+			this.addItem ( strUnit );
 		
 		},
-		addItem: function ( goodsName ) {
-		
-			var newGoodsCollection = new App.Collections.GoodsItems([
+		addItem: function( strUnit ) {
+			
+			var newGoodsCollection = new App.Collections.UnitItems([
 				{
-					goods: 'empty',
+					unitID: 1,
+					material: 'empty',
 					count: 0	
 				}
 			]);
 			
 			var modelGoods = new App.Models.Unit ({
 				
-				name: goodsName,
-				goodsCollection: newGoodsCollection
+				name: strGoods,
+				goodsCollection: newUnitCollection
 				
 			});
 			
-			console.log(modelGoods);
-			App.Events.trigger( 'addGoods', modelGoods );
+			App.Events.trigger( 'addGoods', modelUnit );
 			
 			$('.goods .good').each( function () {
 				
-				$(this).find('.goods_info').toggle();
+				$(this).find('.good_info').toggle();
 				
 			});
 			
@@ -56,13 +57,7 @@ var App = App || {};
 		clearTextBoxes: function() {
 			$('#goods').val('');
 			$('#goods').focus();
-		}		
-		
-		
-		
-
-		
-		});
-	
+		}
+	});
 
 }());

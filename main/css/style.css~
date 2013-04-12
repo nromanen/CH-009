@@ -228,9 +228,6 @@ h1 span{
 .editMaterialCount {
   	display: none;
 }
-.editUnitsCount {
-  	display: none;
-}
 .editCount  {
     float: right;
     width:16px;
