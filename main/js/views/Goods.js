@@ -23,7 +23,7 @@ var App = App || {};
 		render: function () {	      
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
-			console.log(this.model.get( 'goodsCollection' ));
+			
 			var newGoodsItemsList = new App.Views.GoodsItemsList( { collection: this.model.get( 'goodsCollection' ), model: this.model  } ) ;
 			this.$('.goods_info').append( newGoodsItemsList.el );
 			newGoodsItemsList.render();
@@ -123,7 +123,7 @@ var App = App || {};
 		
 			var GoodsView = new App.Views.Goods({ model: modelGoods });
 			this.$el.prepend( GoodsView.el );
-			console.log(this.el);
+			
 			GoodsView.render();
 			
 			var jq_goods_info = '.goods_info';

@@ -149,7 +149,7 @@ var App = App || {};
 		addModel: function (model) {
 			
 			this.add( model );
-			console.log(this);
+		
 		//	App.dbConnector.AddUnit ( "Units", model );
 			//code here
 		

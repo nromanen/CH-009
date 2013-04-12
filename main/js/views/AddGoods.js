@@ -42,7 +42,7 @@ var App = App || {};
 				
 			});
 			
-			console.log(modelGoods);
+			
 			App.Events.trigger( 'addGoods', modelGoods );
 			
 			$('.goods .good').each( function () {

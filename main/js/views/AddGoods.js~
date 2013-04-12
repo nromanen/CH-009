@@ -41,6 +41,8 @@ var App = App || {};
 				goodsCollection: newGoodsCollection
 				
 			});
+			
+			console.log(modelGoods);
 			App.Events.trigger( 'addGoods', modelGoods );
 			
 			$('.goods .good').each( function () {

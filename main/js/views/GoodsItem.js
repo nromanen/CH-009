@@ -71,7 +71,7 @@ var App = App || {};
 			return this;
 		},
 		addOne: function( modelGoodsItem ) {
-			console.log(modelGoodsItem);
+	
 			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
 			goodsItemView.render();
 			this.$el.append( goodsItemView.el );

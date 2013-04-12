@@ -123,7 +123,7 @@ var App = App || {};
 		
 			var GoodsView = new App.Views.Goods({ model: modelGoods });
 			this.$el.prepend( GoodsView.el );
-			console.log(this.el);
+			
 			GoodsView.render();
 			
 			var jq_goods_info = '.goods_info';
