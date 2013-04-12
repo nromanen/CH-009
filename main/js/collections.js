@@ -164,7 +164,7 @@ var App = App || {};
 			
 		}
 		
-	
+	});
 
 
 	App.Collections.GoodsItems = Backbone.Collection.extend({
