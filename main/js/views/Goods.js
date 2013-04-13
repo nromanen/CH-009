@@ -44,7 +44,7 @@ var App = App || {};
 				$ ( jq_goods_info ).hide();
 				this.$( jq_goods_info ).show();
 				
-				var AddUnitsList = new App.Views.AddUnitsList( { collection: App.Units, model : this.model	} );
+				var AddUnitsList = new App.Views.AddUnitsList( { collection: App.Goods, model : this.model	} );
 
 				AddUnitsList.render();
 				
@@ -132,9 +132,6 @@ var App = App || {};
 		}
 			
 		
-		
-		
-	
 	});
 
 }());

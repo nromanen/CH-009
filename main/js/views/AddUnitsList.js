@@ -18,7 +18,7 @@ var App = App || {};
 			var UnitView = new App.Views.UnitPlus({ model: modelMaterial, collection: UnitsCollection, something: this.model });
 			//console.log( this.model );
 			UnitView.render();
-			this.$el.append( MaterialView.el );
+			this.$el.append( UnitView.el );
 			
 		},
 		saveUnitCollection: function () {
@@ -46,7 +46,7 @@ var App = App || {};
 			this.$el.html( strTemplate );
 		},
 		confirmQuantity: function () {
-			var quantity = prompt( 'Please enter the quantity2 of ' + this.model.get ( 'material' )  );
+			var quantity = prompt( 'Please enter the quantity2 of ' + this.model.get ( 'name' )  );
 			if ( ( quantity !== '' ) && ( quantity !== null ) ) {
 				this.model.set ( { count: quantity } )
 				this.collection.add ( this.model );
