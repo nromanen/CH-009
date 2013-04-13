@@ -35,6 +35,7 @@ var App = App || {};
 			viewUnits.render();
 			$('#units_holder').html( viewUnits.el );
 			$( '.AddMaterialsList' ).draggable();
+			$( '.AddUnitsList' ).hide();
 			$( '.AddMaterialsList' ).hide();
 			$( '.unit' ).each ( function () {
 				$( this ).find( '.unit_info' ).hide();
@@ -50,6 +51,7 @@ var App = App || {};
 			viewGoods.render();
 			
 			$('#goods_holder').html( viewGoods.el );
+			$( '.AddUnitsList' ).draggable();
 			$( '.AddMaterialsList' ).hide();
 			
 			

@@ -30,7 +30,7 @@ var App = App || {};
 		
 			var newGoodsCollection = new App.Collections.GoodsItems([
 				{
-					goods: 'empty',
+					goods: 'goods1',
 					count: 0	
 				}
 			]);
@@ -45,7 +45,7 @@ var App = App || {};
 			
 			App.Events.trigger( 'addGoods', modelGoods );
 			
-			$('.goods .good').each( function () {
+			$('.goods').each( function () {
 				
 				$(this).find('.goods_info').toggle();
 				

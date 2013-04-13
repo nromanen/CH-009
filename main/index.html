@@ -12,6 +12,7 @@
     </div>
 	
 	<div class="AddMaterialsList"></div>
+	<div class="AddUnitsList"></div>
     
         <script type="text/template" id="navigation">
             <button id="showMaterial">Show Materials</button>
@@ -66,13 +67,12 @@
 		
 		<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 		
-			
 		<script type="text/template" id="goods-name">
 			<div class="goods_holder">
 				<div class="goods_name"><%= name %></div>
 				<input class="edit_goods_name" value="<%= name %>">
-				<div class="deleteGoods" title="Delete <%= name %> unit"></div>
-				<div class="edit_goodsItem" title="Edit <%= name %> unit"></div>
+				<div class="deleteGoods" title="Delete <%= name %> "></div>
+				<div class="edit_goodsItem" title="Edit <%= name %> "></div>
 				<div class="clear"></div>
 				<div class="goods_info"></div>
 			</div>
@@ -91,7 +91,14 @@
 			</div> 
 		</script>		
 		
-		
+		<script type="text/template" id="goods-count-plus">
+			  <div class="holder">
+				<div class="plus" title="Add <%= name %> to the goods"></div>
+				<div class="material"><%= name %></div>
+				<div class="price"><%= count %></div>
+			  </div>
+			  <div class="clear"></div>
+		</script>	
 		
 		
    
@@ -153,6 +160,7 @@
 		<script src="js/views/Goods.js"></script>
 		<script src="js/views/AddGoods.js"></script>
 		<script src="js/views/GoodsItem.js"></script>
+		<script src="js/views/AddUnitsList.js"></script>
 		<script src="js/views/Users.js"></script>
 		
 		<script src="js/app.js"></script>

@@ -530,3 +530,19 @@ input.textbox {
 	box-shadow: 1px 1px 10px #999 ;	
 	opacity: 0.9;
 }
+.AddUnitsList {
+	width: 420px;
+	margin: 0 auto;
+	position:absolute;
+	cursor: move;
+    padding: 20px 10px;
+	background-color:#f3f5fb;
+	border:10px solid #6d7aa1;
+	overflow-y: auto;
+	overflow-x:hidden;
+	border-radius:10px;
+	-moz-box-shadow: 1px 1px 10px #999 ;
+	-webkit-box-shadow: 1px 1px 10px #999 ;
+	box-shadow: 1px 1px 10px #999 ;	
+	opacity: 0.9;
+}

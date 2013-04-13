@@ -11,7 +11,7 @@ var App = App || {};
 			this.model.on( 'destroy', this.goodsRemoveItem, this );
 
 		},
-		className: 'good',
+		className: 'goods',
 		events: {
 			'click .goods_name' : 'goodsToggle',
 			'click .deleteGoods' : 'goodsDeleteItem',
@@ -35,7 +35,7 @@ var App = App || {};
 			var jq_goods_holder = '.goods_holder';
 			var jq_goods_info = '.goods_info';
 			var jq_visible = ':visible';
-			var jq_AddMaterialsList = '.AddUnitsList';
+			var jq_AddUnitsList = '.AddUnitsList';
 			
 			this.$( jq_goods_info ).toggle();
 			
@@ -44,21 +44,21 @@ var App = App || {};
 				$ ( jq_goods_info ).hide();
 				this.$( jq_goods_info ).show();
 				
-				//var AddMaterialsList = new App.Views.AddMaterialsList( { collection: App.Materials, model : this.model	} );
+				var AddUnitsList = new App.Views.AddUnitsList( { collection: App.Units, model : this.model	} );
 
-				//AddMaterialsList.render();
-				/*
-				$( jq_AddMaterialsList ).html('');
-				$( jq_AddMaterialsList ).append( AddMaterialsList.el );
+				AddUnitsList.render();
 				
-				$(  jq_AddMaterialsList  ).show();	
+				$( jq_AddUnitsList ).html('');
+				$( jq_AddUnitsList ).append( AddUnitsList.el );
+				
+				$(  jq_AddUnitsList  ).show();	
 					var positionTop = this.$( jq_goods_holder ).position().top;
 					var positionLeft = this.$( jq_goods_info ).position().left + 530;
-				$(  jq_AddMaterialsList  ).css ( { 'top' : positionTop,  'left' : positionLeft } ); */
+				$(  jq_AddUnitsList  ).css ( { 'top' : positionTop,  'left' : positionLeft } ); 
 				
 			} else {
 			
-			//	$(  jq_AddMaterialsList  ).hide();
+				$(  jq_AddUnitsList  ).hide();
 			
 			}
 			
