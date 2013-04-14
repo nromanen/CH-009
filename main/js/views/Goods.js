@@ -20,10 +20,9 @@ var App = App || {};
 			'blur .edit_goods_name': 'close'
 		},
 		template: _.template( $('#goods-name').html() ),
-		render: function () {	      
+		render: function () {	
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
-			
 			var newGoodsItemsList = new App.Views.GoodsItemsList( { collection: this.model.get( 'goodsCollection' ), model: this.model  } ) ;
 			this.$('.goods_info').append( newGoodsItemsList.el );
 			newGoodsItemsList.render();
@@ -44,7 +43,7 @@ var App = App || {};
 				$ ( jq_goods_info ).hide();
 				this.$( jq_goods_info ).show();
 				
-				var AddUnitsList = new App.Views.AddUnitsList( { collection: App.Goods, model : this.model	} );
+				var AddUnitsList = new App.Views.AddUnitsList( { collection: App.Units, model : this.model	} );
 
 				AddUnitsList.render();
 				
@@ -120,7 +119,7 @@ var App = App || {};
 			
 		},
 		addOne: function( modelGoods ) {
-		
+			
 			var GoodsView = new App.Views.Goods({ model: modelGoods });
 			this.$el.prepend( GoodsView.el );
 			

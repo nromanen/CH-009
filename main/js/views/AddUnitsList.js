@@ -13,9 +13,10 @@ var App = App || {};
 			this.collection.each(this.addOne, this);
 			return this;
 		},
-		addOne: function(modelMaterial) {
+		addOne: function(modelUnits) {
+		
 			var UnitsCollection = this.model.get ( 'goodsCollection' );
-			var UnitView = new App.Views.UnitPlus({ model: modelMaterial, collection: UnitsCollection, something: this.model });
+			var UnitView = new App.Views.UnitPlus({ model: modelUnits, collection: UnitsCollection, something: this.model });
 			//console.log( this.model );
 			UnitView.render();
 			this.$el.append( UnitView.el );
@@ -48,8 +49,12 @@ var App = App || {};
 		confirmQuantity: function () {
 			var quantity = prompt( 'Please enter the quantity2 of ' + this.model.get ( 'name' )  );
 			if ( ( quantity !== '' ) && ( quantity !== null ) ) {
-				this.model.set ( { count: quantity } )
-				this.collection.add ( this.model );
+				console.log(this.model);
+				
+			
+				
+				this.collection.add (new App.Models.GoodsItem({units:this.model.get ( 'name' ), count:quantity}));
+				console.log(this.collection);
 				this.options.something.set("goodsCollection", this.collection);
 				console.log ( this.options.something ); 	
 			} else {

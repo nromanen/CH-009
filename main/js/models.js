@@ -26,7 +26,6 @@ var App = App || {};
 	
 	App.Models.Goods = Backbone.Model.extend({
 	
-
 		nameG: 'Goods',
 		goodsCollection: ''
 	

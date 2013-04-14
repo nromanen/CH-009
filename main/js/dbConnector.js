@@ -423,7 +423,7 @@ var App = App || {};
 		}
 	}		
 
-    //App.dbConnector.deleteDatabase();
+   //App.dbConnector.deleteDatabase();
 
 	App.dbConnector.createDatabase();
 	

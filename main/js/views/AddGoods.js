@@ -30,14 +30,14 @@ var App = App || {};
 		
 			var newGoodsCollection = new App.Collections.GoodsItems([
 				{
-					goods: 'goods1',
+					units: 'goods1',
 					count: 0	
 				}
 			]);
 			
-			var modelGoods = new App.Models.Unit ({
+			var modelGoods = new App.Models.Goods ({
 				
-				name: goodsName,
+				nameG: goodsName,
 				goodsCollection: newGoodsCollection
 				
 			});
