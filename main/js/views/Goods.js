@@ -16,6 +16,7 @@ var App = App || {};
 			'click .goods_name' : 'goodsToggle',
 			'click .deleteGoods' : 'goodsDeleteItem',
 			'click .edit_goodsItem' : 'changeGoodsName',
+			'dblclick .goods_name' : 'changeGoodsName',
 			'keypress .edit_goods_name': 'updateOnEnter',
 			'blur .edit_goods_name': 'close'
 		},
@@ -26,8 +27,7 @@ var App = App || {};
 			var newGoodsItemsList = new App.Views.GoodsItemsList( { collection: this.model.get( 'goodsCollection' ), model: this.model  } ) ;
 			this.$('.goods_info').append( newGoodsItemsList.el );
 			newGoodsItemsList.render();
-			this.$input = this.$('.edit_goods_name');
-			
+			this.$input = this.$('.edit_goods_name');	
 		}, 
 		goodsToggle: function () {
 			
@@ -88,7 +88,7 @@ var App = App || {};
 				return;
 			};
 			if  ( ! value ) {
-				this.$el.removeClass('editing');
+				this.$el.removeClass( 'editing' );
 				return;
 			}
 			App.Events.trigger('editGoodsName', this.model, value);
@@ -100,13 +100,10 @@ var App = App || {};
 			}
 		},
 		
-		
-		
 	});
 	
 	App.Views.GoodsList = Backbone.View.extend({  // это вид коллекции
-	
-	
+		
 		tagName: 'ul',
 		className: 'goods',
 		initialize: function () {
