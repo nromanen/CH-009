@@ -76,19 +76,20 @@ var App = App || {};
 	
 		},
 		changeGoodsName: function () {
+		
 			this.$el.addClass('editing');
 			this.$input.focus();
 			
 		},
 		close: function () {
 			var value = this.$input.val().trim();
-			if ( value =='' ) {
-			this.$el.removeClass('editing');
-			return;
+			if ( value == '' ) {
+				this.$el.removeClass( 'editing' );
+				return;
 			};
 			if  ( ! value ) {
-			this.$el.removeClass('editing');
-			return;
+				this.$el.removeClass('editing');
+				return;
 			}
 			App.Events.trigger('editGoodsName', this.model, value);
 			this.$el.removeClass('editing');
