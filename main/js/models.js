@@ -35,6 +35,8 @@ var App = App || {};
 		units: '',
 		count: 0
 
+		
 	});
+
 
 }()); 
