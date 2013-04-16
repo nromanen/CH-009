@@ -147,7 +147,7 @@ var App = App || {};
 			App.Events.on( 'addGoods', this.addModel, this );
 			App.Events.on('goodsDelete', this.deleteModel, this)
 			App.Events.on( 'writeGoods', this.writeCollection, this );
-			App.Events.on( 'fetchUnit', this.fetchGoods, this );
+			App.Events.on( 'fetchGoods', this.fetchGoods, this );
 			App.Events.on( 'editGoodsName', this.changeName, this );
 		},
 		addModel: function (model) {

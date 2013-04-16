@@ -27,7 +27,7 @@ var App = App || {};
 			console.log("database is open");
 			App.Events.trigger( 'fetchProducts' );
 			App.Events.trigger( 'fetchUnit' );
-			App.Events.trigger( 'fetchUniGoods' );
+			App.Events.trigger( 'fetchGoods' );
 		
 		};	
 	}
