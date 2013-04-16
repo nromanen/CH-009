@@ -17,7 +17,7 @@ var App = App || {};
 			var goodsName = $('#goods').val().trim(); 	
 			
 			if ( goodsName === "" ) {
-				alert ( 'Полен введення даних не може бути порожнім' );
+				alert ( 'Поле введення даних не може бути порожнім' );
 				$('#goods').val('');
 				$('#goods').focus();
 				return false;
