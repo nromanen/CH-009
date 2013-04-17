@@ -74,7 +74,6 @@ var App = App || {};
 			var unitItemView = new App.Views.UnitItem({ model: modelUnitItem, unitModel: this.model, collection: this.model.get('mcollection') });
 			unitItemView.render();
 			this.$el.append( unitItemView.el );
-			console.log( this.collection );
 		}
 	
 	});
