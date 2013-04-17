@@ -51,7 +51,8 @@ var App = App || {};
 				this.model.set ( { count: quantity } )
 				this.collection.add ( this.model );
 				this.options.something.set("mcollection", this.collection);
-				console.log ( this.options.something ); 	
+				console.log ( this.options.something.toJSON() );
+				console.log( this.model.toJSON() ); 	
 			} else {
 				alert( 'You have not entered a correct value!' );
 			}

@@ -27,7 +27,7 @@ var App = App || {};
 			this.$('.unit_info').append( newUnitItemsList.el );
 			newUnitItemsList.render();
 			this.$input = this.$('.edit_unit_name');
-			
+
 		}, 
 		unitToggle: function () {
 			
