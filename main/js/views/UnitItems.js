@@ -62,6 +62,7 @@ var App = App || {};
 	App.Views.UnitItemsList = Backbone.View.extend({  // это вид коллекции
 	
 		tagName: 'ul',
+		className:'nav nav-tabs',
 		initialize: function () {
 			this.collection.on('add', this.addOne, this);
 			
