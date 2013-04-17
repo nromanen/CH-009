@@ -58,6 +58,7 @@ var App = App || {};
 			App.Events.on( 'writeUnits', this.writeCollection, this );
 			App.Events.on( 'editUnitName', this.changeName, this );
 			App.dbConnector.openDatabase();
+			
 		},
 		addModel: function ( model ) {
 
@@ -145,31 +146,44 @@ var App = App || {};
 		initialize: function () {
 		
 			App.Events.on( 'addGoods', this.addModel, this );
-			App.Events.on('goodsDelete', this.deleteModel, this)
+			App.Events.on('goodsDelete', this.deleteModel, this);
+			App.Events.on('editGoodsName', this.changeName, this);
+			
 		},
 		addModel: function (model) {
 			
 			this.add( model );
 		
-		//	App.dbConnector.AddUnit ( "Units", model );
-			//code here
-		
 		},
 		deleteModel: function(model){
 			
 				model.destroy();
+				this.remove(model); 			
 			
-			   this.remove(model); 			
-			
-			
+		},
+		changeName: function ( model, value ) {
+		
+			//App.dbConnector.changeGoodName( model.get( 'name' ), value );
+			model.set({ nameG: value });
+		
 		}
 		
 	});
 
 
 	App.Collections.GoodsItems = Backbone.Collection.extend({
-		model:App.Models.GoodsItem,
 		
+		model:App.Models.GoodsItem,
+		initialize: function () {
+		
+			App.Events.on('newUnitsCount', this.editCount, this);
+		
+		},
+		editCount: function ( model, value ) {
+		
+			model.set({ count: value });
+		
+		}
 	
 	});
 	

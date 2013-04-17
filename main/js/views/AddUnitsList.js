@@ -49,14 +49,9 @@ var App = App || {};
 		confirmQuantity: function () {
 			var quantity = prompt( 'Please enter the quantity2 of ' + this.model.get ( 'name' )  );
 			if ( ( quantity !== '' ) && ( quantity !== null ) ) {
-				console.log(this.model);
-				
-			
-				
+
 				this.collection.add (new App.Models.GoodsItem({units:this.model.get ( 'name' ), count:quantity}));
-				console.log(this.collection);
-				this.options.something.set("goodsCollection", this.collection);
-				console.log ( this.options.something ); 	
+				this.options.something.set("goodsCollection", this.collection);	
 			} else {
 				alert( 'You have not entered a correct value!' );
 			}

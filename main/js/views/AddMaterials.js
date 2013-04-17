@@ -16,7 +16,7 @@ var App = App || {};
 		addOne: function(modelMaterial) {
 			var MaterialsCollection = this.model.get ( 'mcollection' );
 			var MaterialView = new App.Views.MaterialPlus({ model: modelMaterial, collection: MaterialsCollection, something: this.model });
-			//console.log( this.model );
+			//console.log( JSON.stringify( MaterialsCollection.where({price: "500"}) ) );
 			MaterialView.render();
 			this.$el.append( MaterialView.el );
 			
@@ -61,6 +61,7 @@ var App = App || {};
 
 			//App.dbConnector.EditUnitItem (this.options.something);
 			console.log('App.dbConnector.EditUnitItem triggered!');
+			
 		},
 		
 		
