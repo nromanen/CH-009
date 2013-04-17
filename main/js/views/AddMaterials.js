@@ -16,7 +16,8 @@ var App = App || {};
 		addOne: function(modelMaterial) {
 			var MaterialsCollection = this.model.get ( 'mcollection' );
 			var MaterialView = new App.Views.MaterialPlus({ model: modelMaterial, collection: MaterialsCollection, something: this.model });
-			//console.log( this.model );
+			console.log( JSON.stringify( Number(MaterialsCollection.pluck("price")) ) +" "+JSON.stringify( MaterialsCollection.pluck("count"))  );
+			//console.log( JSON.stringify( MaterialsCollection.where({price: "500"}) ) );
 			MaterialView.render();
 			this.$el.append( MaterialView.el );
 			

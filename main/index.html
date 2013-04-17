@@ -117,8 +117,7 @@
 		<script type="text/template" id="unit-count">
 			<div class="holder">
 				<div class="material_in_unit"><%= material %></div>
-				<div class="count"><%= count %></div>
-				<div class="unitPrice"></div>
+				<div class="count"><%= count %><span>(<%= count * price %>)</span></div>
 				<input class="editMaterialCount">
 				
 				<div class="delete" title="Delete <%= material %> material"></div>
