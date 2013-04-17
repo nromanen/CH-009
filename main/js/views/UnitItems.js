@@ -40,7 +40,7 @@ var App = App || {};
 		},
 		close: function () {
 			var value = this.$input.val().trim();
-			 if ( isNaN ( value )  || value <0 || value == '') {
+			 if ( isNaN ( value ) || value <0 || value == '') {
 				this.$el.removeClass('editingCount');
 				this.render();
 				return;
@@ -71,9 +71,10 @@ var App = App || {};
 			return this;
 		},
 		addOne: function( modelUnitItem ) {
-			var unitItemView = new App.Views.UnitItem({ model: modelUnitItem, unitModel: this.model });
+			var unitItemView = new App.Views.UnitItem({ model: modelUnitItem, unitModel: this.model, collection: this.model.get('mcollection') });
 			unitItemView.render();
 			this.$el.append( unitItemView.el );
+			console.log( this.collection );
 		}
 	
 	});

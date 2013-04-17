@@ -161,6 +161,16 @@ h1 span{
     text-align:center;
     font-weight:400; 
 }
+.count span {
+    
+    width: 180px;
+    padding: 10px;
+    font-size:20px;
+    color:#333;
+    text-shadow:1px 1px 1px #fff;
+    text-align:center;
+    font-weight:400; 
+}
 .add_unitItem  {
     float: left;
     width:26px;
