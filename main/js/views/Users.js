@@ -16,10 +16,7 @@ var App = App || {};
 		showMaterials: function() {
 			 
 			this.$el.html('');
-			console.log(this.el);
-
 			this.$el.append( $( '#navigation' ).html() );
-			$('#showMaterial').addClass('active');
 			this.$el.append( $( "#temlateMaterials" ).html() );
 			var addMaterial = new App.Views.AddMaterial( { collection: App.Materials } );
 			var viewMaterials = new App.Views.List( { collection: App.Materials } );
@@ -32,7 +29,6 @@ var App = App || {};
 		 
 			this.$el.html('');
 			this.$el.append( $('#navigation').html() );
-			$('#showUnit').addClass('active');
 			this.$el.append( $("#temlateUnits").html() );
 			var addUnit = new App.Views.AddUnit ( { collection: App.Units } );
 			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
@@ -49,7 +45,6 @@ var App = App || {};
 		
 			this.$el.html('');
 			this.$el.append( $('#navigation').html() );
-			$('#showGoods').addClass('active');
 			this.$el.append( $("#temlateGoods").html() );
 			var addGoods = new App.Views.AddGoods ( { collection: App.Goods } );
 			var viewGoods = new App.Views.GoodsList( { collection: App.Goods } );
