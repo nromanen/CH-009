@@ -87,7 +87,6 @@ var App = App || {};
 				this.add(mUnit);
 				i++;
 			}
-		
 		},
 		deleteModel: function( model ) {
 			App.dbConnector.deleteUnit( model.get( "name" ) );
@@ -158,7 +157,6 @@ var App = App || {};
 		
 		},
 		deleteModel: function(model){
-			App.dbConnector.deleteGoods(model.get( 'nameG' ));
 			model.destroy();
 			this.remove(model); 			
 		},
@@ -172,10 +170,10 @@ var App = App || {};
 					goodsCollection: goodsCollection 
 							
 				});
-			
 				this.add(mGoods);
 				i++;
-			} 	
+			} 
+	
 		},
 		fetchGoods: function(){
 			
