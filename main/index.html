@@ -3,24 +3,37 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Materials & Units Manager</title>
-		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" href="css/bootstrap.css">
+		<script scr="js/bootstrap.js"></script>
 	</head>
 	<body>
 
-	<div id="content">
 
+	<div id="content" class="tabbable tabs-left">
+		<div class="tab-content">
+	
+        </div>
     </div>
 	
 	<div class="AddMaterialsList"></div>
 	<div class="AddUnitsList"></div>
     
         <script type="text/template" id="navigation">
-            <button id="showMaterial">Show Materials</button>
-            <button id="showUnit">Show Unit</button>
-            <button id="showGoods">Show Goods</button>
+        	
+        			<ul class="nav nav-tabs">
+            			 <li id="showMaterial"><a href="#2A"  >Show Materials</a></li>
+            			 <li id="showUnit"><a href="#2B"  class="btn-small">Show Unit</a></li>
+            			 <li id="showGoods"><a href="#2C"  class="btn-small">Show Goods</a></li>
+            		</ul>
+
+
+    
         </script>  
 		
 		<script type="text/template"  id="temlateGoods">
+			<div class="tab-content">
+			<div class="tab-pane active" id="2B">
 			<h1>Warehouse</h1><br>
 			
 			
@@ -33,35 +46,49 @@
 			<div style="height:15px;"></div>
 			<br>
 			
-			<div id="goods_holder"></div>
+			<div id="goods_holder" class="tabbable tabs-left">
+
+
+
+			</div>
         </script> 
         
                
         <script type="text/template"  id="temlateUnits">
-			<h1>Warehouse</h1><br>
+			<div class="tab-content">
+				<div class="tab-pane active" id="2B">
+					<h1>Warehouse</h1><br>
 			
-			<div id="addUnit">
-				<div class="fl">New unit:</div>
-				<div class="fle"><input class="textbox" id="unit" type="text"></div>
-			</div>
-			<div style="height:15px;"></div>
-			<br>
+					<div id="addUnit">
+							<div class="fl">New unit:</div>
+							<div class="fle"><input class="textbox" id="unit" type="text"></div>
+					</div>
+					<div style="height:15px;"></div>
+					<br>
 			
-			<div id="units_holder"></div>
+					<div id="units_holder"></div>
+
+			 		</div>
+        	 	</div>
+        	 </div>
         </script> 
    
-        <script type="text/template"  id="temlateMaterials">
-			<h1>Warehouse</h1><br>
+        <script type="text/template"  id="temlateMaterials" >
+		<div class="tab-content">
+			<div class="tab-pane active" id="2A">
+				<h1>Warehouse</h1><br>
 			
-            <div id="addMaterial">
-				<div class="fl">Material:</div>
-				<div class="fle"><input class="textbox" id="material" type="text"></div>
-				<div class="clear"></div>
-				<div class="fl">Price:</div> 
-				<div class="fle"><input class="textbox" id="price" type="text"></div> 
+            	<div id="addMaterial">
+						<div class="fl">Material:</div>
+						<div class="fle"><input class="textbox" id="material" type="text"></div>
+						<div class="clear"></div>
+						<div class="fl">Price:</div> 
+						<div class="fle"><input class="textbox" id="price" type="text"></div> 
+            	</div>
+			
+            	<div id="table_holder"></div>
             </div>
-			
-            <div id="table_holder"></div>
+         </div>
         </script> 
 		
 		

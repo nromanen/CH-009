@@ -71,7 +71,7 @@ var App = App || {};
 	
 	tagName: 'ul',
 		initialize: function () {
-			this.collection.on('add', this.addOne, this);
+			this.collection.on('add', this.addOne, this.model);
 			
 		},
 		render: function () {
@@ -79,8 +79,12 @@ var App = App || {};
 			return this;
 		},
 		addOne: function( modelGoodsItem ) {
+<<<<<<< HEAD
 	
 			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model  });
+=======
+			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
+>>>>>>> f78a764a68059b69dd5ff820e0525b5cb37c40db
 			goodsItemView.render();
 			this.$el.append( goodsItemView.el );
 			console.log( this.model.toJSON() );

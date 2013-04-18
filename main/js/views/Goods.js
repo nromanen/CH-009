@@ -11,7 +11,7 @@ var App = App || {};
 			this.model.on( 'destroy', this.goodsRemoveItem, this );
 
 		},
-		className: 'goods',
+		
 		events: {
 			'click .goods_name' : 'goodsToggle',
 			'click .deleteGoods' : 'goodsDeleteItem',
@@ -105,7 +105,7 @@ var App = App || {};
 	App.Views.GoodsList = Backbone.View.extend({  // это вид коллекции
 		
 		tagName: 'ul',
-		className: 'goods',
+		className: 'nav nav-tabs',
 		initialize: function () {
 			this.collection.on('add', this.render, this);
 		},
