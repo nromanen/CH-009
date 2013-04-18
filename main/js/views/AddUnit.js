@@ -30,11 +30,11 @@ var App = App || {};
 		addItem: function( strUnit ) {
 			
 			var newUnitCollection = new App.Collections.UnitItems([
-				{
+				/*{
 					unitID: 1,
 					material: 'empty',
 					count: 0	
-				}
+				}*/
 			]);
 			
 			var modelUnit = new App.Models.Unit ({

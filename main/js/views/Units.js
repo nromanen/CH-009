@@ -27,8 +27,8 @@ var App = App || {};
 			this.$('.unit_info').append( newUnitItemsList.el );
 			newUnitItemsList.render();
 			this.$input = this.$('.edit_unit_name');
-			
-		}, 
+
+		},
 		unitToggle: function () {
 			
 			var jq_unit_holder = '.unit_holder';
@@ -76,6 +76,7 @@ var App = App || {};
 	
 		},
 		changeUnitName: function () {
+		
 			this.$el.addClass('editing');
 			this.$input.focus();
 			
@@ -83,12 +84,12 @@ var App = App || {};
 		close: function () {
 			var value = this.$input.val().trim();
 			if ( value =='' ) {
-			this.$el.removeClass('editing');
-			return;
+				this.$el.removeClass('editing');
+				return;
 			};
 			if  ( ! value ) {
-			this.$el.removeClass('editing');
-			return;
+				this.$el.removeClass('editing');
+				return;
 			}
 			App.Events.trigger('editUnitName', this.model, value);
 			this.$el.removeClass('editing');

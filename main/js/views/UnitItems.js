@@ -3,7 +3,7 @@ var App = App || {};
 (function () {
 
 	App.Views.UnitItem = Backbone.View.extend({
-	
+
 		tagName: 'li',
 		initialize: function (){
 			this.model.on( 'destroy', this.remove, this );
@@ -21,6 +21,9 @@ var App = App || {};
 			this.$el.html( strTemplate );
 			this.$input = this.$('.editMaterialCount');
 			this.$input.val( this.model.get( 'count' ) );
+			tPrice = this.model.get( 'count' ) * this.model.get('price');
+			console.log( this.model.toJSON() );
+			console.log( JSON.stringify(this.model) );
 		},
 		confirmRemove: function () {
 			if ( confirm('Are you sure you want to delete this Unit Item?') ) {
@@ -40,7 +43,7 @@ var App = App || {};
 		},
 		close: function () {
 			var value = this.$input.val().trim();
-			 if ( isNaN ( value )  || value <0 || value == '') {
+			 if ( isNaN ( value ) || value <0 || value == '') {
 				this.$el.removeClass('editingCount');
 				this.render();
 				return;
