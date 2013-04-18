@@ -146,25 +146,19 @@ var App = App || {};
 		initialize: function () {
 		
 			App.Events.on( 'addGoods', this.addModel, this );
-<<<<<<< HEAD
 			App.Events.on('goodsDelete', this.deleteModel, this);
 			App.Events.on('editGoodsName', this.changeName, this);
-			
-=======
+
 			App.Events.on('goodsDelete', this.deleteModel, this)
 			App.Events.on( 'writeGoods', this.writeCollection, this );
 			App.Events.on( 'fetchGoods', this.fetchGoods, this );
 			App.Events.on( 'editGoodsName', this.changeName, this );
->>>>>>> f78a764a68059b69dd5ff820e0525b5cb37c40db
 		},
 		addModel: function (model) {
 			
 			this.add( model );
-<<<<<<< HEAD
-=======
-			App.dbConnector.AddGoodsToDb( 'Tovaru', model );
 
->>>>>>> f78a764a68059b69dd5ff820e0525b5cb37c40db
+			App.dbConnector.AddGoodsToDb( 'Tovaru', model );
 		
 		},
 		deleteModel: function(model){
@@ -182,21 +176,19 @@ var App = App || {};
 					goodsCollection: goodsCollection 
 							
 				});
-			
-<<<<<<< HEAD
+
 				model.destroy();
 				this.remove(model); 			
-			
+			}	
 		},
 		changeName: function ( model, value ) {
 		
 			//App.dbConnector.changeGoodName( model.get( 'name' ), value );
 			model.set({ nameG: value });
-		
-=======
+
 				this.add(mGoods);
 				i++;
-			} 	
+			
 		},
 		fetchGoods: function(){
 			
@@ -206,7 +198,6 @@ var App = App || {};
 		changeName: function(model, value){
 			App.dbConnector.changeGoodsName( model.get( 'nameG' ), value );
 			model.set({ nameG: value });
->>>>>>> f78a764a68059b69dd5ff820e0525b5cb37c40db
 		}
 		
 	});
