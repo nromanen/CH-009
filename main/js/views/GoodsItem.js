@@ -12,14 +12,14 @@ var App = App || {};
 		events: {
 			'click .delete' : 'confirmRemove',
 			'click .editCount' : 'changeCount',
-			'keypress .editGoodsCount': 'updateOnEnter',
-			'blur .editGoodsCount': 'close'
+			'keypress .editUnitsCount': 'updateOnEnter',
+			'blur .editUnitsCount': 'close'
 		},
 		template: _.template( $('#goods-count').html() ),
 		render: function () {
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
-			this.$input = this.$('.editGoodsCount');
+			this.$input = this.$('.editUnitsCount');
 			this.$input.val( this.model.get( 'count' ) );
 		},
 		confirmRemove: function () {
@@ -45,8 +45,8 @@ var App = App || {};
 				this.render();
 				return;
 			}	
-			App.Events.trigger('newMaterialCount', this.model, value);
-			App.dbConnector.editGoodsItems( this.options.goodsModel );
+			App.Events.trigger('newUnitsCount', this.model, value);
+			App.dbConnector.EditGoodsItems( this.options.goodsModel );
 			this.$el.removeClass('editingCount');
 			
 		},

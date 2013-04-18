@@ -148,6 +148,7 @@ var App = App || {};
 			App.Events.on( 'writeGoods', this.writeCollection, this );
 			App.Events.on( 'fetchGoods', this.fetchGoods, this );
 			App.Events.on( 'editGoodsName', this.changeName, this );
+			App.Events.on('newUnitsCount', this.editCount, this);
 		},
 		addModel: function (model) {
 			
@@ -183,6 +184,9 @@ var App = App || {};
 		changeName: function(model, value){
 			App.dbConnector.changeGoodsName( model.get( 'nameG' ), value );
 			model.set({ nameG: value });
+		},
+		editCount: function (model, value) {
+			model.set({ count: value });
 		}
 		
 	});
