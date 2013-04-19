@@ -152,6 +152,7 @@ var App = App || {};
 			App.Events.on( 'writeGoods', this.writeCollection, this );
 			App.Events.on( 'fetchGoods', this.fetchGoods, this );
 			App.Events.on( 'editGoodsName', this.changeName, this );
+			App.Events.on('newUnitsCount', this.editCount, this);
 		},
 		addModel: function (model) {
 			
@@ -174,9 +175,14 @@ var App = App || {};
 					goodsCollection: goodsCollection 
 							
 				});
+<<<<<<< HEAD
 
 	this.add(mGoods);
 				i++;			
+=======
+				this.add(mGoods);
+				i++;
+>>>>>>> 5d5df06e70165f0b07b96ab9b55c8f0f3f1f4145
 			}	
 		},
 		changeName: function ( model, value ) {
@@ -187,9 +193,13 @@ var App = App || {};
 				this.add(mGoods);
 				i++;
 			
+<<<<<<< HEAD
 
 			 
 	
+=======
+			
+>>>>>>> 5d5df06e70165f0b07b96ab9b55c8f0f3f1f4145
 		},
 		fetchGoods: function(){
 			
@@ -199,6 +209,9 @@ var App = App || {};
 		changeName: function(model, value){
 			App.dbConnector.changeGoodsName( model.get( 'nameG' ), value );
 			model.set({ nameG: value });
+		},
+		editCount: function (model, value) {
+			model.set({ count: value });
 		}
 		
 	});

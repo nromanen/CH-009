@@ -23,6 +23,9 @@ var App = App || {};
 			this.$input.val( this.model.get( 'count' ) );
 			tPrice = this.model.get( 'count' ) * this.model.get('price');
 			console.log( this.model.toJSON() );
+			console.log( tPrice );
+			$('.count span').html( tPrice );
+
 			console.log( JSON.stringify(this.model) );
 		},
 		confirmRemove: function () {

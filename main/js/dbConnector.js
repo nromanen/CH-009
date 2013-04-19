@@ -145,7 +145,7 @@ var App = App || {};
 							return;
 						}	
 					}
-					cursor.continue(); 				
+									
 				}	
 			}
 		}

@@ -8,5 +8,7 @@ var App = App || {};
 	App.Views.Show = new App.Views.ControlView ( { el: $( '#content' ) } );
 	App.UnitCollection = new Array(); 
 	
-
+	console.log( App.Materials );
+	console.log( App.Units );
+	console.log(JSON.stringify(App.Materials));
 }()); 

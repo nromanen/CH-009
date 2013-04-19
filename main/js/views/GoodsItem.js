@@ -31,7 +31,11 @@ var App = App || {};
 				this.model.destroy();
 
 				App.dbConnector.EditGoodsItems(this.options.goodsModel);
+<<<<<<< HEAD
 
+=======
+				//App.dbConnector.EditGoodsItem( this.options.goodsModel );
+>>>>>>> 5d5df06e70165f0b07b96ab9b55c8f0f3f1f4145
 			}	
 			
 		},
@@ -52,11 +56,19 @@ var App = App || {};
 				this.$el.removeClass('editingCount');
 				this.render();
 				return;
+<<<<<<< HEAD
 			}	
 
 			App.Events.trigger('newMaterialCount', this.model, value);
 			App.dbConnector.editGoodsItems( this.options.goodsModel );
 
+=======
+			}
+			App.Events.trigger('newUnitsCount', this.model, value);
+			//App.dbConnector.changeCount( this.options.unitModel );
+			App.Events.trigger('newUnitsCount', this.model, value);
+			App.dbConnector.EditGoodsItems( this.options.goodsModel );
+>>>>>>> 5d5df06e70165f0b07b96ab9b55c8f0f3f1f4145
 			this.$el.removeClass('editingCount');
 			
 		},
@@ -81,20 +93,34 @@ var App = App || {};
 		},
 		addOne: function( modelGoodsItem ) {
 	
+<<<<<<< HEAD
 
 			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
 
 
 
+=======
+			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model  });
+
+>>>>>>> 5d5df06e70165f0b07b96ab9b55c8f0f3f1f4145
 			goodsItemView.render();
 			this.$el.append( goodsItemView.el );
 
 			console.log( this.model.toJSON() );
+<<<<<<< HEAD
 
 		},
 		ItemRemove: function() {
 			console.log(this);
 
+=======
+			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
+			goodsItemView.render();
+			this.$el.append( goodsItemView.el );
+		},
+		ItemRemove: function() {
+			console.log(this);
+>>>>>>> 5d5df06e70165f0b07b96ab9b55c8f0f3f1f4145
 		}
 	
 	});
