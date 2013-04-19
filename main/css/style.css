@@ -83,7 +83,7 @@ h1 span{
 .fl {
   float: left;
   padding: 10px;
-  font-size:34px;
+  font-size:24px;
   color:#333;
   text-shadow:1px 1px 1px #fff;
   text-align:left;
@@ -324,7 +324,7 @@ h1 span{
 	margin: 0 auto;
     padding: 20px 10px;
 	background-color:#f3f5fb;
-	border:10px solid #0B6121;
+	
 	overflow-y: auto;
 	overflow-x:hidden;
 	border-radius:10px;
@@ -339,7 +339,7 @@ h1 span{
 	margin-left: 20px;
     padding: 20px 10px;
 	background-color:#f3f5fb;
-	border:10px solid #6d7aa1;
+	
 	overflow-y: auto;
 	overflow-x:hidden;
 	border-radius:10px;
@@ -353,7 +353,7 @@ h1 span{
 	margin: 0 auto;
     padding: 20px 10px;
 	background-color:#f3f5fb;
-	border:10px solid #04B431;
+	
 	overflow-y: auto;
 	overflow-x:hidden;
 	border-radius:10px;
@@ -367,7 +367,7 @@ h1 span{
 	margin: 0 auto;
     padding: 20px 10px;
 	background-color:#f3f5fb;
-	border:10px solid #04B431;
+
 	overflow-y: auto;
 	overflow-x:hidden;
 	border-radius:10px;
@@ -377,11 +377,11 @@ h1 span{
 } 
 
 .goods_holder {
-	width: 500px;
+	width:400px;
 	margin: 0 auto;
-    padding: 20px 10px;
+    
 	background-color:#f3f5fb;
-	border:10px solid #0B6121;
+	
 	overflow-y: auto;
 	overflow-x:hidden;
 	border-radius:10px;
@@ -460,7 +460,7 @@ h1 span{
 .goods_name {
   float: left;
   padding: 10px;
-  font-size:34px;
+
   color:#000;
   text-align:left;
   font-weight:bold;
@@ -469,7 +469,7 @@ h1 span{
 .goods_name:hover {
   float: left;
   padding: 10px;
-  font-size:34px;
+  font-size:24px;
   color:green;
   text-align:left;
   font-weight:bold;
@@ -495,7 +495,7 @@ h1 span{
 	margin: 0 auto;
     padding: 20px 10px;
 	background-color:#f3f5fb;
-	border:10px solid #6d7aa1;
+	
 	overflow-y: auto;
 	overflow-x:hidden;
 	border-radius:10px;

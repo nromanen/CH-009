@@ -107,7 +107,7 @@ var App = App || {};
 	
 	
 		tagName: 'ul',
-		className: 'nav nav-tabs',
+	
 		initialize: function () {
 			this.collection.on('add', this.render, this);
 		},
