@@ -177,8 +177,6 @@ var App = App || {};
 				});
 				this.add(mGoods);
 				i++;
-<<<<<<< HEAD:main/js/collections.js
-						
 			}	
 		},
 		changeName: function ( model, value ) {
@@ -189,10 +187,7 @@ var App = App || {};
 				this.add(mGoods);
 				i++;
 			
-=======
-			} 
-	
->>>>>>> 03d88b1f511bdddd667987cb30a0c76ad7f65699:main/js/collections/collections.js
+			
 		},
 		fetchGoods: function(){
 			

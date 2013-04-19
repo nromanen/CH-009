@@ -60,8 +60,7 @@ var App = App || {};
 				$(  jq_AddMaterialsList  ).hide();
 			
 			}
-			console.log( JSON.stringify( this.model ) );
-			console.log( JSON.stringify( App.Materials) );
+			
 	
 			
 		},

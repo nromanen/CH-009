@@ -12,10 +12,7 @@ var App = App || {};
 		events: {
 			'click .delete' : 'confirmRemove',
 			'click .editCount' : 'changeCount',
-<<<<<<< HEAD
 			'dblclick .count' : 'changeCount',
-=======
->>>>>>> 03d88b1f511bdddd667987cb30a0c76ad7f65699
 			'keypress .editUnitsCount': 'updateOnEnter',
 			'blur .editUnitsCount': 'close'
 		},
@@ -32,10 +29,8 @@ var App = App || {};
 			
 			if ( confirm('Are you sure you want to delete this Goods Item?') ) {
 				this.model.destroy();
-<<<<<<< HEAD
-=======
+
 				App.dbConnector.EditGoodsItems(this.options.goodsModel);
->>>>>>> 03d88b1f511bdddd667987cb30a0c76ad7f65699
 				//App.dbConnector.EditGoodsItem( this.options.goodsModel );
 			}	
 			
@@ -57,15 +52,11 @@ var App = App || {};
 				this.$el.removeClass('editingCount');
 				this.render();
 				return;
-			}	
-<<<<<<< HEAD
-			
+			}
 			App.Events.trigger('newUnitsCount', this.model, value);
 			//App.dbConnector.changeCount( this.options.unitModel );
-=======
 			App.Events.trigger('newUnitsCount', this.model, value);
 			App.dbConnector.EditGoodsItems( this.options.goodsModel );
->>>>>>> 03d88b1f511bdddd667987cb30a0c76ad7f65699
 			this.$el.removeClass('editingCount');
 			
 		},
@@ -83,10 +74,6 @@ var App = App || {};
 	tagName: 'ul',
 		initialize: function () {
 			this.collection.on('add', this.addOne, this);
-<<<<<<< HEAD
-			
-=======
->>>>>>> 03d88b1f511bdddd667987cb30a0c76ad7f65699
 		},
 		render: function () {
 			this.collection.each(this.addOne, this);
@@ -94,20 +81,17 @@ var App = App || {};
 		},
 		addOne: function( modelGoodsItem ) {
 	
-<<<<<<< HEAD
 			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model  });
 
 			goodsItemView.render();
 			this.$el.append( goodsItemView.el );
 			console.log( this.model.toJSON() );
-=======
 			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
 			goodsItemView.render();
 			this.$el.append( goodsItemView.el );
 		},
 		ItemRemove: function() {
 			console.log(this);
->>>>>>> 03d88b1f511bdddd667987cb30a0c76ad7f65699
 		}
 	
 	});
