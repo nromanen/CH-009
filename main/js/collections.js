@@ -176,9 +176,9 @@ var App = App || {};
 					goodsCollection: goodsCollection 
 							
 				});
-
-				model.destroy();
-				this.remove(model); 			
+				this.add(mGoods);
+				i++;
+						
 			}	
 		},
 		changeName: function ( model, value ) {

@@ -71,7 +71,7 @@ var App = App || {};
 	
 	tagName: 'ul',
 		initialize: function () {
-			this.collection.on('add', this.addOne, this.model);
+			this.collection.on('add', this.addOne, this);
 			
 		},
 		render: function () {
