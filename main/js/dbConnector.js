@@ -545,6 +545,36 @@ var App = App || {};
 		}
 	}	
 	
+	App.dbConnector.EditGoodsItems = function ( tovarModel ) {
+	
+	try {
+		   
+			var transaction = localDatabase.db.transaction("Tovaru", "readwrite");
+			var store = transaction.objectStore("Tovaru");
+			if (localDatabase != null && localDatabase.db != null) {
+			var request = store.openCursor();
+			
+				request.onsuccess = function( evt ) {
+					var cursor = evt.target.result;
+					if ( cursor ) {
+						if ( cursor.value.tovarName ===  tovarModel.get('nameG') ) {
+							var newValue = cursor.value;
+							newValue['tovarName'] =  tovarModel.get('nameG');
+							newValue['tovarCollection'] = JSON.stringify(tovarModel.get('goodsCollection'));
+							store.put(newValue);
+							console.log("Unit edited succesfull");
+							return;
+						}	
+					}
+					cursor.continue(); 				
+				}	
+			}
+		}
+		catch(e){
+		   console.log(e);
+		}
+	
+	}
 
 	
    //App.dbConnector.deleteDatabase();

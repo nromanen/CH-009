@@ -88,7 +88,6 @@ var App = App || {};
 				this.add(mUnit);
 				i++;
 			}
-		
 		},
 		deleteModel: function( model ) {
 			App.dbConnector.deleteUnit( model.get( "name" ) );
@@ -153,6 +152,7 @@ var App = App || {};
 			App.Events.on( 'writeGoods', this.writeCollection, this );
 			App.Events.on( 'fetchGoods', this.fetchGoods, this );
 			App.Events.on( 'editGoodsName', this.changeName, this );
+			App.Events.on('newUnitsCount', this.editCount, this);
 		},
 		addModel: function (model) {
 			
@@ -162,7 +162,6 @@ var App = App || {};
 		
 		},
 		deleteModel: function(model){
-			App.dbConnector.deleteGoods(model.get( 'nameG' ));
 			model.destroy();
 			this.remove(model); 			
 		},
@@ -178,6 +177,7 @@ var App = App || {};
 				});
 				this.add(mGoods);
 				i++;
+<<<<<<< HEAD:main/js/collections.js
 						
 			}	
 		},
@@ -189,6 +189,10 @@ var App = App || {};
 				this.add(mGoods);
 				i++;
 			
+=======
+			} 
+	
+>>>>>>> 03d88b1f511bdddd667987cb30a0c76ad7f65699:main/js/collections/collections.js
 		},
 		fetchGoods: function(){
 			
@@ -198,6 +202,9 @@ var App = App || {};
 		changeName: function(model, value){
 			App.dbConnector.changeGoodsName( model.get( 'nameG' ), value );
 			model.set({ nameG: value });
+		},
+		editCount: function (model, value) {
+			model.set({ count: value });
 		}
 		
 	});

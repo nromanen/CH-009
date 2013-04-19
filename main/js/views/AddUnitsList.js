@@ -51,7 +51,14 @@ var App = App || {};
 			if ( ( quantity !== '' ) && ( quantity !== null ) ) {
 
 				this.collection.add (new App.Models.GoodsItem({units:this.model.get ( 'name' ), count:quantity}));
+<<<<<<< HEAD
 				this.options.something.set("goodsCollection", this.collection);	
+=======
+				//console.log(this.collection);	
+				this.options.something.set("goodsCollection", this.collection);
+				App.dbConnector.EditGoodsItems(this.options.something);
+				console.log ( this.options.something ); 	
+>>>>>>> 03d88b1f511bdddd667987cb30a0c76ad7f65699
 			} else {
 				alert( 'You have not entered a correct value!' );
 			}
@@ -59,7 +66,7 @@ var App = App || {};
 		saveUnitCollection: function () {
 			
 
-			App.dbConnector.EditUnitItem (this.options.something);
+			//App.dbConnector.EditUnitItem (this.options.something);
 			console.log('App.dbConnector.EditUnitItem triggered!');
 		},
 		

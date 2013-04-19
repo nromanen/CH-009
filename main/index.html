@@ -5,7 +5,7 @@
 		<title>Materials & Units Manager</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" href="css/bootstrap.css">
-		<script scr="js/bootstrap.js"></script>
+		<script scr="js/lib/bootstrap.js"></script>
 	</head>
 	<body>
 
@@ -19,29 +19,29 @@
 	<div class="AddMaterialsList"></div>
 	<div class="AddUnitsList"></div>
     
-        <script type="text/template" id="navigation">
+    	<script type="text/template" id="navigation">
         	
-        			<ul class="nav nav-tabs">
-            			 <li id="showMaterial"><a href="#2A"  >Show Materials</a></li>
-            			 <li id="showUnit"><a href="#2B"  class="btn-small">Show Unit</a></li>
-            			 <li id="showGoods"><a href="#2C"  class="btn-small">Show Goods</a></li>
-            		</ul>
+        			
+        	<a href="#2A" id="showMaterial" class="btn btn-small" ><i class="icon-tint"></i>Show Materials</a>
+        	<a href="#2B" id="showUnit" class="btn btn-small"><i class="icon-th-list"></i>Show Unit</a>
+        	<a href="#2C" id="showGoods" class=" btn btn-small"><i class="icon-shopping-cart"></i>Show Goods</a>
+            		
 
 
     
-        </script>  
+    	</script>  
 		
 		<script type="text/template"  id="temlateGoods">
-			<div class="tab-content">
-			<div class="tab-pane active" id="2B">
+		
 			<h1>Warehouse</h1><br>
 			
 			
 			<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 			
 			<div id="addGoods">
-				<div class="fl">New goods:</div>
-				<div class="fle"><input class="textbox" id="goods" type="text"></div>
+
+				<div class="fl ">New goods:</div>
+				<div class="fle"><input class="textbox span3" id="goods" type="text"></div>
 			</div>
 			<div style="height:15px;"></div>
 			<br>
@@ -55,8 +55,8 @@
         
                
         <script type="text/template"  id="temlateUnits">
-			<div class="tab-content">
-				<div class="tab-pane active" id="2B">
+			
+				
 					<h1>Warehouse</h1><br>
 			
 					<div id="addUnit">
@@ -68,14 +68,12 @@
 			
 					<div id="units_holder"></div>
 
-			 		</div>
-        	 	</div>
-        	 </div>
+			 		     	 
+        
         </script> 
    
         <script type="text/template"  id="temlateMaterials" >
-		<div class="tab-content">
-			<div class="tab-pane active" id="2A">
+		
 				<h1>Warehouse</h1><br>
 			
             	<div id="addMaterial">
@@ -87,8 +85,7 @@
             	</div>
 			
             	<div id="table_holder"></div>
-            </div>
-         </div>
+         
         </script> 
 		
 		
@@ -98,7 +95,7 @@
 			<div class="goods_holder">
 				<div class="goods_name"><%= nameG %></div>
 				<input class="edit_goods_name" value="<%= nameG %>">
-				<div class="deleteGoods" title="Delete <%= nameG %> "></div>
+				<div class="deleteGoods " title="Delete <%= nameG %> "></div>
 				<div class="edit_goodsItem" title="Edit <%= nameG %> "></div>
 				<div class="clear"></div>
 				<div class="goods_info"></div>
@@ -174,10 +171,15 @@
 		<script src="js/lib/jquery-ui.js"></script>
 		<script src="js/lib/underscore.js"></script>
 		<script src="js/lib/backbone.js"></script>
+<<<<<<< HEAD
+=======
+		
+>>>>>>> 03d88b1f511bdddd667987cb30a0c76ad7f65699
 		<script src="js/defaults.js"></script>
 		<script src="js/dbConnector.js"></script>
-		<script src="js/models.js"></script>
-		<script src="js/collections.js"></script>
+
+		<script src="js/models/models.js"></script>
+		<script src="js/collections/collections.js"></script>
 		
 		<script src="js/views/Materials.js"></script>
 		<script src="js/views/Units.js"></script>
