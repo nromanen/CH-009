@@ -13,6 +13,8 @@
     cursor: pointer;
 }
 .delete {
+    float:left;
+    position:relative;
     width:26px;
     height:26px;
     background: url('../img/delete16.png') no-repeat;
@@ -20,9 +22,29 @@
     cursor: pointer;
 }
 .delete:hover {
+    float:left;
+    position: relative;
     width:26px;
     height:26px;
     background: url('../img/delete16.png') no-repeat;
     opacity: 1;
     cursor: pointer;
-};
+}
+.delete_unit {
+    float:right;
+    position:relative;
+    width:26px;
+    height:26px;
+    background: url('../img/delete.png') no-repeat;
+    opacity: 0.6;
+    cursor: pointer;
+}
+.delete_unit:hover {
+    float:right;
+    position: relative;
+    width:26px;
+    height:26px;
+    background: url('../img/delete.png') no-repeat;
+    opacity: 1;
+    cursor: pointer;
+}

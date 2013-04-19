@@ -44,20 +44,78 @@
               </div>
 
               <div class="tab-pane fade" id="units">
+					
+				<a href="#addUnit" role="button" class="btn btn-info" data-toggle="modal"><i class="icon-white icon-plus"></i> New Unit</a>
+
+				<!-- Modal -->
+
+				<div id="addUnit" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				  <div class="modal-header">
+				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				    <h3 id="myModalLabel">Modal header</h3>
+				  </div>
+				  <div class="modal-body">
+				    <p>One fine body…</p>
+				  </div>
+				  <div class="modal-footer">
+				    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+				    <button class="btn btn-primary">Save changes</button>
+				  </div>
+				</div>
                 
-					<div class="accordion" id="accordion2">
+					<div class="accordion" id="accordion2" style="margin-top:20px;">
 
 					  <div class="accordion-group">
 
 					    <div class="accordion-heading">
 					      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-					        Collapsible Group Item #3
+					        Wall ($200) <div class="delete_unit"></div>
 					      </a>
 					    </div>
 
 					    <div id="collapseThree" class="accordion-body collapse">
 					      <div class="accordion-inner">
-					        Anim pariatur cliche...
+					        
+							<table class="table">
+                	
+								<thead>
+									
+									<th> Material </th>
+									<th> Quantity </th>
+									<th> Edit </th>
+									<th> Delete </th>
+									<th> Price total </th>
+								</thead>
+								<tbody>
+									
+									<tr>
+				                		<td> Stone </td>
+				                		<td> 10 </td>
+				                		<td> <div class="edit"></div> </td>
+				                		<td> <div class="delete"></div> </td>
+				                		<td> $120 </td>
+				                	</tr>
+									<tr>
+				                		<td> Wood </td>
+				                		<td> 20 </td>
+				                		<td> <div class="edit"></div> </td>
+				                		<td> <div class="delete"></div> </td>
+				                		<td> $80 </td>
+				                	</tr>
+
+				                	<tr>	
+				                		<td colspan="4">
+				                			<a href="#addMaterial2Unit" role="button" class="btn btn-info btn-small" data-toggle="modal"><i class="icon-white icon-plus"></i> Material</a>	
+				                		</td>
+										<td>
+											Unit price: <b>$200</b>
+										</td>
+				                	</tr>
+
+								</tbody>
+			                	
+			                </table>
+
 					      </div>
 					    </div>
 
@@ -98,13 +156,13 @@
 						
 						<tr>
 	                		<td> Stone </td>
-	                		<td> 120 </td>
+	                		<td> $12 </td>
 	                		<td> <div class="edit"></div> </td>
 	                		<td> <div class="delete"></div> </td>
 	                	</tr>
 						<tr>
 	                		<td> Wood </td>
-	                		<td> 80 </td>
+	                		<td> $4 </td>
 	                		<td> <div class="edit"></div> </td>
 	                		<td> <div class="delete"></div> </td>
 	                	</tr>
@@ -120,16 +178,27 @@
 
 		</div>
 
-		<div class="row-fluid">
+		<div class="row-fluid" style="margin-top:40px;">
 			
-
 			
-
+		
 		</div>
 
 	</div>
 
-
+	<div id="addMaterial2Unit" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="myModalLabel">Modal header</h3>
+			</div>
+			<div class="modal-body">
+			<p>One fine body…</p>
+			</div>
+			<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+			<button class="btn btn-primary">Save changes</button>
+		</div>
+	</div>
 
 	<script src="js/lib/jquery.js"></script>
 	<script src="js/lib/boostrap/bootstrap.min.js"></script>
