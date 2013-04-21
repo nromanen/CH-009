@@ -2,7 +2,7 @@ var App = App || {};
 
 (function () {
 
-	App.Collections.List = Backbone.Collection.extend({     //Матеріали
+	App.Collections.List = Backbone.Collection.extend({ 
 		model: App.Models.Material,
 		initialize: function () {
 		
@@ -17,6 +17,7 @@ var App = App || {};
 		fetchProducts: function () {
 			
 			App.dbConnector.fetchAll();
+
 			
 		},
 		writeProducts: function ( products ) {
@@ -175,14 +176,11 @@ var App = App || {};
 					goodsCollection: goodsCollection 
 							
 				});
-<<<<<<< HEAD
 
 	this.add(mGoods);
-				i++;			
-=======
+				i++;
 				this.add(mGoods);
 				i++;
->>>>>>> 5d5df06e70165f0b07b96ab9b55c8f0f3f1f4145
 			}	
 		},
 		changeName: function ( model, value ) {
@@ -193,13 +191,6 @@ var App = App || {};
 				this.add(mGoods);
 				i++;
 			
-<<<<<<< HEAD
-
-			 
-	
-=======
-			
->>>>>>> 5d5df06e70165f0b07b96ab9b55c8f0f3f1f4145
 		},
 		fetchGoods: function(){
 			

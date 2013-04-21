@@ -51,22 +51,15 @@ var App = App || {};
 			if ( ( quantity !== '' ) && ( quantity !== null ) ) {
 
 				this.collection.add (new App.Models.GoodsItem({units:this.model.get ( 'name' ), count:quantity}));
-<<<<<<< HEAD
 
-			
-
-				
 				this.options.something.set("goodsCollection", this.collection);
 				App.dbConnector.EditGoodsItems(this.options.something);
-				console.log ( this.options.something ); 	
-
-=======
+				console.log ( this.options.something );
 				this.options.something.set("goodsCollection", this.collection);	
 				//console.log(this.collection);
 				this.options.something.set("goodsCollection", this.collection);
 				App.dbConnector.EditGoodsItems(this.options.something);
 				console.log ( this.options.something ); 
->>>>>>> 5d5df06e70165f0b07b96ab9b55c8f0f3f1f4145
 			} else {
 				alert( 'You have not entered a correct value!' );
 			}

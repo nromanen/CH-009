@@ -21,12 +21,6 @@ var App = App || {};
 			this.$el.html( strTemplate );
 			this.$input = this.$('.editMaterialCount');
 			this.$input.val( this.model.get( 'count' ) );
-			tPrice = this.model.get( 'count' ) * this.model.get('price');
-			console.log( this.model.toJSON() );
-			console.log( tPrice );
-			$('.count span').html( tPrice );
-
-			console.log( JSON.stringify(this.model) );
 		},
 		confirmRemove: function () {
 			if ( confirm('Are you sure you want to delete this Unit Item?') ) {
