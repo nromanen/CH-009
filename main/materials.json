@@ -1,0 +1,19 @@
+[
+	{
+	"material" : "Wood", 
+	"price" : 250
+	},
+	{
+	"material" : "Stone", 
+	"price" : 400
+	},
+	{
+	"material" : "Plastic", 
+	"price" : 750
+	},
+	{
+	"material" : "Steel", 
+	"price" : 1000
+	}
+	
+]

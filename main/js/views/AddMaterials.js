@@ -16,7 +16,7 @@ var App = App || {};
 		addOne: function(modelMaterial) {
 			var MaterialsCollection = this.model.get ( 'mcollection' );
 			var MaterialView = new App.Views.MaterialPlus({ model: modelMaterial, collection: MaterialsCollection, something: this.model });
-			//console.log( this.model );
+			//console.log( JSON.stringify( MaterialsCollection.where({price: "500"}) ) );
 			MaterialView.render();
 			this.$el.append( MaterialView.el );
 			
@@ -51,7 +51,8 @@ var App = App || {};
 				this.model.set ( { count: quantity } )
 				this.collection.add ( this.model );
 				this.options.something.set("mcollection", this.collection);
-				console.log ( this.options.something ); 	
+				console.log ( this.options.something.toJSON() );
+				console.log( this.model.toJSON() ); 	
 			} else {
 				alert( 'You have not entered a correct value!' );
 			}
@@ -59,8 +60,9 @@ var App = App || {};
 		saveUnitCollection: function () {
 			
 
-			//App.dbConnector.EditUnitItem (this.options.something);
+			App.dbConnector.EditUnitItem (this.options.something);
 			console.log('App.dbConnector.EditUnitItem triggered!');
+			
 		},
 		
 		
