@@ -27,8 +27,8 @@ var App = App || {};
 			this.$('.unit_info').append( newUnitItemsList.el );
 			newUnitItemsList.render();
 			this.$input = this.$('.edit_unit_name');
-			
-		}, 
+
+		},
 		unitToggle: function () {
 			
 			var jq_unit_holder = '.unit_holder';
@@ -43,7 +43,7 @@ var App = App || {};
 				$ ( jq_unit_info ).hide();
 				this.$( jq_unit_info ).show();
 				
-				var AddMaterialsList = new App.Views.AddMaterialsList( { collection: App.Materials, model : this.model	} );
+				var AddMaterialsList = new App.Views.AddMaterialsList( { collection: App.Materials, model : this.model } );
 
 				AddMaterialsList.render();
 				
@@ -60,6 +60,8 @@ var App = App || {};
 				$(  jq_AddMaterialsList  ).hide();
 			
 			}
+			
+	
 			
 		},
 		unitDeleteItem: function() {

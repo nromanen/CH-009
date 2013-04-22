@@ -27,6 +27,7 @@ var App = App || {};
 			console.log("database is open");
 			App.Events.trigger( 'fetchProducts' );
 			App.Events.trigger( 'fetchUnit' );
+			App.Events.trigger( 'fetchGoods' );
 		
 		};	
 	}
@@ -81,7 +82,7 @@ var App = App || {};
 			var tovarStore = evt.currentTarget.result.createObjectStore
 					("Tovaru", {keyPath: "id", autoIncrement: true});
 				   tovarStore.createIndex("tovarName", "tovarName", { unique: false });        
-				   tovarStore.createIndex("tovarCollection", "tovarCollecton", { unique: false });
+				   tovarStore.createIndex("tovarCollection", "tovarCollection", { unique: false });
 				 				   					
 			            	   						  
 			}
@@ -131,7 +132,6 @@ var App = App || {};
 			var store = transaction.objectStore("Units");
 			if (localDatabase != null && localDatabase.db != null) {
 			var request = store.openCursor();
-				//console.log(model);
 			
 				request.onsuccess = function( evt ) {
 					var cursor = evt.target.result;
@@ -145,7 +145,7 @@ var App = App || {};
 							return;
 						}	
 					}
-					cursor.continue(); 				
+									
 				}	
 			}
 		}
@@ -165,8 +165,6 @@ var App = App || {};
 			var store = transaction.objectStore(objStor);            
 		  
 			if (localDatabase != null && localDatabase.db != null) {
-		      	var b = JSON.stringify(model.get("mcollection"));
-				var c = JSON.parse(b);
 				var request =store.put({unitName:model.get("name"), unitCollection:JSON.stringify(model.get("mcollection"))}); 
 				
 				
@@ -211,7 +209,6 @@ var App = App || {};
 								pointer++;
 								
 								if(cursor){
-								//console.log(cursor.value.unitName+JSON.parse(cursor.value.unitCollection));
 									units[pointer++] = new Units ({
 									name:cursor.value.unitName,
 									mcollection:JSON.parse(cursor.value.unitCollection)
@@ -226,7 +223,6 @@ var App = App || {};
 						}
 						var onSuccessHandler = function ( units ) {
 							App.Events.trigger( 'writeUnits', units );
-							//console.log (units );
 		}
 						
 	}
@@ -365,7 +361,6 @@ var App = App || {};
 		
 		var onSuccessHandler = function ( products ) {
 			App.Events.trigger( 'writeProducts', products );
-			//console.log ( products );
 		}
 		
 	}	
@@ -410,7 +405,6 @@ var App = App || {};
 						{	var newValue = cursor.value;
 							newValue["unitCollection"] = JSON.stringify(inputModel.get("mcollection"));
 							store.put(newValue);
-							//store.put({unitName:inputModel.model.get("name"), unitCollection:JSON.stringify(inputModel.model.get("mcollection"))});
 							return;
 						}	
 					}
@@ -423,6 +417,166 @@ var App = App || {};
 		}
 	}		
 
+	App.dbConnector.AddGoodsToDb = function (objStor, model) {
+		
+		try {
+
+			var transaction = localDatabase.db.transaction(objStor, "readwrite");
+			var store = transaction.objectStore(objStor);            
+		  
+			if (localDatabase != null && localDatabase.db != null) {
+				var request =store.put({tovarName:model.get("nameG"), tovarCollection:JSON.stringify(model.get("goodsCollection"))}); 
+				
+				
+				request.onsuccess = function (e) {
+					addProductHandler ( true );
+				};
+				
+				request.onerror = function (e) {
+					console.log(e.value);
+					addProductHandler ( false );
+				};
+			}
+		}
+		
+		catch (e) {
+			console.log(e);
+		}
+	
+	
+		var addProductHandler = function ( result ) {
+			console.log( result );
+		}
+
+	}
+	
+	App.dbConnector.fetchGood = function()	{
+		
+		var store = localDatabase.db.transaction("Tovaru").objectStore("Tovaru");
+		var request = store.openCursor();
+		var goods = new Array();
+		var pointer = -1;
+		
+			var Goods = function(config){
+				this.nameG = config.nameG;
+				this.goodsCollection = config.goodsCollection;
+			
+			};
+			request.onsuccess =  function(event){
+					var cursor = event.target.result;
+					pointer++;
+
+					if(cursor){
+						goods[pointer++] = new Goods ({
+							nameG:cursor.value.tovarName,
+							goodsCollection:JSON.parse(cursor.value.tovarCollection)
+						});
+
+					cursor.continue(); 	
+					} else {
+					  onSuccessHandler ( goods );
+					}
+			
+			
+			}
+			var onSuccessHandler = function ( goods ) {
+				App.Events.trigger( 'writeGoods', goods );
+			}		
+						
+	}
+	
+	App.dbConnector.deleteGoods = function ( title ) {
+
+		if ( localDatabase != null && localDatabase.db != null ) {		
+			
+			var store = localDatabase.db.transaction("Tovaru").objectStore("Tovaru");
+			var request = store.openCursor();
+			var pointer = -1;
+		
+			request.onsuccess = function( evt ) {
+
+				var cursor = evt.target.result;
+				
+				if ( cursor ) {
+		
+				
+					if ( cursor.value.tovarName ===  title ) {
+						
+						var deleteRequest = localDatabase.db.transaction( ["Tovaru"] , "readwrite" ).objectStore("Tovaru").delete( cursor.key );
+						deleteRequest.onsuccess = function( ev ) {
+							
+							console.log("deleted id:" + cursor.key + " !");
+							
+						}
+					
+					}
+					
+					cursor.continue(); 				
+				
+				}
+			}	
+		}		
+	}
+	
+	App.dbConnector.changeGoodsName = function( oldName, newName )  {
+		try {
+		   
+			var transaction = localDatabase.db.transaction( "Tovaru" , "readwrite");
+			var store = transaction.objectStore( "Tovaru" );
+			if (localDatabase != null && localDatabase.db != null) {
+			var request = store.openCursor();
+			
+				request.onsuccess = function( evt ) {
+					var cursor = evt.target.result;
+					
+						if ( cursor.value.tovarName ===  oldName ) {
+							var newValue = cursor.value;
+							newValue["tovarName"] = newName;
+							store.put(newValue);
+							return;
+						}	
+					
+					cursor.continue(); 				
+				}	
+			}
+		}
+		catch(e){
+		   console.log(e);
+		}
+	}	
+	
+	App.dbConnector.EditGoodsItems = function ( tovarModel ) {
+	
+	try {
+		   
+			var transaction = localDatabase.db.transaction("Tovaru", "readwrite");
+			var store = transaction.objectStore("Tovaru");
+			if (localDatabase != null && localDatabase.db != null) {
+			var request = store.openCursor();
+			
+				request.onsuccess = function( evt ) {
+					var cursor = evt.target.result;
+					if ( cursor ) {
+						if ( cursor.value.tovarName ===  tovarModel.get('nameG') ) {
+							var newValue = cursor.value;
+							newValue['tovarName'] =  tovarModel.get('nameG');
+							newValue['tovarCollection'] = JSON.stringify(tovarModel.get('goodsCollection'));
+							store.put(newValue);
+							console.log("Unit edited succesfull");
+							return;
+						}	
+					}
+					cursor.continue(); 				
+				}	
+			}
+		}
+		catch(e){
+		   console.log(e);
+		}
+	
+	}
+
+	
    //App.dbConnector.deleteDatabase();
 
 	App.dbConnector.createDatabase();
