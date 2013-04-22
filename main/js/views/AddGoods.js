@@ -31,7 +31,7 @@ var App = App || {};
 			var newGoodsCollection = new App.Collections.GoodsItems([
 				{
 					units: 'goods1',
-					count: 0	
+					count: 0,	
 				}
 			]);
 			

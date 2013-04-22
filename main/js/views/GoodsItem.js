@@ -29,12 +29,13 @@ var App = App || {};
 			
 			if ( confirm('Are you sure you want to delete this Goods Item?') ) {
 				this.model.destroy();
+
+				App.dbConnector.EditGoodsItems(this.options.goodsModel);
 				//App.dbConnector.EditGoodsItem( this.options.goodsModel );
 			}	
 			
 		},
 		remove: function () {
-			
 			this.$el.remove();
 		
 		},
@@ -52,9 +53,13 @@ var App = App || {};
 				this.render();
 				return;
 			}	
-			
+
+			App.Events.trigger('newMaterialCount', this.model, value);
+			App.dbConnector.editGoodsItems( this.options.goodsModel );
 			App.Events.trigger('newUnitsCount', this.model, value);
 			//App.dbConnector.changeCount( this.options.unitModel );
+			App.Events.trigger('newUnitsCount', this.model, value);
+			App.dbConnector.EditGoodsItems( this.options.goodsModel );
 			this.$el.removeClass('editingCount');
 			
 		},
@@ -72,17 +77,26 @@ var App = App || {};
 	tagName: 'ul',
 		initialize: function () {
 			this.collection.on('add', this.addOne, this);
-			
 		},
 		render: function () {
 			this.collection.each(this.addOne, this);
 			return this;
 		},
 		addOne: function( modelGoodsItem ) {
-	
 			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
 			goodsItemView.render();
 			this.$el.append( goodsItemView.el );
+
+			console.log( this.model.toJSON() );
+		},
+		ItemRemove: function() {
+			console.log(this);
+			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
+			goodsItemView.render();
+			this.$el.append( goodsItemView.el );
+		},
+		ItemRemove: function() {
+			console.log(this);
 		}
 	
 	});

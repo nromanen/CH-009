@@ -11,7 +11,14 @@ var App = App || {};
 		events:{
 			"click #showMaterial" : "showMaterials",
 			"click #showUnit" : "showUnit",
-			"click #showGoods" : "showGoods"
+			"click #showGoods" : "showGoods",
+			"click #fetchMaterials" : "fetchMaterials"
+		},
+		fetchMaterials: function() {
+
+			App.Materials.fetch({ update:true } );
+			console.log( App.Materials );
+
 		},
 		showMaterials: function() {
 			 
