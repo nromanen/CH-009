@@ -9,6 +9,4 @@ var App = App || {};
 	App.UnitCollection = new Array(); 
 	
 	console.log( App.Materials );
-	console.log( App.Units.toJSON() );
-	console.log(JSON.stringify(App.Materials));
 }()); 

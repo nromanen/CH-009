@@ -16,8 +16,8 @@ var App = App || {};
 		},
 		fetchMaterials: function() {
 
-			App.Materials.fetch({ url: "/materials.json", add: true });
-			console.log( App.Materials.toJSON() );
+			App.Materials.fetch({ update:true } );
+			console.log( App.Materials );
 
 		},
 		showMaterials: function() {
