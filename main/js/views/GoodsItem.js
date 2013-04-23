@@ -4,7 +4,7 @@ var App = App || {};
 
 	App.Views.GoodsItem = Backbone.View.extend({
 	
-	tagName: 'li',
+	tagName: 'div',
 		initialize: function (){
 			this.model.on( 'destroy', this.remove, this );
 			this.model.on( 'change', this.render, this);
@@ -74,7 +74,7 @@ var App = App || {};
 	
 	App.Views.GoodsItemsList = Backbone.View.extend({  // это вид коллекции
 	
-	tagName: 'ul',
+	tagName: 'div',
 		initialize: function () {
 			this.collection.on('add', this.addOne, this);
 		},

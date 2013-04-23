@@ -316,15 +316,45 @@
 
 					    <div id="collapseThree" class="accordion-body collapse">
 					      <div class="accordion-inner">
-					     		<div class="holder">
-								<div class="units_in_Goods"><%= units %></div>
-								<div class="count"><%= count %></div>
-								<input class="editUnitsCount">
-								<div class="delete" title="Delete <%= units %> material"></div>
-								<div class="editCount"></div>
-							</div> 
+					      <table class="table">
+                	
+								<thead>
+									
+									<th> Units </th>
+									<th> Quantity </th>
+									<th> Edit </th>
+									<th> Delete </th>
+									<th> Price total </th>
+								</thead>
+								<tbody class="holder">
+									
+								<tr>
+				                	<td><div class="units_in_Goods"><%= units %></div></td>
+				                	<td> <div class="count"><%= count %></div> </td>
+				                	<td> <div class="editCount"></div> </td>
+				                	<td> <div class="delete" title="Delete <%= units %> material"></div></td>
+				                	<td> $120 </td>
+				                </tr>
+				                <tr>	
+				                		<td colspan="4">
+				                			<a href="#addMaterial2Unit" role="button" class="btn btn-info btn-small" data-toggle="modal"><i class="icon-white icon-plus"></i> Material</a>	
+				                		</td>
+										<td>
+											Unit price: <b>$200</b>
+										</td>
+				                	</tr>
+							</tbody>
+			                	
+			                </table>
+
 					      </div>
 					    </div>
+
+
+					     
+							 
+					     
+					  
 
 
 

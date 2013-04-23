@@ -49,7 +49,7 @@ var App = App || {};
 		}
 	});
 	
-	App.Collections.Units = Backbone.Collection.extend({	//Юніти
+	App.Collections.Units = Backbone.Collection.extend({	//пїЅпїЅпїЅпїЅпїЅ
 	
 		model: App.Models.Unit,
 		initialize: function () {
@@ -94,7 +94,7 @@ var App = App || {};
 		deleteModel: function( model ) {
 			App.dbConnector.deleteUnit( model.get( "name" ) );
 			model.destroy();
-			// виклик видалення моделі колекцій із бази
+			// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
 
 		},
 		
@@ -105,7 +105,7 @@ var App = App || {};
 	
 	});
 	
-	App.Collections.UnitItems = Backbone.Collection.extend({	//Матеріали в юнітах
+	App.Collections.UnitItems = Backbone.Collection.extend({	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	
 		model: App.Models.UnitItem,
 		initialize: function () {
@@ -169,7 +169,7 @@ var App = App || {};
 		},
 		writeCollection: function(goods){
 			for(i=0; i<=goods.length-1;i++){
-			
+			    console.log(goods);
 				var goodsCollection = new App.Collections.GoodsItems();
 				goodsCollection.add(goods[i].goodsCollection);
 				var mGoods = new App.Models.Unit({
@@ -180,7 +180,6 @@ var App = App || {};
 
 	this.add(mGoods);
 				i++;
-				this.add(mGoods);
 				i++;
 			}	
 		},
