@@ -5,8 +5,9 @@ var App = App || {};
     App.Views.ControlView = Backbone.View.extend({
 
 		initialize: function (){
-			this.$el.append($('#navigation').html());
-			this.showUnit();
+			$('#myTab').html("");
+			$('#myTab').append( $('#navigation').html() );
+			//this.showUnit();
 		},
 		events:{
 			"click #showMaterial" : "showMaterials",
@@ -50,9 +51,10 @@ var App = App || {};
 		},
 		showGoods: function() {
 		
-			this.$el.html('');
-			this.$el.append( $('#navigation').html() );
-			this.$el.append( $("#temlateGoods").html() );
+			
+			//$('#myTab').append( $('#navigation').html() );
+			
+			$('#myTabContent').html( $("#temlateGoods").html() );
 			var addGoods = new App.Views.AddGoods ( { collection: App.Goods } );
 			var viewGoods = new App.Views.GoodsList( { collection: App.Goods } );
 			viewGoods.render();
