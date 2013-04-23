@@ -3,7 +3,7 @@ var App = App || {};
 (function () {
 
 	App.Views.UnitItem = Backbone.View.extend({
-	
+
 		tagName: 'li',
 		initialize: function (){
 			this.model.on( 'destroy', this.remove, this );
@@ -40,7 +40,7 @@ var App = App || {};
 		},
 		close: function () {
 			var value = this.$input.val().trim();
-			 if ( isNaN ( value )  || value <0 || value == '') {
+			 if ( isNaN ( value ) || value <0 || value == '') {
 				this.$el.removeClass('editingCount');
 				this.render();
 				return;
@@ -62,7 +62,6 @@ var App = App || {};
 	App.Views.UnitItemsList = Backbone.View.extend({  // это вид коллекции
 	
 		tagName: 'ul',
-		className:'nav nav-tabs',
 		initialize: function () {
 			this.collection.on('add', this.addOne, this);
 			

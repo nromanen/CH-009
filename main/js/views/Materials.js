@@ -74,7 +74,7 @@ var App = App || {};
 				
 				if ( strMaterial === this.collection.models[i].get ( 'material' ) ) {
 					
-					alert ( 'Материал ' + strMaterial + ' уже существует! Повторений НЕ должно быть!' );
+					alert ( 'Material ' + strMaterial + ' already exists! There should be no repeations!' );
 					$('#material').focus();
 					return false;
 					
