@@ -459,7 +459,7 @@ h1 span{
     float: right;
     width:26px;
     height:26px;
-    background: url('edit.png');
+    background: url('../img/edit.png');
     margin-top: 16px;
     cursor:pointer;
 	opacity: 1;

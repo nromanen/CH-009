@@ -164,24 +164,25 @@ var App = App || {};
 		
 		},
 		deleteModel: function(model){
+			App.dbConnector.deleteGoods(model.get( 'nameG' ));
 			model.destroy();
 			this.remove(model); 			
 		},
 		writeCollection: function(goods){
-			for(i=0; i<=goods.length-1;i++){
-			
+			console.log(goods);
+			for(i=0; i<goods.length;i++){
+				
 				var goodsCollection = new App.Collections.GoodsItems();
 				goodsCollection.add(goods[i].goodsCollection);
-				var mGoods = new App.Models.Unit({
+				var mGoods = new App.Models.Goods({
 					nameG:goods[i].nameG,
 					goodsCollection: goodsCollection 
 							
 				});
 
-	this.add(mGoods);
-				i++;
 				this.add(mGoods);
-				i++;
+				this.add(mGoods);
+				//i++;
 			}	
 		},
 		changeName: function ( model, value ) {

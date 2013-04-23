@@ -28,6 +28,7 @@ var App = App || {};
 		confirmRemove: function () {
 			
 			if ( confirm('Are you sure you want to delete this Goods Item?') ) {
+				
 				this.model.destroy();
 
 				App.dbConnector.EditGoodsItems(this.options.goodsModel);

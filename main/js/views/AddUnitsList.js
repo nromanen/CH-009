@@ -53,12 +53,9 @@ var App = App || {};
 
 				this.options.something.set("goodsCollection", this.collection);
 				App.dbConnector.EditGoodsItems(this.options.something);
-				console.log ( this.options.something );
 				this.options.something.set("goodsCollection", this.collection);	
-				//console.log(this.collection);
 				this.options.something.set("goodsCollection", this.collection);
 				App.dbConnector.EditGoodsItems(this.options.something);
-				console.log ( this.options.something ); 
 			} else {
 				alert( 'You have not entered a correct value!' );
 			}

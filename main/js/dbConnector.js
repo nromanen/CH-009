@@ -455,7 +455,7 @@ var App = App || {};
 		var store = localDatabase.db.transaction("Tovaru").objectStore("Tovaru");
 		var request = store.openCursor();
 		var goods = new Array();
-		var pointer = -1;
+		var pointer = 0;
 		
 			var Goods = function(config){
 				this.nameG = config.nameG;
@@ -464,14 +464,13 @@ var App = App || {};
 			};
 			request.onsuccess =  function(event){
 					var cursor = event.target.result;
-					pointer++;
+					//pointer++;
 
 					if(cursor){
 						goods[pointer++] = new Goods ({
 							nameG:cursor.value.tovarName,
 							goodsCollection:JSON.parse(cursor.value.tovarCollection)
 						});
-
 					cursor.continue(); 	
 					} else {
 					  onSuccessHandler ( goods );

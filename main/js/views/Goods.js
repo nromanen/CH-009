@@ -16,7 +16,6 @@ var App = App || {};
 			'click .goods_name' : 'goodsToggle',
 			'click .deleteGoods' : 'goodsDeleteItem',
 			'click .edit_goodsItem' : 'changeGoodsName',
-			'dblclick .goods_name' : 'changeGoodsName',
 			'keypress .edit_goods_name': 'updateOnEnter',
 			'blur .edit_goods_name': 'close'
 		},
