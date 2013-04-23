@@ -14,7 +14,6 @@ var App = App || {};
 			return this;
 		},
 		addOne: function(modelUnits) {
-		
 			var UnitsCollection = this.model.get ( 'goodsCollection' );
 			var UnitView = new App.Views.UnitPlus({ model: modelUnits, collection: UnitsCollection, something: this.model });
 			//console.log( this.model );
