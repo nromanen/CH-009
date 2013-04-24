@@ -192,7 +192,21 @@
 			<h3 id="myModalLabel">Modal header</h3>
 			</div>
 			<div class="modal-body">
-			<p>One fine body…</p>
+			<p><div class="AddMaterialsList"></div></p>
+			</div>
+			<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+			<button class="btn btn-primary">Save changes</button>
+		</div>
+	</div>
+
+	<div id="addUnit2Goods" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="myModalLabel">Modal header</h3>
+			</div>
+			<div class="modal-body">
+			<p><div class="AddUnitsList"></div></p>
 			</div>
 			<div class="modal-footer">
 			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
@@ -200,8 +214,7 @@
 		</div>
 	</div>
 	
-	<div class="AddMaterialsList"></div>
-	<div class="AddUnitsList"></div>
+
     
     	<script type="text/template" id="navigation">
         	
@@ -337,7 +350,7 @@
 				                </tr>
 				                <tr>	
 				                		<td colspan="4">
-				                			<a href="#addMaterial2Unit" role="button" class="btn btn-info btn-small" data-toggle="modal"><i class="icon-white icon-plus"></i> Material</a>	
+				                			<a href="#addUnit2Goods" role="button" class="btn btn-info btn-small" data-toggle="modal"><i class="icon-white icon-plus"></i> Material</a>	
 				                		</td>
 										<td>
 											Unit price: <b>$200</b>
