@@ -78,6 +78,7 @@ var App = App || {};
 					("Units", {keyPath: "id", autoIncrement: true});
 					unitStore.createIndex("unitName", "unitName", { unique: true});        
 					unitStore.createIndex("unitCollection", "unitCollection", { unique: false }); 
+					unitStore.createIndex("unitSumPrice", "unitSumPrice", { unique: false }); 
 				  
 			var tovarStore = evt.currentTarget.result.createObjectStore
 					("Tovaru", {keyPath: "id", autoIncrement: true});
@@ -165,7 +166,7 @@ var App = App || {};
 			var store = transaction.objectStore(objStor);            
 		  
 			if (localDatabase != null && localDatabase.db != null) {
-				var request =store.put({unitName:model.get("name"), unitCollection:JSON.stringify(model.get("mcollection"))}); 
+				var request =store.put({unitName:model.get("name"), unitCollection:JSON.stringify(model.get("mcollection")), unitSumPrice:model.get('sumPrice')}); 
 				
 				
 				request.onsuccess = function (e) {
@@ -202,7 +203,7 @@ var App = App || {};
 						var Units = function(config){
 							this.name = config.name;
 							this.mcollection = config.mcollection;
-						
+
 						}
 						request.onsuccess =  function(event){
 								var cursor = event.target.result;
@@ -211,7 +212,8 @@ var App = App || {};
 								if(cursor){
 									units[pointer++] = new Units ({
 									name:cursor.value.unitName,
-									mcollection:JSON.parse(cursor.value.unitCollection)
+									mcollection:JSON.parse(cursor.value.unitCollection),
+									sumPrice: cursor.value.unitSumPrice
 									});
 								
 								cursor.continue(); 	
