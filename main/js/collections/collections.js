@@ -49,7 +49,9 @@ var App = App || {};
 		}
 	});
 	
-	App.Collections.Units = Backbone.Collection.extend({	//�����
+
+	App.Collections.Units = Backbone.Collection.extend({
+
 	
 		model: App.Models.Unit,
 		initialize: function () {
@@ -94,7 +96,7 @@ var App = App || {};
 		deleteModel: function( model ) {
 			App.dbConnector.deleteUnit( model.get( "name" ) );
 			model.destroy();
-			// ������ ��������� ������ �������� �� ����
+			
 
 		},
 		
@@ -105,7 +107,7 @@ var App = App || {};
 	
 	});
 	
-	App.Collections.UnitItems = Backbone.Collection.extend({	//��������� � ������
+	App.Collections.UnitItems = Backbone.Collection.extend({	
 	
 		model: App.Models.UnitItem,
 		initialize: function () {
