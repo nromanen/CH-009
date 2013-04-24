@@ -87,8 +87,6 @@ var App = App || {};
 			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
 			goodsItemView.render();
 			this.$el.append( goodsItemView.el );
-
-			console.log( this.model.toJSON() );
 		},
 		ItemRemove: function() {
 			console.log(this);

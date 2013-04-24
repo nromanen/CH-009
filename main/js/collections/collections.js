@@ -83,7 +83,7 @@ var App = App || {};
 				
 				var mUnit = new App.Models.Unit({
 					name:units[i].name,
-					mcollection:unitCollection 
+					mcollection:unitCollection
 							
 				});
 			
@@ -94,7 +94,6 @@ var App = App || {};
 		deleteModel: function( model ) {
 			App.dbConnector.deleteUnit( model.get( "name" ) );
 			model.destroy();
-			// виклик видалення моделі колекцій із бази
 
 		},
 		
@@ -169,7 +168,6 @@ var App = App || {};
 			this.remove(model); 			
 		},
 		writeCollection: function(goods){
-			console.log(goods);
 			for(i=0; i<goods.length;i++){
 				
 				var goodsCollection = new App.Collections.GoodsItems();

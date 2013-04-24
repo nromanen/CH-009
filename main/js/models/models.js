@@ -21,8 +21,7 @@ var App = App || {};
 	App.Models.Unit = Backbone.Model.extend({
 	
 		name: 'unit',
-		mcollection: '',
-		sumPrice: 0
+		mcollection: ''
 	});
 	
 	App.Models.Goods = Backbone.Model.extend({

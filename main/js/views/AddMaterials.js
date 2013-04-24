@@ -49,15 +49,11 @@ var App = App || {};
 			var quantity = prompt( 'Please enter the quantity of ' + this.model.get ( 'material' )  );
 			if ( ( quantity !== '' ) && ( quantity !== null ) ) {
 				this.model.set ( { count: quantity } );
-				//console.log(this.options.something);
 				//var tempPrice = this.options.something.get( 'sumPrice' ) + quantity*this.model.get( 'price' ); 
 				//this.options.something.set('sumPrice', tempPrice);
-				//console.log(tempPrice);
-				this.model.set ( { sumPrice: quantity*this.model.get( 'price' ) } );
+				this.model.set ( { sumPrice: JSON.stringify(quantity*this.model.get( 'price' )) } );
 				this.collection.add ( this.model );
 				this.options.something.set("mcollection", this.collection);
-				//console.log ( this.options.something );
-				console.log( this.model.toJSON() ); 	
 			} else {
 				alert( 'You have not entered a correct value!' );
 			}
