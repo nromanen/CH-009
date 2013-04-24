@@ -3,7 +3,7 @@ var App = App || {};
 (function () {
 	
 	App.Views.Material = Backbone.View.extend({ // это вид модели
-		tagName: 'li',
+		tagName: 'tr',
 		initialize: function () {
 			//this.model.on('change:material', this.render, this);
 			//this.model.on('change:price', this.render, this);
@@ -12,10 +12,15 @@ var App = App || {};
 		events: {
 			'click .delete' : 'confirmRemove'
 		},
-		template: _.template( $('#material-price').html() ),
 		render: function () {
-			var strTemplate = this.template( this.model.toJSON() );
-			this.$el.html( strTemplate );
+			
+			if ( App.userRole === 'accountant' ) {
+				var Template = _.template( $('#materials-accountant').html(), this.model.toJSON() );
+			} else if ( App.userRole === 'storekeeper' ) {
+				var Template = _.template( $('#materials-storekeeper').html(), this.model.toJSON() );
+			}
+			
+			this.$el.html( Template );
 		},
 		confirmRemove: function () {
 			if ( confirm('Вы действительно хотите удалить данную запись?') ) {
@@ -31,11 +36,17 @@ var App = App || {};
 	
 	App.Views.List = Backbone.View.extend({  // это вид коллекции
 	
-		tagName: 'ul',
+		tagName: 'table',
+		className: 'table',
 		initialize: function () {
 			this.collection.on('add', this.addOne, this);
 		},
 		render: function () {
+			if ( App.userRole === 'accountant' ) {
+				this.$el.append( $('#tableheader-materials-accountant').html() );
+			} else if ( App.userRole === 'storekeeper' ) {
+				this.$el.append( $('#tableheader-materials-storekeeper').html() );
+			}
 			this.collection.each(this.addOne, this);
 			return this;
 		},

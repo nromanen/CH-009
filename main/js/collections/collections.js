@@ -87,7 +87,6 @@ var App = App || {};
 				this.add(mUnit);
 				i++;
 			}
-		
 		},
 		deleteModel: function( model ) {
 			App.dbConnector.deleteUnit( model.get( "name" ) );
@@ -137,6 +136,7 @@ var App = App || {};
 		}
 
 	});
+
 	
 	App.Collections.Goods = Backbone.Collection.extend({
 	
@@ -145,30 +145,57 @@ var App = App || {};
 		
 			App.Events.on( 'addGoods', this.addModel, this );
 			App.Events.on('goodsDelete', this.deleteModel, this)
+			App.Events.on( 'writeGoods', this.writeCollection, this );
+			App.Events.on( 'fetchGoods', this.fetchGoods, this );
+			App.Events.on( 'editGoodsName', this.changeName, this );
+			App.Events.on('newUnitsCount', this.editCount, this);
 		},
 		addModel: function (model) {
 			
 			this.add( model );
-		
-		//	App.dbConnector.AddUnit ( "Units", model );
-			//code here
+			App.dbConnector.AddGoodsToDb( 'Tovaru', model );
+
 		
 		},
 		deleteModel: function(model){
-				console.log(model);
-				model.destroy();
-				console.log(this);
-			   this.remove(model); 			
-			console.log(this);
+			model.destroy();
+			this.remove(model); 			
+		},
+		writeCollection: function(goods){
+			for(i=0; i<=goods.length-1;i++){
 			
+				var goodsCollection = new App.Collections.GoodsItems();
+				goodsCollection.add(goods[i].goodsCollection);
+				var mGoods = new App.Models.Unit({
+					nameG:goods[i].nameG,
+					goodsCollection: goodsCollection 
+							
+				});
+				this.add(mGoods);
+				i++;
+			} 
+	
+		},
+		fetchGoods: function(){
+			
+			App.dbConnector.fetchGood();
+		
+		},
+		changeName: function(model, value){
+			App.dbConnector.changeGoodsName( model.get( 'nameG' ), value );
+			model.set({ nameG: value });
+		},
+		editCount: function (model, value) {
+			model.set({ count: value });
 		}
 		
-	
 	});
+
 
 	App.Collections.GoodsItems = Backbone.Collection.extend({
 		model:App.Models.GoodsItem,
 		
 	
 	});
+	
 }()); 

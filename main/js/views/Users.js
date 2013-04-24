@@ -2,24 +2,122 @@ var App = App || {};
 
 (function () {
 
+	App.HTML.rowFluid = '<div class="row-fluid">';
+	App.HTML.tabContentHeader = '<div id="TabContent" class="tab-content">';
+
     App.Views.ControlView = Backbone.View.extend({
 
 		initialize: function (){
-			this.$el.append($('#navigation').html());
-			this.showUnit();
+			App.Events.on ( 'chooseRole', this.chooseRole, this );
+			App.Events.on ( 'openCustomer', this.openCustomer, this );
+			App.Events.on ( 'openAccountant', this.openAccountant, this );
+			App.Events.on ( 'openEngineer', this.openEngineer, this );
+			App.Events.on ( 'openStorekeeper', this.openStorekeeper, this );
 		},
 		events:{
-			"click #showMaterial" : "showMaterials",
-			"click #showUnit" : "showUnit",
-			"click #showGoods" : "showGoods"
+			//
+		},
+		chooseRole: function () {
+
+			$('.container-fluid').html('');
+			$('.container-fluid').append( _.template ( $('#chooseRole').html() ) );
+
+		},
+		openCustomer: function () {
+
+			App.userRole = 'customer';
+			this.renderBeginning( 'Customer' , App.userRole + 'Tab' );
+
+		},
+		openAccountant: function () {
+
+			App.userRole = 'accountant';
+			this.renderBeginning( 'Accountant' , App.userRole + 'Tab' );
+
+			// rendering the content of the Products Tab
+			var viewProducts = new App.Views.GoodsList( { collection: App.Goods } );
+			viewProducts.render();
+			$('#TabContent').append ( _.template ( $('#tab').html(), { 
+				id      : 'products',
+				active  : ' in active',
+			}) ); 
+			$('#products').append( viewProducts.el );
+
+			// rendering the content of the Units Tab
+			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
+			viewUnits.render();
+			$('#TabContent').append ( _.template ( $('#tab').html(), { 
+				id      : 'units',
+				active  : '',
+			}) );
+			$('#units').append( viewUnits.el );
+
+			// rendering the content of the Materials Tab
+			var viewMaterials = new App.Views.List( { collection: App.Materials } );
+			viewMaterials.render();
+			$('#TabContent').append ( _.template ( $('#tab').html(), { 
+				id      : 'materials',
+				active  : '',
+			}) ); 
+			$('#materials').append( viewMaterials.el )
+	
+
+		},
+		openEngineer: function () {
+
+			App.userRole = 'engineer';
+			this.renderBeginning( 'Engineer' , App.userRole + 'Tab' );
+
+			// rendering the content of the Products Tab
+			var viewProducts = new App.Views.GoodsList( { collection: App.Goods } );
+			viewProducts.render();
+			$('#TabContent').append ( _.template ( $('#tab').html(), { 
+				id      : 'products',
+				active  : ' in active',
+			}) ); 
+			$('#products').append( viewProducts.el );
+
+			// rendering the content of the Units Tab
+			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
+			viewUnits.render();
+			$('#TabContent').append ( _.template ( $('#tab').html(), { 
+				id      : 'units',
+				active  : '',
+			}) );
+			$('#units').append( viewUnits.el );
+
+
+		},
+		openStorekeeper: function () {
+
+			App.userRole = 'storekeeper';
+			this.renderBeginning( 'Storekeeper' , App.userRole + 'Tab' );
+
+			// rendering content of the Materials Tab
+			var viewMaterials = new App.Views.List( { collection: App.Materials } );
+			viewMaterials.render();
+			$('#TabContent').append ( _.template ( $('#tab').html(), { 
+				id      : 'materials',
+				active  : ' in active',
+			}) ); 
+			$('#materials').append( viewMaterials.el )
+
+
+		},
+		renderBeginning: function ( userName, tabName ) {
+
+			$('.container-navbar').html(''); 
+			$('.container-navbar').append ( _.template ( $('#navbar').html(), { user : userName } ) );
+			$('.container-fluid').html('');  //empty main container 
+			$('.container-fluid').append( App.HTML.rowFluid );
+			$('.row-fluid').append( $('#' + tabName ).html() );
+			$('.row-fluid').append( App.HTML.tabContentHeader );
+
 		},
 		showMaterials: function() {
 			 
 			this.$el.html('');
-			console.log(this.el);
-
 			this.$el.append( $( '#navigation' ).html() );
-			$('#showMaterial').addClass('active');
 			this.$el.append( $( "#temlateMaterials" ).html() );
 			var addMaterial = new App.Views.AddMaterial( { collection: App.Materials } );
 			var viewMaterials = new App.Views.List( { collection: App.Materials } );
@@ -32,7 +130,6 @@ var App = App || {};
 		 
 			this.$el.html('');
 			this.$el.append( $('#navigation').html() );
-			$('#showUnit').addClass('active');
 			this.$el.append( $("#temlateUnits").html() );
 			var addUnit = new App.Views.AddUnit ( { collection: App.Units } );
 			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
@@ -49,7 +146,6 @@ var App = App || {};
 		
 			this.$el.html('');
 			this.$el.append( $('#navigation').html() );
-			$('#showGoods').addClass('active');
 			this.$el.append( $("#temlateGoods").html() );
 			var addGoods = new App.Views.AddGoods ( { collection: App.Goods } );
 			var viewGoods = new App.Views.GoodsList( { collection: App.Goods } );
@@ -58,10 +154,9 @@ var App = App || {};
 			$('#goods_holder').html( viewGoods.el );
 			$( '.AddUnitsList' ).draggable();
 			$( '.AddMaterialsList' ).hide();
-			
-			
+	
 		}
-                
+
     });
     
 }()); 

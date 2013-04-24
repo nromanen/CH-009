@@ -58,6 +58,7 @@ var App = App || {};
 			App.Events.on( 'writeUnits', this.writeCollection, this );
 			App.Events.on( 'editUnitName', this.changeName, this );
 			App.dbConnector.openDatabase();
+			
 		},
 		addModel: function ( model ) {
 
@@ -145,54 +146,44 @@ var App = App || {};
 		initialize: function () {
 		
 			App.Events.on( 'addGoods', this.addModel, this );
-			App.Events.on('goodsDelete', this.deleteModel, this)
-			App.Events.on( 'writeGoods', this.writeCollection, this );
-			App.Events.on( 'fetchGoods', this.fetchGoods, this );
-			App.Events.on( 'editGoodsName', this.changeName, this );
+			App.Events.on('goodsDelete', this.deleteModel, this);
+			App.Events.on('editGoodsName', this.changeName, this);
+			
 		},
 		addModel: function (model) {
 			
 			this.add( model );
-			App.dbConnector.AddGoodsToDb( 'Tovaru', model );
-
 		
 		},
 		deleteModel: function(model){
-			App.dbConnector.deleteGoods(model.get( 'nameG' ));
-			model.destroy();
-			this.remove(model); 			
+			
+				model.destroy();
+				this.remove(model); 			
+			
 		},
-		writeCollection: function(goods){
-			for(i=0; i<=goods.length-1;i++){
-			
-				var goodsCollection = new App.Collections.GoodsItems();
-				goodsCollection.add(goods[i].goodsCollection);
-				var mGoods = new App.Models.Unit({
-					nameG:goods[i].nameG,
-					goodsCollection: goodsCollection 
-							
-				});
-			
-				this.add(mGoods);
-				i++;
-			} 	
-		},
-		fetchGoods: function(){
-			
-			App.dbConnector.fetchGood();
+		changeName: function ( model, value ) {
 		
-		},
-		changeName: function(model, value){
-			App.dbConnector.changeGoodsName( model.get( 'nameG' ), value );
+			//App.dbConnector.changeGoodName( model.get( 'name' ), value );
 			model.set({ nameG: value });
+		
 		}
 		
 	});
 
 
 	App.Collections.GoodsItems = Backbone.Collection.extend({
-		model:App.Models.GoodsItem,
 		
+		model:App.Models.GoodsItem,
+		initialize: function () {
+		
+			App.Events.on('newUnitsCount', this.editCount, this);
+		
+		},
+		editCount: function ( model, value ) {
+		
+			model.set({ count: value });
+		
+		}
 	
 	});
 	

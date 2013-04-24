@@ -26,11 +26,20 @@ var App = App || {};
 	
 	App.Models.Goods = Backbone.Model.extend({
 	
-		name: 'Goods',
+		nameG: 'Goods',
 		goodsCollection: ''
 	
 	});
-	
+	App.Models.GoodsItem = Backbone.Model.extend({
+		
+		units: '',
+		count: 0
+				
+		
+		
+		
+	});
+
 
 
 }()); 

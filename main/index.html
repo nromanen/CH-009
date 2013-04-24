@@ -5,21 +5,130 @@
 		<title>Materials & Units Manager</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" href="css/bootstrap.css">
-		<script scr="js/bootstrap.js"></script>
+
+		<script src="js/lib/jquery.js"></script>
+		<script src="js/lib/jquery-ui.js"></script>
+		<script src="js/lib/boostrap/bootstrap.min.js"></script>
 	</head>
 	<body>
 
+	<div class="container-navbar"></div>
+	<div class="container-fluid"></div>
+	
+		<!-- NavBar template -->
 
-	<div id="content" class="tabbable tabs-left">
-		<div class="tab-content">
-	
-        </div>
-    </div>
-	
-	<div class="AddMaterialsList"></div>
-	<div class="AddUnitsList"></div>
-    
-        <script type="text/template" id="navigation">
+		<script type="text/template" id="navbar">
+			<div class="navbar navbar-static-top" style="margin-bottom:20px;">
+				<nav class="navbar-inner">
+					<a class="brand"> Warehouse :: <%= user %></a>
+					<div class="btn-group pull-right">
+						<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+							User Roles
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li> <a href="#customer"> Customer </a> </li>
+							<li> <a href="#accountant">  Accountant </a> </li>
+							<li> <a href="#engineer">  Engineer </a> </li>
+							<li> <a href="#storekeeper">  Storekeeper </a> </li>
+						</ul>
+					</div>
+				</nav>
+			</div>		
+		</script>
+
+		<script type="text/template" id="chooseRole">
+			<div class="row-fluid" style="margin-top:15%;">
+				<div class="span5"></div>
+				<div class="span2">
+					<h3>Your role:</h3>
+					<ul class="dropdown-menu" style="display: block; position: static; margin-bottom: 5px;">
+						<li> <a href="#customer"> Customer </a> </li>
+						<li> <a href="#accountant"> Accountant </a> </li>
+						<li> <a href="#engineer"> Engineer </a> </li>
+						<li> <a href="#storekeeper"> Storekeeper </a> </li>
+					</ul>
+				</div>
+				<div class="span5"></div>
+			</div>
+		</script>
+		<!-- User Tab templates -->
+		
+		<script type="text/template" id="storekeeperTab">
+			<ul id="myTab" class="nav nav-tabs">
+              <li class="active"><a href="#materials" data-toggle="tab">Materials</a></li>
+            </ul>
+		</script>
+
+		<script type="text/template" id="engineerTab">
+			<ul id="myTab" class="nav nav-tabs">
+              <li class="active"><a href="#products" data-toggle="tab">Products</a></li>
+              <li><a href="#units" data-toggle="tab">Units</a></li>
+            </ul>
+		</script>
+
+		<script type="text/template" id="accountantTab">
+			<ul id="myTab" class="nav nav-tabs">
+              <li class="active"><a href="#products" data-toggle="tab">Products</a></li>
+              <li><a href="#units" data-toggle="tab">Units</a></li>
+              <li><a href="#materials" data-toggle="tab">Materials</a></li>
+            </ul>
+		</script>
+
+		<script type="text/template" id="customerTab">
+			<ul id="myTab" class="nav nav-tabs">
+              <li class="active"><a href="#products" data-toggle="tab">Products</a></li>
+            </ul>
+		</script>
+		
+		<!-- Tab templates -->
+
+		<script type="text/template" id="tab">
+			<div class="tab-pane fade<%= active %>" id="<%= id %>">
+			</div>
+		</script>
+
+		<!-- Modal templates -->
+
+		<script type="text/template" id="">
+			
+		</script>
+
+		<!-- Materials View templates -->
+		
+		<script type="text/template" id="tableheader-materials-accountant">
+		  	<thead>
+			  	<th> Material </th>
+				<th> Price </th>
+			</thead>
+		</script>
+
+		<script type="text/template" id="tableheader-materials-storekeeper">
+		  	<thead>
+			  	<th> Material </th>
+				<th> Price </th>
+				<th> Edit </th>
+				<th> Delete </th>
+			</thead>
+		</script>
+		
+		<script type="text/template" id="materials-storekeeper">
+		  	<td> <%= material %> </td>
+			<td> <%= price %> </td>
+			<td> <div class="edit"></div> </td>
+			<td> <div class="delete"></div> </td>
+		</script>
+
+		<script type="text/template" id="materials-accountant">
+		  	<td> <%= material %> </td>
+			<td> <%= price %> </td>
+		</script>
+
+		<!-- other templates -->
+
+		<!-- old templates -->
+
+		<script type="text/template" id="navigation">
         	
         			<ul class="nav nav-tabs">
             			 <li id="showMaterial"><a href="#2A"  >Show Materials</a></li>
@@ -27,8 +136,6 @@
             			 <li id="showGoods"><a href="#2C"  class="btn-small">Show Goods</a></li>
             		</ul>
 
-
-    
         </script>  
 		
 		<script type="text/template"  id="temlateGoods">
@@ -161,23 +268,16 @@
 			  </div>
 			  <div class="clear"></div>
 		</script>
-	 
-		<script type="text/template" id="material-price">
-			  <div class="holder">
-				<div class="material"><%= material %></div>
-				<div class="price"><%= price %></div>
-				<div class="delete" title="Delete <%= material %> material"></div>
-			  </div> 
-		</script>
 	
-		<script src="js/jquery.js"></script>
-		<script src="js/jquery-ui.js"></script>
-		<script src="js/underscore.js"></script>
-		<script src="js/backbone.js"></script>
+		<!-- scripts -->
+		<script src="js/lib/underscore.js"></script>
+		<script src="js/lib/backbone.js"></script>
+		
 		<script src="js/defaults.js"></script>
 		<script src="js/dbConnector.js"></script>
-		<script src="js/models.js"></script>
-		<script src="js/collections.js"></script>
+
+		<script src="js/models/models.js"></script>
+		<script src="js/collections/collections.js"></script>
 		
 		<script src="js/views/Materials.js"></script>
 		<script src="js/views/Units.js"></script>
@@ -189,9 +289,10 @@
 		<script src="js/views/GoodsItem.js"></script>
 		<script src="js/views/AddUnitsList.js"></script>
 		<script src="js/views/Users.js"></script>
+
+		<script src="js/router/router.js"></script>
 		
 		<script src="js/app.js"></script>
-		<!-- test change for github s -->
 
 	</body>
 </html>
