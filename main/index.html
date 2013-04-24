@@ -13,32 +13,34 @@
 	<body>
 
 	<div class="container-navbar"></div>
-	<div class="container-fluid"></div>
+	<div class="container"></div>
 	
 		<!-- NavBar template -->
 
 		<script type="text/template" id="navbar">
 			<div class="navbar navbar-static-top" style="margin-bottom:20px;">
 				<nav class="navbar-inner">
-					<a class="brand"> Warehouse :: <%= user %></a>
-					<div class="btn-group pull-right">
-						<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
-							User Roles
-							<span class="caret"></span>
-						</a>
-						<ul class="dropdown-menu">
-							<li> <a href="#customer"> Customer </a> </li>
-							<li> <a href="#accountant">  Accountant </a> </li>
-							<li> <a href="#engineer">  Engineer </a> </li>
-							<li> <a href="#storekeeper">  Storekeeper </a> </li>
-						</ul>
+					<div style="width: 570px; margin: 0 auto;">
+						<a class="brand"> Warehouse - <%= user %></a>
+						<div class="btn-group pull-right">
+							<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+								User Roles
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li> <a href="#customer"> Customer </a> </li>
+								<li> <a href="#accountant"> Accountant </a> </li>
+								<li> <a href="#engineer"> Engineer </a> </li>
+								<li> <a href="#storekeeper"> Storekeeper </a> </li>
+							</ul>
+						</div>
 					</div>
 				</nav>
 			</div>		
 		</script>
 
 		<script type="text/template" id="chooseRole">
-			<div class="row-fluid" style="margin-top:15%;">
+			<div class="row" style="margin-top:15%;">
 				<div class="span5"></div>
 				<div class="span2">
 					<h3>Your role:</h3>
@@ -52,6 +54,7 @@
 				<div class="span5"></div>
 			</div>
 		</script>
+		
 		<!-- User Tab templates -->
 		
 		<script type="text/template" id="storekeeperTab">
@@ -88,10 +91,32 @@
 			</div>
 		</script>
 
+		<!-- Button templates -->
+
+		<script type="text/template" id="addNewMaterialButton">
+			<a href="#addNewMaterial" role="button" class="btn btn-info" data-toggle="modal"><i class="icon-white icon-plus"></i> New Material</a>
+		</script>	
+
 		<!-- Modal templates -->
 
-		<script type="text/template" id="">
-			
+		<script type="text/template" id="addNewMaterialModal">
+			<div id="addNewMaterial" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				  <div class="modal-header">
+				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				    <h3 id="myModalLabel">Add New Material</h3>
+				  </div>
+				  <div class="modal-body">
+				    	
+					Material: <input class="textbox" id="material" type="text">
+					<div class="clear"></div>
+					Price: <input class="textbox" id="price" type="text">
+
+				  </div>
+				  <div class="modal-footer">
+				    <button class="btn close-addNewMaterial" data-dismiss="modal" aria-hidden="true">Close</button>
+				    <button class="btn btn-primary save-material">Save changes</button>
+				  </div>
+				</div>
 		</script>
 
 		<!-- Materials View templates -->

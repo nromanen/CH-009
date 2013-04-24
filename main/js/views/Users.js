@@ -2,7 +2,7 @@ var App = App || {};
 
 (function () {
 
-	App.HTML.rowFluid = '<div class="row-fluid">';
+	App.HTML.Row = '<div class="row"><div class="span3"></div><div class="span6 content"></div><div class="span3"></div>';
 	App.HTML.tabContentHeader = '<div id="TabContent" class="tab-content">';
 
     App.Views.ControlView = Backbone.View.extend({
@@ -19,8 +19,8 @@ var App = App || {};
 		},
 		chooseRole: function () {
 
-			$('.container-fluid').html('');
-			$('.container-fluid').append( _.template ( $('#chooseRole').html() ) );
+			$('.container').html('');
+			$('.container').append( _.template ( $('#chooseRole').html() ) );
 
 		},
 		openCustomer: function () {
@@ -94,8 +94,13 @@ var App = App || {};
 			this.renderBeginning( 'Storekeeper' , App.userRole + 'Tab' );
 
 			// rendering content of the Materials Tab
+			$('#TabContent').append( $( '#addNewMaterialButton' ).html() );
+			$('#TabContent').append( $( '#addNewMaterialModal' ).html() );
+
+			var addNewMaterials = new App.Views.AddMaterial( { collection: App.Materials } );
 			var viewMaterials = new App.Views.List( { collection: App.Materials } );
 			viewMaterials.render();
+			
 			$('#TabContent').append ( _.template ( $('#tab').html(), { 
 				id      : 'materials',
 				active  : ' in active',
@@ -108,10 +113,10 @@ var App = App || {};
 
 			$('.container-navbar').html(''); 
 			$('.container-navbar').append ( _.template ( $('#navbar').html(), { user : userName } ) );
-			$('.container-fluid').html('');  //empty main container 
-			$('.container-fluid').append( App.HTML.rowFluid );
-			$('.row-fluid').append( $('#' + tabName ).html() );
-			$('.row-fluid').append( App.HTML.tabContentHeader );
+			$('.container').html('');  //empty main container 
+			$('.container').append( App.HTML.Row );
+			$('.content').append( $('#' + tabName ).html() );
+			$('.content').append( App.HTML.tabContentHeader );
 
 		},
 		showMaterials: function() {

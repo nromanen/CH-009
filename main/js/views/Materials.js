@@ -23,7 +23,7 @@ var App = App || {};
 			this.$el.html( Template );
 		},
 		confirmRemove: function () {
-			if ( confirm('Вы действительно хотите удалить данную запись?') ) {
+			if ( confirm('Are you sure you want to delete this product?') ) {
 				App.Events.trigger( 'destroyModel', this.model );  
 			}	
 		},
@@ -50,7 +50,7 @@ var App = App || {};
 			this.collection.each(this.addOne, this);
 			return this;
 		},
-		addOne: function(modelMaterial) {
+		addOne: function( modelMaterial ) {
 			var MaterialView = new App.Views.Material({ model: modelMaterial });
 			MaterialView.render();
 			this.$el.append( MaterialView.el );
@@ -59,10 +59,10 @@ var App = App || {};
 	});
 	
 	App.Views.AddMaterial = Backbone.View.extend({
-		el: '#addMaterial',
-		tagName: 'addMaterial',
+		el: '#addNewMaterial',
 		events: {
-			'keypress input': 'inputKeypress',
+			'keypress input' : 'inputKeypress',
+			'click .save-material' : 'validateItem'
 		},
 		inputKeypress: function(e) {
 			if (e.which === 13) {
@@ -75,7 +75,7 @@ var App = App || {};
 			var strPrice = $('#price').val().trim();
 			
 			if ( strMaterial === "" ) {
-				alert ( 'Пожалуйста, введите имя материала!' );
+				alert ( 'Please enter the material name!' );
 				$('#material').val('');
 				$('#material').focus();
 				return false;
@@ -85,7 +85,7 @@ var App = App || {};
 				
 				if ( strMaterial === this.collection.models[i].get ( 'material' ) ) {
 					
-					alert ( 'Материал ' + strMaterial + ' уже существует! Повторений НЕ должно быть!' );
+					alert ( 'Material named ' + strMaterial + ' already exists! There should be NO material names repeated!' );
 					$('#material').focus();
 					return false;
 					
@@ -95,12 +95,13 @@ var App = App || {};
 			
 			if ( isNaN( strPrice ) || strPrice < 0 || strPrice === "" )  {
 			
-				alert ( 'Цена указана неверно!' );
+				alert ( 'Price is incorrectly indicated!' );
 				$('#price').focus();
 				return false;
 			
 			}
 			
+			$('.close-addNewMaterial').click();
 			this.addItem ( strMaterial, strPrice );
 		
 		},
