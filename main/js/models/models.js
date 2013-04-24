@@ -33,9 +33,7 @@ var App = App || {};
 	App.Models.GoodsItem = Backbone.Model.extend({
 		
 		units: '',
-		count: 0,
-		total: 10
-
+		count: 0
 		
 	});
 
