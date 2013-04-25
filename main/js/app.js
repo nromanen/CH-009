@@ -9,12 +9,7 @@ var App = App || {};
 	App.Views.Show = new App.Views.ControlView ( { el: $( '.container' ) } );
 	//App.UnitCollection = new Array(); 
 	
-<<<<<<< HEAD
 	console.log(App.Units.models);
-=======
 	App.Router1 = new App.Router();
 	Backbone.history.start();
-
-
->>>>>>> b05b1f7cd149fd604bc738fa61f5a7d640a4498f
 }()); 

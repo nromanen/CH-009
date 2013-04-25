@@ -14,6 +14,7 @@ var App = App || {};
 			'storekeeper' : 'openStorekeeper'
 
 		},
+
 		chooseRole: function () {
 		console.log("1");
 			App.Events.trigger( 'chooseRole' );

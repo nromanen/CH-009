@@ -16,21 +16,22 @@ var App = App || {};
 			App.Events.on ( 'openAccountant', this.openAccountant, this );
 			App.Events.on ( 'openEngineer', this.openEngineer, this );
 			App.Events.on ( 'openStorekeeper', this.openStorekeeper, this );
+			//App.Events.on ( 'fetchData', this.fetchData, this );
 			//this.showUnit();
 		},
 		events:{
 			"click #showMaterial" : "showMaterials",
 			"click #showUnit" : "showUnit",
-			"click #showGoods" : "showGoods",
-			"click #fetchData" : "fetchData"
+			"click #showGoods" : "showGoods"
 		},
+
 		fetchData: function() {
 
 			App.Materials.fetch({ update:true } );
-			//App.Units.reset();
 			App.Units.fetch({ update:true });
 			console.log( App.Units.toJSON() );
 			console.log(JSON.stringify(App.Units));
+			alert(123);
 
 		
 		},
@@ -138,6 +139,10 @@ var App = App || {};
 
 			$('.container-navbar').html(''); 
 			$('.container-navbar').append ( _.template ( $('#navbar').html(), { user : userName } ) );
+			var that = this;
+			$('#fetchData').bind('click', function() {
+			 	that.fetchData();
+			});
 			$('.container').html('');  //empty main container 
 			$('.container').append( App.HTML.Row );
 			$('.content').append( $('#' + tabName ).html() );
