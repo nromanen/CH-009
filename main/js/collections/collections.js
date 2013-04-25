@@ -49,7 +49,7 @@ var App = App || {};
 		}
 	});
 	
-	App.Collections.Units = Backbone.Collection.extend({	//Þí³òè
+	App.Collections.Units = Backbone.Collection.extend({
 	
 		model: App.Models.Unit,
 		url: "/units.json",
