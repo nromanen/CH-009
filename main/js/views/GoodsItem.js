@@ -20,7 +20,7 @@ var App = App || {};
 			
 			
 			this.model.set('nameGoods', this.options.goodsModel.get('nameG'));
-			console.log(this.model);
+			
 			var strTemplate = this.template( this.model.toJSON());
 			this.$el.html( strTemplate );
 			this.$input = this.$('.editUnitsCount');
@@ -73,8 +73,10 @@ var App = App || {};
 	App.Views.GoodsItemsList = Backbone.View.extend({  // это вид коллекции
 	
 	tagName: 'div',
+	
 		initialize: function () {
 			this.collection.on('add', this.addOne, this);
+			
 		},
 		render: function () {
 			this.collection.each(this.addOne, this);
@@ -87,7 +89,7 @@ var App = App || {};
 			this.$el.append( goodsItemView.el );
 			$('#buttonPlace').html($('#addUnit2GoodsButton').html());
 
-			console.log( this.model.toJSON() );
+			
 		},
 		ItemRemove: function() {
 			console.log(this);

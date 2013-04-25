@@ -171,7 +171,7 @@ var App = App || {};
 		},
 		writeCollection: function(goods){
 			for(i=0; i<=goods.length-1;i++){
-			    console.log(goods);
+			  
 				var goodsCollection = new App.Collections.GoodsItems();
 				goodsCollection.add(goods[i].goodsCollection);
 				var mGoods = new App.Models.Unit({

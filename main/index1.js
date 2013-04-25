@@ -1,19 +1,5 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<title>Materials & Units Manager</title>
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<link rel="stylesheet" href="css/bootstrap.css">
 
-	</head>	
-
-	<div class="container-navbar"></div>
-	<div  class="container"></div>
-	
-		<!-- NavBar template -->
-
-		<script type="text/template" id="navbar">
+<script type="text/template" id="navbar">
 			<div class="navbar navbar-static-top" style="margin-bottom:20px;">
 				<nav class="navbar-inner">
 					<div style="width: 570px; margin: 0 auto;">
@@ -122,25 +108,6 @@
 				</div>
 		</script>
 
-			<script type="text/template" id="addUnit2GoodsTemplate">
-			<div id="addUnit2Goods" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				  <div class="modal-header">
-				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				    <h3 id="myModalLabel">Add New Material</h3>
-				  </div>
-				  <div id="unitContainer" class="modal-body">
-				    	
-					
-
-				  </div>
-				  <div class="modal-footer">
-				    <button class="btn close-addNewMaterial" data-dismiss="modal" aria-hidden="true">Close</button>
-				    <button class="btn btn-primary save-material">Save changes</button>
-				  </div>
-				</div>
-		</script>
-
-
 		<script type="text/template"  id="temlateGoods">
 		 <div class="tab-pane fade in active" id="goodsView">
 		 <a href="#addGoodsView" role="button" class="btn btn-info" data-toggle="modal"><i class="icon-white icon-plus"></i> New Goods</a>
@@ -168,9 +135,12 @@
 				    <button class="btn btn-primary">Save changes</button>
 				  </div>
 				</div>
-	
+
+			
 			
 			<div  id="goods_holder" class="accordion" style="margin-top:20px;">
+
+
 
 			</div>
 		</div>
@@ -273,7 +243,7 @@
 		<script type="text/template" id="goods-name">
 			<div class="goods_holder">
 						<div class="accordion-heading">
-					      <a class="accordion-toggle" data-toggle="collapse" data-parent="#goods_holder" href="#<%= nameG %>">
+					      <a class="accordion-toggle" data-toggle="collapse" data-parent="#goods_holder" href="#collapseThree">
 					        <%= nameG %><div class="delete_unit"></div>
 					      </a>
 					    </div>
@@ -287,7 +257,7 @@
 		<script type="text/template" id="goods-count">
 
 
-					    <div id="<%= nameGoods %>" class="accordion-body collapse">
+					    <div id="collapseThree" class="accordion-body collapse">
 					      <div class="accordion-inner">
 					      <table class="table">
                 	
@@ -323,17 +293,39 @@
 					      </div>
 					    </div>
 
+
+					     
+							 
+					     
+					  
+
+
+
+
+			
+
+			<div class="holder">
+				<div class="units_in_Goods"><%= units %></div>
+				<div class="count"><%= count %></div>
+				<input class="editUnitsCount">
+				
+				<div class="delete" title="Delete <%= units %> material"></div>
+				<div class="editCount"></div>
+			</div> 
+
 		</script>		
 		
 		<script type="text/template" id="goods-count-plus">
 			  <div class="holder">
-				
-				<div class="material"><i class="icon-plus"></i> <%= name %></div>
+				<div class="plus" title="Add <%= name %> to the goods"></div>
+				<div class="material"><%= name %></div>
 				<!-- <div class="count"></div> -->
 			  </div>
 			  <div class="clear"></div>
 		</script>	
-
+		
+		
+   
 		<script type="text/template" id="unit-name">
 			<div class="unit_holder">
 				<div class="unit_name"><%= name %></div>
@@ -368,34 +360,5 @@
 			  </div>
 			  <div class="clear"></div>
 		</script>
+	
 
-		<script src="js/lib/jquery.js"></script>
-		<script src="js/lib/boostrap/bootstrap.min.js"></script>
-		<script src="js/lib/jquery-ui.js"></script>
-
-		<script src="js/lib/underscore.js"></script>
-		<script src="js/lib/backbone.js"></script>
-		
-		<script src="js/defaults.js"></script>
-		<script src="js/dbConnector.js"></script>
-
-		<script src="js/models/models.js"></script>
-		<script src="js/collections/collections.js"></script>
-		
-		<script src="js/views/Materials.js"></script>
-		<script src="js/views/Units.js"></script>
-		<script src="js/views/UnitItems.js"></script>
-		<script src="js/views/AddUnit.js"></script>
-		<script src="js/views/AddMaterials.js"></script>
-		<script src="js/views/Goods.js"></script>
-		<script src="js/views/AddGoods.js"></script>
-		<script src="js/views/GoodsItem.js"></script>
-		<script src="js/views/AddUnitsList.js"></script>
-		<script src="js/views/Users.js"></script>
-
-		<script src="js/router/router.js"></script>
-		
-		<script src="js/app.js"></script>
-
-	</body>
-</html>
