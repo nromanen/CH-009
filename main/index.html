@@ -261,7 +261,7 @@
 		<script type="text/template" id="goods-name">
 			<div class="goods_holder">
 						<div class="accordion-heading">
-					      <a class="accordion-toggle" data-toggle="collapse" data-parent="#goods_holder" href="#collapseThree">
+					      <a class="accordion-toggle" data-toggle="collapse" data-parent="#goods_holder" href="#<%= nameG %>">
 					        <%= nameG %><div class="delete_unit"></div>
 					      </a>
 					    </div>
@@ -275,7 +275,7 @@
 		<script type="text/template" id="goods-count">
 
 
-					    <div id="collapseThree" class="accordion-body collapse">
+					    <div id="<%= nameGoods %>" class="accordion-body collapse">
 					      <div class="accordion-inner">
 					      <table class="table">
                 	
@@ -322,14 +322,7 @@
 
 			
 
-			<div class="holder">
-				<div class="units_in_Goods"><%= units %></div>
-				<div class="count"><%= count %></div>
-				<input class="editUnitsCount">
-				
-				<div class="delete" title="Delete <%= units %> material"></div>
-				<div class="editCount"></div>
-			</div> 
+			
 
 		</script>		
 		

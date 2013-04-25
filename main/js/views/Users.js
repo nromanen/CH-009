@@ -98,7 +98,7 @@ var App = App || {};
 			
 
 			$('#products').append( viewProducts.el );
-			alert(3);
+			
 
 			$('#buttonPlace').html($('#addUnit2GoodsButton').html());
 			// rendering the content of the Units Tab
@@ -179,7 +179,7 @@ var App = App || {};
 		showGoods: function() {
 		
 
-			alert(1);
+		
 			//$('#myTab').append( $('#navigation').html() );
 			
 			//$('#products').html( $("#temlateGoods").html() );
