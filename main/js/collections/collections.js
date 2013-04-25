@@ -49,7 +49,11 @@ var App = App || {};
 		}
 	});
 	
+<<<<<<< HEAD
 	App.Collections.Units = Backbone.Collection.extend({
+=======
+	App.Collections.Units = Backbone.Collection.extend({	//пїЅпїЅпїЅпїЅпїЅ
+>>>>>>> b05b1f7cd149fd604bc738fa61f5a7d640a4498f
 	
 		model: App.Models.Unit,
 		url: "/units.json",
@@ -95,7 +99,7 @@ var App = App || {};
 		deleteModel: function( model ) {
 			App.dbConnector.deleteUnit( model.get( "name" ) );
 			model.destroy();
-			// виклик видалення моделі колекцій із бази
+			// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
 
 		},
 		
@@ -106,7 +110,7 @@ var App = App || {};
 	
 	});
 	
-	App.Collections.UnitItems = Backbone.Collection.extend({	//Матеріали в юнітах
+	App.Collections.UnitItems = Backbone.Collection.extend({	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	
 		model: App.Models.UnitItem,
 		initialize: function () {
@@ -148,18 +152,20 @@ var App = App || {};
 		initialize: function () {
 		
 			App.Events.on( 'addGoods', this.addModel, this );
-			App.Events.on('goodsDelete', this.deleteModel, this);
-			App.Events.on('editGoodsName', this.changeName, this);
+
+
 
 			App.Events.on('goodsDelete', this.deleteModel, this)
 			App.Events.on( 'writeGoods', this.writeCollection, this );
 			App.Events.on( 'fetchGoods', this.fetchGoods, this );
 			App.Events.on( 'editGoodsName', this.changeName, this );
 			App.Events.on('newUnitsCount', this.editCount, this);
+
 		},
 		addModel: function (model) {
 			
 			this.add( model );
+
 
 			App.dbConnector.AddGoodsToDb( 'Tovaru', model );
 		
@@ -170,7 +176,7 @@ var App = App || {};
 		},
 		writeCollection: function(goods){
 			for(i=0; i<=goods.length-1;i++){
-			
+			    console.log(goods);
 				var goodsCollection = new App.Collections.GoodsItems();
 				goodsCollection.add(goods[i].goodsCollection);
 				var mGoods = new App.Models.Unit({
@@ -181,14 +187,22 @@ var App = App || {};
 
 	this.add(mGoods);
 				i++;
-				this.add(mGoods);
 				i++;
 			}	
+
+		},
+		deleteModel: function(model){
+			
+				model.destroy();
+				this.remove(model); 			
+			
+
 		},
 		changeName: function ( model, value ) {
 		
 			//App.dbConnector.changeGoodName( model.get( 'name' ), value );
 			model.set({ nameG: value });
+
 
 				this.add(mGoods);
 				i++;
@@ -205,6 +219,7 @@ var App = App || {};
 		},
 		editCount: function (model, value) {
 			model.set({ count: value });
+
 		}
 		
 	});
