@@ -133,7 +133,6 @@ var App = App || {};
 			var store = transaction.objectStore("Units");
 			if (localDatabase != null && localDatabase.db != null) {
 			var request = store.openCursor();
-			
 				request.onsuccess = function( evt ) {
 					var cursor = evt.target.result;
 					if ( cursor ) {
@@ -146,6 +145,7 @@ var App = App || {};
 							console.log("Unit rename succesfull");
 							return;
 						}	
+					cursor.continue(); 	
 					}
 									
 				}	
@@ -563,7 +563,6 @@ var App = App || {};
 							newValue['tovarName'] =  tovarModel.get('nameG');
 							newValue['tovarCollection'] = JSON.stringify(tovarModel.get('goodsCollection'));
 							store.put(newValue);
-							console.log("Unit edited succesfull");
 							return;
 						}	
 					}
