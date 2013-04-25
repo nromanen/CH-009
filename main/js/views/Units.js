@@ -19,7 +19,7 @@ var App = App || {};
 			'blur .edit_unit_name': 'close'
 		},
 		template: _.template( $('#unit-name').html() ),
-		render: function () {	      
+		render: function () {
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
 			

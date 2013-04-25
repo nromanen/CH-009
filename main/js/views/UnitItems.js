@@ -24,6 +24,7 @@ var App = App || {};
 		},
 		confirmRemove: function () {
 			if ( confirm('Are you sure you want to delete this Unit Item?') ) {
+				this.options.unitModel.set('unitPrice', this.options.unitModel.get('unitPrice')-this.model.get('sumPrice'));
 				this.model.destroy();
 				App.dbConnector.EditUnitItem( this.options.unitModel );
 			}	
@@ -40,11 +41,13 @@ var App = App || {};
 		},
 		close: function () {
 			var value = this.$input.val().trim();
-			 if ( isNaN ( value ) || value <0 || value == '') {
+			 if ( isNaN ( value ) || value <=0 || value == '') {
 				this.$el.removeClass('editingCount');
 				this.render();
 				return;
 			}	
+			this.options.unitModel.set('unitPrice', this.options.unitModel.get('unitPrice')+(value-this.model.get('count'))*(this.model.get('sumPrice')/this.model.get('count')));
+			this.model.set('sumPrice', this.model.get('sumPrice')+(value-this.model.get('count'))*(this.model.get('sumPrice')/this.model.get('count')));
 			App.Events.trigger('newMaterialCount', this.model, value);
 			App.dbConnector.changeCount( this.options.unitModel );
 			this.$el.removeClass('editingCount');

@@ -41,7 +41,7 @@ var App = App || {};
 				
 				name: strUnit,
 				mcollection: newUnitCollection,
-				sumPrice: 0
+				unitPrice: 0
 				
 			});
 			

@@ -141,8 +141,7 @@ var App = App || {};
 							var newValue = cursor.value;
 							newValue.unitName =  model.get('name');
 							newValue.unitCollection = JSON.stringify(model.get('mcollection'));
-							newValue.unitSumPrice =  model.get('sumPrice');
-							console.log(newValue);
+							newValue.unitSumPrice =  model.get('unitPrice');
 							store.put(newValue);
 							console.log("Unit rename succesfull");
 							return;
@@ -168,7 +167,7 @@ var App = App || {};
 			var store = transaction.objectStore(objStor);            
 		  
 			if (localDatabase != null && localDatabase.db != null) {
-				var request =store.put({unitName:model.get("name"), unitCollection:JSON.stringify(model.get("mcollection")), unitSumPrice:model.get('sumPrice')}); 
+				var request =store.put({unitName:model.get("name"), unitCollection:JSON.stringify(model.get("mcollection")), unitSumPrice:model.get('unitPrice')}); 
 				
 				request.onsuccess = function (e) {
 					addProductHandler ( true );
@@ -204,6 +203,7 @@ var App = App || {};
 						var Units = function(config){
 							this.name = config.name;
 							this.mcollection = config.mcollection;
+							this.unitPrice = config.unitPrice;
 
 						}
 						request.onsuccess =  function(event){
@@ -214,7 +214,7 @@ var App = App || {};
 									units[pointer++] = new Units ({
 									name:cursor.value.unitName,
 									mcollection:JSON.parse(cursor.value.unitCollection),
-									sumPrice: cursor.value.unitSumPrice
+									unitPrice: cursor.value.unitSumPrice
 									});
 								cursor.continue(); 	
 								}else{

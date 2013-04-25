@@ -84,7 +84,7 @@ var App = App || {};
 				var mUnit = new App.Models.Unit({
 					name:units[i].name,
 					mcollection:unitCollection,
-					sumPrice: units[i].sumPrice
+					unitPrice: units[i].unitPrice
 							
 				});
 				this.add(mUnit);
