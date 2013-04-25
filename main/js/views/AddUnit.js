@@ -40,7 +40,8 @@ var App = App || {};
 			var modelUnit = new App.Models.Unit ({
 				
 				name: strUnit,
-				mcollection: newUnitCollection
+				mcollection: newUnitCollection,
+				sumPrice: 0
 				
 			});
 			

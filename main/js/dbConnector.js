@@ -141,6 +141,8 @@ var App = App || {};
 							var newValue = cursor.value;
 							newValue.unitName =  model.get('name');
 							newValue.unitCollection = JSON.stringify(model.get('mcollection'));
+							newValue.unitSumPrice =  model.get('sumPrice');
+							console.log(newValue);
 							store.put(newValue);
 							console.log("Unit rename succesfull");
 							return;
@@ -167,7 +169,6 @@ var App = App || {};
 		  
 			if (localDatabase != null && localDatabase.db != null) {
 				var request =store.put({unitName:model.get("name"), unitCollection:JSON.stringify(model.get("mcollection")), unitSumPrice:model.get('sumPrice')}); 
-				
 				
 				request.onsuccess = function (e) {
 					addProductHandler ( true );
@@ -215,7 +216,6 @@ var App = App || {};
 									mcollection:JSON.parse(cursor.value.unitCollection),
 									sumPrice: cursor.value.unitSumPrice
 									});
-								
 								cursor.continue(); 	
 								}else{
 								  onSuccessHandler ( units );

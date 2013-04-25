@@ -49,11 +49,10 @@ var App = App || {};
 			var quantity = prompt( 'Please enter the quantity of ' + this.model.get ( 'material' )  );
 			if ( ( quantity !== '' ) && ( quantity !== null ) ) {
 				this.model.set ( { count: quantity } );
-				this.model.set ( { sumPrice: JSON.stringify(quantity*this.model.get( 'price' )) } );
-				console.log(this.options.something);
-				var tempPrice = parseInt(this.options.something.get( 'sumPrice' )) + this.model.get('sumPrice'); 
+				var tmp = this.model.get( 'price' )
+				this.model.set ( { sumPrice: quantity*tmp } );
+				var tempPrice = this.options.something.get( 'sumPrice' ) + this.model.get('sumPrice'); 
 				this.options.something.set("sumPrice", tempPrice);
-				console.log(this.options.something);
 				this.collection.add ( this.model );
 				this.options.something.set("mcollection", this.collection);
 			} else {

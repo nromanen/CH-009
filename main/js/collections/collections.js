@@ -87,7 +87,6 @@ var App = App || {};
 					sumPrice: units[i].sumPrice
 							
 				});
-			
 				this.add(mUnit);
 				i++;
 			}
