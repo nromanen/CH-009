@@ -12,53 +12,47 @@ var App = App || {};
 		events: {
 			'click .delete' : 'confirmRemove',
 			'click .editCount' : 'changeCount',
-			'dblclick .count' : 'changeCount',
 			'keypress .editUnitsCount': 'updateOnEnter',
 			'blur .editUnitsCount': 'close'
 		},
 		template: _.template( $('#goods-count').html() ),
 		render: function () {
-		
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
 			this.$input = this.$('.editUnitsCount');
 			this.$input.val( this.model.get( 'count' ) );
-		
 		},
 		confirmRemove: function () {
-			
 			if ( confirm('Are you sure you want to delete this Goods Item?') ) {
 				this.model.destroy();
 
 				App.dbConnector.EditGoodsItems(this.options.goodsModel);
 				//App.dbConnector.EditGoodsItem( this.options.goodsModel );
 			}	
-			
 		},
 		remove: function () {
 			this.$el.remove();
 		
 		},
 		changeCount: function () {
-		
 			this.$el.addClass('editingCount');
 			this.$input.focus();
 			
 		},
 		close: function () {
-		
 			var value = this.$input.val().trim();
-			 if ( isNaN ( value )  || value < 0 || value == '') {
+			 if ( isNaN ( value )  || value <0 || value == '') {
 				this.$el.removeClass('editingCount');
 				this.render();
 				return;
 			}	
-
 			App.Events.trigger('newMaterialCount', this.model, value);
 			App.dbConnector.editGoodsItems( this.options.goodsModel );
 			App.Events.trigger('newUnitsCount', this.model, value);
 			//App.dbConnector.changeCount( this.options.unitModel );
 			App.Events.trigger('newUnitsCount', this.model, value);
+
+
 			App.dbConnector.EditGoodsItems( this.options.goodsModel );
 			this.$el.removeClass('editingCount');
 			
@@ -83,9 +77,11 @@ var App = App || {};
 			return this;
 		},
 		addOne: function( modelGoodsItem ) {
+	
 			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
 			goodsItemView.render();
 			this.$el.append( goodsItemView.el );
+			$('#buttonPlace').html($('#addUnit2GoodsButton').html());
 
 			console.log( this.model.toJSON() );
 		},
@@ -94,6 +90,7 @@ var App = App || {};
 			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
 			goodsItemView.render();
 			this.$el.append( goodsItemView.el );
+
 		},
 		ItemRemove: function() {
 			console.log(this);

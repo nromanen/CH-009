@@ -147,18 +147,20 @@ var App = App || {};
 		initialize: function () {
 		
 			App.Events.on( 'addGoods', this.addModel, this );
-			App.Events.on('goodsDelete', this.deleteModel, this);
-			App.Events.on('editGoodsName', this.changeName, this);
+
+
 
 			App.Events.on('goodsDelete', this.deleteModel, this)
 			App.Events.on( 'writeGoods', this.writeCollection, this );
 			App.Events.on( 'fetchGoods', this.fetchGoods, this );
 			App.Events.on( 'editGoodsName', this.changeName, this );
 			App.Events.on('newUnitsCount', this.editCount, this);
+
 		},
 		addModel: function (model) {
 			
 			this.add( model );
+
 
 			App.dbConnector.AddGoodsToDb( 'Tovaru', model );
 		
@@ -182,11 +184,20 @@ var App = App || {};
 				i++;
 				i++;
 			}	
+
+		},
+		deleteModel: function(model){
+			
+				model.destroy();
+				this.remove(model); 			
+			
+
 		},
 		changeName: function ( model, value ) {
 		
 			//App.dbConnector.changeGoodName( model.get( 'name' ), value );
 			model.set({ nameG: value });
+
 
 				this.add(mGoods);
 				i++;
@@ -203,6 +214,7 @@ var App = App || {};
 		},
 		editCount: function (model, value) {
 			model.set({ count: value });
+
 		}
 		
 	});
