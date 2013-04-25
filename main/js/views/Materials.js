@@ -3,7 +3,7 @@ var App = App || {};
 (function () {
 	
 	App.Views.Material = Backbone.View.extend({ // это вид модели
-		tagName: 'li',
+		tagName: 'tr',
 		initialize: function () {
 			//this.model.on('change:material', this.render, this);
 			//this.model.on('change:price', this.render, this);
@@ -12,13 +12,18 @@ var App = App || {};
 		events: {
 			'click .delete' : 'confirmRemove'
 		},
-		template: _.template( $('#material-price').html() ),
 		render: function () {
-			var strTemplate = this.template( this.model.toJSON() );
-			this.$el.html( strTemplate );
+			
+			if ( App.userRole === 'accountant' ) {
+				var Template = _.template( $('#materials-accountant').html(), this.model.toJSON() );
+			} else if ( App.userRole === 'storekeeper' ) {
+				var Template = _.template( $('#materials-storekeeper').html(), this.model.toJSON() );
+			}
+			
+			this.$el.html( Template );
 		},
 		confirmRemove: function () {
-			if ( confirm('Вы действительно хотите удалить данную запись?') ) {
+			if ( confirm('Are you sure you want to delete this product?') ) {
 				App.Events.trigger( 'destroyModel', this.model );  
 			}	
 		},
@@ -31,15 +36,21 @@ var App = App || {};
 	
 	App.Views.List = Backbone.View.extend({  // это вид коллекции
 	
-		tagName: 'ul',
+		tagName: 'table',
+		className: 'table',
 		initialize: function () {
 			this.collection.on('add', this.addOne, this);
 		},
 		render: function () {
+			if ( App.userRole === 'accountant' ) {
+				this.$el.append( $('#tableheader-materials-accountant').html() );
+			} else if ( App.userRole === 'storekeeper' ) {
+				this.$el.append( $('#tableheader-materials-storekeeper').html() );
+			}
 			this.collection.each(this.addOne, this);
 			return this;
 		},
-		addOne: function(modelMaterial) {
+		addOne: function( modelMaterial ) {
 			var MaterialView = new App.Views.Material({ model: modelMaterial });
 			MaterialView.render();
 			this.$el.append( MaterialView.el );
@@ -48,10 +59,10 @@ var App = App || {};
 	});
 	
 	App.Views.AddMaterial = Backbone.View.extend({
-		el: '#addMaterial',
-		tagName: 'addMaterial',
+		el: '#addNewMaterial',
 		events: {
-			'keypress input': 'inputKeypress',
+			'keypress input' : 'inputKeypress',
+			'click .save-material' : 'validateItem'
 		},
 		inputKeypress: function(e) {
 			if (e.which === 13) {
@@ -64,7 +75,7 @@ var App = App || {};
 			var strPrice = $('#price').val().trim();
 			
 			if ( strMaterial === "" ) {
-				alert ( 'Пожалуйста, введите имя материала!' );
+				alert ( 'Please enter the material name!' );
 				$('#material').val('');
 				$('#material').focus();
 				return false;
@@ -74,7 +85,7 @@ var App = App || {};
 				
 				if ( strMaterial === this.collection.models[i].get ( 'material' ) ) {
 					
-					alert ( 'Material ' + strMaterial + ' already exists! There should be no repeations!' );
+					alert ( 'Material named ' + strMaterial + ' already exists! There should be NO material names repeated!' );
 					$('#material').focus();
 					return false;
 					
@@ -84,12 +95,13 @@ var App = App || {};
 			
 			if ( isNaN( strPrice ) || strPrice < 0 || strPrice === "" )  {
 			
-				alert ( 'Цена указана неверно!' );
+				alert ( 'Price is incorrectly indicated!' );
 				$('#price').focus();
 				return false;
 			
 			}
 			
+			$('.close-addNewMaterial').click();
 			this.addItem ( strMaterial, strPrice );
 		
 		},
