@@ -182,7 +182,7 @@ var App = App || {};
 
 	this.add(mGoods);
 				i++;
-				i++;
+				
 			}	
 
 		},
