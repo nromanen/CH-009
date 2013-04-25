@@ -31,8 +31,6 @@ var App = App || {};
 			App.Units.fetch({ update:true });
 			console.log( App.Units.toJSON() );
 			console.log(JSON.stringify(App.Units));
-			alert(123);
-
 		
 		},
 		chooseRole: function () {
