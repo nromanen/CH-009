@@ -1,0 +1,27 @@
+[
+	{"name":"door",
+	 "mcollection":
+	 	[
+	 		{"material":"Wood","price":250,"count":"3"},
+	 		{"material":"Stone","price":400,"count":"7"},
+	 		{"material":"Steel","price":1000,"count":"6"}
+	 	]
+	 },
+	 {"name":"window",
+	 "mcollection":
+	 	[
+	 		{"material":"Wood","price":250,"count":"10"},
+	 		{"material":"Stone","price":400,"count":"5"},
+	 		{"material":"Steel","price":1000,"count":"20"}
+	 	]
+	 },
+	 {"name":"floor",
+	 "mcollection":
+	 	[
+	 		{"material":"Wood","price":250,"count":"7"},
+	 		{"material":"Stone","price":400,"count":"7"},
+	 		{"material":"Steel","price":1000,"count":"7"}
+	 	]
+	 }
+	 
+] 

@@ -52,6 +52,7 @@ var App = App || {};
 	App.Collections.Units = Backbone.Collection.extend({	//Þí³òè
 	
 		model: App.Models.Unit,
+		url: "/units.json",
 		initialize: function () {
 			
 			App.Events.on( 'addUnit', this.addModel, this );

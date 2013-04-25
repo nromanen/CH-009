@@ -12,12 +12,15 @@ var App = App || {};
 			"click #showMaterial" : "showMaterials",
 			"click #showUnit" : "showUnit",
 			"click #showGoods" : "showGoods",
-			"click #fetchMaterials" : "fetchMaterials"
+			"click #fetchData" : "fetchData"
 		},
-		fetchMaterials: function() {
+		fetchData: function() {
 
 			App.Materials.fetch({ update:true } );
-			console.log( App.Materials );
+			//App.Units.reset();
+			App.Units.fetch({ update:true });
+			console.log( App.Units.toJSON() );
+			console.log(JSON.stringify(App.Units));
 
 		},
 		showMaterials: function() {
