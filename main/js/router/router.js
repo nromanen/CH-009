@@ -11,10 +11,14 @@ var App = App || {};
 			'customer'    : 'openCustomer',
 			'accountant'  : 'openAccountant',
 			'engineer'    : 'openEngineer',
-			'storekeeper' : 'openStorekeeper'
+			'storekeeper' : 'openStorekeeper',
+			'sendData'	  : 'sendData'
 
 		},
-
+		sendData: function () {
+			console.log('sendData');
+			App.Events.trigger('sendData');
+		},
 		chooseRole: function () {
 		console.log("1");
 			App.Events.trigger( 'chooseRole' );
