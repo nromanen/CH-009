@@ -27,6 +27,8 @@ var App = App || {};
 
 			$('.container').html('');
 			$('.container').append( _.template ( $('#sendDataTmp').html() ) );
+			var matCol = JSON.stringify(App.Materials);
+			$('.container').append( matCol );
 
 		},
 		fetchData: function() {
