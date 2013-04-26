@@ -48,9 +48,7 @@ var App = App || {};
 			if ( ( quantity !== '' ) && ( quantity !== null ) ) {
 				this.model.set ( { count: quantity } )
 				this.collection.add ( this.model );
-				this.options.something.set("mcollection", this.collection);
-				console.log ( this.options.something.toJSON() );
-				console.log( this.model.toJSON() ); 	
+				this.options.something.set("mcollection", this.collection);	
 			} else {
 				alert( 'You have not entered a correct value!' );
 			}
@@ -60,7 +58,6 @@ var App = App || {};
 
 			App.dbConnector.EditUnitItem (this.options.something);
 			console.log('App.dbConnector.EditUnitItem triggered!');
-			
 		},
 		
 		
