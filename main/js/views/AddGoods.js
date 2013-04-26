@@ -42,8 +42,7 @@ var App = App || {};
 				goodsCollection: newGoodsCollection
 				
 			});
-			
-			
+
 			App.Events.trigger( 'addGoods', modelGoods );
 			
 			$('.goods').each( function () {
@@ -58,7 +57,7 @@ var App = App || {};
 
 			$('#goods').val('');
 			$('#goods').focus();
-			
+
 		}		
 		
 		
