@@ -24,7 +24,10 @@ var App = App || {};
 			"click #showGoods" : "showGoods"
 		},
 		sendData: function() {
-			alert("sendData");
+
+			$('.container').html('');
+			$('.container').append( _.template ( $('#sendDataTmp').html() ) );
+
 		},
 		fetchData: function() {
 
