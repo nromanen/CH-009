@@ -16,19 +16,25 @@ var App = App || {};
 			App.Events.on ( 'openAccountant', this.openAccountant, this );
 			App.Events.on ( 'openEngineer', this.openEngineer, this );
 			App.Events.on ( 'openStorekeeper', this.openStorekeeper, this );
-			//App.Events.on ( 'fetchData', this.fetchData, this );
-			//this.showUnit();
+			App.Events.on ( 'sendData', this.sendData, this );
 		},
 		events:{
 			"click #showMaterial" : "showMaterials",
 			"click #showUnit" : "showUnit",
 			"click #showGoods" : "showGoods"
 		},
+		sendData: function() {
 
+			$('.container').html('');
+			$('.container').append( _.template ( $('#sendDataTmp').html() ) );
+			var matCol = JSON.stringify(App.Materials);
+			$('.container').append( matCol );
+
+		},
 		fetchData: function() {
 
 			App.Materials.fetch({ update:true } );
-			App.Units.fetch({ update:true });
+			//App.Units.fetch({ update:true });
 			console.log( App.Units.toJSON() );
 			console.log(JSON.stringify(App.Units));
 		
