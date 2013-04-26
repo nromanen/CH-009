@@ -51,19 +51,12 @@ var App = App || {};
 				var newModel = new App.Models.UnitItem();
 				newModel.set ( { count: quantity } );
 				var tmp = this.model.get( 'price' )
-/*<<<<<<< HEAD
-				this.model.set ( { sumPrice: quantity*tmp } );
-				var tempPrice = this.options.something.get( 'unitPrice' ) + this.model.get('sumPrice'); 
-				
-				this.options.something.set("unitPrice", tempPrice);
-				this.collection.add ( this.model );
-				this.options.something.set("mcollection", this.collection);
-				console.log(JSON.stringify(this.options.something));
-=======*/
+
 				newModel.set ( {material: this.model.get('material'), sumPrice: quantity*tmp } );
 				var tempPrice = this.options.something.get( 'unitPrice' ) + newModel.get('sumPrice'); 
 				
 				this.options.something.set("unitPrice", tempPrice);
+
 				this.collection.add ( newModel );
 				this.options.something.set({mcollection: this.collection});
 				App.dbConnector.EditUnitItem(this.options.something);
