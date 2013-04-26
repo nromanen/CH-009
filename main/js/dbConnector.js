@@ -563,7 +563,6 @@ var App = App || {};
 							newValue['tovarName'] =  tovarModel.get('nameG');
 							newValue['tovarCollection'] = JSON.stringify(tovarModel.get('goodsCollection'));
 							store.put(newValue);
-							console.log("Unit edited succesfull");
 							return;
 						}	
 					}

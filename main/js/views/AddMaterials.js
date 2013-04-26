@@ -52,9 +52,13 @@ var App = App || {};
 				var tmp = this.model.get( 'price' )
 				this.model.set ( { sumPrice: quantity*tmp } );
 				var tempPrice = this.options.something.get( 'unitPrice' ) + this.model.get('sumPrice'); 
+				
 				this.options.something.set("unitPrice", tempPrice);
 				this.collection.add ( this.model );
 				this.options.something.set("mcollection", this.collection);
+				console.log(JSON.stringify(this.options.something));
+				App.dbConnector.EditUnitItem(this.options.something);
+
 			} else {
 				alert( 'You have not entered a correct value!' );
 			}
@@ -62,7 +66,7 @@ var App = App || {};
 		saveUnitCollection: function () {
 			
 
-			App.dbConnector.EditUnitItem (this.options.something);
+			//App.dbConnector.EditUnitItem (this.options.something);
 			console.log('App.dbConnector.EditUnitItem triggered!');
 			
 		},
