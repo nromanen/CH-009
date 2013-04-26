@@ -174,13 +174,13 @@ var App = App || {};
 				goodsCollection.add(goods[i].goodsCollection);
 				var mGoods = new App.Models.Goods({
 					nameG:goods[i].nameG,
-					goodsCollection: goodsCollection 
+					goodsCollection: goodsCollection,
+					goodsPrice: goods[i].goodsPrice
 							
 				});
 
 				this.add(mGoods);
-				this.add(mGoods);
-				//i++;
+
 			}	
 		},
 		changeName: function ( model, value ) {

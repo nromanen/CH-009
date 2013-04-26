@@ -55,10 +55,7 @@ var App = App || {};
 				return;
 			}	
 
-			App.Events.trigger('newMaterialCount', this.model, value);
-			App.dbConnector.editGoodsItems( this.options.goodsModel );
-			App.Events.trigger('newUnitsCount', this.model, value);
-			//App.dbConnector.changeCount( this.options.unitModel );
+			//App.Events.trigger('newMaterialCount', this.model, value);
 			App.Events.trigger('newUnitsCount', this.model, value);
 			App.dbConnector.EditGoodsItems( this.options.goodsModel );
 			this.$el.removeClass('editingCount');
@@ -89,7 +86,7 @@ var App = App || {};
 			this.$el.append( goodsItemView.el );
 		},
 		ItemRemove: function() {
-			console.log(this);
+			//console.log(this);
 			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
 			goodsItemView.render();
 			this.$el.append( goodsItemView.el );

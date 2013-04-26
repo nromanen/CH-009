@@ -82,9 +82,9 @@ var App = App || {};
 				  
 			var tovarStore = evt.currentTarget.result.createObjectStore
 					("Tovaru", {keyPath: "id", autoIncrement: true});
-				   tovarStore.createIndex("tovarName", "tovarName", { unique: false });        
-				   tovarStore.createIndex("tovarCollection", "tovarCollection", { unique: false });
-				 				   					
+				   	tovarStore.createIndex("tovarName", "tovarName", { unique: false });        
+				 	tovarStore.createIndex("tovarCollection", "tovarCollection", { unique: false });
+				 	tovarStore.createIndex("tovarPrice", "tovarPrice", { unique: false });			   					
 			            	   						  
 			}
 	
@@ -133,7 +133,6 @@ var App = App || {};
 			var store = transaction.objectStore("Units");
 			if (localDatabase != null && localDatabase.db != null) {
 			var request = store.openCursor();
-			
 				request.onsuccess = function( evt ) {
 					var cursor = evt.target.result;
 					if ( cursor ) {
@@ -146,6 +145,7 @@ var App = App || {};
 							console.log("Unit rename succesfull");
 							return;
 						}	
+					cursor.continue(); 	
 					}
 									
 				}	
@@ -427,7 +427,7 @@ var App = App || {};
 			var store = transaction.objectStore(objStor);            
 		  
 			if (localDatabase != null && localDatabase.db != null) {
-				var request =store.put({tovarName:model.get("nameG"), tovarCollection:JSON.stringify(model.get("goodsCollection"))}); 
+				var request =store.put({tovarName:model.get("nameG"), tovarCollection:JSON.stringify(model.get("goodsCollection")), tovarPrice:goodsPrice}); 
 				
 				
 				request.onsuccess = function (e) {
@@ -462,6 +462,7 @@ var App = App || {};
 			var Goods = function(config){
 				this.nameG = config.nameG;
 				this.goodsCollection = config.goodsCollection;
+				this.goodsPrice = config.goodsPrice;
 			
 			};
 			request.onsuccess =  function(event){
@@ -471,7 +472,8 @@ var App = App || {};
 					if(cursor){
 						goods[pointer++] = new Goods ({
 							nameG:cursor.value.tovarName,
-							goodsCollection:JSON.parse(cursor.value.tovarCollection)
+							goodsCollection:JSON.parse(cursor.value.tovarCollection),
+							goodsPrice: cursor.value.tovarPrice
 						});
 					cursor.continue(); 	
 					} else {

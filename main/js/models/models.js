@@ -36,7 +36,7 @@ var App = App || {};
 		
 		units: '',
 		count: 0,
-		total: 10
+		goodPrice: 0
 
 		
 	});

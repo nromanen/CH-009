@@ -16,7 +16,7 @@ var App = App || {};
 		addOne: function(modelUnits) {
 			var UnitsCollection = this.model.get ( 'goodsCollection' );
 			var UnitView = new App.Views.UnitPlus({ model: modelUnits, collection: UnitsCollection, something: this.model });
-			//console.log( this.model );
+
 			UnitView.render();
 			this.$el.append( UnitView.el );
 			
@@ -49,13 +49,11 @@ var App = App || {};
 			var quantity = prompt( 'Please enter the quantity2 of ' + this.model.get ( 'name' )  );
 			if ( ( quantity !== '' ) && ( quantity !== null ) ) {
 
-				this.collection.add (new App.Models.GoodsItem({units:this.model.get ( 'name' ), count:quantity}));
+				this.collection.add (new App.Models.GoodsItem({units:this.model.get ( 'name' ), count:quantity, goodPrice: this.model.get('unitPrice')*quantity}));
+				
+				this.options.something.set("goodsCollection", this.collection);
+				App.dbConnector.EditGoodsItems(this.options.something);
 
-				this.options.something.set("goodsCollection", this.collection);
-				App.dbConnector.EditGoodsItems(this.options.something);
-				this.options.something.set("goodsCollection", this.collection);	
-				this.options.something.set("goodsCollection", this.collection);
-				App.dbConnector.EditGoodsItems(this.options.something);
 			} else {
 				alert( 'You have not entered a correct value!' );
 			}
