@@ -35,7 +35,12 @@ var App = App || {};
 			
 			var jq_goods_info = '.goods_info';
 			
-			var jq_AddUnitsList = '.AddUnitsList';
+
+			var jq_AddUnitsList = '#unitContainer';
+			
+			
+			
+				
 
 				this.$( jq_goods_info ).show();
 				

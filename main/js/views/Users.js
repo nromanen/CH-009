@@ -104,6 +104,7 @@ var App = App || {};
 				active  : ' in active',
 			}) ); 
 			$('#products').html( $( '#temlateGoods' ).html() );
+			$('.container').append($('#addUnit2GoodsTemplate').html());
 			var addGoods2 = new App.Views.AddGoods ( { collection: App.Goods } );
 
 			
@@ -179,6 +180,8 @@ var App = App || {};
 			var addUnit = new App.Views.AddUnit ( { collection: App.Units } );
 			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
 			viewUnits.render();
+			console.log(addUnit);
+			addUnit.addItem("adf");
 			$('#units_holder').html( viewUnits.el );
 			$( '.AddMaterialsList' ).draggable();
 			$( '.AddUnitsList' ).hide();

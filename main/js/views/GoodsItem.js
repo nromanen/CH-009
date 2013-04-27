@@ -4,7 +4,7 @@ var App = App || {};
 
 	App.Views.GoodsItem = Backbone.View.extend({
 	
-	tagName: 'div',
+	tagName: 'tr',
 		initialize: function (){
 			this.model.on( 'destroy', this.remove, this );
 			this.model.on( 'change', this.render, this);
@@ -19,7 +19,7 @@ var App = App || {};
 		render: function () {	
 			
 			this.model.set('nameGoods', this.options.goodsModel.get('nameG'));
-			console.log(this.model);
+			
 			var strTemplate = this.template( this.model.toJSON());
 			this.$el.html( strTemplate );
 			this.$input = this.$('.editUnitsCount');
@@ -69,10 +69,17 @@ var App = App || {};
 	App.Views.GoodsItemsList = Backbone.View.extend({  // это вид коллекции
 	
 	tagName: 'div',
+	className:'accordion-body collapse',
 		initialize: function () {
+
 			this.collection.on('add', this.addOne, this);
+			this.el.id=this.model.get('nameG');	
+
 		},
+		template: _.template( $('#units-table').html() ),
 		render: function () {
+			var strTemplate = this.template( {nameGoods:this.model.get('nameG')});
+			this.$el.html( strTemplate );
 			this.collection.each(this.addOne, this);
 			return this;
 		},
@@ -80,10 +87,10 @@ var App = App || {};
 	
 			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
 			goodsItemView.render();
-			this.$el.append( goodsItemView.el );
-			$('#buttonPlace').html($('#addUnit2GoodsButton').html());
+			$("#"+this.model.get("nameG")+"_tableRow").prepend( goodsItemView.el );
+			$('.buttonPlace').html($('#addUnit2GoodsButton').html());
 
-			console.log( this.model.toJSON() );
+			
 		},
 		ItemRemove: function() {
 			console.log(this);

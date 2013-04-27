@@ -39,7 +39,7 @@ var App = App || {};
 			this.model.on( 'plus', this.plus, this );
 		},
 		events: {
-			'click .plus' : 'confirmQuantity'
+			'click .icon-plus' : 'confirmQuantity'
 		},
 		template: _.template( $('#goods-count-plus').html() ),
 		render: function () {
