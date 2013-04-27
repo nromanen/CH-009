@@ -18,7 +18,7 @@ var App = App || {};
 			var strUnit = $('#unit').val().trim(); 	
 			
 			if ( strUnit === "" ) {
-				alert ( 'Пожалуйста, введите имя Юнита!' );
+				alert ( 'Please enter the Unit name!' );
 				$('#unit').val('');
 				$('#unit').focus();
 				return false;

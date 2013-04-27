@@ -18,7 +18,7 @@ var App = App || {};
 			var goodsName = $('#goods').val().trim(); 	
 			
 			if ( goodsName === "" ) {
-				alert ( 'Полен введення даних не може бути порожнім' );
+				alert ( 'The input field may NOT be empty!' );
 				$('#goods').val('');
 				$('#goods').focus();
 				return false;
@@ -42,8 +42,7 @@ var App = App || {};
 				goodsCollection: newGoodsCollection
 				
 			});
-			
-			
+
 			App.Events.trigger( 'addGoods', modelGoods );
 			
 			$('.goods').each( function () {
@@ -55,8 +54,10 @@ var App = App || {};
 			this.clearTextBoxes();
 		},
 		clearTextBoxes: function() {
+
 			$('#goods').val('');
 			$('#goods').focus();
+
 		}		
 		
 		
