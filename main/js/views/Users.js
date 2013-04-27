@@ -25,16 +25,23 @@ var App = App || {};
 		},
 		sendData: function() {
 
+			var uniCol = JSON.stringify( App.Units );
+			var matCol = JSON.stringify( App.Materials );
+			var gooCol = JSON.stringify( App.Goods );
+
 			$('.container').html('');
 			$('.container').append( _.template ( $('#sendDataTmp').html() ) );
+			$('.container').append( matCol + "<br><br>");
+			$('.container').append(  uniCol +"<br><br>" );
+			$('.container').append( gooCol +"<br><br>" );
 
 		},
-		fetchData: function() {
+		fetchData: function() { //fetching data from json files, letter from the server
 
-			App.Materials.fetch({ update:true } );
-			//App.Units.fetch({ update:true });
+			App.Materials.fetch( { update:true } );
+			App.Units.fetch( { update:true } );
 			console.log( App.Units.toJSON() );
-			console.log(JSON.stringify(App.Units));
+			console.log( JSON.stringify(App.Units) );
 		
 		},
 		chooseRole: function () {
@@ -102,7 +109,7 @@ var App = App || {};
 			
 
 			$('#products').append( viewProducts.el );
-			alert(3);
+			
 
 			$('#buttonPlace').html($('#addUnit2GoodsButton').html());
 			// rendering the content of the Units Tab
@@ -183,7 +190,7 @@ var App = App || {};
 		showGoods: function() {
 		
 
-			alert(1);
+		
 			//$('#myTab').append( $('#navigation').html() );
 			
 			//$('#products').html( $("#temlateGoods").html() );

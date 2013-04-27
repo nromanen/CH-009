@@ -17,7 +17,11 @@ var App = App || {};
 		},
 		template: _.template( $('#goods-count').html() ),
 		render: function () {
-			var strTemplate = this.template( this.model.toJSON() );
+			
+			
+			this.model.set('nameGoods', this.options.goodsModel.get('nameG'));
+			console.log(this.model);
+			var strTemplate = this.template( this.model.toJSON());
 			this.$el.html( strTemplate );
 			this.$input = this.$('.editUnitsCount');
 			this.$input.val( this.model.get( 'count' ) );
