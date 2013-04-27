@@ -148,9 +148,6 @@ var App = App || {};
 		initialize: function () {
 		
 			App.Events.on( 'addGoods', this.addModel, this );
-
-
-
 			App.Events.on('goodsDelete', this.deleteModel, this)
 			App.Events.on( 'writeGoods', this.writeCollection, this );
 			App.Events.on( 'fetchGoods', this.fetchGoods, this );
@@ -161,7 +158,6 @@ var App = App || {};
 		addModel: function (model) {
 			
 			this.add( model );
-
 
 			App.dbConnector.AddGoodsToDb( 'Tovaru', model );
 		

@@ -33,14 +33,10 @@ var App = App || {};
 		}, 
 		goodsToggle: function () {
 			
-			var jq_goods_holder = '.accordion-heading';
 			var jq_goods_info = '.goods_info';
 			
 			var jq_AddUnitsList = '.AddUnitsList';
-			
-			
-			
-				
+
 				this.$( jq_goods_info ).show();
 				
 				var AddUnitsList = new App.Views.AddUnitsList( { collection: App.Units, model : this.model	} );
@@ -49,8 +45,7 @@ var App = App || {};
 				
 				$( jq_AddUnitsList ).html('');
 				$( jq_AddUnitsList ).append( AddUnitsList.el );
-				
-			
+
 			
 		},
 		goodsDeleteItem: function() {
@@ -97,12 +92,6 @@ var App = App || {};
 	App.Views.GoodsList = Backbone.View.extend({  // это вид коллекции
 		
 		tagName: 'div',
-		
-
-	
-	
-	//tagName: 'ul',
-
 
 		initialize: function () {
 			this.collection.on('add', this.render, this);
