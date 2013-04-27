@@ -18,7 +18,8 @@ var App = App || {};
 			'click .deleteGoods' : 'goodsDeleteItem',
 			'click .edit_goodsItem' : 'changeGoodsName',
 			'keypress .edit_goods_name': 'updateOnEnter',
-			'blur .edit_goods_name': 'close'
+			'blur .edit_goods_name': 'close',
+			'click .btn btn-info btn-small':'goodsToggle'
 		},
 		template: _.template( $('#goods-name').html() ),
 		render: function () {	
