@@ -284,14 +284,18 @@
 			<div style="height:15px;"></div>
 		</script>
 		
-		<script type="text/template" id="goods-count">
 
 
-					    <div id="<%= nameGoods %>" class="accordion-body collapse">
-					      <div class="accordion-inner">
-					      <table class="table">
-                	
-								<thead>
+
+
+
+
+		<script type="text/template" id="units-table">
+
+		
+					    <div class="accordion-inner">		
+					   	   <table class="table">
+            					<thead>
 									
 									<th> Units </th>
 									<th> Quantity </th>
@@ -299,30 +303,42 @@
 									<th> Delete </th>
 									<th> Price total </th>
 								</thead>
-								<tbody class="holder">
-									
-								<tr>
-				                	<td><div class="units_in_Goods"><%= units %></div></td>
-				                	<td> <div class="count"><%= count %></div> </td>
-				                	<td> <div class="editCount"></div> </td>
-				                	<td> <div class="delete" title="Delete <%= units %> material"></div></td>
-				                	<td> $120 </td>
-				                </tr>
-				                <tr>	
-				                		<td id="buttonPlace" colspan="4">
+								<tbody id="<%= nameGoods %>_tableRow">
+								
+
+
+				                	<tr>	
+				                		<td class="buttonPlace" colspan="4">
 				                				
 				                		</td>
 										<td>
 											Unit price: <b>$200</b>
 										</td>
 				                	</tr>
-							</tbody>
+								</tbody>
 			                	
 			                </table>
 
 					      </div>
-					    </div>
+					  		
 
+
+
+		</script>
+
+
+		
+		<script type="text/template" id="goods-count">
+
+
+					 
+					     
+				                	<td><div class="units_in_Goods"><%= units %></div></td>
+				                	<td> <div class="count"><%= count %></div> </td>
+				                	<td> <div class="editCount"></div> </td>
+				                	<td> <div class="delete" title="Delete <%= units %> material"></div></td>
+				                	<td> $120 </td>
+				        
 		</script>		
 		
 		<script type="text/template" id="goods-count-plus">
