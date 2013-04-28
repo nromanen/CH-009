@@ -50,13 +50,15 @@ var App = App || {};
 
 			// rendering the content of the Products Tab
 			var viewProducts = new App.Views.GoodsList( { collection: App.Goods } );
-			viewProducts.render();
+			
 			$('#TabContent').append ( _.template ( $('#tab').html(), { 
 				id      : 'products',
 				active  : ' in active',
 			}) ); 
 			$('#products').append( viewProducts.el );
 
+			viewProducts.render();
+			$('.buttonPlace').html("")
 			// rendering the content of the Units Tab
 			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
 			viewUnits.render();
@@ -85,21 +87,24 @@ var App = App || {};
 		
 			// rendering the content of the Products Tab
 			var viewProducts = new App.Views.GoodsList( { collection: App.Goods } );
-			viewProducts.render();
+			
 			$('#TabContent').append ( _.template ( $('#tab').html(), { 
 				id      : 'products',
 				active  : ' in active',
 			}) ); 
+
 			$('#products').html( $( '#temlateGoods' ).html() );
+
 			$('.container').append($('#addUnit2GoodsTemplate').html());
 			var addGoods2 = new App.Views.AddGoods ( { collection: App.Goods } );
 
 			
+			console.log(viewProducts.el);
 
 			$('#products').append( viewProducts.el );
 			
-
-			$('#buttonPlace').html($('#addUnit2GoodsButton').html());
+			viewProducts.render();
+			$('.buttonPlace').html($('#addUnit2GoodsButton').html());
 			// rendering the content of the Units Tab
 			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
 			viewUnits.render();
