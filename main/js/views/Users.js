@@ -38,11 +38,18 @@ var App = App || {};
 		},
 		fetchData: function() { //fetching data from json files, letter from the server
 
-			App.Materials.fetch( { update:true } );
-			App.Units.fetch( { update:true } );
+			App.Materials.fetch( { update: true } );
+			App.Units.fetch( { update: true } );
+
 			console.log( App.Units.toJSON() );
 			console.log( JSON.stringify(App.Units) );
-		
+			console.log( JSON.stringify(App.Materials) );
+
+			for (var i = 0; i < App.Materials.length; i++) {
+				var model = App.Materials.at(i)
+				App.dbConnector.addProduct ( model.get("material"), model.get("price") );
+				console.log("save materials to db complete");
+			};
 		},
 		chooseRole: function () {
 
