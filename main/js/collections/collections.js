@@ -163,6 +163,8 @@ var App = App || {};
 		
 		},
 		deleteModel: function(model){
+			alert(1);
+			App.dbConnector.deleteGoods(this.model.get('nameG'));
 			model.destroy();
 			this.remove(model); 			
 		},
@@ -177,14 +179,15 @@ var App = App || {};
 							
 				});
 
-	this.add(mGoods);
+				this.add(mGoods);
 				i++;
 				
 			}	
 
 		},
 		deleteModel: function(model){
-			
+				
+				App.dbConnector.deleteGoods(model.get('nameG'));
 				model.destroy();
 				this.remove(model); 			
 			
