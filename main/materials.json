@@ -14,6 +14,14 @@
 	{
 	"material" : "Steel", 
 	"price" : 1000
+	},
+	{
+	"material" : "Brick", 
+	"price" : 550
+	},
+	{
+	"material" : "Cheramic", 
+	"price" : 2000
 	}
 	
 ]

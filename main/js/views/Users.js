@@ -38,18 +38,31 @@ var App = App || {};
 		},
 		fetchData: function() { //fetching data from json files, letter from the server
 
-			App.Materials.fetch( { update: true } );
-			App.Units.fetch( { update: true } );
+			function fetchMaterials(){
+				var mat = App.Materials.fetch( { update: true } );
+				mat ? console.log("materials fetch done") : console.log("materials fetch failed");
+
+				for (var i = 0; i < App.Materials.length; i++) {
+					var model = App.Materials.at(i)
+					App.dbConnector.addProduct ( model.get("material"), model.get("price") );
+					console.log("save materials to db complete");
+				};
+			};
+
+			function fetchUnits() {
+				var uni = App.Units.fetch( { update: true } );
+				uni ? console.log("units fetch done") : console.log("units fetch failed");
+				//save units collection to DB here...
+
+			};
+
+			fetchMaterials();
+			fetchUnits();
 
 			console.log( App.Units.toJSON() );
 			console.log( JSON.stringify(App.Units) );
 			console.log( JSON.stringify(App.Materials) );
 
-			for (var i = 0; i < App.Materials.length; i++) {
-				var model = App.Materials.at(i)
-				App.dbConnector.addProduct ( model.get("material"), model.get("price") );
-				console.log("save materials to db complete");
-			};
 		},
 		chooseRole: function () {
 
