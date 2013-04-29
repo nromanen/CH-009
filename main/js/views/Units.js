@@ -4,11 +4,10 @@ var App = App || {};
 
 	App.Views.Unit = Backbone.View.extend({
 	
-		tagName: 'li',
+		tagName: 'div',
 		initialize: function () {
 			this.model.on( 'change', this.render, this);
 			this.model.on( 'destroy', this.unitRemoveItem, this );
-
 		},
 		className: 'unit',
 		events: {
@@ -19,50 +18,44 @@ var App = App || {};
 			'blur .edit_unit_name': 'close'
 		},
 		template: _.template( $('#unit-name').html() ),
-		render: function () {	      
+		render: function () {	     
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
 			
 			var newUnitItemsList = new App.Views.UnitItemsList( { collection: this.model.get( 'mcollection' ), model: this.model  } ) ;
-			this.$('.unit_info').append( newUnitItemsList.el );
+			this.$('.accordion-group').append( newUnitItemsList.el );
 			newUnitItemsList.render();
+			
 			this.$input = this.$('.edit_unit_name');
 
 		},
 		unitToggle: function () {
 			
-			var jq_unit_holder = '.unit_holder';
-			var jq_unit_info = '.unit_info';
-			var jq_visible = ':visible';
-			var jq_AddMaterialsList = '.AddMaterialsList';
+			this.$( '.unit_info' ).toggle();
 			
-			this.$( jq_unit_info ).toggle();
+			if ( this.$( '.unit_info' ).is( ':visible' ) === true ) {
 			
-			if ( this.$( jq_unit_info ).is( jq_visible ) === true ) {
-			
-				$ ( jq_unit_info ).hide();
-				this.$( jq_unit_info ).show();
+				$ ( '.unit_info' ).hide();
+				this.$( '.unit_info' ).show();
 				
 				var AddMaterialsList = new App.Views.AddMaterialsList( { collection: App.Materials, model : this.model } );
 
 				AddMaterialsList.render();
 				
-				$( jq_AddMaterialsList ).html('');
-				$( jq_AddMaterialsList ).append( AddMaterialsList.el );
+				$( '.AddMaterialsList' ).html('');
+				$( '.AddMaterialsList' ).append( AddMaterialsList.el );
 				
-				$(  jq_AddMaterialsList  ).show();	
-					var positionTop = this.$( jq_unit_holder ).position().top;
-					var positionLeft = this.$( jq_unit_info ).position().left + 530;
-				$(  jq_AddMaterialsList  ).css ( { 'top' : positionTop,  'left' : positionLeft } ); 
+				$(  '.AddMaterialsList'  ).show();	
+					var positionTop = this.$( '.unit_holder' ).position().top;
+					var positionLeft = this.$( '.unit_info' ).position().left + 530;
+				$(  '.AddMaterialsList'  ).css ( { 'top' : positionTop,  'left' : positionLeft } ); 
 				
 			} else {
 			
-				$(  jq_AddMaterialsList  ).hide();
+				$( '.AddMaterialsList' ).hide();
 			
 			}
-			
-	
-			
+
 		},
 		unitDeleteItem: function() {
 		
@@ -78,20 +71,18 @@ var App = App || {};
 	
 		},
 		changeUnitName: function () {
-		
 			this.$el.addClass('editing');
-			this.$input.focus();
-			
+			this.$input.focus();			
 		},
 		close: function () {
 			var value = this.$input.val().trim();
 			if ( value =='' ) {
-				this.$el.removeClass('editing');
-				return;
+			this.$el.removeClass('editing');
+			return;
 			};
 			if  ( ! value ) {
-				this.$el.removeClass('editing');
-				return;
+			this.$el.removeClass('editing');
+			return;
 			}
 			App.Events.trigger('editUnitName', this.model, value);
 			this.$el.removeClass('editing');
@@ -124,8 +115,7 @@ var App = App || {};
 			this.$el.prepend( UnitView.el );
 			UnitView.render();
 			
-			var jq_unit_info = '.unit_info';
-			this.$el.find( jq_unit_info ).hide();
+			this.$el.find( '.unit_info' ).hide();
 
 		}
 	

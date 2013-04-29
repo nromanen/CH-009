@@ -39,7 +39,7 @@ var App = App || {};
 			this.model.on( 'plus', this.plus, this );
 		},
 		events: {
-			'click .plus' : 'confirmQuantity'
+			'click .icon-plus' : 'confirmQuantity'
 		},
 		template: _.template( $('#goods-count-plus').html() ),
 		render: function () {
@@ -50,16 +50,16 @@ var App = App || {};
 			var quantity = prompt( 'Please enter the quantity2 of ' + this.model.get ( 'name' )  );
 			if ( ( quantity !== '' ) && ( quantity !== null ) ) {
 
-				this.collection.add (new App.Models.GoodsItem({units:this.model.get ( 'name' ), count:quantity}));
 
+			
+			
+				
+				this.collection.add (new App.Models.GoodsItem({units:this.model.get ( 'name' ), count:quantity}));
+				//console.log(this.collection);	
 				this.options.something.set("goodsCollection", this.collection);
 				App.dbConnector.EditGoodsItems(this.options.something);
-				console.log ( this.options.something );
-				this.options.something.set("goodsCollection", this.collection);	
-				//console.log(this.collection);
-				this.options.something.set("goodsCollection", this.collection);
-				App.dbConnector.EditGoodsItems(this.options.something);
-				console.log ( this.options.something ); 
+				console.log ( this.options.something ); 	
+
 			} else {
 				alert( 'You have not entered a correct value!' );
 			}
