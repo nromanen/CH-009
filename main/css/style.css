@@ -48,3 +48,22 @@
     opacity: 1;
     cursor: pointer;
 }
+
+.delete_goods {
+    float:right;
+    position:relative;
+    width:26px;
+    height:26px;
+    background: url('../img/delete.png') no-repeat;
+    opacity: 0.6;
+    cursor: pointer;
+}
+.delete_goods:hover {
+    float:right;
+    position: relative;
+    width:26px;
+    height:26px;
+    background: url('../img/delete.png') no-repeat;
+    opacity: 1;
+    cursor: pointer;
+}

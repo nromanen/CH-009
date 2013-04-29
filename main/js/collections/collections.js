@@ -148,9 +148,6 @@ var App = App || {};
 		initialize: function () {
 		
 			App.Events.on( 'addGoods', this.addModel, this );
-
-
-
 			App.Events.on('goodsDelete', this.deleteModel, this)
 			App.Events.on( 'writeGoods', this.writeCollection, this );
 			App.Events.on( 'fetchGoods', this.fetchGoods, this );
@@ -162,17 +159,18 @@ var App = App || {};
 			
 			this.add( model );
 
-
 			App.dbConnector.AddGoodsToDb( 'Tovaru', model );
 		
 		},
 		deleteModel: function(model){
+			alert(1);
+			App.dbConnector.deleteGoods(this.model.get('nameG'));
 			model.destroy();
 			this.remove(model); 			
 		},
 		writeCollection: function(goods){
 			for(i=0; i<=goods.length-1;i++){
-			    console.log(goods);
+			  
 				var goodsCollection = new App.Collections.GoodsItems();
 				goodsCollection.add(goods[i].goodsCollection);
 				var mGoods = new App.Models.Unit({
@@ -181,14 +179,15 @@ var App = App || {};
 							
 				});
 
-	this.add(mGoods);
+				this.add(mGoods);
 				i++;
 				
 			}	
 
 		},
 		deleteModel: function(model){
-			
+				
+				App.dbConnector.deleteGoods(model.get('nameG'));
 				model.destroy();
 				this.remove(model); 			
 			
