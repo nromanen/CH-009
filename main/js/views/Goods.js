@@ -16,7 +16,7 @@ var App = App || {};
 		events: {
 		
 			'click .accordion-heading' : 'goodsToggle',
-			'click .deleteGoods' : 'goodsDeleteItem',
+			'click .delete_goods' : 'goodsDeleteItem',
 			'click .edit_goodsItem' : 'changeGoodsName',
 			'keypress .edit_goods_name': 'updateOnEnter',
 			'blur .edit_goods_name': 'close',
@@ -62,6 +62,7 @@ var App = App || {};
 		goodsDeleteItem: function() {
 		
 			if ( confirm('Are you sure you want to delete this Goods?') ) {
+				
 				App.Events.trigger( 'goodsDelete', this.model );
 			}
 		
