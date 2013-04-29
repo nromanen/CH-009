@@ -118,9 +118,6 @@ var App = App || {};
 			$('.container').append($('#addUnit2GoodsTemplate').html());
 			var addGoods2 = new App.Views.AddGoods ( { collection: App.Goods } );
 
-			
-			console.log(viewProducts.el);
-
 			$('#products').append( viewProducts.el );
 			
 			viewProducts.render();

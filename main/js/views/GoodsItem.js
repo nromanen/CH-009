@@ -73,7 +73,7 @@ var App = App || {};
 		initialize: function () {
 
 			this.collection.on('add', this.addOne, this);
-			this.el.id=this.model.get('nameG');	
+			this.el.id = this.model.get('nameG');	
 
 		},
 		template: _.template( $('#units-table').html() ),

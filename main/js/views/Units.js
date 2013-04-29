@@ -5,11 +5,11 @@ var App = App || {};
 	App.Views.Unit = Backbone.View.extend({
 	
 		tagName: 'div',
+		className: 'accordion-group',
 		initialize: function () {
 			this.model.on( 'change', this.render, this);
 			this.model.on( 'destroy', this.unitRemoveItem, this );
 		},
-		className: 'unit',
 		events: {
 			'click .unit_name' : 'unitToggle',
 			'click .deleteUnit' : 'unitDeleteItem',
@@ -21,18 +21,27 @@ var App = App || {};
 		render: function () {	     
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
-			
+
 			var newUnitItemsList = new App.Views.UnitItemsList( { collection: this.model.get( 'mcollection' ), model: this.model  } ) ;
-			this.$('.accordion-group').append( newUnitItemsList.el );
 			newUnitItemsList.render();
-			
-			this.$input = this.$('.edit_unit_name');
+
+			console.log ( $(this) );	
+
+			//console.log ( newUnitItemsList.el );
+
+			//console.log ( this.$('.accordion-group') );
+
+			this.$el.append( newUnitItemsList.el );
+
+			//$( this.el ).append ('something');
+
+			//this.$input = this.$('.edit_unit_name');
 
 		},
 		unitToggle: function () {
 			
 			this.$( '.unit_info' ).toggle();
-			
+
 			if ( this.$( '.unit_info' ).is( ':visible' ) === true ) {
 			
 				$ ( '.unit_info' ).hide();
@@ -97,8 +106,8 @@ var App = App || {};
 	
 	App.Views.UnitsList = Backbone.View.extend({  // это вид коллекции
 	
-		tagName: 'ul',
-		className: 'units',
+		tagName: 'div',
+		className: 'accordion',
 		initialize: function () {
 			this.collection.on('add', this.render, this);
 		},
