@@ -62,11 +62,39 @@ var App = App || {};
 			App.userRole = 'customer';
 			this.renderBeginning( 'Customer' , App.userRole + 'Tab' );
 
+			var viewProducts = new App.Views.GoodsList( { collection: App.Goods } );
+			$('#TabContent').html("");
+			$('#TabContent').append ( _.template ( $('#tab').html(), { 
+				id      : 'products',
+				active  : ' in active',
+			}) ); 
+			$('#products').html( viewProducts.el );
+
+			viewProducts.render();
+			$('.delete_goods').remove();
+			$('.buttonPlace').html("")
+			$('.goods_info').html("");
+
 		},
 		openAccountant: function () {
 
 			App.userRole = 'accountant';
 			this.renderBeginning( 'Accountant' , App.userRole + 'Tab' );
+
+			var viewProducts = new App.Views.GoodsList( { collection: App.Goods } );
+			
+			$('#TabContent').append ( _.template ( $('#tab').html(), { 
+				id      : 'products',
+				active  : ' in active',
+			}) ); 
+			$('#products').append( viewProducts.el );
+
+			viewProducts.render();
+			$('.buttonPlace').html("")
+			// rendering the content of the Units Tab
+			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
+			viewUnits.render();
+
 
 			// rendering the content of the Products Tab
 			var viewProducts = new App.Views.GoodsList( { collection: App.Goods } );
