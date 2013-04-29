@@ -38,9 +38,10 @@ var App = App || {};
 		},
 		fetchData: function() { //fetching data from json files, letter from the server
 
-			App.Materials.fetch( { update:true } );
+			App.Materials.fetch( { update:true, add: true } );
 			App.Units.fetch( { update:true } );
 			console.log( App.Units.toJSON() );
+			console.log( App.Materials.toJSON() );
 			console.log( JSON.stringify(App.Units) );
 		
 		},
