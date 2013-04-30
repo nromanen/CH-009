@@ -50,10 +50,6 @@ var App = App || {};
 			var quantity = prompt( 'Please enter the quantity2 of ' + this.model.get ( 'name' )  );
 			if ( ( quantity !== '' ) && ( quantity !== null ) ) {
 
-
-			
-			
-				
 				this.collection.add (new App.Models.GoodsItem({units:this.model.get ( 'name' ), count:quantity}));
 				//console.log(this.collection);	
 				this.options.something.set("goodsCollection", this.collection);

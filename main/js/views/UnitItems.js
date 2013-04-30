@@ -18,9 +18,7 @@ var App = App || {};
 		template: '<something here>',
 		render: function () {
 			var strTemplate = this.template( this.model.toJSON() );
-			this.$el.html( strTemplate );
-
-			
+			this.$el.html( strTemplate );	
 
 			this.$input = this.$('.editMaterialCount');
 			this.$input.val( this.model.get( 'count' ) );
@@ -67,7 +65,9 @@ var App = App || {};
 		tagName: 'div',
 		initialize: function () {
 			//this.collection.on('add', this.addOne, this);	
-			this.el.id = this.model.get( 'name' );
+
+			this.el.id = this.model.get( 'name' ).replace(/\s/g, ''); // надає ім'я id без пробілів
+			
 		},
 		className: 'accordion-body collapse',
 		template: _.template( $('#unit-count').html() ),

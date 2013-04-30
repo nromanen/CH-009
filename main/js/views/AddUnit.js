@@ -3,10 +3,11 @@ var App = App || {};
 (function () {
 
 	App.Views.AddUnit = Backbone.View.extend({
-		el: '#addUnit',
-		tagName: 'addUnit',
+		el: '#addNewUnit',
+		tagName: 'addNewUnit',
 		events: {
-			'keypress input': 'inputKeypress',
+			'keypress input' : 'inputKeypress',
+			'click .save-material' : 'validateItem'
 		},
 		inputKeypress: function(e) {
 			if (e.which === 13) {
@@ -24,6 +25,7 @@ var App = App || {};
 				return false;
 			}
 			
+			$('.close-addNewUnit').click();
 			this.addItem ( strUnit );
 		
 		},

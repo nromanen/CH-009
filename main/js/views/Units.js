@@ -18,7 +18,9 @@ var App = App || {};
 			'blur .edit_unit_name': 'close'
 		},
 		template: _.template( $('#unit-name').html() ),
-		render: function () {	     
+		render: function () {	
+			var nameTrimmed = this.model.get( 'name' ).replace(/\s/g, ''); // видаляє пробіли
+			this.model.set ('hrefID', nameTrimmed);     
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
 

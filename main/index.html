@@ -46,7 +46,6 @@
 						<li> <a href="#accountant"> Accountant </a> </li>
 						<li> <a href="#engineer"> Engineer </a> </li>
 						<li> <a href="#storekeeper"> Storekeeper </a> </li>
-
 					</ul>
 				</div>
 				<div class="span5"></div>
@@ -91,6 +90,10 @@
 
 <!-- Button templates -->
 
+		<script type="text/template" id="addNewUnitButton">
+			<a href="#addNewUnit" role="button" class="btn btn-info" data-toggle="modal"><i class="icon-white icon-plus"></i> New Unit</a>
+		</script>
+
 		<script type="text/template" id="addNewMaterialButton">
 			<a href="#addNewMaterial" role="button" class="btn btn-info" data-toggle="modal"><i class="icon-white icon-plus"></i> New Material</a>
 		</script>
@@ -104,6 +107,24 @@
 		</script>
 		
 <!-- Modal templates -->
+
+		<script type="text/template" id="addNewUnitModal">
+			<div id="addNewUnit" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				  <div class="modal-header">
+				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				    <h3 id="myModalLabel">Add New Unit</h3>
+				  </div>
+				  <div class="modal-body">
+				    	
+					Unit name: <input class="textbox" id="unit" type="text">
+
+				  </div>
+				  <div class="modal-footer">
+				    <button class="btn close-addNewUnit" data-dismiss="modal" aria-hidden="true">Close</button>
+				    <button class="btn btn-primary save-material">Save changes</button>
+				  </div>
+				</div>
+		</script>
 
 		<script type="text/template" id="addNewMaterialModal">
 			<div id="addNewMaterial" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -235,7 +256,7 @@
 
 		<script type="text/template" id="unit-name">
 				<div class="accordion-heading">
-			      <a class="accordion-toggle" data-toggle="collapse" data-parent=".accordion-group" href="#<%= name %>">
+			      <a class="accordion-toggle" data-toggle="collapse" data-parent=".accordion-group" href="#<%= hrefID %>">
 			        <%= name %><div class="delete_unit"></div>
 			      </a>
 			    </div>
