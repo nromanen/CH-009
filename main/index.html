@@ -46,7 +46,6 @@
 						<li> <a href="#accountant"> Accountant </a> </li>
 						<li> <a href="#engineer"> Engineer </a> </li>
 						<li> <a href="#storekeeper"> Storekeeper </a> </li>
-
 					</ul>
 				</div>
 				<div class="span5"></div>
@@ -91,6 +90,10 @@
 
 <!-- Button templates -->
 
+		<script type="text/template" id="addNewUnitButton">
+			<a href="#addNewUnit" role="button" class="btn btn-info" data-toggle="modal"><i class="icon-white icon-plus"></i> New Unit</a>
+		</script>
+
 		<script type="text/template" id="addNewMaterialButton">
 			<a href="#addNewMaterial" role="button" class="btn btn-info" data-toggle="modal"><i class="icon-white icon-plus"></i> New Material</a>
 		</script>
@@ -104,6 +107,24 @@
 		</script>
 		
 <!-- Modal templates -->
+
+		<script type="text/template" id="addNewUnitModal">
+			<div id="addNewUnit" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				  <div class="modal-header">
+				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				    <h3 id="myModalLabel">Add New Unit</h3>
+				  </div>
+				  <div class="modal-body">
+				    	
+					Unit name: <input class="textbox" id="unit" type="text">
+
+				  </div>
+				  <div class="modal-footer">
+				    <button class="btn close-addNewUnit" data-dismiss="modal" aria-hidden="true">Close</button>
+				    <button class="btn btn-primary save-material">Save changes</button>
+				  </div>
+				</div>
+		</script>
 
 		<script type="text/template" id="addNewMaterialModal">
 			<div id="addNewMaterial" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -179,12 +200,12 @@
 		</div>
         </script>
 
-        <!-- send data template --> 
+<!-- send data template --> 
         <script type="text/template" id="sendDataTmp">
 			<h1>Send data to json</h1>
 		</script>
 
-		<!-- Materials View templates -->
+<!-- Materials View templates -->
 		
 		<script type="text/template" id="tableheader-materials-accountant">
 		  	<thead>
@@ -232,74 +253,48 @@
 		
 
 <!-- Unit View templates -->	
-		</div>
+
 		<script type="text/template" id="unit-name">
-			<div class="accordion-group">
 				<div class="accordion-heading">
-			      <a class="accordion-toggle" data-toggle="collapse" data-parent=".accordion-group" href="#<%= name %>">
+			      <a class="accordion-toggle" data-toggle="collapse" data-parent=".accordion-group" href="#<%= hrefID %>">
 			        <%= name %><div class="delete_unit"></div>
 			      </a>
 			    </div>
 				<div class="clear"></div>	
-				<div style="height:15px;"></div>
-			</div>	
+				<div style="height:15px;"></div>	
 		</script>
 
 		<script type="text/template" id="unit-count">
-
-			<div id="unitName" class="accordion-body collapse" style="height: 0px;">
-				      
-				<div class="accordion-inner">
-
-				  <table class="table">
-
-						<thead>
-							<tr>
-								<th> Units </th>
-								<th> Quantity </th>
-								<th> Edit </th>
-								<th> Delete </th>
-								<th> Price total </th>
-							</tr>
-						</thead>
-
-						<tbody class="holder">
-							
-							<tr>
-				            	<td> <%= material %> </td>
-				            	<td> <%= count %> </td>
-				            	<td> <div class="editCount"></div> </td>
-				            	<td> <div class="delete" title="Delete <%= material %> material"></div></td>
-				            	<td> $120 </td>
-				            </tr>
-
-				            <tr>	
-				        		<td id="buttonPlace" colspan="4">
-									<a href="#addUnit2Goods" role="button" class="btn btn-info btn-small" data-toggle="modal"><i class="icon-white icon-plus"></i> Units</a>
-								</td>
-								<td>
-									Unit price: <b>$200</b>
-								</td>
-				        	</tr>
-					
-						</tbody>
-				    	
-				    </table>
-
-				</div>
-
-				</div>
-
-			<div class="holder">
-				<div class="material_in_unit"><%= material %></div>
-
-				<div class="count"><%= count %><span></span></div>
-
-				<input class="editMaterialCount">
-				
-				<div class="delete" title="Delete <%= material %> material"></div>
-				<div class="editCount"></div>
-			</div> 
+			<div class="accordion-inner">
+			    <table class="table">
+					<thead>
+						<tr>
+							<th> Units </th>
+							<th> Quantity </th>
+							<th> Edit </th>
+							<th> Delete </th>
+							<th> Price total </th>
+						</tr>
+					</thead>
+					<tbody class="holder">						
+						<tr>
+			            	<td> material </td>
+			            	<td> count </td>
+			            	<td> <div class="editCount"></div> </td>
+			            	<td> <div class="delete" title="Delete material material"></div></td>
+			            	<td> $120 </td>
+			            </tr>
+			            <tr>	
+			        		<td id="buttonPlace" colspan="4">
+								<a href="#addUnit2Goods" role="button" class="btn btn-info btn-small" data-toggle="modal"><i class="icon-white icon-plus"></i> Units</a>
+							</td>
+							<td>
+								Unit price: <b>$200</b>
+							</td>
+			        	</tr>			
+					</tbody>			    	
+			    </table>
+			</div>
 		</script>
 
 <!-- other templates -->

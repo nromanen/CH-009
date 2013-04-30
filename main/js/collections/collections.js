@@ -49,7 +49,11 @@ var App = App || {};
 		}
 	});
 	
+
+
+
 	App.Collections.Units = Backbone.Collection.extend({
+
 	
 		model: App.Models.Unit,
 		url: "/units.json",
@@ -95,7 +99,7 @@ var App = App || {};
 		deleteModel: function( model ) {
 			App.dbConnector.deleteUnit( model.get( "name" ) );
 			model.destroy();
-			// ������ ��������� ������ �������� �� ����
+			
 
 		},
 		
@@ -106,7 +110,7 @@ var App = App || {};
 	
 	});
 	
-	App.Collections.UnitItems = Backbone.Collection.extend({	//��������� � ������
+	App.Collections.UnitItems = Backbone.Collection.extend({	
 	
 		model: App.Models.UnitItem,
 		initialize: function () {
@@ -132,7 +136,7 @@ var App = App || {};
 		saveUnitCollection: function () {
 		
 			//App.dbConnector.EditUnitItem ( this.model );
-			console.log('App.dbConnector.EditUnitItem triggered!');
+			//console.log('App.dbConnector.EditUnitItem triggered!');
 		
 		},
 		editCount: function (model, value) {
