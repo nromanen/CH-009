@@ -32,8 +32,6 @@ var App = App || {};
 	App.Views.MaterialPlus = Backbone.View.extend({ // это вид модели
 		tagName: 'li',
 		initialize: function () {
-			//this.model.on('change:material', this.render, this);
-			//this.model.on('change:price', this.render, this);
 			this.collection.on('add', this.saveUnitCollection, this);
 			this.model.on( 'plus', this.plus, this );
 		},

@@ -38,6 +38,7 @@ var App = App || {};
 		},
 		fetchData: function() { //fetching data from json files, letter from the server
 
+
 			function fetchMaterials(){
 				var mat = App.Materials.fetch( { update: true } );
 				mat ? console.log("materials fetch done") : console.log("materials fetch failed");
@@ -62,8 +63,9 @@ var App = App || {};
 
 			fetchMaterials();
 			fetchUnits();
-
+			
 			console.log( App.Units.toJSON() );
+			console.log( App.Materials.toJSON() );
 			console.log( JSON.stringify(App.Units) );
 			console.log( JSON.stringify(App.Materials) );
 
