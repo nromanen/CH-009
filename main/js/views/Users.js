@@ -52,7 +52,11 @@ var App = App || {};
 			function fetchUnits() {
 				var uni = App.Units.fetch( { update: true } );
 				uni ? console.log("units fetch done") : console.log("units fetch failed");
-				//save units collection to DB here...
+				for (var i = 0; i < App.Units.length; i++){
+					var model = App.Units.at(i);
+					App.dbConnector.AddUnit ( "Units", model );
+					console.log("save units to db complete");
+				}
 
 			};
 

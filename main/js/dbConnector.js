@@ -165,7 +165,7 @@ var App = App || {};
 			var store = transaction.objectStore(objStor);            
 		  
 			if (localDatabase != null && localDatabase.db != null) {
-				var request =store.put({unitName:model.get("name"), unitCollection:JSON.stringify(model.get("mcollection"))}); 
+				var request = store.put({unitName:model.get("name"), unitCollection:JSON.stringify(model.get("mcollection"))}); 
 				
 				
 				request.onsuccess = function (e) {
