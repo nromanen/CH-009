@@ -427,7 +427,7 @@ var App = App || {};
 			var store = transaction.objectStore(objStor);            
 		  
 			if (localDatabase != null && localDatabase.db != null) {
-				var request =store.put({tovarName:model.get("nameG"), tovarCollection:JSON.stringify(model.get("goodsCollection")), tovarPrice:goodsPrice}); 
+				var request =store.put({tovarName:model.get("nameG"), tovarCollection:JSON.stringify(model.get("goodsCollection")), tovarPrice: model.get('goodsPrice')}); 
 				
 				
 				request.onsuccess = function (e) {
@@ -479,7 +479,6 @@ var App = App || {};
 					} else {
 					  onSuccessHandler ( goods );
 					}
-			
 			
 			}
 			var onSuccessHandler = function ( goods ) {
@@ -564,6 +563,7 @@ var App = App || {};
 							var newValue = cursor.value;
 							newValue['tovarName'] =  tovarModel.get('nameG');
 							newValue['tovarCollection'] = JSON.stringify(tovarModel.get('goodsCollection'));
+							newValue['tovarPrice'] = tovarModel.get('goodsPrice');
 							store.put(newValue);
 							return;
 						}	

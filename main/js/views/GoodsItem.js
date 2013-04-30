@@ -28,11 +28,11 @@ var App = App || {};
 		confirmRemove: function () {
 			
 			if ( confirm('Are you sure you want to delete this Goods Item?') ) {
+				this.options.goodsModel.set('goodsPrice', this.options.goodsModel.get('goodsPrice')-this.model.get('goodPrice'));		
 				
 				this.model.destroy();
-
 				App.dbConnector.EditGoodsItems(this.options.goodsModel);
-				//App.dbConnector.EditGoodsItem( this.options.goodsModel );
+
 			}	
 			
 		},
@@ -54,9 +54,9 @@ var App = App || {};
 				this.render();
 				return;
 			}	
-
+			var newPrice = value*this.model.get('goodPrice')/this.model.get('count');
 			//App.Events.trigger('newMaterialCount', this.model, value);
-			App.Events.trigger('newUnitsCount', this.model, value);
+			App.Events.trigger('newUnitsCount', this.model, value, newPrice);
 			App.dbConnector.EditGoodsItems( this.options.goodsModel );
 			this.$el.removeClass('editingCount');
 			

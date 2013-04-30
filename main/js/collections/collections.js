@@ -216,10 +216,10 @@ var App = App || {};
 			App.Events.on('newUnitsCount', this.editCount, this);
 		
 		},
-		editCount: function ( model, value ) {
-		
+		editCount: function ( model, value, newPrice ) {
+			model.set({ goodPrice: newPrice});
 			model.set({ count: value });
-		
+			console.log(model);
 		}
 	
 	});
