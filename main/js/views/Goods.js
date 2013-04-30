@@ -24,6 +24,11 @@ var App = App || {};
 		},
 		template: _.template( $('#goods-name').html() ),
 		render: function () {	
+			var goodsHrefId = this.model.get('nameG');
+			goodsHrefId = goodsHrefId.replace(" ","");
+			this.model.set('hrefId', goodsHrefId);
+			console.log(goodsHrefId);
+
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
 			var newGoodsItemsList = new App.Views.GoodsItemsList( { collection: this.model.get( 'goodsCollection' ), model: this.model  } ) ;
