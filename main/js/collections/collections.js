@@ -2,8 +2,9 @@ var App = App || {};
 
 (function () {
 
-	App.Collections.List = Backbone.Collection.extend({     //Матеріали
+	App.Collections.List = Backbone.Collection.extend({ 
 		model: App.Models.Material,
+		url: '/materials.json',
 		initialize: function () {
 		
 			App.Events.on( 'destroyModel', this.destroyModel, this );
@@ -17,6 +18,7 @@ var App = App || {};
 		fetchProducts: function () {
 			
 			App.dbConnector.fetchAll();
+
 			
 		},
 		writeProducts: function ( products ) {
@@ -47,9 +49,14 @@ var App = App || {};
 		}
 	});
 	
-	App.Collections.Units = Backbone.Collection.extend({	//Юніти
+
+
+
+	App.Collections.Units = Backbone.Collection.extend({
+
 	
 		model: App.Models.Unit,
+		url: "/units.json",
 		initialize: function () {
 			
 			App.Events.on( 'addUnit', this.addModel, this );
@@ -58,6 +65,7 @@ var App = App || {};
 			App.Events.on( 'writeUnits', this.writeCollection, this );
 			App.Events.on( 'editUnitName', this.changeName, this );
 			App.dbConnector.openDatabase();
+			
 		},
 		addModel: function ( model ) {
 
@@ -87,12 +95,11 @@ var App = App || {};
 				this.add(mUnit);
 				i++;
 			}
-		
 		},
 		deleteModel: function( model ) {
 			App.dbConnector.deleteUnit( model.get( "name" ) );
 			model.destroy();
-			// виклик видалення моделі колекцій із бази
+			
 
 		},
 		
@@ -103,7 +110,7 @@ var App = App || {};
 	
 	});
 	
-	App.Collections.UnitItems = Backbone.Collection.extend({	//Матеріали в юнітах
+	App.Collections.UnitItems = Backbone.Collection.extend({	
 	
 		model: App.Models.UnitItem,
 		initialize: function () {
@@ -129,7 +136,7 @@ var App = App || {};
 		saveUnitCollection: function () {
 		
 			//App.dbConnector.EditUnitItem ( this.model );
-			console.log('App.dbConnector.EditUnitItem triggered!');
+			//console.log('App.dbConnector.EditUnitItem triggered!');
 		
 		},
 		editCount: function (model, value) {
@@ -149,22 +156,25 @@ var App = App || {};
 			App.Events.on( 'writeGoods', this.writeCollection, this );
 			App.Events.on( 'fetchGoods', this.fetchGoods, this );
 			App.Events.on( 'editGoodsName', this.changeName, this );
+			App.Events.on('newUnitsCount', this.editCount, this);
+
 		},
 		addModel: function (model) {
 			
 			this.add( model );
-			App.dbConnector.AddGoodsToDb( 'Tovaru', model );
 
+			App.dbConnector.AddGoodsToDb( 'Tovaru', model );
 		
 		},
 		deleteModel: function(model){
-			App.dbConnector.deleteGoods(model.get( 'nameG' ));
+			alert(1);
+			App.dbConnector.deleteGoods(this.model.get('nameG'));
 			model.destroy();
 			this.remove(model); 			
 		},
 		writeCollection: function(goods){
 			for(i=0; i<=goods.length-1;i++){
-			
+			  
 				var goodsCollection = new App.Collections.GoodsItems();
 				goodsCollection.add(goods[i].goodsCollection);
 				var mGoods = new App.Models.Unit({
@@ -172,10 +182,30 @@ var App = App || {};
 					goodsCollection: goodsCollection 
 							
 				});
-			
+
 				this.add(mGoods);
 				i++;
-			} 	
+				
+			}	
+
+		},
+		deleteModel: function(model){
+				
+				App.dbConnector.deleteGoods(model.get('nameG'));
+				model.destroy();
+				this.remove(model); 			
+			
+
+		},
+		changeName: function ( model, value ) {
+		
+			//App.dbConnector.changeGoodName( model.get( 'name' ), value );
+			model.set({ nameG: value });
+
+
+				this.add(mGoods);
+				i++;
+			
 		},
 		fetchGoods: function(){
 			
@@ -185,14 +215,28 @@ var App = App || {};
 		changeName: function(model, value){
 			App.dbConnector.changeGoodsName( model.get( 'nameG' ), value );
 			model.set({ nameG: value });
+		},
+		editCount: function (model, value) {
+			model.set({ count: value });
+
 		}
 		
 	});
 
 
 	App.Collections.GoodsItems = Backbone.Collection.extend({
-		model:App.Models.GoodsItem,
 		
+		model:App.Models.GoodsItem,
+		initialize: function () {
+		
+			App.Events.on('newUnitsCount', this.editCount, this);
+		
+		},
+		editCount: function ( model, value ) {
+		
+			model.set({ count: value });
+		
+		}
 	
 	});
 	

@@ -8,8 +8,9 @@ var App = App || {};
 		Views: App.Views || {},
 		Collections: App.Collections || {},
 		dbConnector: App.dbConnector || {},
-		Events : _.extend( {}, Backbone.Events )
-	
+		Events : _.extend( {}, Backbone.Events ),
+		HTML : App.HTML || {}
+		
 	};
 	
 })();
