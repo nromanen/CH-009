@@ -16,7 +16,7 @@ var App = App || {};
 		addOne: function(modelMaterial) {
 			var MaterialsCollection = this.model.get ( 'mcollection' );
 			var MaterialView = new App.Views.MaterialPlus({ model: modelMaterial, collection: MaterialsCollection, something: this.model });
-			//console.log( this.model );
+			//console.log( JSON.stringify( MaterialsCollection.where({price: "500"}) ) );
 			MaterialView.render();
 			this.$el.append( MaterialView.el );
 			
@@ -32,8 +32,6 @@ var App = App || {};
 	App.Views.MaterialPlus = Backbone.View.extend({ // это вид модели
 		tagName: 'li',
 		initialize: function () {
-			//this.model.on('change:material', this.render, this);
-			//this.model.on('change:price', this.render, this);
 			this.collection.on('add', this.saveUnitCollection, this);
 			this.model.on( 'plus', this.plus, this );
 		},
@@ -50,8 +48,7 @@ var App = App || {};
 			if ( ( quantity !== '' ) && ( quantity !== null ) ) {
 				this.model.set ( { count: quantity } )
 				this.collection.add ( this.model );
-				this.options.something.set("mcollection", this.collection);
-				console.log ( this.options.something ); 	
+				this.options.something.set("mcollection", this.collection);	
 			} else {
 				alert( 'You have not entered a correct value!' );
 			}
@@ -59,7 +56,7 @@ var App = App || {};
 		saveUnitCollection: function () {
 			
 
-			//App.dbConnector.EditUnitItem (this.options.something);
+			App.dbConnector.EditUnitItem (this.options.something);
 			console.log('App.dbConnector.EditUnitItem triggered!');
 		},
 		

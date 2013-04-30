@@ -3,7 +3,7 @@ var App = App || {};
 (function () {
 
 	App.Views.UnitItem = Backbone.View.extend({
-	
+
 		tagName: 'li',
 		initialize: function (){
 			this.model.on( 'destroy', this.remove, this );
@@ -15,10 +15,11 @@ var App = App || {};
 			'keypress .editMaterialCount': 'updateOnEnter',
 			'blur .editMaterialCount': 'close'
 		},
-		template: _.template( $('#unit-count').html() ),
+		template: '<something here>',
 		render: function () {
 			var strTemplate = this.template( this.model.toJSON() );
-			this.$el.html( strTemplate );
+			this.$el.html( strTemplate );	
+
 			this.$input = this.$('.editMaterialCount');
 			this.$input.val( this.model.get( 'count' ) );
 		},
@@ -40,7 +41,7 @@ var App = App || {};
 		},
 		close: function () {
 			var value = this.$input.val().trim();
-			 if ( isNaN ( value )  || value <0 || value == '') {
+			 if ( isNaN ( value ) || value <0 || value == '') {
 				this.$el.removeClass('editingCount');
 				this.render();
 				return;
@@ -61,15 +62,23 @@ var App = App || {};
 	
 	App.Views.UnitItemsList = Backbone.View.extend({  // это вид коллекции
 	
-		tagName: 'ul',
-		className:'nav nav-tabs',
+		tagName: 'div',
 		initialize: function () {
-			this.collection.on('add', this.addOne, this);
+			//this.collection.on('add', this.addOne, this);	
+
+			this.el.id = this.model.get( 'name' ).replace(/\s/g, ''); // надає ім'я id без пробілів
 			
 		},
+		className: 'accordion-body collapse',
+		template: _.template( $('#unit-count').html() ),
 		render: function () {
-			this.collection.each(this.addOne, this);
-			return this;
+
+			//console.log ( this.model.toJSON() );
+			var strTemplate = this.template( this.model.toJSON() );
+
+			console.log ( this.$el );
+			this.$el.html ( strTemplate  );
+			
 		},
 		addOne: function( modelUnitItem ) {
 			var unitItemView = new App.Views.UnitItem({ model: modelUnitItem, unitModel: this.model });
