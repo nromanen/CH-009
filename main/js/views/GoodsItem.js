@@ -54,8 +54,9 @@ var App = App || {};
 				this.render();
 				return;
 			}	
+			var oldPrice = this.model.get('goodPrice');
 			var newPrice = value*this.model.get('goodPrice')/this.model.get('count');
-			//App.Events.trigger('newMaterialCount', this.model, value);
+			this.options.goodsModel.set('goodsPrice', this.options.goodsModel.get('goodsPrice')-oldPrice+newPrice);
 			App.Events.trigger('newUnitsCount', this.model, value, newPrice);
 			App.dbConnector.EditGoodsItems( this.options.goodsModel );
 			this.$el.removeClass('editingCount');
