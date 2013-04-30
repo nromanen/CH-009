@@ -24,22 +24,25 @@ var App = App || {};
 		},
 		template: _.template( $('#goods-name').html() ),
 		render: function () {	
+
+			var goodsHrefId = this.model.get('nameG');
+			goodsHrefId = goodsHrefId.replace(" ","");
+			this.model.set('hrefId', goodsHrefId);
+			console.log(goodsHrefId);
+
+
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
 			var newGoodsItemsList = new App.Views.GoodsItemsList( { collection: this.model.get( 'goodsCollection' ), model: this.model  } ) ;
 
 			this.$('.goods_info').append( newGoodsItemsList.el );
 			newGoodsItemsList.render();
+			
 			this.$input = this.$('.edit_goods_name');
-
-
-
 			
 		}, 
 		goodsToggle: function () {
 			
-						
-
 				this.$('.goods_info').show();
 							
 			
@@ -112,6 +115,7 @@ var App = App || {};
 		render: function () {
 				
             this.$el.html('');
+
           	this.collection.each( this.addOne, this );
 			return this;
 			

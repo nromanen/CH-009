@@ -159,13 +159,11 @@ var App = App || {};
 			$('.container').append($('#addUnit2GoodsTemplate').html());
 			var addGoods2 = new App.Views.AddGoods ( { collection: App.Goods } );
 
-			
-			console.log(viewProducts.el);
-
 			$('#products').append( viewProducts.el );
 			
 			viewProducts.render();
 			$('.buttonPlace').html($('#addUnit2GoodsButton').html());
+
 			// rendering the content of the Units Tab
 			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
 			viewUnits.render();
@@ -173,6 +171,9 @@ var App = App || {};
 				id      : 'units',
 				active  : '',
 			}) );
+			$('#units').append( $( '#addNewUnitButton' ).html() );
+			$('#units').append( $( '#addNewUnitModal' ).html() );
+			var addNewUnits = new App.Views.AddUnit( { collection: App.Materials } );
 			$('#units').append( viewUnits.el );
 
 
