@@ -4,7 +4,7 @@ var App = App || {};
 
 	App.Collections.List = Backbone.Collection.extend({ 
 		model: App.Models.Material,
-		url: "/materials.json",
+		url: '/materials.json',
 		initialize: function () {
 		
 			App.Events.on( 'destroyModel', this.destroyModel, this );
@@ -49,7 +49,11 @@ var App = App || {};
 		}
 	});
 	
+
+
+
 	App.Collections.Units = Backbone.Collection.extend({
+
 	
 		model: App.Models.Unit,
 		url: "/units.json",

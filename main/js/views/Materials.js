@@ -109,7 +109,7 @@ var App = App || {};
 			
 			var modelMaterial = new App.Models.Material({ 
 				material: strMaterial, 
-				price: strPrice 
+				price: parseInt(strPrice) 
 			});
 			
 			App.Events.trigger( 'addModel', modelMaterial );

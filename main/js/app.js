@@ -10,6 +10,7 @@ var App = App || {};
 	//App.UnitCollection = new Array(); 
 	
 	console.log(App.Units.models);
+	location.hash = '';
 	App.Router1 = new App.Router();
-	Backbone.history.start();
+	Backbone.history.start({hashChange:true});
 }()); 
