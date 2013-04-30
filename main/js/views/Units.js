@@ -12,7 +12,7 @@ var App = App || {};
 		},
 		events: {
 			'click .unit_name' : 'unitToggle',
-			'click .deleteUnit' : 'unitDeleteItem',
+			'click .delete_unit' : 'unitDeleteItem',
 			'click .edit_unitItem' : 'changeUnitName',
 			'keypress .edit_unit_name': 'updateOnEnter',
 			'blur .edit_unit_name': 'close'

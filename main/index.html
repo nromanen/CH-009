@@ -264,9 +264,9 @@
 				<div style="height:15px;"></div>	
 		</script>
 
-		<script type="text/template" id="unit-count">
+		<script type="text/template" id="materials-table">
 			<div class="accordion-inner">
-			    <table class="table">
+			   <table class="table">
 					<thead>
 						<tr>
 							<th> Units </th>
@@ -276,26 +276,30 @@
 							<th> Price total </th>
 						</tr>
 					</thead>
-					<tbody class="holder">						
-						<tr>
-			            	<td> material </td>
-			            	<td> count </td>
-			            	<td> <div class="editCount"></div> </td>
-			            	<td> <div class="delete" title="Delete material material"></div></td>
-			            	<td> $120 </td>
-			            </tr>
+					<tbody id="<%= unitName %>_tableRow" class="holder">						
+
 			            <tr>	
 			        		<td id="buttonPlace" colspan="4">
-								<a href="#addUnit2Goods" role="button" class="btn btn-info btn-small" data-toggle="modal"><i class="icon-white icon-plus"></i> Units</a>
+								<a href="#addMaterial2Unit" role="button" class="btn btn-info btn-small" data-toggle="modal"><i class="icon-white icon-plus"></i> Materials</a>
 							</td>
 							<td>
 								Unit price: <b>$200</b>
 							</td>
 			        	</tr>			
 					</tbody>			    	
-			    </table>
-			</div>
+			    </table> 
+			</div>			 
 		</script>
+
+		<script type="text/template" id="materials-row-in-unit">
+			<tr>
+            	<td> material </td>
+            	<td> count </td>
+            	<td> <div class="editCount"></div> </td>
+            	<td> <div class="delete" title="Delete material material"></div></td>
+            	<td> $120 </td>
+            </tr>
+        </script>
 
 <!-- other templates -->
 
