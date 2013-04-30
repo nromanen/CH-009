@@ -14,47 +14,52 @@ var App = App || {};
 		},
 		
 		events: {
+		
 			'click .accordion-heading' : 'goodsToggle',
-			'click .deleteGoods' : 'goodsDeleteItem',
+			'click .delete_goods' : 'goodsDeleteItem',
 			'click .edit_goodsItem' : 'changeGoodsName',
-			'dblclick .goods_name' : 'changeGoodsName',
 			'keypress .edit_goods_name': 'updateOnEnter',
-			'blur .edit_goods_name': 'close'
+			'blur .edit_goods_name': 'close',
+			'click .btn':'inputUnits'
 		},
 		template: _.template( $('#goods-name').html() ),
 		render: function () {	
+			
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
 			var newGoodsItemsList = new App.Views.GoodsItemsList( { collection: this.model.get( 'goodsCollection' ), model: this.model  } ) ;
+
 			this.$('.goods_info').append( newGoodsItemsList.el );
 			newGoodsItemsList.render();
-			this.$input = this.$('.edit_goods_name');	
+			
+			this.$input = this.$('.edit_goods_name');
+			
 		}, 
 		goodsToggle: function () {
 			
-			var jq_goods_holder = '.accordion-heading';
-			var jq_goods_info = '.goods_info';
-			
-			var jq_AddUnitsList = '.AddUnitsList';
-			
-			
+				this.$('.goods_info').show();
+							
 			
 				
-				this.$( jq_goods_info ).show();
-				
-				var AddUnitsList = new App.Views.AddUnitsList( { collection: App.Units, model : this.model	} );
 
-				AddUnitsList.render();
 				
-				$( jq_AddUnitsList ).html('');
-				$( jq_AddUnitsList ).append( AddUnitsList.el );
-				
-			
+
 			
 		},
+		inputUnits: function (){
+			
+				var AddUnitsList = new App.Views.AddUnitsList( { collection: App.Units, model : this.model	} );
+				AddUnitsList.render();
+				$( '#unitContainer' ).html( AddUnitsList.el );
+
+
+		},
+
+
 		goodsDeleteItem: function() {
 		
 			if ( confirm('Are you sure you want to delete this Goods?') ) {
+				
 				App.Events.trigger( 'goodsDelete', this.model );
 			}
 		
@@ -66,20 +71,19 @@ var App = App || {};
 	
 		},
 		changeGoodsName: function () {
-		
 			this.$el.addClass('editing');
 			this.$input.focus();
 			
 		},
 		close: function () {
 			var value = this.$input.val().trim();
-			if ( value == '' ) {
-				this.$el.removeClass( 'editing' );
-				return;
+			if ( value =='' ) {
+			this.$el.removeClass('editing');
+			return;
 			};
 			if  ( ! value ) {
-				this.$el.removeClass( 'editing' );
-				return;
+			this.$el.removeClass('editing');
+			return;
 			}
 			App.Events.trigger('editGoodsName', this.model, value);
 			this.$el.removeClass('editing');
@@ -90,18 +94,22 @@ var App = App || {};
 			}
 		},
 		
+		
+		
 	});
 	
 	App.Views.GoodsList = Backbone.View.extend({  // это вид коллекции
 		
 		tagName: 'div',
-		
+
 		initialize: function () {
-			this.collection.on('add', this.render, this);
+			this.collection.on('add', this.addOne, this);
+			
 		},
 		render: function () {
 				
             this.$el.html('');
+
           	this.collection.each( this.addOne, this );
 			return this;
 			
