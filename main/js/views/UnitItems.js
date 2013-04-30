@@ -76,7 +76,7 @@ var App = App || {};
 			//console.log ( this.model.toJSON() );
 			var strTemplate = this.template( this.model.toJSON() );
 
-			console.log ( this.$el );
+			//console.log ( this.$el );
 			this.$el.html ( strTemplate  );
 			
 		},

@@ -23,6 +23,12 @@ var App = App || {};
 			"click #showUnit" : "showUnit",
 			"click #showGoods" : "showGoods"
 		},
+		clearDB: function() {
+
+			App.dbConnector.deleteDatabase();
+			window.location.reload()
+
+		},
 		sendData: function() {
 
 			var uniCol = JSON.stringify( App.Units );
@@ -64,10 +70,10 @@ var App = App || {};
 			fetchMaterials();
 			fetchUnits();
 			
-			console.log( App.Units.toJSON() );
+			/*console.log( App.Units.toJSON() );
 			console.log( App.Materials.toJSON() );
 			console.log( JSON.stringify(App.Units) );
-			console.log( JSON.stringify(App.Materials) );
+			console.log( JSON.stringify(App.Materials) );*/
 
 		},
 		chooseRole: function () {
@@ -206,13 +212,11 @@ var App = App || {};
 
 		},
 		renderBeginning: function ( userName, tabName ) {
-
+			var that = this;
 			$('.container-navbar').html(''); 
 			$('.container-navbar').append ( _.template ( $('#navbar').html(), { user : userName } ) );
-			var that = this;
-			$('#fetchData').bind('click', function() {
-			 	that.fetchData();
-			});
+			$('#fetchData').bind('click', function() { that.fetchData(); });
+			$('#clearDB').bind('click', function() { that.clearDB(); });
 			$('.container').html('');  //empty main container 
 			$('.container').append( App.HTML.Row );
 			$('.content').append( $('#' + tabName ).html() );

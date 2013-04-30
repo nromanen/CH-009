@@ -27,7 +27,7 @@ var App = App || {};
 			var newUnitItemsList = new App.Views.UnitItemsList( { collection: this.model.get( 'mcollection' ), model: this.model  } ) ;
 			newUnitItemsList.render();
 
-			console.log ( $(this) );	
+			//console.log ( $(this) );	
 
 			//console.log ( newUnitItemsList.el );
 
