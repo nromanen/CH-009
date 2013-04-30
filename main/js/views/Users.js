@@ -42,6 +42,7 @@ var App = App || {};
 			$('.container').append( gooCol +"<br><br>" );
 
 		},
+		
 		fetchData: function() { //fetching data from json files, letter from the server
 
 
@@ -215,8 +216,10 @@ var App = App || {};
 			var that = this;
 			$('.container-navbar').html(''); 
 			$('.container-navbar').append ( _.template ( $('#navbar').html(), { user : userName } ) );
+
 			$('#fetchData').bind('click', function() { that.fetchData(); });
 			$('#clearDB').bind('click', function() { that.clearDB(); });
+
 			$('.container').html('');  //empty main container 
 			$('.container').append( App.HTML.Row );
 			$('.content').append( $('#' + tabName ).html() );
