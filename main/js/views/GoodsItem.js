@@ -90,6 +90,7 @@ var App = App || {};
 		addOne: function( modelGoodsItem ) {
 	
 			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
+			$("#"+this.model.get("nameG")+"_tableRow").prepend( goodsItemView.el );
 			console.log("render");
 			$("#"+this.model.get("nameG").replace(" ","")+"_tableRow").prepend( goodsItemView.el );
 			goodsItemView.render();

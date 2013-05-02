@@ -59,7 +59,7 @@ var App = App || {};
 		
 	
 	});
-	
+	 
 	App.Views.UnitItemsList = Backbone.View.extend({  // это вид коллекции
 	
 		tagName: 'div',
@@ -70,18 +70,20 @@ var App = App || {};
 			
 		},
 		className: 'accordion-body collapse',
-		template: _.template( $('#unit-count').html() ),
+		template: _.template( $('#materials-table').html() ),
 		render: function () {
 
 			//console.log ( this.model.toJSON() );
 			var strTemplate = this.template( this.model.toJSON() );
-
-			console.log ( this.$el );
 			this.$el.html ( strTemplate  );
+			this.collection.each(this.addOne, this);
+			return this;
 			
 		},
 		addOne: function( modelUnitItem ) {
 			var unitItemView = new App.Views.UnitItem({ model: modelUnitItem, unitModel: this.model });
+			console.log( this.model.get( 'name' ) );
+			$("#"+this.model.get( 'name' )+"_tableRow").prepend( goodsItemView.el );
 			unitItemView.render();
 			this.$el.append( unitItemView.el );
 		}
