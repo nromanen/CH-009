@@ -4,7 +4,7 @@ var App = App || {};
 
 	App.Views.UnitItem = Backbone.View.extend({
 
-		tagName: 'li',
+		tagName: 'tr',
 		initialize: function (){
 			this.model.on( 'destroy', this.remove, this );
 			this.model.on( 'change', this.render, this);
@@ -15,8 +15,14 @@ var App = App || {};
 			'keypress .editMaterialCount': 'updateOnEnter',
 			'blur .editMaterialCount': 'close'
 		},
-		template: '<something here>',
+		template: _.template( $('#materials-row-in-unit').html() ),
 		render: function () {
+			var price = this.model.get( 'price' );
+			if ( price === undefined ) { 
+				price = '120';
+				this.model.set( 'price', price );
+			}
+			
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );	
 
@@ -36,8 +42,7 @@ var App = App || {};
 		},
 		changeCount: function () {
 			this.$el.addClass('editingCount');
-			this.$input.focus();
-			
+			this.$input.focus();		
 		},
 		close: function () {
 			var value = this.$input.val().trim();
@@ -59,31 +64,32 @@ var App = App || {};
 		
 	
 	});
-	
+	 
 	App.Views.UnitItemsList = Backbone.View.extend({  // это вид коллекции
 	
 		tagName: 'div',
 		initialize: function () {
-			//this.collection.on('add', this.addOne, this);	
-
+			
+			this.collection.on('add', this.addOne, this);	
 			this.el.id = this.model.get( 'name' ).replace(/\s/g, ''); // надає ім'я id без пробілів
 			
 		},
 		className: 'accordion-body collapse',
-		template: _.template( $('#unit-count').html() ),
+		template: _.template( $('#materials-table').html() ),
 		render: function () {
 
-			//console.log ( this.model.toJSON() );
 			var strTemplate = this.template( this.model.toJSON() );
-
-			console.log ( this.$el );
 			this.$el.html ( strTemplate  );
+			this.collection.each(this.addOne, this);
+			return this;
 			
 		},
 		addOne: function( modelUnitItem ) {
+
 			var unitItemView = new App.Views.UnitItem({ model: modelUnitItem, unitModel: this.model });
 			unitItemView.render();
-			this.$el.append( unitItemView.el );
+			this.$el.find( '#' + this.model.get( 'name' ) + '_tableRow' ).prepend( unitItemView.el );
+
 		}
 	
 	});
