@@ -70,7 +70,6 @@ var App = App || {};
 
 			//App.dbConnector.EditUnitItem (this.options.something);
 			console.log('App.dbConnector.EditUnitItem triggered!');
-			
 		},
 		
 		

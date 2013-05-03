@@ -4,52 +4,46 @@ var App = App || {};
 
 	App.Views.GoodsItem = Backbone.View.extend({
 	
-	tagName: 'li',
+	tagName: 'tr',
 		initialize: function (){
 			this.model.on( 'destroy', this.remove, this );
-			this.model.on( 'change', this.render, this);
+			//this.model.on( 'change', this.render, this);
 		},
 		events: {
 			'click .delete' : 'confirmRemove',
 			'click .editCount' : 'changeCount',
-			'dblclick .count' : 'changeCount',
 			'keypress .editUnitsCount': 'updateOnEnter',
 			'blur .editUnitsCount': 'close'
 		},
 		template: _.template( $('#goods-count').html() ),
-		render: function () {
-		
-			var strTemplate = this.template( this.model.toJSON() );
+		render: function () {	
+			
+			this.model.set('nameGoods', this.options.goodsModel.get('nameG'));
+			
+			var strTemplate = this.template( this.model.toJSON());
 			this.$el.html( strTemplate );
 			this.$input = this.$('.editUnitsCount');
 			this.$input.val( this.model.get( 'count' ) );
-		
+
 		},
 		confirmRemove: function () {
-			
 			if ( confirm('Are you sure you want to delete this Goods Item?') ) {
 				this.options.goodsModel.set('goodsPrice', this.options.goodsModel.get('goodsPrice')-this.model.get('goodPrice'));		
 				
 				this.model.destroy();
 				App.dbConnector.EditGoodsItems(this.options.goodsModel);
-
 			}	
-			
 		},
 		remove: function () {
 			this.$el.remove();
-		
 		},
 		changeCount: function () {
-		
 			this.$el.addClass('editingCount');
 			this.$input.focus();
-			
 		},
 		close: function () {
-		
 			var value = this.$input.val().trim();
-			 if ( isNaN ( value )  || value < 0 || value == '') {
+			 if ( isNaN ( value )  || value <0 || value == '') {
 				this.$el.removeClass('editingCount');
 				this.render();
 				return;
@@ -73,24 +67,38 @@ var App = App || {};
 	
 	App.Views.GoodsItemsList = Backbone.View.extend({  // это вид коллекции
 	
-	tagName: 'ul',
+	tagName: 'div',
+	className:'accordion-body collapse',
 		initialize: function () {
+
 			this.collection.on('add', this.addOne, this);
+			this.el.id=this.model.get('nameG');	
+
 		},
+		template: _.template( $('#units-table').html() ),
 		render: function () {
+			var strTemplate = this.template( {nameGoods:this.model.get('nameG')});
+			this.$el.html( strTemplate );
 			this.collection.each(this.addOne, this);
 			return this;
 		},
 		addOne: function( modelGoodsItem ) {
+	
 			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
+			console.log("render");
+			$("#"+this.model.get("nameG")+"_tableRow").prepend( goodsItemView.el );
 			goodsItemView.render();
-			this.$el.append( goodsItemView.el );
+
+			$('.buttonPlace').html($('#addUnit2GoodsButton').html());
+
+			
 		},
 		ItemRemove: function() {
 			//console.log(this);
 			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
 			goodsItemView.render();
 			this.$el.append( goodsItemView.el );
+
 		},
 		ItemRemove: function() {
 			console.log(this);
