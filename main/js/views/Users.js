@@ -42,7 +42,20 @@ var App = App || {};
 			$('.container').append( gooCol +"<br><br>" );
 
 		},
-		
+		SaveCollectionsToDb: function() {
+			for (var i = 0; i < App.Materials.length; i++) {
+				var model = App.Materials.at(i)
+				App.dbConnector.addProduct ( model.get("material"), model.get("price") );
+				console.log("save materials to db complete");
+			};
+
+			for (var i = 0; i < App.Units.length; i++){
+				var model = App.Units.at(i);
+				App.dbConnector.AddUnit ( "Units", model );
+				console.log("save units to db complete");
+			};
+
+		},
 		fetchData: function() { //fetching data from json files, letter from the server
 
 
@@ -50,22 +63,14 @@ var App = App || {};
 				var mat = App.Materials.fetch( { update: true } );
 				mat ? console.log("materials fetch done") : console.log("materials fetch failed");
 
-				for (var i = 0; i < App.Materials.length; i++) {
-					var model = App.Materials.at(i)
-					App.dbConnector.addProduct ( model.get("material"), model.get("price") );
-					console.log("save materials to db complete");
-				};
+				
 			};
 
 			function fetchUnits() {
+
 				var uni = App.Units.fetch( { update: true } );
 				uni ? console.log("units fetch done") : console.log("units fetch failed");
-				for (var i = 0; i < App.Units.length; i++){
-					var model = App.Units.at(i);
-					App.dbConnector.AddUnit ( "Units", model );
-					console.log("save units to db complete");
-				}
-
+				
 			};
 
 			fetchMaterials();
@@ -219,6 +224,7 @@ var App = App || {};
 
 			$('#fetchData').bind('click', function() { that.fetchData(); });
 			$('#clearDB').bind('click', function() { that.clearDB(); });
+			$('#saveCollectionsToDb').bind('click', function() { that.SaveCollectionsToDb(); });
 
 			$('.container').html('');  //empty main container 
 			$('.container').append( App.HTML.Row );
