@@ -106,7 +106,7 @@ var App = App || {};
 			}) ); 
 			$('#products').append( viewProducts.el );
 
-			viewProducts.render();
+		//	viewProducts.render();
 			$('.buttonPlace').html("")
 			// rendering the content of the Units Tab
 			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );

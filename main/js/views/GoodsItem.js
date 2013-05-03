@@ -7,7 +7,7 @@ var App = App || {};
 	tagName: 'tr',
 		initialize: function (){
 			this.model.on( 'destroy', this.remove, this );
-			this.model.on( 'change', this.render, this);
+			//this.model.on( 'change', this.render, this);
 		},
 		events: {
 			'click .delete' : 'confirmRemove',
@@ -73,16 +73,12 @@ var App = App || {};
 		initialize: function () {
 
 			this.collection.on('add', this.addOne, this);
-
-			this.el.id=this.model.get('nameG').replace(" ","");	
-
+			this.el.id=this.model.get('nameG');	
 
 		},
 		template: _.template( $('#units-table').html() ),
 		render: function () {
-
-			
-			var strTemplate = this.template( {nameGoods:this.model.get('nameG').replace(" ","")});
+			var strTemplate = this.template( {nameGoods:this.model.get('nameG')});
 			this.$el.html( strTemplate );
 			this.collection.each(this.addOne, this);
 			return this;
@@ -91,7 +87,7 @@ var App = App || {};
 	
 			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
 			console.log("render");
-			$("#"+this.model.get("nameG").replace(" ","")+"_tableRow").prepend( goodsItemView.el );
+			$("#"+this.model.get("nameG")+"_tableRow").prepend( goodsItemView.el );
 			goodsItemView.render();
 			$('.buttonPlace').html($('#addUnit2GoodsButton').html());
 
