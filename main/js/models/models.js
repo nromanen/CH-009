@@ -14,7 +14,8 @@ var App = App || {};
 		unitID: 1,
 		material: '',
 		count: 0,
-		sumPrice: 0
+		unitItemPrice: 0
+
 	
 	});
 	
@@ -36,7 +37,7 @@ var App = App || {};
 		
 		units: '',
 		count: 0,
-		goodPrice: 0
+		goodsItemPrice: 0
 
 		
 	});

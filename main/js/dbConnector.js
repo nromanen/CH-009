@@ -137,15 +137,17 @@ var App = App || {};
 					var cursor = evt.target.result;
 					if ( cursor ) {
 						if ( cursor.value.unitName ===  model.get('name') ) {
+							console.log("value event");
 							var newValue = cursor.value;
 							newValue.unitName =  model.get('name');
 							newValue.unitCollection = JSON.stringify(model.get('mcollection'));
 							newValue.unitSumPrice =  model.get('unitPrice');
 							store.put(newValue);
-							console.log("Unit rename succesfull");
 							return;
+
 						}	
 					cursor.continue(); 	
+
 					}
 									
 				}	
@@ -216,7 +218,7 @@ var App = App || {};
 									units[pointer++] = new Units ({
 									name:cursor.value.unitName,
 									mcollection:JSON.parse(cursor.value.unitCollection),
-									unitPrice: cursor.value.unitSumPrice
+									unitPrice: 0
 									});
 								cursor.continue(); 	
 								}else{

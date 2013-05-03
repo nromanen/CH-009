@@ -19,7 +19,7 @@ var App = App || {};
 		render: function () {	
 			
 			this.model.set('nameGoods', this.options.goodsModel.get('nameG'));
-			
+
 			var strTemplate = this.template( this.model.toJSON());
 			this.$el.html( strTemplate );
 			this.$input = this.$('.editUnitsCount');
@@ -85,12 +85,12 @@ var App = App || {};
 		addOne: function( modelGoodsItem ) {
 	
 			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
+			$("#"+this.model.get("nameG")+"_tableRow").prepend( goodsItemView.el );
 			console.log("render");
 			$("#"+this.model.get("nameG")+"_tableRow").prepend( goodsItemView.el );
 			goodsItemView.render();
 
 			$('.buttonPlace').html($('#addUnit2GoodsButton').html());
-
 			
 		},
 		ItemRemove: function() {
@@ -98,7 +98,6 @@ var App = App || {};
 			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
 			goodsItemView.render();
 			this.$el.append( goodsItemView.el );
-
 		},
 		ItemRemove: function() {
 			console.log(this);

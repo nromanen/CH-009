@@ -84,8 +84,29 @@ var App = App || {};
 			
 				var unitCollection = new App.Collections.UnitItems();
 				
+				_.each( units[i].mcollection,  function ( model ) {
+
+					App.Materials.each ( function (material) {
+						if (model['material'] == material.get('material')) {
+							model['unitItemPrice']=material.get('price')*model['count'];
+						}
+					} );
+
+				});
+
+				_.each( units[i].mcollection,  function ( model ) {
+
+					units[i].unitPrice=units[i].unitPrice+model['unitItemPrice'];
+				});
+
 				unitCollection.add(units[i].mcollection);
 				
+				/*	unitCollection.each(function ( model ) {
+
+					console.log ( model );
+
+				}); */
+
 				var mUnit = new App.Models.Unit({
 					name:units[i].name,
 					mcollection:unitCollection,
@@ -134,8 +155,7 @@ var App = App || {};
 		},
 		saveUnitCollection: function () {
 		
-			//App.dbConnector.EditUnitItem ( this.model );
-			//console.log('App.dbConnector.EditUnitItem triggered!');
+			//console.log ( this );
 		
 		},
 		editCount: function (model, value) {

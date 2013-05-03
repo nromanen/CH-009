@@ -59,8 +59,7 @@ var App = App || {};
 			}
 		},
 		saveUnitCollection: function () {
-			
-
+		
 			//App.dbConnector.EditUnitItem (this.options.something);
 			console.log('App.dbConnector.EditUnitItem triggered!');
 		},

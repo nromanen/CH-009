@@ -12,10 +12,11 @@ var App = App || {};
 		},
 		events: {
 			'click .unit_name' : 'unitToggle',
-			'click .deleteUnit' : 'unitDeleteItem',
+			'click .delete_unit' : 'unitDeleteItem',
 			'click .edit_unitItem' : 'changeUnitName',
 			'keypress .edit_unit_name': 'updateOnEnter',
-			'blur .edit_unit_name': 'close'
+			'blur .edit_unit_name': 'close',
+			'click .add-material-to-unit' : 'inputMaterials'
 		},
 		template: _.template( $('#unit-name').html() ),
 
@@ -28,7 +29,7 @@ var App = App || {};
 			var newUnitItemsList = new App.Views.UnitItemsList( { collection: this.model.get( 'mcollection' ), model: this.model  } ) ;
 			newUnitItemsList.render();
 
-			console.log ( $(this) );	
+			//console.log ( $(this) );	
 
 			//console.log ( newUnitItemsList.el );
 
@@ -67,6 +68,13 @@ var App = App || {};
 				$( '.AddMaterialsList' ).hide();
 			
 			}
+
+		},
+		inputMaterials: function () {
+			
+			var AddMaterialsList = new App.Views.AddMaterialsList( { collection: App.Materials, model : this.model	} );
+			AddMaterialsList.render();
+			$( '#materialsContainer' ).html( AddMaterialsList.el );
 
 		},
 		unitDeleteItem: function() {
