@@ -10,7 +10,7 @@ var App = App || {};
 		initialize: function () {
 			
 
-			this.model.on( 'change:nameG', this.render, this);
+			this.model.on( 'change:nameG', this.nameUpDate, this);
 			this.model.on( 'destroy', this.goodsRemoveItem, this );
 
 		},
@@ -27,10 +27,10 @@ var App = App || {};
 		template: _.template( $('#goods-name').html() ),
 		render: function () {	
 			
-			var goodsHrefId = this.model.get('nameG');
+			var goodsHrefId = this.model.cid;
 			goodsHrefId = goodsHrefId.replace(" ","");
 			this.model.set('hrefId', goodsHrefId);
-			//console.log(goodsHrefId);
+			console.log(this.model.cid);
 
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
@@ -42,6 +42,13 @@ var App = App || {};
 			this.$input = this.$('.edit_goods_name');
 			
 		}, 
+		nameUpDate: function (){
+
+			console.log($('#'+this.model.cid+"_goodsId").html(this.model.get("nameG")));
+
+
+
+		},
 		goodsToggle: function () {
 			
 				this.$('.goods_info').show();

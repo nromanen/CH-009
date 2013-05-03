@@ -18,7 +18,7 @@ var App = App || {};
 		template: _.template( $('#goods-count').html() ),
 		render: function () {	
 			
-			this.model.set('nameGoods', this.options.goodsModel.get('nameG'));
+			this.model.set('nameGoods', this.options.goodsModel.cid);
 			
 			var strTemplate = this.template( this.model.toJSON());
 			this.$el.html( strTemplate );
@@ -73,13 +73,13 @@ var App = App || {};
 		initialize: function () {
 
 			this.collection.on('add', this.addOne, this);
-			this.el.id=this.model.get('nameG');	
+			this.el.id=this.model.cid;	
 
 		},
 		template: _.template( $('#units-table').html() ),
 
 		render: function () {			
-			var strTemplate = this.template( { nameGoods:this.model.get('nameG').replace(" ","") } );
+			var strTemplate = this.template( { nameGoods:this.model.cid } );
 
 			this.$el.html( strTemplate );
 			this.collection.each(this.addOne, this);
@@ -88,7 +88,7 @@ var App = App || {};
 		addOne: function( modelGoodsItem ) {
 	
 			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
-			$("#"+this.model.get("nameG").replace(" ","")+"_tableRow").prepend( goodsItemView.el );
+			$("#"+this.model.cid+"_tableRow").prepend( goodsItemView.el );
 			console.log("render");
 			
 			goodsItemView.render();

@@ -52,7 +52,7 @@ var App = App || {};
 
 				this.collection.add (new App.Models.GoodsItem({units:this.model.get ( 'name' ), count:quantity}));
 				//console.log(this.collection);	
-				this.options.something.set("goodsCollection", this.collection);
+				//this.options.something.set("goodsCollection", this.collection);
 				App.dbConnector.EditGoodsItems(this.options.something);
 				console.log ( this.options.something ); 	
 
