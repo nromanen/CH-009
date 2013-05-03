@@ -13,7 +13,8 @@ var App = App || {};
 	
 		unitID: 1,
 		material: '',
-		count: 0
+		count: 0,
+		price: 0
 	
 	});
 	

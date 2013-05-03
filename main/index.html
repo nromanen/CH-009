@@ -147,22 +147,36 @@
 				</div>
 		</script>
 
-			<script type="text/template" id="addUnit2GoodsTemplate">
-			<div id="addUnit2Goods" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<script type="text/template" id="addMaterial2UnitModal">
+			<div id="addMaterial2Unit" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				  <div class="modal-header">
 				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 				    <h3 id="myModalLabel">Add New Material</h3>
 				  </div>
-				  <div id="unitContainer" class="modal-body">
-				    	
-					
+				  <div id="materialsContainer" class="modal-body">
 
 				  </div>
 				  <div class="modal-footer">
-				    <button class="btn close-addNewMaterial" data-dismiss="modal" aria-hidden="true">Close</button>
+				    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 				    <button class="btn btn-primary save-material">Save changes</button>
 				  </div>
 				</div>
+		</script>
+
+		<script type="text/template" id="addUnit2GoodsTemplate">
+			<div id="addUnit2Goods" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-header">
+			    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			    <h3 id="myModalLabel">Add New Material</h3>
+			  </div>
+			  <div id="unitContainer" class="modal-body">
+
+			  </div>
+			  <div class="modal-footer">
+			    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+			    <button class="btn btn-primary save-material">Save changes</button>
+			  </div>
+			</div>
 		</script>
 
 
@@ -242,14 +256,17 @@
 			<div class="goods_holder">
 						<div class="accordion-heading">
 					      <a class="accordion-toggle" data-toggle="collapse" data-parent="#goods_holder" href="#<%= hrefId %>">
-					        <%= nameG %><div class="delete_goods"></div>
+					        <span id="<%= hrefId %>_goodsId" class="goods_name_id"><%= nameG %></span>
+
+					        <input class="edit_goods_name" type="text">
+					        <div class="delete_goods"></div><div class="edit"></div>
 					      </a>
 					    </div>
 
-				<div class="goods_info"></div>
+				
 			</div>
 			<div class="clear"></div>	
-			<div style="height:15px;"></div>
+		
 		</script>
 		
 
@@ -265,9 +282,9 @@
 				<div style="height:15px;"></div>	
 		</script>
 
-		<script type="text/template" id="unit-count">
+		<script type="text/template" id="materials-table">
 			<div class="accordion-inner">
-			    <table class="table">
+			   <table class="table">
 					<thead>
 						<tr>
 							<th> Units </th>
@@ -277,26 +294,28 @@
 							<th> Price total </th>
 						</tr>
 					</thead>
-					<tbody class="holder">						
-						<tr>
-			            	<td> material </td>
-			            	<td> count </td>
-			            	<td> <div class="editCount"></div> </td>
-			            	<td> <div class="delete" title="Delete material material"></div></td>
-			            	<td> $120 </td>
-			            </tr>
+					<tbody id="<%= name %>_tableRow" class="holder">						
+
 			            <tr>	
-			        		<td id="buttonPlace" colspan="4">
-								<a href="#addUnit2Goods" role="button" class="btn btn-info btn-small" data-toggle="modal"><i class="icon-white icon-plus"></i> Units</a>
+			        		<td colspan="4">
+								<a href="#addMaterial2Unit" role="button" class="btn btn-info btn-small add-material-to-unit" data-toggle="modal"><i class="icon-white icon-plus"></i> Materials</a>
 							</td>
 							<td>
 								Unit price: <b>$200</b>
 							</td>
 			        	</tr>			
 					</tbody>			    	
-			    </table>
-			</div>
+			    </table> 
+			</div>			 
 		</script>
+
+		<script type="text/template" id="materials-row-in-unit">
+        	<td> <%= material %> </td>
+        	<td> <%= count %> </td>
+        	<td> <div class="editCount"></div> </td>
+        	<td> <div class="delete" title="Delete <%= material %> material"></div></td>
+        	<td> $<%= price * count %> </td>
+        </script>
 
 <!-- other templates -->
 
@@ -412,10 +431,8 @@
 
 		
 		<script type="text/template" id="goods-count-plus">
-			  <div class="holder">
-				
+			  <div class="holder">	
 				<div class="material"><i class="icon-plus"></i> <%= name %></div>
-				<!-- <div class="count"></div> -->
 			  </div>
 			  <div class="clear"></div>
 		</script>	
@@ -434,12 +451,13 @@
 		</script>
 		
 		<script type="text/template" id="material-price-plus">
-			  <div class="holder">
-				<div class="plus" title="Add <%= material %> to the unit"></div>
-				<div class="material"><%= material %></div>
-				<div class="price"><%= price %></div>
-			  </div>
-			  <div class="clear"></div>
+			<div class="holder">	
+				<div class="material">
+					<i class="icon-plus"></i> 
+					<%= material %>
+				</div>
+			</div>
+			<div class="clear"></div>
 		</script>
 
 		<script src="js/lib/jquery.js"></script>
@@ -459,7 +477,7 @@
 		<script src="js/views/Units.js"></script>
 		<script src="js/views/UnitItems.js"></script>
 		<script src="js/views/AddUnit.js"></script>
-		<script src="js/views/AddMaterials.js"></script>
+		<script src="js/views/AddMaterialsList.js"></script>
 		<script src="js/views/Goods.js"></script>
 		<script src="js/views/AddGoods.js"></script>
 		<script src="js/views/GoodsItem.js"></script>

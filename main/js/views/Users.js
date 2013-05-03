@@ -115,7 +115,7 @@ var App = App || {};
 			}) ); 
 			$('#products').append( viewProducts.el );
 
-			viewProducts.render();
+		//	viewProducts.render();
 			$('.buttonPlace').html("")
 			// rendering the content of the Units Tab
 			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
@@ -175,7 +175,7 @@ var App = App || {};
 			$('#products').append( viewProducts.el );
 			
 			viewProducts.render();
-			$('.buttonPlace').html($('#addUnit2GoodsButton').html());
+			$('.buttonPlace').html( $('#addUnit2GoodsButton').html() );
 
 			// rendering the content of the Units Tab
 			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
@@ -186,9 +186,9 @@ var App = App || {};
 			}) );
 			$('#units').append( $( '#addNewUnitButton' ).html() );
 			$('#units').append( $( '#addNewUnitModal' ).html() );
+			$('#units').append( $( '#addMaterial2UnitModal' ).html() );
 			var addNewUnits = new App.Views.AddUnit( { collection: App.Materials } );
 			$('#units').append( viewUnits.el );
-
 
 		},
 		openStorekeeper: function () {

@@ -8,7 +8,9 @@ var App = App || {};
 		tagName: 'div',
 		className:"accordion-group",
 		initialize: function () {
-			this.model.on( 'change', this.render, this);
+			
+
+			this.model.on( 'change:nameG', this.nameUpDate, this);
 			this.model.on( 'destroy', this.goodsRemoveItem, this );
 
 		},
@@ -17,51 +19,48 @@ var App = App || {};
 		
 			'click .accordion-heading' : 'goodsToggle',
 			'click .delete_goods' : 'goodsDeleteItem',
-			'click .edit_goodsItem' : 'changeGoodsName',
+			'click .edit' : 'changeGoodsName',
 			'keypress .edit_goods_name': 'updateOnEnter',
 			'blur .edit_goods_name': 'close',
-			'click .btn':'inputUnits'
+			'click .btn': 'inputUnits'
 		},
 		template: _.template( $('#goods-name').html() ),
 		render: function () {	
-
-			var goodsHrefId = this.model.get('nameG');
+			
+			var goodsHrefId = this.model.cid;
 			goodsHrefId = goodsHrefId.replace(" ","");
 			this.model.set('hrefId', goodsHrefId);
-			console.log(goodsHrefId);
-
+			console.log(this.model.cid);
 
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
 			var newGoodsItemsList = new App.Views.GoodsItemsList( { collection: this.model.get( 'goodsCollection' ), model: this.model  } ) ;
 
-			this.$('.goods_info').append( newGoodsItemsList.el );
+			this.$el.append( newGoodsItemsList.el );
 			newGoodsItemsList.render();
 			
 			this.$input = this.$('.edit_goods_name');
 			
 		}, 
+		nameUpDate: function (){
+
+			console.log($('#'+this.model.cid+"_goodsId").html(this.model.get("nameG")));
+
+
+
+		},
 		goodsToggle: function () {
 			
 				this.$('.goods_info').show();
 							
-			
-				
-
-				
-
-			
 		},
-		inputUnits: function (){
+		inputUnits: function () {
 			
 				var AddUnitsList = new App.Views.AddUnitsList( { collection: App.Units, model : this.model	} );
 				AddUnitsList.render();
 				$( '#unitContainer' ).html( AddUnitsList.el );
 
-
 		},
-
-
 		goodsDeleteItem: function() {
 		
 			if ( confirm('Are you sure you want to delete this Goods?') ) {

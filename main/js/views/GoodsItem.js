@@ -7,7 +7,7 @@ var App = App || {};
 	tagName: 'tr',
 		initialize: function (){
 			this.model.on( 'destroy', this.remove, this );
-			this.model.on( 'change', this.render, this);
+			//this.model.on( 'change', this.render, this);
 		},
 		events: {
 			'click .delete' : 'confirmRemove',
@@ -18,7 +18,7 @@ var App = App || {};
 		template: _.template( $('#goods-count').html() ),
 		render: function () {	
 			
-			this.model.set('nameGoods', this.options.goodsModel.get('nameG'));
+			this.model.set('nameGoods', this.options.goodsModel.cid);
 			
 			var strTemplate = this.template( this.model.toJSON());
 			this.$el.html( strTemplate );
@@ -73,16 +73,14 @@ var App = App || {};
 		initialize: function () {
 
 			this.collection.on('add', this.addOne, this);
-
-			this.el.id=this.model.get('nameG').replace(" ","");	
-
+			this.el.id=this.model.cid;	
 
 		},
 		template: _.template( $('#units-table').html() ),
-		render: function () {
 
-			
-			var strTemplate = this.template( {nameGoods:this.model.get('nameG').replace(" ","")});
+		render: function () {			
+			var strTemplate = this.template( { nameGoods:this.model.cid } );
+
 			this.$el.html( strTemplate );
 			this.collection.each(this.addOne, this);
 			return this;
@@ -90,11 +88,11 @@ var App = App || {};
 		addOne: function( modelGoodsItem ) {
 	
 			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
+			$("#"+this.model.cid+"_tableRow").prepend( goodsItemView.el );
 			console.log("render");
-			$("#"+this.model.get("nameG").replace(" ","")+"_tableRow").prepend( goodsItemView.el );
+			
 			goodsItemView.render();
 			$('.buttonPlace').html($('#addUnit2GoodsButton').html());
-
 			
 		},
 		ItemRemove: function() {
@@ -102,7 +100,6 @@ var App = App || {};
 			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
 			goodsItemView.render();
 			this.$el.append( goodsItemView.el );
-
 		},
 		ItemRemove: function() {
 			console.log(this);

@@ -1,4 +1,21 @@
+.accordion-toggle .edit_goods_name {
+    display: none;
+}
+
+.editing .edit_goods_name {
+    display: inline-block;
+ 
+   
+}
+
+.editing .goods_name_id{
+    display: none;
+}
+
+
 .edit {
+     float:right;
+    position:relative;
     width: 26px;
     height: 26px;
     background: url('../img/edit16.png') no-repeat;
@@ -6,6 +23,8 @@
     cursor: pointer;
 }
 .edit:hover {
+     float:right;
+    position:relative;
     width:26px;
     height:26px;
     background: url('../img/edit16.png') no-repeat;
