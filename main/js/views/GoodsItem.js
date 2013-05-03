@@ -79,10 +79,8 @@ var App = App || {};
 
 		},
 		template: _.template( $('#units-table').html() ),
-		render: function () {
-
-			
-			var strTemplate = this.template( {nameGoods:this.model.get('nameG').replace(" ","")});
+		render: function () {			
+			var strTemplate = this.template( { nameGoods:this.model.get('nameG').replace(" ","") } );
 			this.$el.html( strTemplate );
 			this.collection.each(this.addOne, this);
 			return this;
@@ -95,7 +93,6 @@ var App = App || {};
 			$("#"+this.model.get("nameG").replace(" ","")+"_tableRow").prepend( goodsItemView.el );
 			goodsItemView.render();
 			$('.buttonPlace').html($('#addUnit2GoodsButton').html());
-
 			
 		},
 		ItemRemove: function() {
@@ -103,7 +100,6 @@ var App = App || {};
 			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
 			goodsItemView.render();
 			this.$el.append( goodsItemView.el );
-
 		},
 		ItemRemove: function() {
 			console.log(this);

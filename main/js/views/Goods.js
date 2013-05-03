@@ -20,7 +20,7 @@ var App = App || {};
 			'click .edit_goodsItem' : 'changeGoodsName',
 			'keypress .edit_goods_name': 'updateOnEnter',
 			'blur .edit_goods_name': 'close',
-			'click .btn':'inputUnits'
+			'click .btn': 'inputUnits'
 		},
 		template: _.template( $('#goods-name').html() ),
 		render: function () {	
@@ -45,23 +45,14 @@ var App = App || {};
 			
 				this.$('.goods_info').show();
 							
-			
-				
-
-				
-
-			
 		},
-		inputUnits: function (){
+		inputUnits: function () {
 			
 				var AddUnitsList = new App.Views.AddUnitsList( { collection: App.Units, model : this.model	} );
 				AddUnitsList.render();
 				$( '#unitContainer' ).html( AddUnitsList.el );
 
-
 		},
-
-
 		goodsDeleteItem: function() {
 		
 			if ( confirm('Are you sure you want to delete this Goods?') ) {
