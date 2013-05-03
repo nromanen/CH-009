@@ -137,13 +137,14 @@ var App = App || {};
 					var cursor = evt.target.result;
 					if ( cursor ) {
 						if ( cursor.value.unitName ===  model.get('name') ) {
+							console.log("value event");
 							var newValue = cursor.value;
 							newValue.unitName =  model.get('name');
 							newValue.unitCollection = JSON.stringify(model.get('mcollection'));
 							store.put(newValue);
-							console.log("Unit rename succesfull");
 							return;
-						}	
+						}
+						cursor.continue(); 	
 					}
 									
 				}	
