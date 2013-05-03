@@ -106,6 +106,7 @@ var App = App || {};
 		changeName: function ( model, value ) {
 			App.dbConnector.changeUnitName( model.get( 'name' ), value );
 			model.set({ name: value });
+
 		}
 	
 	});
@@ -197,24 +198,21 @@ var App = App || {};
 			
 
 		},
-		changeName: function ( model, value ) {
-		
-			//App.dbConnector.changeGoodName( model.get( 'name' ), value );
-			model.set({ nameG: value });
-
-
-				this.add(mGoods);
-				i++;
-			
-		},
 		fetchGoods: function(){
 			
 			App.dbConnector.fetchGood();
 		
 		},
 		changeName: function(model, value){
+
 			App.dbConnector.changeGoodsName( model.get( 'nameG' ), value );
-			model.set({ nameG: value });
+			var goodsHrefId = value
+			goodsHrefId = goodsHrefId.replace(" ","");
+			model.set('hrefId', goodsHrefId);
+			console.log(model);
+			model.set({ nameG: value});
+			
+			
 		},
 		editCount: function (model, value) {
 			model.set({ count: value });
