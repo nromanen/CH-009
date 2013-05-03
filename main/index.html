@@ -17,16 +17,27 @@
 				<nav class="navbar-inner">
 					<div style="width: 570px; margin: 0 auto;">
 						<a class="brand"> Warehouse - <%= user %></a>
+						
+						<div class="btn-group">
+						  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+						    Action
+						    <span class="caret"></span>
+						  </a>
+						  <ul class="dropdown-menu">
+						  	<li><a id="fetchData"><span class="label label-success">Fetch Data</span></a></li>
+							<li><a id="sendData" href="#sendData"><span class="label label-success">Send Data</span></a></li>
+							<li><a id="clearDB"><span class="label label-important">Delete Database</span></a></li>
+							<li><a id="saveCollectionsToDb"><span class="label label-info">Save to Database</span></a></li>
+						  </ul>
+						</div>	
+
 						<div class="btn-group pull-right">
 							<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
 								User Roles
 								<span class="caret"></span>
 							</a>
-							<a class="btn btn-success" id="fetchData">Fetch Data</a>
-							<a class="btn btn-success" id="sendData" href="#sendData">Send Data</a>
-							<a class="btn btn-danger" id="clearDB">Clear DB</a>
-							<a class="btn btn-success" id="saveCollectionsToDb">Save to DB</a>
 							
+
 							<ul class="dropdown-menu">
 								<li> <a href="#customer"> Customer </a> </li>
 								<li> <a href="#accountant"> Accountant </a> </li>
@@ -34,6 +45,9 @@
 								<li> <a href="#storekeeper"> Storekeeper </a> </li>
 							</ul>
 						</div>
+
+						
+
 					</div>
 				</nav>
 			</div>		
