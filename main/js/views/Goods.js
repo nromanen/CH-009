@@ -19,7 +19,7 @@ var App = App || {};
 		
 			'click .accordion-heading' : 'goodsToggle',
 			'click .delete_goods' : 'goodsDeleteItem',
-			'click .edit' : 'changeGoodsName',
+			'click .edit_right' : 'changeGoodsName',
 			'keypress .edit_goods_name': 'updateOnEnter',
 			'blur .edit_goods_name': 'close',
 			'click .btn': 'inputUnits'

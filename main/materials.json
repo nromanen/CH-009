@@ -1,27 +1,167 @@
 [
 	{
-	"material" : "Wood", 
-	"price" : 250
+	"material" : "Aluminium", 
+	"price" : 2
 	},
 	{
-	"material" : "Stone", 
-	"price" : 400
+	"material" : "Bark", 
+	"price" : 0.8
 	},
 	{
-	"material" : "Plastic", 
-	"price" : 750
+	"material" : "Blocks", 
+	"price" : 0.4
+	},
+	{
+	"material" : "Carbon-fiber", 
+	"price" : 11
+	},
+	{
+	"material" : "Cement", 
+	"price" : 0.08
+	},
+	{
+	"material" : "Ceramics", 
+	"price" : 2.4
+	},
+	{
+	"material" : "Chrome", 
+	"price" : 2.75
+	},
+	{
+	"material" : "Clay", 
+	"price" : 0.02
+	},
+	{
+	"material" : "Concrete", 
+	"price" : 0.07
+	},
+	{
+	"material" : "Copper", 
+	"price" : 7
+	},
+	{
+	"material" : "Fiberglass", 
+	"price" : 1.8
+	},
+	{
+	"material" : "Foam", 
+	"price" : 0.8
+	},
+	{
+	"material" : "Glass", 
+	"price" : 1
+	},
+	{
+	"material" : "Glue", 
+	"price" : 1.3
+	},
+	{
+	"material" : "Gold", 
+	"price" : 1440
+	},
+	{
+	"material" : "Gravel", 
+	"price" : 0.1
+	},
+	{
+	"material" : "Ice", 
+	"price" : 0.7
+	},
+	{
+	"material" : "Leaves", 
+	"price" : 4
+	},
+	{
+	"material" : "Iron", 
+	"price" : 0.6
+	},
+	{
+	"material" : "Magnesium", 
+	"price" : 2.7
+	},
+	{
+	"material" : "Metal", 
+	"price" : 4
+	},
+	{
+	"material" : "Mud", 
+	"price" : 0.01
+	},
+	{
+	"material" : "Paint", 
+	"price" : 1
+	},
+	{
+	"material" : "empty", 
+	"price" : 0
+	},
+	{
+	"material" : "Paper", 
+	"price" : 2
+	},
+	{
+	"material" : "Plastics", 
+	"price" : 1
+	},
+	{
+	"material" : "Rock", 
+	"price" : 0.04
+	},
+	{
+	"material" : "Rubber", 
+	"price" : 0.9
+	},
+	{
+	"material" : "Sand", 
+	"price" : 0.03
+	},
+	{
+	"material" : "Silver", 
+	"price" : 773
+	},
+	{
+	"material" : "Soil", 
+	"price" : 0.6
 	},
 	{
 	"material" : "Steel", 
-	"price" : 1000
+	"price" : 2.2
 	},
 	{
-	"material" : "Brick", 
-	"price" : 550
+	"material" : "Stone", 
+	"price" : 0.04
 	},
 	{
-	"material" : "Cheramic", 
-	"price" : 2000
-	}
+	"material" : "Thatch", 
+	"price" : 0.01
+	},
+	{
+	"material" : "Tile", 
+	"price" : 1.2
+	},
+	{
+	"material" : "Timber", 
+	"price" : 1
+	},
+	{
+	"material" : "Tin", 
+	"price" : 3
+	},
+	{
+	"material" : "Titanium", 
+	"price" : 35
+	},
+	{
+	"material" : "Water", 
+	"price" : 0.06
+	},
+	{
+	"material" : "Wire", 
+	"price" : 1.2
+	},
+	{
+	"material" : "Wood", 
+	"price" : 0.9
+	}	
 	
 ]

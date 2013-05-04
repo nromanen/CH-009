@@ -132,6 +132,7 @@
 				  <div class="modal-header">
 				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 				    <h3 id="myModalLabel">Add New Material</h3>
+				    
 				  </div>
 				  <div class="modal-body">
 				    	
@@ -152,13 +153,15 @@
 				  <div class="modal-header">
 				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 				    <h3 id="myModalLabel">Add New Material</h3>
+				    <br>
+				    <p>Click PLUS to add 1 Material, and Double Click for specific quantity.</p>
+				  	<p class="unit_text"></p>
 				  </div>
 				  <div id="materialsContainer" class="modal-body">
 
 				  </div>
 				  <div class="modal-footer">
-				    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-				    <button class="btn btn-primary save-material">Save changes</button>
+				    <button class="btn btn-primary"  data-dismiss="modal" aria-hidden="true">Close Box</button>
 				  </div>
 				</div>
 		</script>
@@ -259,7 +262,7 @@
 					        <span id="<%= hrefId %>_goodsId" class="goods_name_id"><%= nameG %></span>
 
 					        <input class="edit_goods_name" type="text">
-					        <div class="delete_goods"></div><div class="edit"></div>
+					        <div class="delete_goods"></div><div class="edit_right"></div>
 					      </a>
 					    </div>
 
@@ -450,14 +453,8 @@
 			<div style="height:15px;"></div>
 		</script>
 		
-		<script type="text/template" id="material-price-plus">
-			<div class="holder">	
-				<div class="material">
-					<i class="icon-plus"></i> 
-					<%= material %>
-				</div>
-			</div>
-			<div class="clear"></div>
+		<script type="text/template" id="material-price-plus">			
+			<i class="icon-plus" title="Add <%= material %>"></i> <%= material %> ($<%= price %>)
 		</script>
 
 		<script src="js/lib/jquery.js"></script>

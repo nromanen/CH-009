@@ -5,6 +5,7 @@ var App = App || {};
 	App.Views.AddMaterialsList = Backbone.View.extend({
 	
 		tagName: 'ul',
+		className: 'nobullets',
 		initialize: function () {
 			this.collection.on('add', this.addOne, this);
 			this.model.on('change', this.saveUnitCollection, this);
@@ -36,23 +37,59 @@ var App = App || {};
 			this.model.on( 'plus', this.plus, this );
 		},
 		events: {
-			'click .icon-plus' : 'confirmQuantity'
+			'click .icon-plus'    : 'addOne',
+			'dblclick .icon-plus' : 'confirmQuantity'
 		},
 		template: _.template( $('#material-price-plus').html() ),
 		render: function () {
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
 		},
+		addOne: function () {
+
+			this.addUnitItem( 1 );
+
+		},
+ 		addUnitItem: function( quantity ) {
+
+			this.model.set ( { count: quantity } );
+			var that = this;
+			var found = this.collection.find( function( model ) {
+				console.log( model.get('material') + ' - ' + model.get('count') )
+			    return model.get('material') === that.model.get('material');
+			});
+			if ( found === undefined ) {
+				this.collection.add ( this.model );
+			}
+			console.log( '1st found.get("count"): ' + found.get('count') );
+			if ( found === undefined ) {
+				this.collection.add ( this.model );
+			} else {
+				
+				var sum = parseFloat( found.get( 'count' ) ) + quantity;
+				console.log ('quantity: ' + quantity)
+				console.log ('sum: ' + sum);
+				found.set ( 'count', sum );
+				
+			}
+			console.log( '2nd found.get("count"): ' + found.get('count') );
+			console.log( this.collection );
+			this.options.something.set( "mcollection", this.collection );
+			App.dbConnector.EditUnitItem ( this.options.something );
+
+			//editing the sentence in the Add to Unit Modal
+			var materialsInUnitSentence = ''; // for #addMaterial2Unit sentence
+			_.each ( this.collection.models, function ( unitItem ) {
+				materialsInUnitSentence = materialsInUnitSentence + ', ' + unitItem.get('material') + ' ($' + unitItem.get('price') + ') <b>x ' + unitItem.get('count') + '</b>';
+			} )
+			$('#addMaterial2Unit').find('.unitItems_list').html( materialsInUnitSentence.substr(2) );
+
+		},
 		confirmQuantity: function () {
 			var quantity = prompt( 'Please enter the quantity of ' + this.model.get ( 'material' )  );
 			if ( ( quantity !== '' ) && ( quantity !== null ) ) {
 
-				this.model.set ( { count: quantity } )
-				this.collection.add ( this.model );
-				this.options.something.set( "mcollection", this.collection );	
-
-				App.dbConnector.EditUnitItem ( this.options.something );
-				console.log( this.options.something );
+				this.addUnitItem( parseFloat(quantity) );
 
 			} else {
 				alert( 'You have not entered a correct value!' );

@@ -71,9 +71,16 @@ var App = App || {};
 		},
 		inputMaterials: function () {
 			
-			var AddMaterialsList = new App.Views.AddMaterialsList( { collection: App.Materials, model : this.model	} );
+			var AddMaterialsList = new App.Views.AddMaterialsList( { collection: App.Materials, model : this.model } );
 			AddMaterialsList.render();
 			$( '#materialsContainer' ).html( AddMaterialsList.el );
+			$('#addMaterial2Unit').find('#myModalLabel').html('Add New Material to ' + this.model.get('name') );
+			var materialsInUnit = this.model.get( 'mcollection' );
+			var materialsInUnitSentence = ''; // for #addMaterial2Unit sentence
+			_.each ( materialsInUnit.models, function ( unitItem ) {
+				materialsInUnitSentence = materialsInUnitSentence + ', ' + unitItem.attributes.material + ' ($' + unitItem.attributes.price + ') <b>x ' + unitItem.attributes.count + '</b>';
+			} )
+			$('#addMaterial2Unit').find('.unit_text').html( '<b>' + this.model.get('name') + '</b> already contains: <span class="unitItems_list">' + materialsInUnitSentence.substr(2) + '</span>' );
 
 		},
 		unitDeleteItem: function() {

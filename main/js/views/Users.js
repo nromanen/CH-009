@@ -69,7 +69,7 @@ var App = App || {};
 			};
 
 			fetchMaterials();
-			fetchUnits();
+			//fetchUnits();
 			
 			/*console.log( App.Units.toJSON() );
 			console.log( App.Materials.toJSON() );

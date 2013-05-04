@@ -7,14 +7,42 @@
  
    
 }
-
-.editing .goods_name_id{
+.nobullets {
+    list-style: none;
+}
+.icon-plus {
+    cursor: pointer;
+    opacity: 0.8;
+}
+.icon-plus:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+.editing .goods_name_id {
     display: none;
 }
 
+.edit_right {
+    float:right;
+    position:relative;
+    width: 26px;
+    height: 26px;
+    background: url('../img/edit16.png') no-repeat;
+    opacity: 0.8;
+    cursor: pointer;
+}
+.edit_right:hover {
+    float:right;
+    position:relative;
+    width:26px;
+    height:26px;
+    background: url('../img/edit16.png') no-repeat;
+    opacity: 1;
+    cursor: pointer;
+}
 
 .edit {
-     float:right;
+    float:left;
     position:relative;
     width: 26px;
     height: 26px;
@@ -23,7 +51,7 @@
     cursor: pointer;
 }
 .edit:hover {
-     float:right;
+    float:left;
     position:relative;
     width:26px;
     height:26px;
