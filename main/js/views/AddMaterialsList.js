@@ -55,31 +55,29 @@ var App = App || {};
 			this.model.set ( { count: quantity } );
 			var that = this;
 			var found = this.collection.find( function( model ) {
-				console.log( model.get('material') + ' - ' + model.get('count') )
+				//console.log( model.get('material') + ' - ' + model.get('count') )
 			    return model.get('material') === that.model.get('material');
 			});
-			if ( found === undefined ) {
-				this.collection.add ( this.model );
-			}
-			console.log( '1st found.get("count"): ' + found.get('count') );
+			
 			if ( found === undefined ) {
 				this.collection.add ( this.model );
 			} else {
-				
+				//console.log( '1st found.get("count"): ' + found.get('count') );
 				var sum = parseFloat( found.get( 'count' ) ) + quantity;
 				console.log ('quantity: ' + quantity)
 				console.log ('sum: ' + sum);
 				found.set ( 'count', sum );
-				
+				//console.log( '2nd found.get("count"): ' + found.get('count') );
+				//console.log( this.collection );
 			}
-			console.log( '2nd found.get("count"): ' + found.get('count') );
-			console.log( this.collection );
+			
 			this.options.something.set( "mcollection", this.collection );
 			App.dbConnector.EditUnitItem ( this.options.something );
 
 			//editing the sentence in the Add to Unit Modal
 			var materialsInUnitSentence = ''; // for #addMaterial2Unit sentence
 			_.each ( this.collection.models, function ( unitItem ) {
+				console.log (  unitItem.get('material') + ' - ' + unitItem.get('count') );
 				materialsInUnitSentence = materialsInUnitSentence + ', ' + unitItem.get('material') + ' ($' + unitItem.get('price') + ') <b>x ' + unitItem.get('count') + '</b>';
 			} )
 			$('#addMaterial2Unit').find('.unitItems_list').html( materialsInUnitSentence.substr(2) );
