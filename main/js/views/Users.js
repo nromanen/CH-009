@@ -32,8 +32,8 @@ var App = App || {};
 
 					$.ajax({
    						type: "POST",
-   						url: "cgi-bin/login.py",
-   						data:{'nameid':'values'},
+   						url: "/cgi-bin/login.py",
+   						data:{login:userDate['login'], password:userDate['password']},
    							success: function(msg){
      							alert( "Data Saved: " + msg );
    							}

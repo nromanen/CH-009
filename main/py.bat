@@ -1,2 +1,2 @@
 
-c:\Python27\python.exe -m SimpleHTTPServer 9000
+c:\Python27\python.exe -m CGIHTTPServer 9000

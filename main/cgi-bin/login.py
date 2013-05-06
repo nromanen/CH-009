@@ -1,17 +1,19 @@
 import cgi
-#import psycopg2, sys, os
+import psycopg2, sys, os
 
 
 
 
 form = cgi.FieldStorage()
-print(form)
-#login = loginData["login"].value
+
+
 #password = loginDate['password'].value
 
-#sys.stdout.write("Content-type: text/html \r\n\r\n")
+sys.stdout.write("Content-type: text/html \r\n\r\n")
 
-#sys.stdout.write("engenir");
+sys.stdout.write("engenir")
+sys.stdout.write("asd "+form['login'].value)
+sys.stdout.write("||"+form['password'].value)
 
 	
 
