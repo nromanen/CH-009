@@ -19,9 +19,30 @@ var App = App || {};
 			App.Events.on ( 'sendData', this.sendData, this );
 		},
 		events:{
+			"click #loginButton":"loginUser",
 			"click #showMaterial" : "showMaterials",
 			"click #showUnit" : "showUnit",
 			"click #showGoods" : "showGoods"
+		},
+		loginUser: function(){
+				var userDate = [];
+				userDate['login'] = $('#inputLogin').val();
+				userDate['password']= $('#inputPassword').val();
+				console.log(userDate);
+
+					$.ajax({
+   						type: "POST",
+   						url: "cgi-bin/login.py",
+   						data:{'nameid':'values'},
+   							success: function(msg){
+     							alert( "Data Saved: " + msg );
+   							}
+ 					});
+
+			window.location.replace('/#engineer');
+
+
+
 		},
 		clearDB: function() {
 
@@ -80,7 +101,8 @@ var App = App || {};
 		chooseRole: function () {
 
 			$('.container').html('');
-			$('.container').append( _.template ( $('#chooseRole').html() ) );
+			//$('.container').append( _.template ( $('#chooseRole').html() ) );
+			$('.container').append( _.template ( $('#loginForm').html() ) );
 
 		},
 		openCustomer: function () {
