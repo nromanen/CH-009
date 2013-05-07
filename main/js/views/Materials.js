@@ -23,9 +23,22 @@ var App = App || {};
 			this.$el.html( Template );
 		},
 		confirmRemove: function () {
+			var delMat = this.model.get("material");
+			var unitModels = App.Units.models;
+
+			for(var i = 0; i < unitModels.length; i++ ) {
+				var arr = unitModels[i].get("mcollection").toJSON();
+
+				for (var j = 0; j < arr.length; j++) {
+
+					if (arr[j].material === delMat) {
+							alert("Attention! This product is used in unit: " + unitModels[i].get("name") );
+						};
+					};
+				};
 			if ( confirm('Are you sure you want to delete this product?') ) {
-				App.Events.trigger( 'destroyModel', this.model );  
-			}	
+							App.Events.trigger( 'destroyModel', this.model );
+							};  	
 		},
 		remove: function () {
 		
