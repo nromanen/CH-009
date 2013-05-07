@@ -12,6 +12,7 @@ var App = App || {};
 
 			this.model.on( 'change:nameG', this.nameUpDate, this);
 			this.model.on( 'destroy', this.goodsRemoveItem, this );
+			this.model.on( 'change', this.render, this );
 
 		},
 		

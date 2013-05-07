@@ -52,7 +52,7 @@ var App = App || {};
 		},
  		addUnitItem: function( quantity ) {
 
-			this.model.set ( { count: quantity } );
+			this.model.set ( { count: quantity, unitItemPrice: quantity*this.model.get( 'price' ) } );
 			var that = this;
 			var found = this.collection.find( function( model ) {
 				//console.log( model.get('material') + ' - ' + model.get('count') )
@@ -71,8 +71,10 @@ var App = App || {};
 				//console.log( this.collection );
 			}
 			
-			this.options.something.set( "mcollection", this.collection );
+			this.options.something.set( "mcollection", this.collection );	
+			this.options.something.set( "unitPrice", this.options.something.get('unitPrice')+this.model.get( 'unitItemPrice' ) );
 			App.dbConnector.EditUnitItem ( this.options.something );
+
 
 			//editing the sentence in the Add to Unit Modal
 			var materialsInUnitSentence = ''; // for #addMaterial2Unit sentence

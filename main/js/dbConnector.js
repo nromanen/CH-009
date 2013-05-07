@@ -78,12 +78,13 @@ var App = App || {};
 					("Units", {keyPath: "id", autoIncrement: true});
 					unitStore.createIndex("unitName", "unitName", { unique: true});        
 					unitStore.createIndex("unitCollection", "unitCollection", { unique: false }); 
+					
 				  
 			var tovarStore = evt.currentTarget.result.createObjectStore
 					("Tovaru", {keyPath: "id", autoIncrement: true});
-				   tovarStore.createIndex("tovarName", "tovarName", { unique: false });        
-				   tovarStore.createIndex("tovarCollection", "tovarCollection", { unique: false });
-				 				   					
+				   	tovarStore.createIndex("tovarName", "tovarName", { unique: false });        
+				 	tovarStore.createIndex("tovarCollection", "tovarCollection", { unique: false });
+
 			            	   						  
 			}
 	
@@ -132,7 +133,6 @@ var App = App || {};
 			var store = transaction.objectStore("Units");
 			if (localDatabase != null && localDatabase.db != null) {
 			var request = store.openCursor();
-			
 				request.onsuccess = function( evt ) {
 					var cursor = evt.target.result;
 					if ( cursor ) {
@@ -143,8 +143,10 @@ var App = App || {};
 							newValue.unitCollection = JSON.stringify(model.get('mcollection'));
 							store.put(newValue);
 							return;
-						}
-						cursor.continue(); 	
+
+						}	
+					cursor.continue(); 	
+
 					}
 									
 				}	
@@ -166,8 +168,9 @@ var App = App || {};
 			var store = transaction.objectStore(objStor);            
 		  
 			if (localDatabase != null && localDatabase.db != null) {
-				var request = store.put({unitName:model.get("name"), unitCollection:JSON.stringify(model.get("mcollection"))}); 
-				
+
+				var request =store.put({unitName:model.get("name"), unitCollection:JSON.stringify(model.get("mcollection"))}); 
+
 				
 				request.onsuccess = function (e) {
 					addProductHandler ( true );
@@ -203,7 +206,8 @@ var App = App || {};
 						var Units = function(config){
 							this.name = config.name;
 							this.mcollection = config.mcollection;
-						
+							this.unitPrice = config.unitPrice;
+
 						}
 						request.onsuccess =  function(event){
 								var cursor = event.target.result;
@@ -212,9 +216,9 @@ var App = App || {};
 								if(cursor){
 									units[pointer++] = new Units ({
 									name:cursor.value.unitName,
-									mcollection:JSON.parse(cursor.value.unitCollection)
+									mcollection:JSON.parse(cursor.value.unitCollection),
+									unitPrice: 0
 									});
-								
 								cursor.continue(); 	
 								}else{
 								  onSuccessHandler ( units );
@@ -456,28 +460,28 @@ var App = App || {};
 		var store = localDatabase.db.transaction("Tovaru").objectStore("Tovaru");
 		var request = store.openCursor();
 		var goods = new Array();
-		var pointer = -1;
+		var pointer = 0;
 		
 			var Goods = function(config){
 				this.nameG = config.nameG;
 				this.goodsCollection = config.goodsCollection;
+				this.goodsPrice = config.goodsPrice;
 			
 			};
 			request.onsuccess =  function(event){
 					var cursor = event.target.result;
-					pointer++;
+					//pointer++;
 
 					if(cursor){
 						goods[pointer++] = new Goods ({
 							nameG:cursor.value.tovarName,
-							goodsCollection:JSON.parse(cursor.value.tovarCollection)
+							goodsCollection:JSON.parse(cursor.value.tovarCollection),
+							goodsPrice: 0
 						});
-
 					cursor.continue(); 	
 					} else {
 					  onSuccessHandler ( goods );
 					}
-			
 			
 			}
 			var onSuccessHandler = function ( goods ) {
@@ -563,7 +567,6 @@ var App = App || {};
 							newValue['tovarName'] =  tovarModel.get('nameG');
 							newValue['tovarCollection'] = JSON.stringify(tovarModel.get('goodsCollection'));
 							store.put(newValue);
-							console.log("Unit edited succesfull");
 							return;
 						}	
 					}

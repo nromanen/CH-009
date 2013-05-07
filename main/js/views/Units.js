@@ -19,6 +19,7 @@ var App = App || {};
 			'click .add-material-to-unit' : 'inputMaterials'
 		},
 		template: _.template( $('#unit-name').html() ),
+
 		render: function () {	
 			var nameTrimmed = this.model.get( 'name' ).replace(/\s/g, ''); // видаляє пробіли
 			this.model.set ('hrefID', nameTrimmed);     
