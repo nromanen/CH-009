@@ -85,13 +85,13 @@ var App = App || {};
 				var unitCollection = new App.Collections.UnitItems();
 				
 				_.each( units[i].mcollection,  function ( model ) {
-
-					App.Materials.each ( function (material) {
-						if (model['material'] == material.get('material')) {
+					App.Materials.each( function (material) {
+						if (model['material']==material.get('material')) {
 							model['unitItemPrice']=material.get('price')*model['count'];
 						}
-					} );
-
+					});
+					//model['unitItemPrice']=App.Materials.where({material: model['material']}).get('price')*model['count'];
+					//console.log(App.Materials.where({material: model['material']}));
 				});
 
 				_.each( units[i].mcollection,  function ( model ) {
@@ -100,13 +100,6 @@ var App = App || {};
 				});
 
 				unitCollection.add(units[i].mcollection);
-				
-				/*	unitCollection.each(function ( model ) {
-
-					console.log ( model );
-
-				}); */
-
 				var mUnit = new App.Models.Unit({
 					name:units[i].name,
 					mcollection:unitCollection,
@@ -195,6 +188,19 @@ var App = App || {};
 			for(i=0; i<goods.length;i++){
 				
 				var goodsCollection = new App.Collections.GoodsItems();
+				_.each( goods[i].goodsCollection,  function ( model ) {
+					App.Units.each( function (unit) {
+						if (model['units']==unit.get('name')) {
+							model['goodsItemPrice']=unit.get('unitPrice')*model['count'];
+						}
+					});
+				});
+
+				_.each( goods[i].goodsCollection,  function ( model ) {
+
+					goods[i].goodsPrice=goods[i].goodsPrice+model['goodsItemPrice'];
+				});
+				console.log(goods[i].goodsPrice);
 				goodsCollection.add(goods[i].goodsCollection);
 				var mGoods = new App.Models.Goods({
 					nameG:goods[i].nameG,

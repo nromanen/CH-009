@@ -78,13 +78,13 @@ var App = App || {};
 					("Units", {keyPath: "id", autoIncrement: true});
 					unitStore.createIndex("unitName", "unitName", { unique: true});        
 					unitStore.createIndex("unitCollection", "unitCollection", { unique: false }); 
-					unitStore.createIndex("unitSumPrice", "unitSumPrice", { unique: false }); 
+					
 				  
 			var tovarStore = evt.currentTarget.result.createObjectStore
 					("Tovaru", {keyPath: "id", autoIncrement: true});
 				   	tovarStore.createIndex("tovarName", "tovarName", { unique: false });        
 				 	tovarStore.createIndex("tovarCollection", "tovarCollection", { unique: false });
-				 	tovarStore.createIndex("tovarPrice", "tovarPrice", { unique: false });			   					
+
 			            	   						  
 			}
 	
@@ -141,7 +141,6 @@ var App = App || {};
 							var newValue = cursor.value;
 							newValue.unitName =  model.get('name');
 							newValue.unitCollection = JSON.stringify(model.get('mcollection'));
-							newValue.unitSumPrice =  model.get('unitPrice');
 							store.put(newValue);
 							return;
 
@@ -170,7 +169,7 @@ var App = App || {};
 		  
 			if (localDatabase != null && localDatabase.db != null) {
 
-				var request =store.put({unitName:model.get("name"), unitCollection:JSON.stringify(model.get("mcollection")), unitSumPrice:model.get('unitPrice')}); 
+				var request =store.put({unitName:model.get("name"), unitCollection:JSON.stringify(model.get("mcollection"))}); 
 
 				
 				request.onsuccess = function (e) {
@@ -431,7 +430,7 @@ var App = App || {};
 			var store = transaction.objectStore(objStor);            
 		  
 			if (localDatabase != null && localDatabase.db != null) {
-				var request =store.put({tovarName:model.get("nameG"), tovarCollection:JSON.stringify(model.get("goodsCollection")), tovarPrice: model.get('goodsPrice')}); 
+				var request =store.put({tovarName:model.get("nameG"), tovarCollection:JSON.stringify(model.get("goodsCollection"))}); 
 				
 				
 				request.onsuccess = function (e) {
@@ -477,7 +476,7 @@ var App = App || {};
 						goods[pointer++] = new Goods ({
 							nameG:cursor.value.tovarName,
 							goodsCollection:JSON.parse(cursor.value.tovarCollection),
-							goodsPrice: cursor.value.tovarPrice
+							goodsPrice: 0
 						});
 					cursor.continue(); 	
 					} else {
@@ -567,7 +566,6 @@ var App = App || {};
 							var newValue = cursor.value;
 							newValue['tovarName'] =  tovarModel.get('nameG');
 							newValue['tovarCollection'] = JSON.stringify(tovarModel.get('goodsCollection'));
-							newValue['tovarPrice'] = tovarModel.get('goodsPrice');
 							store.put(newValue);
 							return;
 						}	

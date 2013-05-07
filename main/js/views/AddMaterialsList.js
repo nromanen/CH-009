@@ -47,12 +47,12 @@ var App = App || {};
 			var quantity = prompt( 'Please enter the quantity of ' + this.model.get ( 'material' )  );
 			if ( ( quantity !== '' ) && ( quantity !== null ) ) {
 
-				this.model.set ( { count: quantity } )
+				this.model.set ( { count: quantity, unitItemPrice: quantity*this.model.get( 'price' ) } )
 				this.collection.add ( this.model );
 				this.options.something.set( "mcollection", this.collection );	
-
+				this.options.something.set( "unitPrice", this.options.something.get('unitPrice')+this.model.get( 'unitItemPrice' ) );
 				App.dbConnector.EditUnitItem ( this.options.something );
-				console.log( this.options.something );
+				console.log('ups');
 
 			} else {
 				alert( 'You have not entered a correct value!' );

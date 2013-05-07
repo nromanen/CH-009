@@ -26,7 +26,7 @@ var App = App || {};
 		},
 		confirmRemove: function () {
 			if ( confirm('Are you sure you want to delete this Unit Item?') ) {
-				this.options.unitModel.set('unitPrice', this.options.unitModel.get('unitPrice')-this.model.get('sumPrice'));
+				this.options.unitModel.set('unitPrice', this.options.unitModel.get('unitPrice')-this.model.get('unitItemPrice'));
 				this.model.destroy();
 				App.dbConnector.EditUnitItem( this.options.unitModel );
 			}	
@@ -47,8 +47,8 @@ var App = App || {};
 				this.render();
 				return;
 			}	
-			this.options.unitModel.set('unitPrice', this.options.unitModel.get('unitPrice')+(value-this.model.get('count'))*(this.model.get('sumPrice')/this.model.get('count')));
-			this.model.set('sumPrice', this.model.get('sumPrice')+(value-this.model.get('count'))*(this.model.get('sumPrice')/this.model.get('count')));
+			this.options.unitModel.set('unitPrice', this.options.unitModel.get('unitPrice')+(value-this.model.get('count'))*(this.model.get('unitItemPrice')/this.model.get('count')));
+			this.model.set('unitItemPrice', this.model.get('unitItemPrice')+(value-this.model.get('count'))*(this.model.get('unitItemPrice')/this.model.get('count')));
 			App.Events.trigger('newMaterialCount', this.model, value);
 			App.dbConnector.changeCount( this.options.unitModel );
 			this.$el.removeClass('editingCount');

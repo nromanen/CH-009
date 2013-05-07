@@ -49,18 +49,12 @@ var App = App || {};
 			var quantity = prompt( 'Please enter the quantity of ' + this.model.get ( 'material' )  );
 			if ( ( quantity !== '' ) && ( quantity !== null ) ) {
 				var newModel = new App.Models.UnitItem();
-				newModel.set ( { count: quantity } );
-				var tmp = this.model.get( 'price' )
-
-				newModel.set ( {material: this.model.get('material'), sumPrice: quantity*tmp } );
-				var tempPrice = this.options.something.get( 'unitPrice' ) + newModel.get('sumPrice'); 
-				
+				newModel.set ( {material: this.model.get('material'), count: quantity, unitItemPrice: quantity*this.model.get( 'price' ) } );
+				var tempPrice = this.options.something.get( 'unitPrice' ) + newModel.get('unitItemPrice'); 
 				this.options.something.set("unitPrice", tempPrice);
-
 				this.collection.add ( newModel );
 				this.options.something.set({mcollection: this.collection});
 				App.dbConnector.EditUnitItem(this.options.something);
-
 			} else {
 				alert( 'You have not entered a correct value!' );
 			}
