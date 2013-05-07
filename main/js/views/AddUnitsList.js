@@ -48,9 +48,10 @@ var App = App || {};
 		confirmQuantity: function () {
 			var quantity = prompt( 'Please enter the quantity2 of ' + this.model.get ( 'name' )  );
 			if ( ( quantity !== '' ) && ( quantity !== null ) ) {
+				newModel = new App.Models.GoodsItem({units:this.model.get ( 'name' ), count:quantity, goodsItemPrice: this.model.get('unitPrice')*quantity})
+				this.collection.add (newModel);
+				this.options.something.set("goodsPrice", this.options.something.get("goodsPrice")+newModel.get('goodsItemPrice') );
 
-				this.collection.add (new App.Models.GoodsItem({units:this.model.get ( 'name' ), count:quantity, goodsItemPrice: this.model.get('unitPrice')*quantity}));
-				this.options.something.set("goodsPrice", this.options.something.get("goodsPrice")+this.model.get('unitPrice')*quantity );
 				this.options.something.set("goodsCollection", this.collection);
 				App.dbConnector.EditGoodsItems(this.options.something);
 

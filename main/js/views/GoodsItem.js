@@ -29,7 +29,6 @@ var App = App || {};
 		confirmRemove: function () {
 			if ( confirm('Are you sure you want to delete this Goods Item?') ) {
 				this.options.goodsModel.set('goodsPrice', this.options.goodsModel.get('goodsPrice')-this.model.get('goodsItemPrice'));		
-				
 				this.model.destroy();
 				App.dbConnector.EditGoodsItems(this.options.goodsModel);
 			}	
@@ -77,7 +76,7 @@ var App = App || {};
 		},
 		template: _.template( $('#units-table').html() ),
 		render: function () {
-			var strTemplate = this.template( {nameGoods:this.model.get('nameG')});
+			var strTemplate = this.template( {nameGoods:this.model.get('nameG'), goodsPrice:this.model.get('goodsPrice') });
 			this.$el.html( strTemplate );
 			this.collection.each(this.addOne, this);
 			return this;

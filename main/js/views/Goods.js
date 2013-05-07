@@ -10,6 +10,7 @@ var App = App || {};
 		initialize: function () {
 			//this.model.on( 'change', this.render, this);
 			this.model.on( 'destroy', this.goodsRemoveItem, this );
+			this.model.on( 'change', this.render, this );
 
 		},
 		
