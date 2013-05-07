@@ -35,11 +35,11 @@ var App = App || {};
    						url: "/cgi-bin/login.py",
    						data:{login:userDate['login'], password:userDate['password']},
    							success: function(msg){
-     							alert( "Data Saved: " + msg );
-     							if(msg==='engenir'){
+     							
+     							if(msg==='engeneer'){
      							window.location.replace('/#engineer');	
      						}else{
-     							alert(msg + "Логін і пароль не коректний")
+     							alert(msg + "Error login and password")
      							window.location.replace('/#customer');
      						}
 

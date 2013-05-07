@@ -4,27 +4,21 @@ import psycopg2, sys, os
 
 
 
-form = cgi.FieldStorage()
+	form = cgi.FieldStorage()
 
 
-#password = loginDate['password'].value
+		sys.stdout.write("Content-type: text/html \r\n\r\n")
 
-sys.stdout.write("Content-type: text/html \r\n\r\n")
+		conn = psycopg2.connect("dbname='postgres' user='postgres' host='localhost' password='Syslick1'")
 
-#sys.stdout.write("engenir")
-#sys.stdout.write("asd "+form['login'].value)
-#sys.stdout.write("||"+form['password'].value)
+		cur = conn.cursor()
 
-	
+		cur.execute("SELECT * FROM peple WHERE username='"+form['login'].value+"' AND password='"+form['password'].value+ "';")
 
-conn = psycopg2.connect("dbname='test' user='root' host='localhost' password='test'")
+		rez =cur.fetchall()
 
-cur = conn.cursor()
-#cur.execute("CREATE TABLE peple (id SERIAL, username varchar(30), password varchar, permition varchar(50));")
-#cur.execute("INSERT INTO peple (username, password, permition) VALUES (%s, %s, %s);",('dima','12345','engenir'))
-cur.execute("SELECT * FROM peple WHERE username='"+form['login'].value+"' AND password='"+form['password'].value+ "';")
-rez =cur.fetchall()
-sys.stdout.write(rez[0][3])
-conn.commit()
-cur.close()
-conn.close()
+		sys.stdout.write(rez[0][3])
+
+		conn.commit()
+		cur.close()
+		conn.close()
