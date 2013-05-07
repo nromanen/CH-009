@@ -36,10 +36,18 @@ var App = App || {};
    						data:{login:userDate['login'], password:userDate['password']},
    							success: function(msg){
      							alert( "Data Saved: " + msg );
+     							if(msg==='engenir'){
+     							window.location.replace('/#engineer');	
+     						}else{
+     							alert(msg + "Логін і пароль не коректний")
+     							window.location.replace('/#customer');
+     						}
+
+
    							}
  					});
 
-			window.location.replace('/#engineer');
+			
 
 
 
