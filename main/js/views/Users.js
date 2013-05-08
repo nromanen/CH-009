@@ -35,11 +35,11 @@ var App = App || {};
    						url: "/cgi-bin/login.py",
    						data:{login:userDate['login'], password:userDate['password']},
    							success: function(msg){
-     							alert( "Data Saved: " + msg );
-     							if(msg==='engenir'){
+     							alert(msg);
+     							if(msg==='engineer'){
      							window.location.replace('/#engineer');	
      						}else{
-     							alert(msg + "Логін і пароль не коректний")
+     							alert(msg + "Error login and password")
      							window.location.replace('/#customer');
      						}
 
@@ -69,6 +69,19 @@ var App = App || {};
 			$('.container').append( matCol + "<br><br>");
 			$('.container').append(  uniCol +"<br><br>" );
 			$('.container').append( gooCol +"<br><br>" );
+			$.ajax({
+   						type: "POST",
+   						url: "/cgi-bin/insertJSON.py",
+   						data:{materials:matCol, units:uniCol, goods:gooCol},
+   							success: function(msg){
+     							alert("Send JSON success" + msg);
+     							
+     						
+
+   							}
+ 					});
+
+
 
 		},
 		SaveCollectionsToDb: function() {

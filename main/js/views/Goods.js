@@ -31,7 +31,7 @@ var App = App || {};
 			var goodsHrefId = this.model.cid;
 			goodsHrefId = goodsHrefId.replace(" ","");
 			this.model.set('hrefId', goodsHrefId);
-			console.log(this.model.cid);
+			console.log(JSON.stringify(this.model.toJSON()));
 
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
