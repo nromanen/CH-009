@@ -11,7 +11,7 @@ var App = App || {};
 		},
 		events: {
 			'click .delete' : 'confirmRemove',
-			'click .editCount' : 'changeCount',
+			'click .edit' : 'changeCount',
 			'keypress .editMaterialCount': 'updateOnEnter',
 			'blur .editMaterialCount': 'close'
 		},
@@ -38,7 +38,7 @@ var App = App || {};
 		},
 		changeCount: function () {
 			this.$el.addClass('editingCount');
-			this.$input.focus();		
+			this.$el.find('input').focus();		
 		},
 		close: function () {
 			var value = this.$input.val().trim();
@@ -87,7 +87,7 @@ var App = App || {};
 
 			var unitItemView = new App.Views.UnitItem({ model: modelUnitItem, unitModel: this.model });
 			unitItemView.render();
-			this.$el.find( '#' + this.model.get( 'name' ) + '_tableRow' ).prepend( unitItemView.el );
+			this.$el.find( '#' + this.model.get( 'hrefID' ) + '_tableRow' ).prepend( unitItemView.el );
 
 		}
 	

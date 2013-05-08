@@ -25,7 +25,7 @@
 						  </a>
 						  <ul class="dropdown-menu">
 						  	<li><a id="fetchData"><span class="label label-success">Fetch Data</span></a></li>
-							<li><a id="sendData" href="#sendData"><span class="label label-success">Send Data</span></a></li>
+							<li><a id="sendData" href="#sendData"><span class="label label-success">Send Data</span></a></li> 
 							<li><a id="clearDB"><span class="label label-important">Delete Database</span></a></li>
 							<li><a id="saveCollectionsToDb"><span class="label label-info">Save to Database</span></a></li>
 						  </ul>
@@ -36,7 +36,6 @@
 								User Roles
 								<span class="caret"></span>
 							</a>
-							
 
 							<ul class="dropdown-menu">
 								<li> <a href="#customer"> Customer </a> </li>
@@ -44,9 +43,7 @@
 								<li> <a href="#engineer"> Engineer </a> </li>
 								<li> <a href="#storekeeper"> Storekeeper </a> </li>
 							</ul>
-						</div>
-
-						
+						</div>		
 
 					</div>
 				</nav>
@@ -307,14 +304,14 @@
 
 		<script type="text/template" id="goods-name">
 			<div class="goods_holder">
-						<div class="accordion-heading">
-					      <a class="accordion-toggle" data-toggle="collapse" data-parent="#goods_holder" href="#<%= hrefId %>">
-					        <span id="<%= hrefId %>_goodsId" class="goods_name_id"><%= nameG %></span>
+				<div class="accordion-heading">
+			      <a class="accordion-toggle" data-toggle="collapse" data-parent="#goods_holder" href="#<%= hrefId %>">
+			        <span id="<%= hrefId %>_goodsId" class="goods_name_id"><%= nameG %></span>
 
-					        <input class="edit_goods_name" type="text">
-					        <div class="delete_goods"></div><div class="edit_right"></div>
-					      </a>
-					    </div>
+			        <input class="edit_goods_name" type="text">
+			        <div class="delete_goods"></div><div class="edit_right"></div>
+			      </a>
+			    </div>
 	
 			</div>
 			<div class="clear"></div>	
@@ -325,13 +322,16 @@
 <!-- Unit View templates -->	
 
 		<script type="text/template" id="unit-name">
-				<div class="accordion-heading">
-			      <a class="accordion-toggle" data-toggle="collapse" data-parent=".accordion-group" href="#<%= hrefID %>">
-			        <%= name %><div class="delete_unit"></div>
-			      </a>
-			    </div>
-				<div class="clear"></div>	
-				<div style="height:15px;"></div>	
+			<div class="accordion-heading">
+		      <a class="accordion-toggle" data-toggle="collapse" data-parent=".accordion-group" href="#<%= hrefID %>">
+		        <span class="unit_name"><%= name %></span>
+		        <input class="edit_unit_name" value="<%= name %>" type="text">
+				<div class="delete_unit"></div>
+				<div class="edit_right"></div>
+		      </a>
+		    </div>
+			<div class="clear"></div>	
+			<div style="height:15px;"></div>	
 		</script>
 
 		<script type="text/template" id="materials-table">
@@ -346,7 +346,7 @@
 							<th> Price total </th>
 						</tr>
 					</thead>
-					<tbody id="<%= name %>_tableRow" class="holder">						
+					<tbody id="<%= hrefID %>_tableRow" class="holder">						
 
 			            <tr>	
 			        		<td colspan="4">
@@ -363,8 +363,11 @@
 
 		<script type="text/template" id="materials-row-in-unit">
         	<td> <%= material %> </td>
-        	<td> <%= count %> </td>
-        	<td> <div class="editCount"></div> </td>
+        	<td> 
+        		<span class="count"><%= count %></span>
+        		<input type="text" class="edit_count" value="<%= count %>">
+        	</td>
+        	<td> <div class="edit" title="Edit quantity of <%= material %> material"></div> </td>
         	<td> <div class="delete" title="Delete <%= material %> material"></div></td>
         	<td> <%=unitItemPrice%> </td>
         </script>

@@ -75,7 +75,6 @@ var App = App || {};
 			this.options.something.set( "unitPrice", this.options.something.get('unitPrice')+this.model.get( 'unitItemPrice' ) );
 			App.dbConnector.EditUnitItem ( this.options.something );
 
-
 			//editing the sentence in the Add to Unit Modal
 			var materialsInUnitSentence = ''; // for #addMaterial2Unit sentence
 			_.each ( this.collection.models, function ( unitItem ) {

@@ -40,7 +40,8 @@ var App = App || {};
 			var modelGoods = new App.Models.Goods ({
 				
 				nameG: goodsName,
-				goodsCollection:""
+				goodsCollection: newGoodsCollection,
+				goodsPrice : 0
 				
 			});
 

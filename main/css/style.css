@@ -1,11 +1,11 @@
-.accordion-toggle .edit_goods_name {
+.accordion-toggle .edit_goods_name, .accordion-toggle .edit_unit_name, td .edit_count {
     display: none;
 }
-
-.editing .edit_goods_name {
-    display: inline-block;
- 
-   
+.editing .edit_goods_name, .editing .edit_unit_name {
+    display: inline-block; 
+}
+.editing .goods_name_id, .editing .unit_name {
+    display: none;
 }
 .nobullets {
     list-style: none;
@@ -17,9 +17,6 @@
 .icon-plus:hover {
     cursor: pointer;
     opacity: 1;
-}
-.editing .goods_name_id {
-    display: none;
 }
 
 .edit_right {

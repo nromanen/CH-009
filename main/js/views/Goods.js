@@ -7,8 +7,7 @@ var App = App || {};
 			
 		tagName: 'div',
 		className:"accordion-group",
-		initialize: function () {
-			
+		initialize: function () {		
 
 			this.model.on( 'change:nameG', this.nameUpDate, this);
 			this.model.on( 'destroy', this.goodsRemoveItem, this );
@@ -46,7 +45,6 @@ var App = App || {};
 		nameUpDate: function (){
 
 			console.log($('#'+this.model.cid+"_goodsId").html(this.model.get("nameG")));
-
 
 
 		},
