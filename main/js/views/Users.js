@@ -99,11 +99,13 @@ var App = App || {};
 
 				var uni = App.Units.fetch( { update: true } );
 				uni ? console.log("units fetch done") : console.log("units fetch failed");
+				console.log(uni);
+				console.log(App.Units.toJSON());
 				
 			};
 
 			fetchMaterials();
-			//fetchUnits();
+			fetchUnits();
 			
 			/*console.log( App.Units.toJSON() );
 			console.log( App.Materials.toJSON() );
