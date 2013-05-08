@@ -187,14 +187,8 @@ var App = App || {};
 
 			
 		},
-		deleteModel: function(model){
-<<<<<<< HEAD
-			App.dbConnector.deleteGoods(model.get( 'nameG' ));
-
-=======
-			
+		deleteModel: function(model){			
 			App.dbConnector.deleteGoods(this.model.get('nameG'));
->>>>>>> dkozatc_myBranch
 			model.destroy();
 			this.remove(model); 			
 		},

@@ -40,12 +40,7 @@ var App = App || {};
 			var modelGoods = new App.Models.Goods ({
 				
 				nameG: goodsName,
-<<<<<<< HEAD
-				goodsCollection: newGoodsCollection,
-				goodsPrice: 0
-=======
 				goodsCollection:""
->>>>>>> dkozatc_myBranch
 				
 			});
 

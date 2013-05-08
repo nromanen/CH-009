@@ -82,16 +82,8 @@ var App = App || {};
 				  
 			var tovarStore = evt.currentTarget.result.createObjectStore
 					("Tovaru", {keyPath: "id", autoIncrement: true});
-<<<<<<< HEAD
-				   	tovarStore.createIndex("tovarName", "tovarName", { unique: false });        
-				 	tovarStore.createIndex("tovarCollection", "tovarCollection", { unique: false });
-
-=======
 				   tovarStore.createIndex("tovarName", "tovarName", { unique: true});        
-				   tovarStore.createIndex("tovarCollection", "tovarCollection", { unique: false });
-				 				   					
->>>>>>> dkozatc_myBranch
-			            	   						  
+				   tovarStore.createIndex("tovarCollection", "tovarCollection", { unique: false });			            	   						  
 			}
 	
 	}	
