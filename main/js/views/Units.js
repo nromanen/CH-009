@@ -13,7 +13,7 @@ var App = App || {};
 		events: {
 			'click .unit_name' : 'unitToggle',
 			'click .delete_unit' : 'unitDeleteItem',
-			'click .edit_unitItem' : 'changeUnitName',
+			'click .edit_right' : 'changeUnitName',
 			'keypress .edit_unit_name': 'updateOnEnter',
 			'blur .edit_unit_name': 'close',
 			'click .add-material-to-unit' : 'inputMaterials'
@@ -99,10 +99,10 @@ var App = App || {};
 		},
 		changeUnitName: function () {
 			this.$el.addClass('editing');
-			this.$input.focus();			
+			this.$el.find('input').focus();			
 		},
 		close: function () {
-			var value = this.$input.val().trim();
+			var value = this.$el.find('input').val().trim();
 			if ( value =='' ) {
 			this.$el.removeClass('editing');
 			return;
@@ -115,6 +115,7 @@ var App = App || {};
 			this.$el.removeClass('editing');
 		},
 		updateOnEnter: function (e) {
+			console.log('update on enter');
 			if (e.keyCode == 13) {
 				this.close(); 
 			}

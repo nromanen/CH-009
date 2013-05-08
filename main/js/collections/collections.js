@@ -119,7 +119,6 @@ var App = App || {};
 		changeName: function ( model, value ) {
 			App.dbConnector.changeUnitName( model.get( 'name' ), value );
 			model.set({ name: value });
-
 		}
 	
 	});
@@ -173,15 +172,22 @@ var App = App || {};
 
 		},
 		addModel: function (model) {
-			
-			this.add( model );
+			var search = this.where({nameG:model.get('nameG')})
+			if(!search[0]){
+				this.add( model );
 
-			App.dbConnector.AddGoodsToDb( 'Tovaru', model );
+				App.dbConnector.AddGoodsToDb( 'Tovaru', model );
 		
-		},
-		deleteModel: function(model){
-			App.dbConnector.deleteGoods(model.get( 'nameG' ));
+				
+			}else{
+				alert("this goods is already in database")
 
+			}
+
+			
+		},
+		deleteModel: function(model){			
+			App.dbConnector.deleteGoods(this.model.get('nameG'));
 			model.destroy();
 			this.remove(model); 			
 		},

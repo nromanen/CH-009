@@ -80,7 +80,6 @@ var App = App || {};
 			
 			App.dbConnector.EditUnitItem ( this.options.something );
 
-
 			//editing the sentence in the Add to Unit Modal
 			var materialsInUnitSentence = ''; // for #addMaterial2Unit sentence
 			_.each ( this.collection.models, function ( unitItem ) {

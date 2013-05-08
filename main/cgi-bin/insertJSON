@@ -1,0 +1,11 @@
+import cgi
+import psycopg2, sys, os
+
+form = cgi.FieldStorage() #get Post date
+
+
+sys.stdout.write("Content-type: text/html \r\n\r\n")
+sys.stdout.write(" Materials"+form['materials']+"<br><br>")
+sys.stdout.write("Units"+form['units']+"<br><br>")
+sys.stdout.write("Goods"+form['goods']+"<br><br>")
+

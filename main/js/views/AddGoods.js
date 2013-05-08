@@ -41,7 +41,7 @@ var App = App || {};
 				
 				nameG: goodsName,
 				goodsCollection: newGoodsCollection,
-				goodsPrice: 0
+				goodsPrice : 0
 				
 			});
 

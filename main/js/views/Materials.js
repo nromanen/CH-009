@@ -32,7 +32,7 @@ var App = App || {};
 				for (var j = 0; j < arr.length; j++) {
 
 					if (arr[j].material === delMat) {
-							alert("Attention! This product is used in unit: " + unitModels[i].get("name") );
+							alert("Attention! This material is used in unit: " + unitModels[i].get("name") );
 						};
 					};
 				};

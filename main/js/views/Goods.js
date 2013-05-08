@@ -7,8 +7,7 @@ var App = App || {};
 			
 		tagName: 'div',
 		className:"accordion-group",
-		initialize: function () {
-			
+		initialize: function () {		
 
 			this.model.on( 'change:nameG', this.nameUpDate, this);
 			this.model.on( 'destroy', this.goodsRemoveItem, this );
@@ -31,7 +30,7 @@ var App = App || {};
 			var goodsHrefId = this.model.cid;
 			goodsHrefId = goodsHrefId.replace(" ","");
 			this.model.set('hrefId', goodsHrefId);
-			console.log(this.model.cid);
+			console.log(JSON.stringify(this.model.toJSON()));
 
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
@@ -46,7 +45,6 @@ var App = App || {};
 		nameUpDate: function (){
 
 			console.log($('#'+this.model.cid+"_goodsId").html(this.model.get("nameG")));
-
 
 
 		},
