@@ -11,18 +11,13 @@ var App = App || {};
 		},
 		events: {
 			'click .delete' : 'confirmRemove',
-			'click .editCount' : 'changeCount',
+			'click .edit' : 'changeCount',
 			'keypress .editMaterialCount': 'updateOnEnter',
 			'blur .editMaterialCount': 'close'
 		},
 		template: _.template( $('#materials-row-in-unit').html() ),
 		render: function () {
-			var price = this.model.get( 'price' );
-			if ( price === undefined ) { 
-				price = '120';
-				this.model.set( 'price', price );
-			}
-			
+	
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );	
 
@@ -31,6 +26,7 @@ var App = App || {};
 		},
 		confirmRemove: function () {
 			if ( confirm('Are you sure you want to delete this Unit Item?') ) {
+				this.options.unitModel.set('unitPrice', this.options.unitModel.get('unitPrice')-this.model.get('unitItemPrice'));
 				this.model.destroy();
 				App.dbConnector.EditUnitItem( this.options.unitModel );
 			}	
@@ -42,15 +38,17 @@ var App = App || {};
 		},
 		changeCount: function () {
 			this.$el.addClass('editingCount');
-			this.$input.focus();		
+			this.$el.find('input').focus();		
 		},
 		close: function () {
 			var value = this.$input.val().trim();
-			 if ( isNaN ( value ) || value <0 || value == '') {
+			 if ( isNaN ( value ) || value <=0 || value == '') {
 				this.$el.removeClass('editingCount');
 				this.render();
 				return;
 			}	
+			this.options.unitModel.set('unitPrice', this.options.unitModel.get('unitPrice')+(value-this.model.get('count'))*(this.model.get('unitItemPrice')/this.model.get('count')));
+			this.model.set('unitItemPrice', this.model.get('unitItemPrice')+(value-this.model.get('count'))*(this.model.get('unitItemPrice')/this.model.get('count')));
 			App.Events.trigger('newMaterialCount', this.model, value);
 			App.dbConnector.changeCount( this.options.unitModel );
 			this.$el.removeClass('editingCount');
@@ -92,7 +90,7 @@ var App = App || {};
 
 			var unitItemView = new App.Views.UnitItem({ model: modelUnitItem, unitModel: this.model });
 			unitItemView.render();
-			this.$el.find( '#' + this.model.get( 'name' ) + '_tableRow' ).prepend( unitItemView.el );
+			this.$el.find( '#' + this.model.get( 'hrefID' ) + '_tableRow' ).prepend( unitItemView.el );
 
 		}
 	

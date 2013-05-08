@@ -29,17 +29,19 @@ var App = App || {};
 		},
 		addItem: function ( goodsName ) {
 		
-			var newGoodsCollection = new App.Collections.GoodsItems([
+			var newGoodsCollection = new App.Collections.GoodsItems(/*[
 				{
 					units: 'goods1',
-					count: 0,	
+					count: 0,
+					goodPrice: 0
 				}
-			]);
+			]*/);
 			
 			var modelGoods = new App.Models.Goods ({
 				
 				nameG: goodsName,
-				goodsCollection:""
+				goodsCollection: newGoodsCollection,
+				goodsPrice : 0
 				
 			});
 

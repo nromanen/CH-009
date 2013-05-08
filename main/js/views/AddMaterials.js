@@ -43,20 +43,11 @@ var App = App || {};
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
 		},
-		confirmQuantity: function () {
-			var quantity = prompt( 'Please enter the quantity of ' + this.model.get ( 'material' )  );
-			if ( ( quantity !== '' ) && ( quantity !== null ) ) {
-				this.model.set ( { count: quantity } )
-				this.collection.add ( this.model );
-				this.options.something.set("mcollection", this.collection);	
-			} else {
-				alert( 'You have not entered a correct value!' );
-			}
-		},
+		
 		saveUnitCollection: function () {
 			
 
-			App.dbConnector.EditUnitItem (this.options.something);
+			//App.dbConnector.EditUnitItem (this.options.something);
 			console.log('App.dbConnector.EditUnitItem triggered!');
 		},
 		
