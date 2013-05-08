@@ -37,8 +37,7 @@ var App = App || {};
 			this.model.on( 'plus', this.plus, this );
 		},
 		events: {
-			'click .icon-plus'    : 'addOne',
-			'dblclick .icon-plus' : 'confirmQuantity'
+			'click .icon-plus'    : 'addOne'
 		},
 		template: _.template( $('#material-price-plus').html() ),
 		render: function () {
@@ -47,7 +46,7 @@ var App = App || {};
 		},
 		addOne: function () {
 
-			this.addUnitItem( 1 );
+			this.confirmQuantity();
 
 		},
  		addUnitItem: function( quantity ) {
