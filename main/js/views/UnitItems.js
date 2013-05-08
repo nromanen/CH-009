@@ -12,6 +12,7 @@ var App = App || {};
 		events: {
 			'click .delete' : 'confirmRemove',
 			'click .edit' : 'changeCount',
+			'dblclick .count' : 'changeCount',
 			'keypress .edit_count': 'updateOnEnter',
 			'blur .edit_count': 'close'
 		},
