@@ -70,14 +70,16 @@ var App = App || {};
 				var newPrice = parseFloat( found.get( 'unitItemPrice' ) ) + this.model.get('price')*quantity;
 				console.log ('quantity: ' + quantity)
 				console.log ('sum: ' + sum);
-				found.set ( 'count', sum );
-				found.set ( 'unitItemPrice', newPrice );
-				this.options.something.set( "unitPrice", newPrice);
+				found.set ('count',sum);
+				found.set('unitItemPrice',newPrice);
+				this.options.something.set("unitPrice", this.options.something.get('unitPrice')+this.model.get( 'price' )*quantity);	
+
 				//console.log( '2nd found.get("count"): ' + found.get('count') );
 				//console.log( this.collection );
 			}
 			
 			this.options.something.set( "mcollection", this.collection );	
+
 			App.dbConnector.EditUnitItem ( this.options.something );
 
 			//editing the sentence in the Add to Unit Modal
