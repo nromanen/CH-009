@@ -162,14 +162,22 @@ var App = App || {};
 
 		},
 		addModel: function (model) {
-			
-			this.add( model );
+			var search = this.where({nameG:model.get('nameG')})
+			if(!search[0]){
+				this.add( model );
 
-			App.dbConnector.AddGoodsToDb( 'Tovaru', model );
+				App.dbConnector.AddGoodsToDb( 'Tovaru', model );
 		
+				
+			}else{
+				alert("this goods is already in database")
+
+			}
+
+			
 		},
 		deleteModel: function(model){
-			alert(1);
+			
 			App.dbConnector.deleteGoods(this.model.get('nameG'));
 			model.destroy();
 			this.remove(model); 			
