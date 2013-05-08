@@ -52,7 +52,7 @@ var App = App || {};
 		},
  		addUnitItem: function( quantity ) {
 
-			this.model.set ( { count: quantity, unitItemPrice: quantity*this.model.get( 'price' ) } );
+			//this.model.set ( { count: quantity, unitItemPrice: quantity*this.model.get( 'price' ) } );
 			var that = this;
 			var found = this.collection.find( function( model ) {
 				//console.log( model.get('material') + ' - ' + model.get('count') )
@@ -60,19 +60,24 @@ var App = App || {};
 			});
 			
 			if ( found === undefined ) {
+				this.model.set ( { count: quantity, unitItemPrice: quantity*this.model.get( 'price' ) } );
 				this.collection.add ( this.model );
+				this.options.something.set( "unitPrice", this.options.something.get('unitPrice')+this.model.get( 'unitItemPrice' ) );
 			} else {
 				//console.log( '1st found.get("count"): ' + found.get('count') );
 				var sum = parseFloat( found.get( 'count' ) ) + quantity;
+				var newPrice = parseFloat( found.get( 'unitItemPrice' ) ) + this.model.get('price')*quantity;
 				console.log ('quantity: ' + quantity)
 				console.log ('sum: ' + sum);
-				found.set ( 'count', sum );
+				found.set ('count',sum);
+				found.set('unitItemPrice',newPrice);
+				this.options.something.set("unitPrice", this.options.something.get('unitPrice')+this.model.get( 'price' )*quantity);	
 				//console.log( '2nd found.get("count"): ' + found.get('count') );
 				//console.log( this.collection );
 			}
 			
 			this.options.something.set( "mcollection", this.collection );	
-			this.options.something.set( "unitPrice", this.options.something.get('unitPrice')+this.model.get( 'unitItemPrice' ) );
+			
 			App.dbConnector.EditUnitItem ( this.options.something );
 
 
