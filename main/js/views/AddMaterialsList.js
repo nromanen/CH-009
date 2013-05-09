@@ -101,7 +101,7 @@ var App = App || {};
 				this.addUnitItem( parseFloat(clearQuantity) );
 
 				} else {
-					alert( 'You have not entered a correct value!' );
+					this.confirmQuantity();
 				}
 			}
 			else return false;
