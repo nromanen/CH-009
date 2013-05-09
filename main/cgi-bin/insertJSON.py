@@ -12,7 +12,7 @@ materials = json.load(form['materials'].value)
 units = json.load(form['units'].value)
 goods = json.load(form['goods'].value) 
 sys.stdout.write("asd" + materials)
-conn = psycopg2.connect("dbname='postgres' user='postgres' host='localhost' password='Syslick1'")
+conn = psycopg2.connect("dbname='postgres' user='postgres' host='localhost' password='root'")
 cur = conn.cursor()
 
 conn.commit()

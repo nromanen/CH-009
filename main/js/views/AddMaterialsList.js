@@ -93,13 +93,18 @@ var App = App || {};
 		},
 		confirmQuantity: function () {
 			var quantity = prompt( 'Please enter the quantity of ' + this.model.get ( 'material' )  );
-			if ( ( quantity !== '' ) && ( quantity !== null ) ) {
+			if(quantity !== null){ // if user click cancel, nothing to do
+				var clearQuantity = quantity.replace(/\s/g, ""); // delete all spaces
 
-				this.addUnitItem( parseFloat(quantity) );
+				if ( ( clearQuantity !== '' ) && ( clearQuantity !== null ) && ( !isNaN(clearQuantity) ) ) {
 
-			} else {
-				alert( 'You have not entered a correct value!' );
+				this.addUnitItem( parseFloat(clearQuantity) );
+
+				} else {
+					alert( 'You have not entered a correct value!' );
+				}
 			}
+			else return false;
 		},
 		saveUnitCollection: function () {
 

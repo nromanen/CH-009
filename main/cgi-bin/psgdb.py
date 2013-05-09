@@ -3,7 +3,7 @@ import psycopg2, sys, os
 
 form = cgi.FieldStorage()
 
-conn = psycopg2.connect("dbname='postgres' user='postgres' host='localhost' password='newfresh'")
+conn = psycopg2.connect("dbname='postgres' user='postgres' host='localhost' password='root' port='5433'")
 
 cur = conn.cursor()
 cur.execute("CREATE TABLE peple ( id SERIAL PRIMARY KEY, username varchar(30), password varchar, permition varchar(50));")
