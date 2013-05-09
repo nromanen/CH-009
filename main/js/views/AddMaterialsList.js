@@ -39,7 +39,6 @@ var App = App || {};
 		},
 		events: {
 			'click .icon-plus'    : 'confirmQuantity',
-			'dblclick .icon-plus' : 'confirmQuantity'
 		},
 		template: _.template( $('#material-price-plus').html() ),
 		render: function () {
@@ -48,7 +47,7 @@ var App = App || {};
 		},
 		addOne: function () {
 
-			this.addUnitItem( 1 );
+			this.confirmQuantity();
 
 		},
  		addUnitItem: function( quantity ) {
