@@ -4,27 +4,28 @@ var App = App || {};
 
 	App.Views.UnitItem = Backbone.View.extend({
 
-		tagName: 'li',
+		tagName: 'tr',
 		initialize: function (){
 			this.model.on( 'destroy', this.remove, this );
 			this.model.on( 'change', this.render, this);
 		},
 		events: {
 			'click .delete' : 'confirmRemove',
-			'click .editCount' : 'changeCount',
-			'keypress .editMaterialCount': 'updateOnEnter',
-			'blur .editMaterialCount': 'close'
+			'click .edit' : 'changeCount',
+			'dblclick .count' : 'changeCount',
+			'keypress .edit_count': 'updateOnEnter',
+			'blur .edit_count': 'close'
 		},
-		template: '<something here>',
+		template: _.template( $('#materials-row-in-unit').html() ),
 		render: function () {
+	
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );	
 
-			this.$input = this.$('.editMaterialCount');
-			this.$input.val( this.model.get( 'count' ) );
 		},
 		confirmRemove: function () {
 			if ( confirm('Are you sure you want to delete this Unit Item?') ) {
+				this.options.unitModel.set('unitPrice', this.options.unitModel.get('unitPrice')-this.model.get('unitItemPrice'));
 				this.model.destroy();
 				App.dbConnector.EditUnitItem( this.options.unitModel );
 			}	
@@ -35,20 +36,21 @@ var App = App || {};
 		
 		},
 		changeCount: function () {
-			this.$el.addClass('editingCount');
-			this.$input.focus();
-			
+			this.$el.addClass('editing');
+			this.$el.find('input').focus();		
 		},
 		close: function () {
-			var value = this.$input.val().trim();
-			 if ( isNaN ( value ) || value <0 || value == '') {
-				this.$el.removeClass('editingCount');
+			var value = this.$el.find('input').val().trim();
+			if ( isNaN ( value ) || value <=0 || value == '') {
+				this.$el.removeClass('editing');
 				this.render();
 				return;
 			}	
+			//this.options.unitModel.set('unitPrice', this.options.unitModel.get('unitPrice')+(value-this.model.get('count'))*(this.model.get('unitItemPrice')/this.model.get('count')));
+			this.model.set('unitItemPrice', this.model.get('unitItemPrice')+(value-this.model.get('count'))*(this.model.get('unitItemPrice')/this.model.get('count')));
 			App.Events.trigger('newMaterialCount', this.model, value);
 			App.dbConnector.changeCount( this.options.unitModel );
-			this.$el.removeClass('editingCount');
+			this.$el.removeClass('editing');
 			
 		},
 		updateOnEnter: function (e) {
@@ -59,31 +61,33 @@ var App = App || {};
 		
 	
 	});
-	
+	 
 	App.Views.UnitItemsList = Backbone.View.extend({  // это вид коллекции
 	
 		tagName: 'div',
 		initialize: function () {
-			//this.collection.on('add', this.addOne, this);	
-
+			
+			this.collection.on('add', this.addOne, this);	
 			this.el.id = this.model.get( 'name' ).replace(/\s/g, ''); // надає ім'я id без пробілів
 			
 		},
 		className: 'accordion-body collapse',
-		template: _.template( $('#unit-count').html() ),
+		template: _.template( $('#materials-table').html() ),
 		render: function () {
 
-			//console.log ( this.model.toJSON() );
 			var strTemplate = this.template( this.model.toJSON() );
 
-			console.log ( this.$el );
 			this.$el.html ( strTemplate  );
+			this.collection.each(this.addOne, this);
+			return this;
 			
 		},
 		addOne: function( modelUnitItem ) {
+
 			var unitItemView = new App.Views.UnitItem({ model: modelUnitItem, unitModel: this.model });
 			unitItemView.render();
-			this.$el.append( unitItemView.el );
+			this.$el.find( '#' + this.model.get( 'hrefID' ) + '_tableRow' ).prepend( unitItemView.el );
+
 		}
 	
 	});

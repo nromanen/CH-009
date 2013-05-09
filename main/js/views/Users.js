@@ -19,9 +19,44 @@ var App = App || {};
 			App.Events.on ( 'sendData', this.sendData, this );
 		},
 		events:{
+			"click #loginButton":"loginUser",
 			"click #showMaterial" : "showMaterials",
 			"click #showUnit" : "showUnit",
 			"click #showGoods" : "showGoods"
+		},
+		loginUser: function(){
+				var userDate = [];
+				userDate['login'] = $('#inputLogin').val();
+				userDate['password']= $('#inputPassword').val();
+				console.log(userDate);
+
+					$.ajax({
+   						type: "POST",
+   						url: "/cgi-bin/login.py",
+   						data:{login:userDate['login'], password:userDate['password']},
+   							success: function(msg){
+     							alert(msg);
+     							if(msg==='engineer'){
+     							window.location.replace('/#engineer');	
+     						}else{
+     							alert(msg + "Error login and password")
+     							window.location.replace('/#customer');
+     						}
+
+
+   							}
+ 					});
+
+			
+
+
+
+		},
+		clearDB: function() {
+
+			App.dbConnector.deleteDatabase();
+			window.location.reload()
+
 		},
 		sendData: function() {
 
@@ -34,6 +69,33 @@ var App = App || {};
 			$('.container').append( matCol + "<br><br>");
 			$('.container').append(  uniCol +"<br><br>" );
 			$('.container').append( gooCol +"<br><br>" );
+			$.ajax({
+   						type: "POST",
+   						url: "/cgi-bin/insertJSON.py",
+   						data:{materials:matCol, units:uniCol, goods:gooCol},
+   							success: function(msg){
+     							alert("Send JSON success" + msg);
+     							
+     						
+
+   							}
+ 					});
+
+
+
+		},
+		SaveCollectionsToDb: function() {
+			for (var i = 0; i < App.Materials.length; i++) {
+				var model = App.Materials.at(i)
+				App.dbConnector.addProduct ( model.get("material"), model.get("price") );
+				console.log("save materials to db complete");
+			};
+
+			for (var i = 0; i < App.Units.length; i++){
+				var model = App.Units.at(i);
+				App.dbConnector.AddUnit ( "Units", model );
+				console.log("save units to db complete");
+			};
 
 		},
 		fetchData: function() { //fetching data from json files, letter from the server
@@ -43,37 +105,30 @@ var App = App || {};
 				var mat = App.Materials.fetch( { update: true } );
 				mat ? console.log("materials fetch done") : console.log("materials fetch failed");
 
-				for (var i = 0; i < App.Materials.length; i++) {
-					var model = App.Materials.at(i)
-					App.dbConnector.addProduct ( model.get("material"), model.get("price") );
-					console.log("save materials to db complete");
-				};
+				
 			};
 
 			function fetchUnits() {
+
 				var uni = App.Units.fetch( { update: true } );
 				uni ? console.log("units fetch done") : console.log("units fetch failed");
-				for (var i = 0; i < App.Units.length; i++){
-					var model = App.Units.at(i);
-					App.dbConnector.AddUnit ( "Units", model );
-					console.log("save units to db complete");
-				}
-
+				
 			};
 
 			fetchMaterials();
-			fetchUnits();
+			//fetchUnits();
 			
-			console.log( App.Units.toJSON() );
+			/*console.log( App.Units.toJSON() );
 			console.log( App.Materials.toJSON() );
 			console.log( JSON.stringify(App.Units) );
-			console.log( JSON.stringify(App.Materials) );
+			console.log( JSON.stringify(App.Materials) );*/
 
 		},
 		chooseRole: function () {
 
 			$('.container').html('');
-			$('.container').append( _.template ( $('#chooseRole').html() ) );
+			//$('.container').append( _.template ( $('#chooseRole').html() ) );
+			$('.container').append( _.template ( $('#loginForm').html() ) );
 
 		},
 		openCustomer: function () {
@@ -108,7 +163,7 @@ var App = App || {};
 			}) ); 
 			$('#products').append( viewProducts.el );
 
-			viewProducts.render();
+		//	viewProducts.render();
 			$('.buttonPlace').html("")
 			// rendering the content of the Units Tab
 			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
@@ -168,7 +223,7 @@ var App = App || {};
 			$('#products').append( viewProducts.el );
 			
 			viewProducts.render();
-			$('.buttonPlace').html($('#addUnit2GoodsButton').html());
+			$('.buttonPlace').html( $('#addUnit2GoodsButton').html() );
 
 			// rendering the content of the Units Tab
 			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
@@ -179,9 +234,9 @@ var App = App || {};
 			}) );
 			$('#units').append( $( '#addNewUnitButton' ).html() );
 			$('#units').append( $( '#addNewUnitModal' ).html() );
+			$('#units').append( $( '#addMaterial2UnitModal' ).html() );
 			var addNewUnits = new App.Views.AddUnit( { collection: App.Materials } );
 			$('#units').append( viewUnits.el );
-
 
 		},
 		openStorekeeper: function () {
@@ -206,13 +261,14 @@ var App = App || {};
 
 		},
 		renderBeginning: function ( userName, tabName ) {
-
+			var that = this;
 			$('.container-navbar').html(''); 
 			$('.container-navbar').append ( _.template ( $('#navbar').html(), { user : userName } ) );
-			var that = this;
-			$('#fetchData').bind('click', function() {
-			 	that.fetchData();
-			});
+
+			$('#fetchData').bind('click', function() { that.fetchData(); });
+			$('#clearDB').bind('click', function() { that.clearDB(); });
+			$('#saveCollectionsToDb').bind('click', function() { that.SaveCollectionsToDb(); });
+
 			$('.container').html('');  //empty main container 
 			$('.container').append( App.HTML.Row );
 			$('.content').append( $('#' + tabName ).html() );

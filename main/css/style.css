@@ -1,4 +1,49 @@
+.edit_count {
+    width: 20px;
+}
+.accordion-toggle .edit_goods_name, .accordion-toggle .edit_unit_name, table tr td .edit_count {
+    display: none;
+}
+.editing .edit_goods_name, .editing .edit_unit_name, table tr.editing td .edit_count {
+    display: inline-block; 
+}
+.editing .goods_name_id, .editing .unit_name, .editing .count {
+    display: none;
+}
+.nobullets {
+    list-style: none;
+}
+.icon-plus {
+    cursor: pointer;
+    opacity: 0.8;
+}
+.icon-plus:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+
+.edit_right {
+    float:right;
+    position:relative;
+    width: 26px;
+    height: 26px;
+    background: url('../img/edit16.png') no-repeat;
+    opacity: 0.8;
+    cursor: pointer;
+}
+.edit_right:hover {
+    float:right;
+    position:relative;
+    width:26px;
+    height:26px;
+    background: url('../img/edit16.png') no-repeat;
+    opacity: 1;
+    cursor: pointer;
+}
+
 .edit {
+    float:left;
+    position:relative;
     width: 26px;
     height: 26px;
     background: url('../img/edit16.png') no-repeat;
@@ -6,6 +51,8 @@
     cursor: pointer;
 }
 .edit:hover {
+    float:left;
+    position:relative;
     width:26px;
     height:26px;
     background: url('../img/edit16.png') no-repeat;

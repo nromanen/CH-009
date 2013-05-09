@@ -12,12 +12,14 @@ var App = App || {};
 		},
 		events: {
 			'click .unit_name' : 'unitToggle',
-			'click .deleteUnit' : 'unitDeleteItem',
-			'click .edit_unitItem' : 'changeUnitName',
+			'click .delete_unit' : 'unitDeleteItem',
+			'click .edit_right' : 'changeUnitName',
 			'keypress .edit_unit_name': 'updateOnEnter',
-			'blur .edit_unit_name': 'close'
+			'blur .edit_unit_name': 'close',
+			'click .add-material-to-unit' : 'inputMaterials'
 		},
 		template: _.template( $('#unit-name').html() ),
+
 		render: function () {	
 			var nameTrimmed = this.model.get( 'name' ).replace(/\s/g, ''); // видаляє пробіли
 			this.model.set ('hrefID', nameTrimmed);     
@@ -27,7 +29,7 @@ var App = App || {};
 			var newUnitItemsList = new App.Views.UnitItemsList( { collection: this.model.get( 'mcollection' ), model: this.model  } ) ;
 			newUnitItemsList.render();
 
-			console.log ( $(this) );	
+			//console.log ( $(this) );	
 
 			//console.log ( newUnitItemsList.el );
 
@@ -68,6 +70,20 @@ var App = App || {};
 			}
 
 		},
+		inputMaterials: function () {
+			
+			var AddMaterialsList = new App.Views.AddMaterialsList( { collection: App.Materials, model : this.model } );
+			AddMaterialsList.render();
+			$( '#materialsContainer' ).html( AddMaterialsList.el );
+			$('#addMaterial2Unit').find('#myModalLabel').html('Add New Material to ' + this.model.get('name') );
+			var materialsInUnit = this.model.get( 'mcollection' );
+			var materialsInUnitSentence = ''; // for #addMaterial2Unit sentence
+			_.each ( materialsInUnit.models, function ( unitItem ) {
+				materialsInUnitSentence = materialsInUnitSentence + ', ' + unitItem.attributes.material + ' ($' + unitItem.attributes.price + ') <b>x ' + unitItem.attributes.count + '</b>';
+			} )
+			$('#addMaterial2Unit').find('.unit_text').html( '<b>' + this.model.get('name') + '</b> already contains: <span class="unitItems_list">' + materialsInUnitSentence.substr(2) + '</span>' );
+
+		},
 		unitDeleteItem: function() {
 		
 			if ( confirm('Are you sure you want to delete this Unit?') ) {
@@ -83,10 +99,10 @@ var App = App || {};
 		},
 		changeUnitName: function () {
 			this.$el.addClass('editing');
-			this.$input.focus();			
+			this.$el.find('input').focus();			
 		},
 		close: function () {
-			var value = this.$input.val().trim();
+			var value = this.$el.find('input').val().trim();
 			if ( value =='' ) {
 			this.$el.removeClass('editing');
 			return;
@@ -99,6 +115,7 @@ var App = App || {};
 			this.$el.removeClass('editing');
 		},
 		updateOnEnter: function (e) {
+			console.log('update on enter');
 			if (e.keyCode == 13) {
 				this.close(); 
 			}

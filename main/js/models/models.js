@@ -13,27 +13,30 @@ var App = App || {};
 	
 		unitID: 1,
 		material: '',
-		count: 0
+		count: 0,
+		unitItemPrice: 0
 	
 	});
 	
 	App.Models.Unit = Backbone.Model.extend({
 	
 		name: 'unit',
-		mcollection: ''
-	
+		mcollection: '',
+		unitPrice: 0
 	});
 	
 	App.Models.Goods = Backbone.Model.extend({
 	
 		nameG: 'Goods',
-		goodsCollection: ''
+		goodsCollection: '',
+		goodsPrice: 0
 	
 	});
 	App.Models.GoodsItem = Backbone.Model.extend({
 		
 		units: '',
-		count: 0
+		count: 0,
+		goodsItemPrice: 0
 		
 	});
 
