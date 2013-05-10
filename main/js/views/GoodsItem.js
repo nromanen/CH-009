@@ -83,6 +83,7 @@ var App = App || {};
 
 			this.$el.html( strTemplate );
 			this.collection.each(this.addOne, this);
+			$('.buttonPlace').html($('#addUnit2GoodsButton').html());
 			return this;
 		},
 		addOne: function( modelGoodsItem ) {
@@ -92,7 +93,7 @@ var App = App || {};
 			console.log("render");
 			
 			goodsItemView.render();
-			$('.buttonPlace').html($('#addUnit2GoodsButton').html());
+			
 			
 		},
 		ItemRemove: function() {
