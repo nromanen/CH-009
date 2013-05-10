@@ -172,17 +172,7 @@ var App = App || {};
 			viewUnits.render();
 
 
-			// rendering the content of the Products Tab
-			var viewProducts = new App.Views.GoodsList( { collection: App.Goods } );
 			
-			$('#TabContent').append ( _.template ( $('#tab').html(), { 
-				id      : 'products',
-				active  : ' in active',
-			}) ); 
-			$('#products').append( viewProducts.el );
-
-			viewProducts.render();
-			$('.buttonPlace').html("")
 			// rendering the content of the Units Tab
 			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
 			viewUnits.render();
