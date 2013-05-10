@@ -48,10 +48,9 @@ var App = App || {};
 				this.render();
 				return;
 			}	
-			var oldPrice = this.model.get('goodsItemPrice');
-			var newPrice = value*this.model.get('goodsItemPrice')/this.model.get('count');
-			this.options.goodsModel.set('goodsPrice', this.options.goodsModel.get('goodsPrice')-oldPrice+newPrice);
+			this.options.goodsModel.set('goodsPrice', this.options.goodsModel.get('goodsPrice')-this.model.get('goodsItemPrice'));
 			App.Events.trigger('newUnitsCount', this.model, value, newPrice);
+			this.options.goodsModel.set('goodsPrice', this.options.goodsModel.get('goodsPrice')+this.model.get('goodsItemPrice'));
 			App.dbConnector.EditGoodsItems( this.options.goodsModel );
 			this.$el.removeClass('editingCount');
 			

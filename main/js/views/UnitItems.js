@@ -46,10 +46,10 @@ var App = App || {};
 				this.$el.removeClass('editingCount');
 				this.render();
 				return;
-			}	
-			this.options.unitModel.set('unitPrice', this.options.unitModel.get('unitPrice')+(value-this.model.get('count'))*(this.model.get('unitItemPrice')/this.model.get('count')));
-			this.model.set('unitItemPrice', this.model.get('unitItemPrice')+(value-this.model.get('count'))*(this.model.get('unitItemPrice')/this.model.get('count')));
+			};	
+			this.options.unitModel.set('unitPrice', this.options.unitModel.get('unitPrice')-this.model.get('unitItemPrice'));
 			App.Events.trigger('newMaterialCount', this.model, value);
+			this.options.unitModel.set('unitPrice', this.options.unitModel.get('unitPrice')+this.model.get('unitItemPrice'));			
 			App.dbConnector.changeCount( this.options.unitModel );
 			this.$el.removeClass('editingCount');
 			
