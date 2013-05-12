@@ -14,11 +14,14 @@ var App = App || {};
 			}
 		},
 		validateItem: function () {
-		
+
+			$('#addGoodsView').find('.error').remove();
 			var goodsName = $('#goods').val().trim(); 	
 			
 			if ( goodsName === "" ) {
-				alert ( 'The input field may NOT be empty!' );
+				
+				$('#myModalLabelGoods').after('<div class="error">Please enter the goods name!</div>');
+
 				$('#goods').val('');
 				$('#goods').focus();
 				return false;
@@ -29,7 +32,6 @@ var App = App || {};
 		},
 		addItem: function ( goodsName ) {
 		
-<<<<<<< HEAD
 			var newGoodsCollection = new App.Collections.GoodsItems(/*[
 				{
 					units: 'goods1',

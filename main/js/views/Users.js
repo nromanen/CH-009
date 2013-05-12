@@ -248,9 +248,8 @@ var App = App || {};
 				id      : 'materials',
 				active  : ' in active',
 			}) ); 
-			$('#materials').append( viewMaterials.el )
-
-
+			$('#materials').append( viewMaterials.el );
+			
 		},
 		renderBeginning: function ( userName, tabName ) {
 			var that = this;
