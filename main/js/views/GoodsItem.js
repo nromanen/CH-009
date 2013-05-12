@@ -70,7 +70,7 @@ var App = App || {};
 	tagName: 'div',
 	className:'accordion-body collapse',
 		initialize: function () {
-
+			this.collection.off('add');
 			this.collection.on('add', this.addOne, this);
 			this.el.id=this.model.cid;	
 
@@ -80,6 +80,7 @@ var App = App || {};
 			var strTemplate = this.template( { nameGoods:this.model.cid, goodsPrice : this.model.get('goodsPrice') } );
 			this.$el.html( strTemplate );
 			this.collection.each(this.addOne, this);
+			$('.buttonPlace').html($('#addUnit2GoodsButton').html());
 			return this;
 		},
 		addOne: function( modelGoodsItem ) {
@@ -89,9 +90,8 @@ var App = App || {};
 			console.log("render");
 			
 			goodsItemView.render();
-
-			$('.buttonPlace').html($('#addUnit2GoodsButton').html());
 			
+			$('.buttonPlace').html($('#addUnit2GoodsButton').html());
 		},
 		ItemRemove: function() {
 			//console.log(this);

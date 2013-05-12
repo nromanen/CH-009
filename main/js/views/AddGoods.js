@@ -29,6 +29,7 @@ var App = App || {};
 		},
 		addItem: function ( goodsName ) {
 		
+<<<<<<< HEAD
 			var newGoodsCollection = new App.Collections.GoodsItems(/*[
 				{
 					units: 'goods1',
