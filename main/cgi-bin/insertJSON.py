@@ -38,7 +38,7 @@ while i<len(goods):
 	i +=1
 
 
-sys.stdout.write(" All dane!")
+sys.stdout.write(" All done!")
 
 conn.commit()
 cur.close()
