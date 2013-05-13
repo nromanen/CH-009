@@ -38,7 +38,11 @@ var App = App || {};
      							alert(msg);
      							if(msg==='engineer'){
      							window.location.replace('/#engineer');	
-     						}else{
+     						}
+     						else if(msg === 'storekeeper'){
+     							window.location.replace('/#storekeeper');	
+     						}
+     						else{
      							alert(msg + "Error login and password")
      							window.location.replace('/#customer');
      						}

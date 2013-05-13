@@ -252,7 +252,7 @@ var App = App || {};
 		},
 		editCount: function (model, value) {
 			var found = App.Units.find( function( currentModel ) {
-				return currentModel.get('name') === this.model.get('units');
+				return currentModel.get('name') === model.get('units');
 			});
 			var newprice = ( value*found.get('unitPrice') ).toFixed(2);
 			newprice = parseFloat( newprice );
