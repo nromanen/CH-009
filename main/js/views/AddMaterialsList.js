@@ -39,7 +39,6 @@ var App = App || {};
 		},
 		events: {
 			'click .icon-plus'    : 'confirmQuantity',
-			'dblclick .icon-plus' : 'confirmQuantity'
 		},
 		template: _.template( $('#material-price-plus').html() ),
 		render: function () {
@@ -48,7 +47,7 @@ var App = App || {};
 		},
 		addOne: function () {
 
-			this.addUnitItem( 1 );
+			this.confirmQuantity();
 
 		},
  		addUnitItem: function( quantity ) {
@@ -92,14 +91,19 @@ var App = App || {};
 
 		},
 		confirmQuantity: function () {
-			var quantity = prompt( 'Please enter the quantity of ' + this.model.get ( 'material' )  );
-			if ( ( quantity !== '' ) && ( quantity !== null ) ) {
+			var quantity = prompt( 'Please enter the quantity of ' + this.model.get ( 'material' ),1 );
+			if(quantity !== null){ // if user click cancel, nothing to do
+				var clearQuantity = quantity.replace(/\s/g, ""); // delete all spaces
 
-				this.addUnitItem( parseFloat(quantity) );
+				if ( ( clearQuantity !== '' ) && ( clearQuantity !== null ) && ( !isNaN(clearQuantity) ) ) {
 
-			} else {
-				alert( 'You have not entered a correct value!' );
+				this.addUnitItem( parseFloat(clearQuantity) );
+
+				} else {
+					this.confirmQuantity();
+				}
 			}
+			else return false;
 		},
 		saveUnitCollection: function () {
 

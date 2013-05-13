@@ -15,11 +15,13 @@ var App = App || {};
 			}
 		},
 		validateItem: function () {
-		
+
+			this.$el.find('.error').remove();
 			var strUnit = $('#unit').val().trim(); 	
 			
 			if ( strUnit === "" ) {
-				alert ( 'Please enter the Unit name!' );
+
+				$('#myModalLabelUnit').after('<div class="error">Please enter the Unit name!</div>');
 				$('#unit').val('');
 				$('#unit').focus();
 				return false;

@@ -114,3 +114,12 @@
     opacity: 1;
     cursor: pointer;
 }
+.error{
+    font-size: :10px;
+    color: red;
+    font-weight: bold;
+}
+
+
+
+

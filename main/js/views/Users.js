@@ -112,6 +112,8 @@ var App = App || {};
 
 				var uni = App.Units.fetch( { update: true } );
 				uni ? console.log("units fetch done") : console.log("units fetch failed");
+				console.log(uni);
+				console.log(App.Units.toJSON());
 				
 			};
 
@@ -170,17 +172,7 @@ var App = App || {};
 			viewUnits.render();
 
 
-			// rendering the content of the Products Tab
-			var viewProducts = new App.Views.GoodsList( { collection: App.Goods } );
 			
-			$('#TabContent').append ( _.template ( $('#tab').html(), { 
-				id      : 'products',
-				active  : ' in active',
-			}) ); 
-			$('#products').append( viewProducts.el );
-
-			viewProducts.render();
-			$('.buttonPlace').html("")
 			// rendering the content of the Units Tab
 			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
 			viewUnits.render();
@@ -256,9 +248,8 @@ var App = App || {};
 				id      : 'materials',
 				active  : ' in active',
 			}) ); 
-			$('#materials').append( viewMaterials.el )
-
-
+			$('#materials').append( viewMaterials.el );
+			
 		},
 		renderBeginning: function ( userName, tabName ) {
 			var that = this;

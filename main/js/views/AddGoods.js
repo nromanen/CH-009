@@ -14,11 +14,14 @@ var App = App || {};
 			}
 		},
 		validateItem: function () {
-		
+
+			$('#addGoodsView').find('.error').remove();
 			var goodsName = $('#goods').val().trim(); 	
 			
 			if ( goodsName === "" ) {
-				alert ( 'The input field may NOT be empty!' );
+				
+				$('#myModalLabelGoods').after('<div class="error">Please enter the goods name!</div>');
+
 				$('#goods').val('');
 				$('#goods').focus();
 				return false;
