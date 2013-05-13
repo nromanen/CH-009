@@ -153,7 +153,10 @@ var App = App || {};
 		
 		},
 		editCount: function (model, value) {
-			model.set({ count: value });
+			var found = App.Materials.find( function( currentModel ) {
+				return currentModel.get('material') === this.model.get('material');
+			});
+			model.set({ count: value, unitItemPrice: value*found.get('price') });
 		}
 
 	});
@@ -246,7 +249,10 @@ var App = App || {};
 			
 		},
 		editCount: function (model, value) {
-			model.set({ count: value });
+			var found = App.Units.find( function( currentModel ) {
+				return currentModel.get('name') === this.model.get('units');
+			});
+			model.set({ count: value, goodsItemPrice: found.get('unitPrice') });
 
 		}
 		
