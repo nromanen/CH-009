@@ -12,8 +12,9 @@ var App = App || {};
 		events: {
 			'click .delete' : 'confirmRemove',
 			'click .edit' : 'changeCount',
-			'keypress .editMaterialCount': 'updateOnEnter',
-			'blur .editMaterialCount': 'close'
+			'dblclick .count' : 'changeCount',
+			'keypress .edit_count': 'updateOnEnter',
+			'blur .edit_count': 'close'
 		},
 		template: _.template( $('#materials-row-in-unit').html() ),
 		render: function () {
@@ -21,8 +22,6 @@ var App = App || {};
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );	
 
-			this.$input = this.$('.editMaterialCount');
-			this.$input.val( this.model.get( 'count' ) );
 		},
 		confirmRemove: function () {
 			if ( confirm('Are you sure you want to delete this Unit Item?') ) {
@@ -37,13 +36,13 @@ var App = App || {};
 		
 		},
 		changeCount: function () {
-			this.$el.addClass('editingCount');
+			this.$el.addClass('editing');
 			this.$el.find('input').focus();		
 		},
 		close: function () {
-			var value = this.$input.val().trim();
-			 if ( isNaN ( value ) || value <=0 || value == '') {
-				this.$el.removeClass('editingCount');
+			var value = this.$el.find('input').val().trim();
+			if ( isNaN ( value ) || value <=0 || value == '') {
+				this.$el.removeClass('editing');
 				this.render();
 				return;
 			};	
@@ -51,7 +50,7 @@ var App = App || {};
 			App.Events.trigger('newMaterialCount', this.model, value);
 			this.options.unitModel.set('unitPrice', this.options.unitModel.get('unitPrice')+this.model.get('unitItemPrice'));			
 			App.dbConnector.changeCount( this.options.unitModel );
-			this.$el.removeClass('editingCount');
+			this.$el.removeClass('editing');
 			
 		},
 		updateOnEnter: function (e) {

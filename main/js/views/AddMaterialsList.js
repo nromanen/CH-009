@@ -24,6 +24,7 @@ var App = App || {};
 			
 		},
 		saveUnitCollection: function () {
+			
 			App.dbConnector.EditUnitItem ( this.model );
 	
 		}
@@ -37,7 +38,7 @@ var App = App || {};
 			this.model.on( 'plus', this.plus, this );
 		},
 		events: {
-			'click .icon-plus'    : 'addOne',
+			'click .icon-plus'    : 'confirmQuantity',
 			'dblclick .icon-plus' : 'confirmQuantity'
 		},
 		template: _.template( $('#material-price-plus').html() ),
@@ -72,12 +73,13 @@ var App = App || {};
 				found.set ('count',sum);
 				found.set('unitItemPrice',newPrice);
 				this.options.something.set("unitPrice", this.options.something.get('unitPrice')+this.model.get( 'price' )*quantity);	
+
 				//console.log( '2nd found.get("count"): ' + found.get('count') );
 				//console.log( this.collection );
 			}
 			
 			this.options.something.set( "mcollection", this.collection );	
-			
+
 			App.dbConnector.EditUnitItem ( this.options.something );
 
 			//editing the sentence in the Add to Unit Modal
