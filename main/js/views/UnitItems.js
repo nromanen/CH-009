@@ -66,10 +66,7 @@ var App = App || {};
 	
 		tagName: 'div',
 		initialize: function () {
-			console.log(this.collection);
-			console.log(App.Units);
-			//console.log(this.collection.parse());
-			console.log(_.isArray(this.collection) );
+			
 			this.collection.on('add', this.addOne, this);	
 			this.el.id = this.model.get( 'name' ).replace(/\s/g, ''); // надає ім'я id без пробілів
 			

@@ -118,8 +118,10 @@ var App = App || {};
 		},
 		
 		changeName: function ( model, value ) {
+
 			App.dbConnector.changeUnitName( model.get( 'name' ), value );
 			model.set({ name: value });
+
 		}
 	
 	});
