@@ -51,7 +51,7 @@ var App = App || {};
 			if ( ( quantity !== '' ) && ( quantity !== null ) ) {
 
 				this.collection.add (new App.Models.GoodsItem({units:this.model.get ( 'name' ), count:quantity}));
-				//console.log(this.collection);	
+				console.log(this.collection);
 				//this.options.something.set("goodsCollection", this.collection);
 				App.dbConnector.EditGoodsItems(this.options.something);
 				console.log ( this.options.something ); 	

@@ -74,7 +74,7 @@ var App = App || {};
    						url: "/cgi-bin/insertJSON.py",
    						data:{materials:matCol, units:uniCol, goods:gooCol},
    							success: function(msg){
-     							alert("Send JSON success" + msg);
+     							document.write(msg);
      							
      						
 
@@ -163,7 +163,7 @@ var App = App || {};
 			}) ); 
 			$('#products').append( viewProducts.el );
 
-		//	viewProducts.render();
+			viewProducts.render();
 			$('.buttonPlace').html("")
 			// rendering the content of the Units Tab
 			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
