@@ -211,7 +211,6 @@ var App = App || {};
 
 					goods[i].goodsPrice=goods[i].goodsPrice+model['goodsItemPrice'];
 				});
-				console.log(goods[i].goodsPrice);
 				goodsCollection.add(goods[i].goodsCollection);
 				var mGoods = new App.Models.Goods({
 					nameG:goods[i].nameG,

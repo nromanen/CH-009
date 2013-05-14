@@ -7,7 +7,7 @@ var App = App || {};
 		tagName: 'div',
 		className: 'accordion-group',
 		initialize: function () {
-			this.model.on( 'change', this.render, this);
+			//this.model.on( 'change', this.render, this);
 			this.model.on( 'destroy', this.unitRemoveItem, this );
 		},
 		events: {
@@ -36,7 +36,7 @@ var App = App || {};
 			//console.log ( this.$('.accordion-group') );
 
 			this.$el.append( newUnitItemsList.el );
-
+			console.log(this.el);
 			//$( this.el ).append ('something');
 
 			//this.$input = this.$('.edit_unit_name');
