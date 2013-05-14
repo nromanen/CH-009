@@ -46,7 +46,7 @@ var App = App || {};
 			this.$el.html( strTemplate );
 		},
 		confirmQuantity: function () {
-			var quantity = prompt( 'Please enter the quantity2 of ' + this.model.get ( 'name' ),1  );
+			var quantity = prompt( 'Please enter the quantity of ' + this.model.get ( 'name' ), 1 );
 			if ( quantity !== null ) {
 				var clearQuantity = quantity.replace(/\s/g, ""); // delete all spaces
 				if ( ( clearQuantity !== '' ) && ( clearQuantity !== null ) && ( !isNaN(clearQuantity) ) ) {
