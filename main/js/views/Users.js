@@ -135,6 +135,10 @@ var App = App || {};
 			$('.container').html('');
 			//$('.container').append( _.template ( $('#chooseRole').html() ) );
 			$('.container').append( _.template ( $('#loginForm').html() ) );
+			$('#inputLogin').focus();
+			$('#inputPassword').keypress(function (e){
+				if(e.which == 13) $('#loginButton').click();
+			});
 
 		},
 		openCustomer: function () {

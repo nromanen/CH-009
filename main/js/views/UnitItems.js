@@ -48,7 +48,7 @@ var App = App || {};
 			};	
 			this.options.unitModel.set('unitPrice', this.options.unitModel.get('unitPrice')-this.model.get('unitItemPrice'));
 			App.Events.trigger('newMaterialCount', this.model, value);
-			this.options.unitModel.set('unitPrice', this.options.unitModel.get('unitPrice')+this.model.get('unitItemPrice'));			
+			this.options.unitModel.set('unitPrice', parseFloat( ( this.options.unitModel.get('unitPrice') + this.model.get('unitItemPrice') ).toFixed(2) ) ) ;			
 			App.dbConnector.changeCount( this.options.unitModel );
 			this.$el.removeClass('editing');
 			
@@ -66,10 +66,7 @@ var App = App || {};
 	
 		tagName: 'div',
 		initialize: function () {
-			console.log(this.collection);
-			console.log(App.Units);
-			//console.log(this.collection.parse());
-			console.log(_.isArray(this.collection) );
+			
 			this.collection.on('add', this.addOne, this);	
 			this.el.id = this.model.get( 'name' ).replace(/\s/g, ''); // надає ім'я id без пробілів
 			
