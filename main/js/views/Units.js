@@ -81,31 +81,37 @@ var App = App || {};
 			this.$el.find('input').focus();			
 		},
 		close: function () {
-			var value = this.$el.find('input').val().trim();
-			
-			var found = this.collection.find (function (currentModel) {
-				return currentModel.get('name') === value;
-			});
+
+			if ( this.$el.hasClass('editing') ) {
 
 
-			if ( found === undefined || found === false ) {
-				App.Events.trigger('editUnitName', this.model, value);
-				this.$el.removeClass('editing');
-			} else if ( found !== undefined && found !== false ) {
-				alert (value + ' name is already in use!');
+				var value = this.$el.find('input').val().trim();
+
+				if ( value === this.model.get('name') ) {
+
+					this.$el.removeClass('editing');
+					return;
+
+				} else {
+
+					var found = this.collection.find (function (currentModel) {
+						return currentModel.get('name') === value;
+					});
+
+					if ( found === undefined || found === false ) {
+						App.Events.trigger('editUnitName', this.model, value);
+						this.$el.removeClass('editing');
+					} else if ( found !== undefined && found !== false ) {
+						alert (value + ' name is already in use!');
+					} else {
+						this.$el.removeClass('editing');
+						return;
+					}
+
+				}
+
 			}
-
-			if ( value == '' ) {
-				this.$el.removeClass('editing');
-				return;
-			};
-			if  ( ! value ) {
-				this.$el.removeClass('editing');
-				return;
-			}
-
-			
-			
+		
 		},
 		updateOnEnter: function (e) {
 			console.log('update on enter');
