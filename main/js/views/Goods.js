@@ -11,7 +11,7 @@ var App = App || {};
 
 			this.model.on( 'change:nameG', this.nameUpDate, this);
 			this.model.on( 'destroy', this.goodsRemoveItem, this );
-			this.model.on( 'change', this.render, this );
+			//this.model.on( 'change', this.refreshGoods, this );
 
 		},
 		
@@ -42,6 +42,10 @@ var App = App || {};
 			this.$input = this.$('.edit_goods_name');
 			
 		}, 
+		refreshGoods: function (){
+			this.$el.find('.goods_name_id').html(this.model.get('nameG'));
+			this.$el.find('.goodsPrice').html(this.model.get('goodsPrice'));
+		},
 		nameUpDate: function (){
 
 			console.log($('#'+this.model.cid+"_goodsId").html(this.model.get("nameG")));

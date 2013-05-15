@@ -7,6 +7,7 @@ var App = App || {};
 		tagName: 'div',
 		className: 'accordion-group',
 		initialize: function () {
+			//this.model.on( 'change', this.render, this);
 			this.model.on( 'change', this.unitChange, this);
 			this.model.on( 'destroy', this.unitRemoveItem, this );
 		},
@@ -31,13 +32,17 @@ var App = App || {};
 			newUnitItemsList.render();
 
 			this.$el.append( newUnitItemsList.el );
+			//$( this.el ).append ('something');
+
 
 		},
 		unitChange: function () {
 
-			this.render();
-			this.unitToggle();
-
+			//this.render();
+			//this.unitToggle();
+			this.$el.find('.unit_name').html(this.model.get('name'));
+			this.$el.find('.unitPrice').html(this.model.get('unitPrice'));
+			console.log( );
 		},
 		unitToggle: function () {
 			
@@ -105,6 +110,7 @@ var App = App || {};
 		close: function () {
 
 			if ( this.$el.hasClass('editing') ) {
+
 
 				var value = this.$el.find('input').val().trim();
 
