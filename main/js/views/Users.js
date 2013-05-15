@@ -106,9 +106,19 @@ var App = App || {};
 
 
 			function fetchMaterials(){
-				var mat = App.Materials.fetch( { update: true } );
-				mat ? console.log("materials fetch done") : console.log("materials fetch failed");
+				//var mat = App.Materials.fetch( { update: true } );
+				//mat ? console.log("materials fetch done") : console.log("materials fetch failed");
+				$.ajax({
+   						type: "POST",
+   						url: "/cgi-bin/fetch.py",
+   						data:{fetchType:1},
+   							success: function(msg){
+     							alert("success " + msg);
+     							
+     						
 
+   							}
+ 					});
 				
 			};
 
@@ -173,13 +183,15 @@ var App = App || {};
 			}) ); 
 			$('#products').append( viewProducts.el );
 
-		//	viewProducts.render();
+			viewProducts.render();
 			$('.buttonPlace').html("")
 			// rendering the content of the Units Tab
 			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
 			viewUnits.render();
-
-
+			$('.delete').remove();
+			$('.edit_right').remove();
+			$('.delete_goods').remove();
+			$('.buttonPlace').html("")
 			
 			// rendering the content of the Units Tab
 			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
