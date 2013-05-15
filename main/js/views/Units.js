@@ -72,8 +72,35 @@ var App = App || {};
 	
 		},
 		changeUnitName: function () {
-			this.$el.addClass('editing');
-			this.$el.find('input').focus();			
+
+			var that = this;
+			App.Goods.each ( function (goodsModel) {
+
+				var unitsInside = goodsModel.get('goodsCollection');
+				var found = unitsInside.find( function (goodsItem) {
+					return that.model.get('name') === goodsItem.get('units'); 
+				});
+
+				if (found === undefined) {
+
+					that.$el.addClass('editing');
+					that.$el.find('input').focus();	
+
+				} else {
+
+					$('#newUnitBtn').after('<div class="error">You CANNOT EDIT this name, because this unit is already used in Goods!</div>');
+					setTimeout( function() { 
+						$('.error').fadeOut('slow')
+					}, 2000);
+
+				}
+
+			});
+
+			//this.model.get('name')
+			
+					
+
 		},
 		close: function () {
 
@@ -131,7 +158,7 @@ var App = App || {};
 			
 		},
 		addOne: function( modelUnit ) {
-		  
+
 			var UnitView = new App.Views.Unit({ model: modelUnit, collection: this.collection });
 			this.$el.prepend( UnitView.el );
 			UnitView.render();
