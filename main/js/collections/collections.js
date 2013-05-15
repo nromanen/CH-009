@@ -86,8 +86,8 @@ var App = App || {};
 				
 				_.each( units[i].mcollection,  function ( model ) {
 					App.Materials.each( function (material) {
-						if (model['material']==material.get('material')) {
-							model['unitItemPrice']=material.get('price')*model['count'];
+						if (model['material'] === material.get('material') ) {
+							model['unitItemPrice'] = parseFloat( (material.get('price') * model['count']).toFixed(2) );
 						}
 					});
 					//model['unitItemPrice']=App.Materials.where({material: model['material']}).get('price')*model['count'];
@@ -96,7 +96,8 @@ var App = App || {};
 
 				_.each( units[i].mcollection,  function ( model ) {
 
-					units[i].unitPrice=units[i].unitPrice+model['unitItemPrice'];
+					units[i].unitPrice = parseFloat ( (units[i].unitPrice + model['unitItemPrice']).toFixed(2) );
+				
 				});
 
 				unitCollection.add(units[i].mcollection);
@@ -117,8 +118,10 @@ var App = App || {};
 		},
 		
 		changeName: function ( model, value ) {
+
 			App.dbConnector.changeUnitName( model.get( 'name' ), value );
 			model.set({ name: value });
+
 		}
 	
 	});
@@ -192,7 +195,7 @@ var App = App || {};
 
 			
 		},
-		deleteModel: function(model){			
+		deleteModel: function(model) {			
 			App.dbConnector.deleteGoods(this.model.get('nameG'));
 			model.destroy();
 			this.remove(model); 			
@@ -203,15 +206,16 @@ var App = App || {};
 				var goodsCollection = new App.Collections.GoodsItems();
 				_.each( goods[i].goodsCollection,  function ( model ) {
 					App.Units.each( function (unit) {
-						if (model['units']==unit.get('name')) {
-							model['goodsItemPrice']=unit.get('unitPrice')*model['count'];
+						if (model['units'] == unit.get('name')) {
+							model['goodsItemPrice'] = parseFloat( (unit.get('unitPrice') * model['count']).toFixed(2) );
 						}
 					});
 				});
 
 				_.each( goods[i].goodsCollection,  function ( model ) {
 
-					goods[i].goodsPrice=goods[i].goodsPrice+model['goodsItemPrice'];
+					goods[i].goodsPrice = parseFloat( (goods[i].goodsPrice + model['goodsItemPrice']).toFixed(2) );
+
 				});
 				goodsCollection.add(goods[i].goodsCollection);
 				var mGoods = new App.Models.Goods({

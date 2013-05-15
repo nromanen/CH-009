@@ -81,16 +81,31 @@ var App = App || {};
 		},
 		close: function () {
 			var value = this.$el.find('input').val().trim();
-			if ( value =='' ) {
-			this.$el.removeClass('editing');
-			return;
+			
+			var found = this.collection.find (function (currentModel) {
+				return currentModel.get('name') === value;
+			});
+
+			console.log(found);
+
+			if ( found === undefined || found === false ) {
+				App.Events.trigger('editUnitName', this.model, value);
+				this.$el.removeClass('editing');
+			} else if ( found !== undefined && found !== false ) {
+				alert (value + ' name is already in use!');
+			}
+
+			if ( value == '' ) {
+				this.$el.removeClass('editing');
+				return;
 			};
 			if  ( ! value ) {
-			this.$el.removeClass('editing');
-			return;
+				this.$el.removeClass('editing');
+				return;
 			}
-			App.Events.trigger('editUnitName', this.model, value);
-			this.$el.removeClass('editing');
+
+			
+			
 		},
 		updateOnEnter: function (e) {
 			console.log('update on enter');
@@ -117,7 +132,7 @@ var App = App || {};
 		},
 		addOne: function( modelUnit ) {
 		  
-			var UnitView = new App.Views.Unit({ model: modelUnit });
+			var UnitView = new App.Views.Unit({ model: modelUnit, collection: this.collection });
 			this.$el.prepend( UnitView.el );
 			UnitView.render();
 			
