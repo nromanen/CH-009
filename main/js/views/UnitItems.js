@@ -43,7 +43,7 @@ var App = App || {};
 			var value = this.$el.find('input').val().trim();
 			if ( isNaN ( value ) || value <=0 || value == '') {
 				this.$el.removeClass('editing');
-				this.render();
+				//this.render();
 				return;
 			};	
 			this.options.unitModel.set('unitPrice', this.options.unitModel.get('unitPrice')-this.model.get('unitItemPrice'));
