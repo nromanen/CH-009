@@ -40,8 +40,9 @@ var App = App || {};
 
 			//this.render();
 			//this.unitToggle();
-			console.log( this.$el );
-
+			this.$el.find('.unit_name').html(this.model.get('name'));
+			this.$el.find('.unitPrice').html(this.model.get('unitPrice'));
+			console.log( );
 		},
 		unitToggle: function () {
 			
@@ -86,7 +87,6 @@ var App = App || {};
 				return currentModel.get('name') === value;
 			});
 
-			console.log(found);
 
 			if ( found === undefined || found === false ) {
 				App.Events.trigger('editUnitName', this.model, value);

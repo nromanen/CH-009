@@ -7,7 +7,7 @@ var App = App || {};
 		tagName: 'tr',
 		initialize: function (){
 			this.model.on( 'destroy', this.remove, this );
-			//this.model.on( 'change', this.render, this);
+			this.model.on( 'change', this.render, this);
 		},
 		events: {
 			'click .delete' : 'confirmRemove',
