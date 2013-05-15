@@ -14,11 +14,14 @@ var App = App || {};
 			}
 		},
 		validateItem: function () {
-		
+
+			$('#addGoodsView').find('.error').remove();
 			var goodsName = $('#goods').val().trim(); 	
 			
 			if ( goodsName === "" ) {
-				alert ( 'The input field may NOT be empty!' );
+				
+				$('#myModalLabelGoods').after('<div class="error">Please enter the goods name!</div>');
+
 				$('#goods').val('');
 				$('#goods').focus();
 				return false;
@@ -29,17 +32,19 @@ var App = App || {};
 		},
 		addItem: function ( goodsName ) {
 		
-			var newGoodsCollection = new App.Collections.GoodsItems([
-				/*{
+			var newGoodsCollection = new App.Collections.GoodsItems(/*[
+				{
 					units: 'goods1',
-					count: 0,	
-				}*/
-			]);
+					count: 0,
+					goodPrice: 0
+				}
+			]*/);
 			
 			var modelGoods = new App.Models.Goods ({
 				
 				nameG: goodsName,
-				goodsCollection:newGoodsCollection
+				goodsCollection: newGoodsCollection,
+				goodsPrice : 0
 				
 			});
 

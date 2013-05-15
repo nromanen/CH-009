@@ -7,66 +7,41 @@ var App = App || {};
 		tagName: 'div',
 		className: 'accordion-group',
 		initialize: function () {
-			this.model.on( 'change', this.render, this);
+			this.model.on( 'change', this.unitChange, this);
 			this.model.on( 'destroy', this.unitRemoveItem, this );
 		},
 		events: {
 			'click .unit_name' : 'unitToggle',
 			'click .delete_unit' : 'unitDeleteItem',
-			'click .edit_unitItem' : 'changeUnitName',
+			'click .edit_right' : 'changeUnitName',
 			'keypress .edit_unit_name': 'updateOnEnter',
 			'blur .edit_unit_name': 'close',
 			'click .add-material-to-unit' : 'inputMaterials'
 		},
 		template: _.template( $('#unit-name').html() ),
+
 		render: function () {	
 			var nameTrimmed = this.model.get( 'name' ).replace(/\s/g, ''); // видаляє пробіли
 			this.model.set ('hrefID', nameTrimmed);     
+			
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
 
 			var newUnitItemsList = new App.Views.UnitItemsList( { collection: this.model.get( 'mcollection' ), model: this.model  } ) ;
 			newUnitItemsList.render();
 
-			//console.log ( $(this) );	
-
-			//console.log ( newUnitItemsList.el );
-
-			//console.log ( this.$('.accordion-group') );
-
 			this.$el.append( newUnitItemsList.el );
 
-			//$( this.el ).append ('something');
+		},
+		unitChange: function () {
 
-			//this.$input = this.$('.edit_unit_name');
+			this.render();
+			this.unitToggle();
 
 		},
 		unitToggle: function () {
 			
-			this.$( '.unit_info' ).toggle();
-
-			if ( this.$( '.unit_info' ).is( ':visible' ) === true ) {
-			
-				$ ( '.unit_info' ).hide();
-				this.$( '.unit_info' ).show();
-				
-				var AddMaterialsList = new App.Views.AddMaterialsList( { collection: App.Materials, model : this.model } );
-
-				AddMaterialsList.render();
-				
-				$( '.AddMaterialsList' ).html('');
-				$( '.AddMaterialsList' ).append( AddMaterialsList.el );
-				
-				$(  '.AddMaterialsList'  ).show();	
-					var positionTop = this.$( '.unit_holder' ).position().top;
-					var positionLeft = this.$( '.unit_info' ).position().left + 530;
-				$(  '.AddMaterialsList'  ).css ( { 'top' : positionTop,  'left' : positionLeft } ); 
-				
-			} else {
-			
-				$( '.AddMaterialsList' ).hide();
-			
-			}
+			this.$(".collapse").collapse();	
 
 		},
 		inputMaterials: function () {
@@ -98,22 +73,38 @@ var App = App || {};
 		},
 		changeUnitName: function () {
 			this.$el.addClass('editing');
-			this.$input.focus();			
+			this.$el.find('input').focus();			
 		},
 		close: function () {
-			var value = this.$input.val().trim();
-			if ( value =='' ) {
-			this.$el.removeClass('editing');
-			return;
+			var value = this.$el.find('input').val().trim();
+			
+			var found = this.collection.find (function (currentModel) {
+				return currentModel.get('name') === value;
+			});
+
+			console.log(found);
+
+			if ( found === undefined || found === false ) {
+				App.Events.trigger('editUnitName', this.model, value);
+				this.$el.removeClass('editing');
+			} else if ( found !== undefined && found !== false ) {
+				alert (value + ' name is already in use!');
+			}
+
+			if ( value == '' ) {
+				this.$el.removeClass('editing');
+				return;
 			};
 			if  ( ! value ) {
-			this.$el.removeClass('editing');
-			return;
+				this.$el.removeClass('editing');
+				return;
 			}
-			App.Events.trigger('editUnitName', this.model, value);
-			this.$el.removeClass('editing');
+
+			
+			
 		},
 		updateOnEnter: function (e) {
+			console.log('update on enter');
 			if (e.keyCode == 13) {
 				this.close(); 
 			}
@@ -137,7 +128,7 @@ var App = App || {};
 		},
 		addOne: function( modelUnit ) {
 		  
-			var UnitView = new App.Views.Unit({ model: modelUnit });
+			var UnitView = new App.Views.Unit({ model: modelUnit, collection: this.collection });
 			this.$el.prepend( UnitView.el );
 			UnitView.render();
 			

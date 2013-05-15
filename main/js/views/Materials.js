@@ -32,13 +32,17 @@ var App = App || {};
 				for (var j = 0; j < arr.length; j++) {
 
 					if (arr[j].material === delMat) {
-							alert("Attention! This product is used in unit: " + unitModels[i].get("name") );
+
+							$('#NewMaterialButton').after('<div class="error">Attention! This material is used in unit: ' + unitModels[i].get("name") + '</div>');
+							//alert("Attention! This material is used in unit: " + unitModels[i].get("name") );
 						};
 					};
 				};
 			if ( confirm('Are you sure you want to delete this product?') ) {
 							App.Events.trigger( 'destroyModel', this.model );
-							};  	
+							};
+
+			$('#TabContent').find('.error').remove(); //detele eror message after confirm  
 		},
 		remove: function () {
 		
@@ -77,18 +81,22 @@ var App = App || {};
 			'keypress input' : 'inputKeypress',
 			'click .save-material' : 'validateItem'
 		},
+
 		inputKeypress: function(e) {
 			if (e.which === 13) {
 				this.validateItem();
 			}
 		},
 		validateItem: function () {
-		
+
+			this.$el.find('.error').remove();
 			var strMaterial = $('#material').val().trim(); 	
 			var strPrice = $('#price').val().trim();
 			
+
 			if ( strMaterial === "" ) {
-				alert ( 'Please enter the material name!' );
+
+				$('#myModalLabel').after('<div class="error">Write name</div>');
 				$('#material').val('');
 				$('#material').focus();
 				return false;
@@ -97,8 +105,8 @@ var App = App || {};
 			for ( var i = 0; i < this.collection.length; i++ ) {
 				
 				if ( strMaterial === this.collection.models[i].get ( 'material' ) ) {
-					
-					alert ( 'Material named ' + strMaterial + ' already exists! There should be NO material names repeated!' );
+
+					$('#myModalLabel').after('<div class="error">Material named ' + strMaterial + ' already exists! There should be NO material names repeated!</div>');
 					$('#material').focus();
 					return false;
 					
@@ -108,7 +116,8 @@ var App = App || {};
 			
 			if ( isNaN( strPrice ) || strPrice < 0 || strPrice === "" )  {
 			
-				alert ( 'Price is incorrectly indicated!' );
+				$('#myModalLabel').after('<div class="error">Price is incorrectly indicated!</div>');
+				$('#price').val('');
 				$('#price').focus();
 				return false;
 			

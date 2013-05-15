@@ -1,11 +1,14 @@
-.accordion-toggle .edit_goods_name {
+.edit_count {
+    width: 20px;
+}
+.accordion-toggle .edit_goods_name, .accordion-toggle .edit_unit_name, table tr td .edit_count {
     display: none;
 }
-
-.editing .edit_goods_name {
-    display: inline-block;
- 
-   
+.editing .edit_goods_name, .editing .edit_unit_name, table tr.editing td .edit_count {
+    display: inline-block; 
+}
+.editing .goods_name_id, .editing .unit_name, .editing .count {
+    display: none;
 }
 .nobullets {
     list-style: none;
@@ -17,9 +20,6 @@
 .icon-plus:hover {
     cursor: pointer;
     opacity: 1;
-}
-.editing .goods_name_id {
-    display: none;
 }
 
 .edit_right {
@@ -114,3 +114,12 @@
     opacity: 1;
     cursor: pointer;
 }
+.error{
+    font-size: :10px;
+    color: red;
+    font-weight: bold;
+}
+
+
+
+

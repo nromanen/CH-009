@@ -11,26 +11,21 @@ var App = App || {};
 		},
 		events: {
 			'click .delete' : 'confirmRemove',
-			'click .editCount' : 'changeCount',
-			'keypress .editMaterialCount': 'updateOnEnter',
-			'blur .editMaterialCount': 'close'
+			'click .edit' : 'changeCount',
+			'dblclick .count' : 'changeCount',
+			'keypress .edit_count': 'updateOnEnter',
+			'blur .edit_count': 'close'
 		},
 		template: _.template( $('#materials-row-in-unit').html() ),
 		render: function () {
-			var price = this.model.get( 'price' );
-			if ( price === undefined ) { 
-				price = '120';
-				this.model.set( 'price', price );
-			}
-			
+	
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );	
 
-			this.$input = this.$('.editMaterialCount');
-			this.$input.val( this.model.get( 'count' ) );
 		},
 		confirmRemove: function () {
 			if ( confirm('Are you sure you want to delete this Unit Item?') ) {
+				this.options.unitModel.set('unitPrice', this.options.unitModel.get('unitPrice')-this.model.get('unitItemPrice'));
 				this.model.destroy();
 				App.dbConnector.EditUnitItem( this.options.unitModel );
 			}	
@@ -41,19 +36,21 @@ var App = App || {};
 		
 		},
 		changeCount: function () {
-			this.$el.addClass('editingCount');
-			this.$input.focus();		
+			this.$el.addClass('editing');
+			this.$el.find('input').focus();		
 		},
 		close: function () {
-			var value = this.$input.val().trim();
-			 if ( isNaN ( value ) || value <0 || value == '') {
-				this.$el.removeClass('editingCount');
+			var value = this.$el.find('input').val().trim();
+			if ( isNaN ( value ) || value <=0 || value == '') {
+				this.$el.removeClass('editing');
 				this.render();
 				return;
-			}	
+			};	
+			this.options.unitModel.set('unitPrice', this.options.unitModel.get('unitPrice')-this.model.get('unitItemPrice'));
 			App.Events.trigger('newMaterialCount', this.model, value);
+			this.options.unitModel.set('unitPrice', parseFloat( ( this.options.unitModel.get('unitPrice') + this.model.get('unitItemPrice') ).toFixed(2) ) ) ;			
 			App.dbConnector.changeCount( this.options.unitModel );
-			this.$el.removeClass('editingCount');
+			this.$el.removeClass('editing');
 			
 		},
 		updateOnEnter: function (e) {
@@ -89,7 +86,7 @@ var App = App || {};
 
 			var unitItemView = new App.Views.UnitItem({ model: modelUnitItem, unitModel: this.model });
 			unitItemView.render();
-			this.$el.find( '#' + this.model.get( 'name' ) + '_tableRow' ).prepend( unitItemView.el );
+			this.$el.find( '#' + this.model.get( 'hrefID' ) + '_tableRow' ).prepend( unitItemView.el );
 
 		}
 	

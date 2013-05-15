@@ -14,10 +14,9 @@ var App = App || {};
 			return this;
 		},
 		addOne: function(modelUnits) {
-		
 			var UnitsCollection = this.model.get ( 'goodsCollection' );
 			var UnitView = new App.Views.UnitPlus({ model: modelUnits, collection: UnitsCollection, something: this.model });
-			//console.log( this.model );
+
 			UnitView.render();
 			this.$el.append( UnitView.el );
 			
@@ -47,17 +46,31 @@ var App = App || {};
 			this.$el.html( strTemplate );
 		},
 		confirmQuantity: function () {
-			var quantity = prompt( 'Please enter the quantity2 of ' + this.model.get ( 'name' )  );
-			if ( ( quantity !== '' ) && ( quantity !== null ) ) {
+			var quantity = prompt( 'Please enter the quantity of ' + this.model.get ( 'name' ), 1 );
+			if ( quantity !== null ) {
+				var clearQuantity = quantity.replace(/\s/g, ""); // delete all spaces
+				if ( ( clearQuantity !== '' ) && ( clearQuantity !== null ) && ( !isNaN(clearQuantity) ) ) {
+
+					newModel = new App.Models.GoodsItem({units:this.model.get ( 'name' ), count:clearQuantity, goodsItemPrice: this.model.get('unitPrice')*clearQuantity})
+					this.collection.add (newModel);
+					this.options.something.set("goodsPrice", this.options.something.get("goodsPrice")+newModel.get('goodsItemPrice') );
+					this.options.something.set("goodsCollection", this.collection);
+
 
 				this.collection.add (new App.Models.GoodsItem({units:this.model.get ( 'name' ), count:quantity}));
 				console.log(this.collection);
 				//this.options.something.set("goodsCollection", this.collection);
 				App.dbConnector.EditGoodsItems(this.options.something);
-				console.log ( this.options.something ); 	
+				
+				
+				}
+				else{
+					this.confirmQuantity();
+				}
+
 
 			} else {
-				alert( 'You have not entered a correct value!' );
+				return false;
 			}
 		},
 		saveUnitCollection: function () {

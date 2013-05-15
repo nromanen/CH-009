@@ -38,7 +38,11 @@ var App = App || {};
      							alert(msg);
      							if(msg==='engineer'){
      							window.location.replace('/#engineer');	
-     						}else{
+     						}
+     						else if(msg === 'storekeeper'){
+     							window.location.replace('/#storekeeper');	
+     						}
+     						else{
      							alert(msg + "Error login and password")
      							window.location.replace('/#customer');
      						}
@@ -102,9 +106,19 @@ var App = App || {};
 
 
 			function fetchMaterials(){
-				var mat = App.Materials.fetch( { update: true } );
-				mat ? console.log("materials fetch done") : console.log("materials fetch failed");
+				//var mat = App.Materials.fetch( { update: true } );
+				//mat ? console.log("materials fetch done") : console.log("materials fetch failed");
+				$.ajax({
+   						type: "POST",
+   						url: "/cgi-bin/fetch.py",
+   						data:{fetchType:1},
+   							success: function(msg){
+     							App.Events.trigger("fetchMaterialsPostDB", msg)
+     							
+     						
 
+   							}
+ 					});
 				
 			};
 
@@ -112,6 +126,8 @@ var App = App || {};
 
 				var uni = App.Units.fetch( { update: true } );
 				uni ? console.log("units fetch done") : console.log("units fetch failed");
+				console.log(uni);
+				console.log(App.Units.toJSON());
 				
 			};
 
@@ -129,6 +145,10 @@ var App = App || {};
 			$('.container').html('');
 			//$('.container').append( _.template ( $('#chooseRole').html() ) );
 			$('.container').append( _.template ( $('#loginForm').html() ) );
+			$('#inputLogin').focus();
+			$('#inputPassword').keypress(function (e){
+				if(e.which == 13) $('#loginButton').click();
+			});
 
 		},
 		openCustomer: function () {
@@ -168,8 +188,10 @@ var App = App || {};
 			// rendering the content of the Units Tab
 			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
 			viewUnits.render();
-
-
+			$('.delete').remove();
+			$('.edit_right').remove();
+			$('.delete_goods').remove();
+			$('.buttonPlace').html("")
 			
 			// rendering the content of the Units Tab
 			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
@@ -246,9 +268,8 @@ var App = App || {};
 				id      : 'materials',
 				active  : ' in active',
 			}) ); 
-			$('#materials').append( viewMaterials.el )
-
-
+			$('#materials').append( viewMaterials.el );
+			
 		},
 		renderBeginning: function ( userName, tabName ) {
 			var that = this;

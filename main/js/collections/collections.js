@@ -11,9 +11,27 @@ var App = App || {};
 			App.Events.on( 'addModel', this.addModel, this );
 			App.Events.on( 'fetchProducts', this.fetchProducts, this );
 			App.Events.on( 'writeProducts', this.writeProducts, this );
-			
+			App.Events.on('fetchMaterialsPostDB', this.fetchPostDB, this);
 			//App.dbConnector.openDatabase();
 			
+		},
+		fetchPostDB: function (jsonDate) {
+			var materialsArray = JSON.parse(jsonDate)
+			
+			for ( var i=0; i<=materialsArray .length-1; i++ )
+			{   
+			
+				var strMaterial = new App.Models.Material({ 
+					material: materialsArray[i].material, 
+					price: materialsArray[i].price 
+				});
+				this.addModel ( strMaterial );
+				
+			}
+
+
+
+
 		},
 		fetchProducts: function () {
 			
@@ -84,14 +102,29 @@ var App = App || {};
 			
 				var unitCollection = new App.Collections.UnitItems();
 				
-				unitCollection.add(units[i].mcollection);
+				_.each( units[i].mcollection,  function ( model ) {
+					App.Materials.each( function (material) {
+						if (model['material'] === material.get('material') ) {
+							model['unitItemPrice'] = parseFloat( (material.get('price') * model['count']).toFixed(2) );
+						}
+					});
+					//model['unitItemPrice']=App.Materials.where({material: model['material']}).get('price')*model['count'];
+					//console.log(App.Materials.where({material: model['material']}));
+				});
+
+				_.each( units[i].mcollection,  function ( model ) {
+
+					units[i].unitPrice = parseFloat ( (units[i].unitPrice + model['unitItemPrice']).toFixed(2) );
 				
+				});
+
+				unitCollection.add(units[i].mcollection);
 				var mUnit = new App.Models.Unit({
 					name:units[i].name,
-					mcollection:unitCollection 
+					mcollection:unitCollection,
+					unitPrice: units[i].unitPrice
 							
 				});
-			
 				this.add(mUnit);
 				i++;
 			}
@@ -99,11 +132,11 @@ var App = App || {};
 		deleteModel: function( model ) {
 			App.dbConnector.deleteUnit( model.get( "name" ) );
 			model.destroy();
-			
 
 		},
 		
 		changeName: function ( model, value ) {
+
 			App.dbConnector.changeUnitName( model.get( 'name' ), value );
 			model.set({ name: value });
 
@@ -114,6 +147,7 @@ var App = App || {};
 	App.Collections.UnitItems = Backbone.Collection.extend({	
 	
 		model: App.Models.UnitItem,
+		url: "/units.json",
 		initialize: function () {
 			
 			App.Events.on( 'addUnitItem', this.addModel, this );
@@ -136,12 +170,16 @@ var App = App || {};
 		},
 		saveUnitCollection: function () {
 		
-			//App.dbConnector.EditUnitItem ( this.model );
-			//console.log('App.dbConnector.EditUnitItem triggered!');
+			//console.log ( this );
 		
 		},
 		editCount: function (model, value) {
-			model.set({ count: value });
+			var found = App.Materials.find( function( currentModel ) {
+				return currentModel.get('material') === model.get('material');
+			});
+			var newprice = ( value*found.get('price') ).toFixed(2);
+			newprice = parseFloat( newprice );
+			model.set({ count: value, unitItemPrice: newprice });
 		}
 
 	});
@@ -175,26 +213,38 @@ var App = App || {};
 
 			
 		},
-		deleteModel: function(model){
-			
+		deleteModel: function(model) {			
 			App.dbConnector.deleteGoods(this.model.get('nameG'));
 			model.destroy();
 			this.remove(model); 			
 		},
 		writeCollection: function(goods){
-			for(i=0; i<=goods.length-1;i++){
-			  
+			for(i=0; i<goods.length;i++){
+				
 				var goodsCollection = new App.Collections.GoodsItems();
+				_.each( goods[i].goodsCollection,  function ( model ) {
+					App.Units.each( function (unit) {
+						if (model['units'] == unit.get('name')) {
+							model['goodsItemPrice'] = parseFloat( (unit.get('unitPrice') * model['count']).toFixed(2) );
+						}
+					});
+				});
+
+				_.each( goods[i].goodsCollection,  function ( model ) {
+
+					goods[i].goodsPrice = parseFloat( (goods[i].goodsPrice + model['goodsItemPrice']).toFixed(2) );
+
+				});
+				console.log(goods[i].goodsPrice);
 				goodsCollection.add(goods[i].goodsCollection);
-				var mGoods = new App.Models.Unit({
+				var mGoods = new App.Models.Goods({
 					nameG:goods[i].nameG,
-					goodsCollection: goodsCollection 
+					goodsCollection: goodsCollection,
+					goodsPrice: goods[i].goodsPrice
 							
 				});
 
 				this.add(mGoods);
-				i++;
-				
 			}	
 
 		},
@@ -214,7 +264,7 @@ var App = App || {};
 		changeName: function(model, value){
 
 			App.dbConnector.changeGoodsName( model.get( 'nameG' ), value );
-			var goodsHrefId = value
+			var goodsHrefId = value;
 			goodsHrefId = goodsHrefId.replace(" ","");
 			model.set('hrefId', goodsHrefId);
 			console.log(model);
@@ -223,7 +273,12 @@ var App = App || {};
 			
 		},
 		editCount: function (model, value) {
-			model.set({ count: value });
+			var found = App.Units.find( function( currentModel ) {
+				return currentModel.get('name') === model.get('units');
+			});
+			var newprice = ( value*found.get('unitPrice') ).toFixed(2);
+			newprice = parseFloat( newprice );
+			model.set({ count: value, goodsItemPrice: newprice });
 
 		}
 		
@@ -238,10 +293,10 @@ var App = App || {};
 			App.Events.on('newUnitsCount', this.editCount, this);
 		
 		},
-		editCount: function ( model, value ) {
-		
+		editCount: function ( model, value, newPrice ) {
+			model.set({ goodPrice: newPrice});
 			model.set({ count: value });
-		
+			console.log(model);
 		}
 	
 	});

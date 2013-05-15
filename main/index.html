@@ -25,7 +25,7 @@
 						  </a>
 						  <ul class="dropdown-menu">
 						  	<li><a id="fetchData"><span class="label label-success">Fetch Data</span></a></li>
-							<li><a id="sendData" href="#sendData"><span class="label label-success">Send Data</span></a></li>
+							<li><a id="sendData" href="#sendData"><span class="label label-success">Send Data</span></a></li> 
 							<li><a id="clearDB"><span class="label label-important">Delete Database</span></a></li>
 							<li><a id="saveCollectionsToDb"><span class="label label-info">Save to Database</span></a></li>
 						  </ul>
@@ -36,7 +36,6 @@
 								User Roles
 								<span class="caret"></span>
 							</a>
-							
 
 							<ul class="dropdown-menu">
 								<li> <a href="#customer"> Customer </a> </li>
@@ -44,9 +43,7 @@
 								<li> <a href="#engineer"> Engineer </a> </li>
 								<li> <a href="#storekeeper"> Storekeeper </a> </li>
 							</ul>
-						</div>
-
-						
+						</div>		
 
 					</div>
 				</nav>
@@ -102,14 +99,6 @@
 				<div>
 			</div>
 		</script>
-
-
-
-
-
-
-
-
 		
 <!-- User Tab templates -->
 		
@@ -151,10 +140,12 @@
 
 		<script type="text/template" id="addNewUnitButton">
 			<a href="#addNewUnit" role="button" class="btn btn-info" data-toggle="modal"><i class="icon-white icon-plus"></i> New Unit</a>
+			<div class="clear"></div>
+			<br>
 		</script>
 
 		<script type="text/template" id="addNewMaterialButton">
-			<a href="#addNewMaterial" role="button" class="btn btn-info" data-toggle="modal"><i class="icon-white icon-plus"></i> New Material</a>
+			<a href="#addNewMaterial" id="NewMaterialButton" role="button" class="btn btn-info" data-toggle="modal"><i class="icon-white icon-plus"></i> New Material</a>
 		</script>
 
 		<script type="text/template" id="addGoodsButton">
@@ -171,7 +162,7 @@
 			<div id="addNewUnit" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				  <div class="modal-header">
 				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				    <h3 id="myModalLabel">Add New Unit</h3>
+				    <h3 id="myModalLabelUnit">Add New Unit</h3>
 				  </div>
 				  <div class="modal-body">
 				    	
@@ -240,7 +231,6 @@
 			</div>
 		</script>
 
-
 		<script type="text/template"  id="temlateGoods">
 		 <div class="tab-pane fade in active" id="goodsView">
 		 <a href="#addGoodsView" role="button" class="btn btn-info" data-toggle="modal"><i class="icon-white icon-plus"></i> New Goods</a>
@@ -248,13 +238,12 @@
 			<div id="addGoodsView" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				  <div class="modal-header">
 				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				    <h3 id="myModalLabel">Modal goods header</h3>
+				    <h3 id="myModalLabelGoods">Goods</h3>
 				  </div>
 				  <div class="modal-body">
 
 				   		<h1>Warehouse</h1><br>
-			
-					
+								
 							<div id="addGoods">
 
 							<div class="fl ">New goods:</div>
@@ -315,16 +304,15 @@
 
 		<script type="text/template" id="goods-name">
 			<div class="goods_holder">
-						<div class="accordion-heading">
-					      <a class="accordion-toggle" data-toggle="collapse" data-parent="#goods_holder" href="#<%= hrefId %>">
-					        <span id="<%= hrefId %>_goodsId" class="goods_name_id"><%= nameG %></span>
+				<div class="accordion-heading">
+			      <a class="accordion-toggle" data-toggle="collapse" data-parent="#goods_holder" href="#<%= hrefId %>">
+			        <span id="<%= hrefId %>_goodsId" class="goods_name_id"><%= nameG %></span>
 
-					        <input class="edit_goods_name" type="text">
-					        <div class="delete_goods"></div><div class="edit_right"></div>
-					      </a>
-					    </div>
-
-				
+			        <input class="edit_goods_name" type="text">
+			        <div class="delete_goods"></div><div class="edit_right"></div>
+			      </a>
+			    </div>
+	
 			</div>
 			<div class="clear"></div>	
 		
@@ -334,13 +322,16 @@
 <!-- Unit View templates -->	
 
 		<script type="text/template" id="unit-name">
-				<div class="accordion-heading">
-			      <a class="accordion-toggle" data-toggle="collapse" data-parent=".accordion-group" href="#<%= hrefID %>">
-			        <%= name %><div class="delete_unit"></div>
-			      </a>
-			    </div>
-				<div class="clear"></div>	
-				<div style="height:15px;"></div>	
+			<div class="accordion-heading">
+		      <a class="accordion-toggle" data-toggle="collapse" data-parent=".accordion-group" href="#<%= hrefID %>">
+		        <span class="unit_name"><%= name %></span>
+		        <input class="edit_unit_name" value="<%= name %>" type="text">
+				<div class="delete_unit"></div>
+				<div class="edit_right"></div>
+		      </a>
+		    </div>
+			<div class="clear"></div>	
+			<div style="height:15px;"></div>	
 		</script>
 
 		<script type="text/template" id="materials-table">
@@ -355,14 +346,14 @@
 							<th> Price total </th>
 						</tr>
 					</thead>
-					<tbody id="<%= name %>_tableRow" class="holder">						
+					<tbody id="<%= hrefID %>_tableRow" class="holder">						
 
 			            <tr>	
 			        		<td colspan="4">
 								<a href="#addMaterial2Unit" role="button" class="btn btn-info btn-small add-material-to-unit" data-toggle="modal"><i class="icon-white icon-plus"></i> Materials</a>
 							</td>
 							<td>
-								Unit price: <b>$200</b>
+								Unit price: <b>$<%= unitPrice %></b>
 							</td>
 			        	</tr>			
 					</tbody>			    	
@@ -372,10 +363,13 @@
 
 		<script type="text/template" id="materials-row-in-unit">
         	<td> <%= material %> </td>
-        	<td> <%= count %> </td>
-        	<td> <div class="editCount"></div> </td>
+        	<td> 
+        		<span class="count"><%= count %></span>
+        		<input type="text" class="edit_count" value="<%= count %>">
+        	</td>
+        	<td> <div class="edit" title="Edit quantity of <%= material %> material"></div> </td>
         	<td> <div class="delete" title="Delete <%= material %> material"></div></td>
-        	<td> $<%= price * count %> </td>
+        	<td> $<%=unitItemPrice%> </td>
         </script>
 
 <!-- other templates -->
@@ -429,49 +423,34 @@
             	<div id="table_holder"></div>
          
         </script> 
-		
-		
-		<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-		
-		
-
-
-
 
 		<script type="text/template" id="units-table">
 
-		
-					    <div class="accordion-inner">		
-					   	   <table class="table">
-            					<thead>
-									
-									<th> Units </th>
-									<th> Quantity </th>
-									<th> Edit </th>
-									<th> Delete </th>
-									<th> Price total </th>
-								</thead>
-								<tbody id="<%= nameGoods %>_tableRow">
-								
+		    <div class="accordion-inner">		
+		   	   <table class="table">
+					<thead>
+						
+						<th> Units </th>
+						<th> Quantity </th>
+						<th> Edit </th>
+						<th> Delete </th>
+						<th> Price total </th>
+					</thead>
+					<tbody id="<%= nameGoods %>_tableRow">
 
+	                	<tr>	
+	                		<td class="buttonPlace" colspan="4">
+	                				
+	                		</td>
+							<td>
+								Total price: <b>$<%=goodsPrice%></b>
+							</td>
+	                	</tr>
+					</tbody>
+                	
+                </table>
 
-				                	<tr>	
-				                		<td class="buttonPlace" colspan="4">
-				                				
-				                		</td>
-										<td>
-											Unit price: <b>$200</b>
-										</td>
-				                	</tr>
-								</tbody>
-			                	
-			                </table>
-
-					      </div>
-					  		
-
-
+		      </div>
 
 		</script>
 
@@ -486,7 +465,7 @@
 				                	<td> <div class="count"><%= count %></div> </td>
 				                	<td> <div class="editCount"></div> </td>
 				                	<td> <div class="delete" title="Delete <%= units %> material"></div></td>
-				                	<td> $120 </td>
+				                	<td> <%=goodsItemPrice%> </td>
 				        
 		</script>		
 
@@ -506,6 +485,7 @@
 				<div class="edit_unitItem" title="Edit <%= name %> unit"></div>
 				<div class="clear"></div>
 				<div class="unit_info"></div>
+
 			</div>
 			<div class="clear"></div>	
 			<div style="height:15px;"></div>

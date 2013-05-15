@@ -19,7 +19,8 @@ var App = App || {};
 		render: function () {	
 			
 			this.model.set('nameGoods', this.options.goodsModel.cid);
-			
+			this.model.set('nameGoods', this.options.goodsModel.get('nameG'));
+
 			var strTemplate = this.template( this.model.toJSON());
 			this.$el.html( strTemplate );
 			this.$input = this.$('.editUnitsCount');
@@ -28,8 +29,8 @@ var App = App || {};
 		},
 		confirmRemove: function () {
 			if ( confirm('Are you sure you want to delete this Goods Item?') ) {
+				this.options.goodsModel.set('goodsPrice', this.options.goodsModel.get('goodsPrice')-this.model.get('goodsItemPrice'));		
 				this.model.destroy();
-
 				App.dbConnector.EditGoodsItems(this.options.goodsModel);
 			}	
 		},
@@ -47,12 +48,9 @@ var App = App || {};
 				this.render();
 				return;
 			}	
-			App.Events.trigger('newMaterialCount', this.model, value);
-			App.dbConnector.editGoodsItems( this.options.goodsModel );
-			App.Events.trigger('newUnitsCount', this.model, value);
-			//App.dbConnector.changeCount( this.options.unitModel );
-			App.Events.trigger('newUnitsCount', this.model, value);
-
+			this.options.goodsModel.set('goodsPrice', this.options.goodsModel.get('goodsPrice')-this.model.get('goodsItemPrice'));
+			App.Events.trigger('newUnitsCount', this.model, value, newPrice);
+			this.options.goodsModel.set('goodsPrice', this.options.goodsModel.get('goodsPrice')+this.model.get('goodsItemPrice'));
 			App.dbConnector.EditGoodsItems( this.options.goodsModel );
 			this.$el.removeClass('editingCount');
 			
@@ -71,16 +69,14 @@ var App = App || {};
 	tagName: 'div',
 	className:'accordion-body collapse',
 		initialize: function () {
-
+			this.collection.off('add');
 			this.collection.on('add', this.addOne, this);
 			this.el.id=this.model.cid;	
 
 		},
 		template: _.template( $('#units-table').html() ),
-
-		render: function () {			
-			var strTemplate = this.template( { nameGoods:this.model.cid } );
-
+		render: function () {
+			var strTemplate = this.template( { nameGoods:this.model.cid, goodsPrice : this.model.get('goodsPrice') } );
 			this.$el.html( strTemplate );
 			this.collection.each(this.addOne, this);
 			$('.buttonPlace').html($('#addUnit2GoodsButton').html());
@@ -94,10 +90,10 @@ var App = App || {};
 			
 			goodsItemView.render();
 			
-			
+			$('.buttonPlace').html($('#addUnit2GoodsButton').html());
 		},
 		ItemRemove: function() {
-			console.log(this);
+			//console.log(this);
 			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
 			goodsItemView.render();
 			this.$el.append( goodsItemView.el );
