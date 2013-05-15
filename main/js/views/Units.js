@@ -8,6 +8,7 @@ var App = App || {};
 		className: 'accordion-group',
 		initialize: function () {
 			//this.model.on( 'change', this.render, this);
+			this.model.on( 'change', this.unitChange, this);
 			this.model.on( 'destroy', this.unitRemoveItem, this );
 		},
 		events: {
@@ -23,51 +24,28 @@ var App = App || {};
 		render: function () {	
 			var nameTrimmed = this.model.get( 'name' ).replace(/\s/g, ''); // видаляє пробіли
 			this.model.set ('hrefID', nameTrimmed);     
+			
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
 
 			var newUnitItemsList = new App.Views.UnitItemsList( { collection: this.model.get( 'mcollection' ), model: this.model  } ) ;
 			newUnitItemsList.render();
 
-			//console.log ( $(this) );	
-
-			//console.log ( newUnitItemsList.el );
-
-			//console.log ( this.$('.accordion-group') );
-
 			this.$el.append( newUnitItemsList.el );
-			console.log(this.el);
 			//$( this.el ).append ('something');
 
-			//this.$input = this.$('.edit_unit_name');
+
+		},
+		unitChange: function () {
+
+			//this.render();
+			//this.unitToggle();
+			console.log( this.$el );
 
 		},
 		unitToggle: function () {
 			
-			this.$( '.unit_info' ).toggle();
-
-			if ( this.$( '.unit_info' ).is( ':visible' ) === true ) {
-			
-				$ ( '.unit_info' ).hide();
-				this.$( '.unit_info' ).show();
-				
-				var AddMaterialsList = new App.Views.AddMaterialsList( { collection: App.Materials, model : this.model } );
-
-				AddMaterialsList.render();
-				
-				$( '.AddMaterialsList' ).html('');
-				$( '.AddMaterialsList' ).append( AddMaterialsList.el );
-				
-				$(  '.AddMaterialsList'  ).show();	
-					var positionTop = this.$( '.unit_holder' ).position().top;
-					var positionLeft = this.$( '.unit_info' ).position().left + 530;
-				$(  '.AddMaterialsList'  ).css ( { 'top' : positionTop,  'left' : positionLeft } ); 
-				
-			} else {
-			
-				$( '.AddMaterialsList' ).hide();
-			
-			}
+			this.$(".collapse").collapse();	
 
 		},
 		inputMaterials: function () {

@@ -324,7 +324,7 @@
 		<script type="text/template" id="unit-name">
 			<div class="accordion-heading">
 		      <a class="accordion-toggle" data-toggle="collapse" data-parent=".accordion-group" href="#<%= hrefID %>">
-		        <span class="unit_name"><%= name %></span>
+		        <span class="unit_name" id='unitName'><%= name %></span>
 		        <input class="edit_unit_name" value="<%= name %>" type="text">
 				<div class="delete_unit"></div>
 				<div class="edit_right"></div>
@@ -426,37 +426,31 @@
 
 		<script type="text/template" id="units-table">
 
-		
-					    <div class="accordion-inner">		
-					   	   <table class="table">
-            					<thead>
-									
-									<th> Units </th>
-									<th> Quantity </th>
-									<th> Edit </th>
-									<th> Delete </th>
-									<th> Price total </th>
-								</thead>
-								<tbody id="<%= nameGoods %>_tableRow">
-								
+		    <div class="accordion-inner">		
+		   	   <table class="table">
+					<thead>
+						
+						<th> Units </th>
+						<th> Quantity </th>
+						<th> Edit </th>
+						<th> Delete </th>
+						<th> Price total </th>
+					</thead>
+					<tbody id="<%= nameGoods %>_tableRow">
 
+	                	<tr>	
+	                		<td class="buttonPlace" colspan="4">
+	                				
+	                		</td>
+							<td>
+								Total price: <b>$<%=goodsPrice%></b>
+							</td>
+	                	</tr>
+					</tbody>
+                	
+                </table>
 
-				                	<tr>	
-				                		<td class="buttonPlace" colspan="4">
-				                				
-				                		</td>
-										<td>
-											Total price: <b>$<%=goodsPrice%></b>
-										</td>
-				                	</tr>
-								</tbody>
-			                	
-			                </table>
-
-					      </div>
-					  		
-
-
+		      </div>
 
 		</script>
 
