@@ -72,36 +72,67 @@ var App = App || {};
 	
 		},
 		changeUnitName: function () {
-			this.$el.addClass('editing');
-			this.$el.find('input').focus();			
-		},
-		close: function () {
-			var value = this.$el.find('input').val().trim();
-			
-			var found = this.collection.find (function (currentModel) {
-				return currentModel.get('name') === value;
+
+			var that = this;
+			App.Goods.each ( function (goodsModel) {
+
+				var unitsInside = goodsModel.get('goodsCollection');
+				var found = unitsInside.find( function (goodsItem) {
+					return that.model.get('name') === goodsItem.get('units'); 
+				});
+
+				if (found === undefined) {
+
+					that.$el.addClass('editing');
+					that.$el.find('input').focus();	
+
+				} else {
+
+					$('#newUnitBtn').after('<div class="error">You CANNOT EDIT this name, because this unit is already used in Goods!</div>');
+					setTimeout( function() { 
+						$('.error').fadeOut('slow')
+					}, 2000);
+
+				}
+
 			});
 
-			console.log(found);
-
-			if ( found === undefined || found === false ) {
-				App.Events.trigger('editUnitName', this.model, value);
-				this.$el.removeClass('editing');
-			} else if ( found !== undefined && found !== false ) {
-				alert (value + ' name is already in use!');
-			}
-
-			if ( value == '' ) {
-				this.$el.removeClass('editing');
-				return;
-			};
-			if  ( ! value ) {
-				this.$el.removeClass('editing');
-				return;
-			}
-
+			//this.model.get('name')
 			
-			
+					
+
+		},
+		close: function () {
+
+			if ( this.$el.hasClass('editing') ) {
+
+				var value = this.$el.find('input').val().trim();
+
+				if ( value === this.model.get('name') ) {
+
+					this.$el.removeClass('editing');
+					return;
+
+				} else {
+
+					var found = this.collection.find (function (currentModel) {
+						return currentModel.get('name') === value;
+					});
+
+					if ( found === undefined || found === false ) {
+						App.Events.trigger('editUnitName', this.model, value);
+						this.$el.removeClass('editing');
+					} else if ( found !== undefined && found !== false ) {
+						alert (value + ' name is already in use!');
+					} else {
+						this.$el.removeClass('editing');
+						return;
+					}
+
+				}
+
+			}
+		
 		},
 		updateOnEnter: function (e) {
 			console.log('update on enter');
@@ -127,7 +158,7 @@ var App = App || {};
 			
 		},
 		addOne: function( modelUnit ) {
-		  
+
 			var UnitView = new App.Views.Unit({ model: modelUnit, collection: this.collection });
 			this.$el.prepend( UnitView.el );
 			UnitView.render();
