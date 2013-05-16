@@ -11,13 +11,14 @@ var App = App || {};
 			App.Events.on( 'addModel', this.addModel, this );
 			App.Events.on( 'fetchProducts', this.fetchProducts, this );
 			App.Events.on( 'writeProducts', this.writeProducts, this );
-			App.Events.on('fetchMaterialsPostDB', this.fetchPostDB, this);
+			App.Events.on('fetchMaterialsPostgDB', this.fetchPostDB, this);
 			//App.dbConnector.openDatabase();
 			
 		},
 		fetchPostDB: function (jsonDate) {
+
 			var materialsArray = JSON.parse(jsonDate)
-			
+	
 			for ( var i=0; i<=materialsArray .length-1; i++ )
 			{   
 			
@@ -111,7 +112,7 @@ var App = App || {};
 					unitPrice:0
 							
 				});
-				console.log(unitCollection)
+				//console.log(unitCollection)
 				
 				this.addModel(mUnit);
 				
@@ -245,7 +246,7 @@ var App = App || {};
 			
 		},
 		fetchPostgDB: function (jsonGoods){
-			console.log(jsonGoods);
+			//console.log(jsonGoods);
 			var goodsArray = JSON.parse(jsonGoods);
 			for(i=0; i<goodsArray.length;i++){
 				
