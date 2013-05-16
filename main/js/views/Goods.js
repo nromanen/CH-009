@@ -31,11 +31,11 @@ var App = App || {};
 			console.log(JSON.stringify(this.model.toJSON()));
 
 			if ( App.userRole === 'customer' ) {
-				var strTemplate = _.template( $('#goods-customer').html(), this.model.toJSON() );
+				var strTemplate = _.template( $('#goods-name-customer').html(), this.model.toJSON() );
 			} else {
 				var strTemplate = _.template( $('#goods-name').html(), this.model.toJSON() );
 			}
-			
+
 			this.$el.html( strTemplate );
 			var newGoodsItemsList = new App.Views.GoodsItemsList( { collection: this.model.get( 'goodsCollection' ), model: this.model  } ) ;
 
