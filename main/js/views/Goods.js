@@ -11,8 +11,9 @@ var App = App || {};
 
 			this.model.on( 'change:nameG', this.nameUpDate, this);
 			this.model.on( 'destroy', this.goodsRemoveItem, this );
-			this.model.on( 'change', this.refreshGoods, this );
-
+			this.model.on( 'change:nameG', this.refreshGoodsName, this );
+			this.model.on( 'change:goodsPrice', this.refreshGoodsPrice, this );
+			this.model.on( 'change:goodsColletction', this.refreshGoodsCollection, this );
 		},
 		
 		events: {
@@ -45,9 +46,20 @@ var App = App || {};
 			this.$input = this.$('.edit_goods_name');
 			
 		}, 
-		refreshGoods: function (){
+		refreshGoodsName: function (){
 			this.$el.find('.goods_name_id').html(this.model.get('nameG'));
+		}, 
+		refreshGoodsPrice: function (){
 			this.$el.find('.goodsPrice').html('$'+this.model.get('goodsPrice'));
+		},
+		refreshGoodsCollection: function (){
+			this.model.set('goodsPrice', 0);
+							console.log(this.model.get('goodsCollection'))
+			/*this.model.get('goodsCollection').each(function(iterator){
+				this.model.set('goodsPrice', this.mode.get('goodsPrice')+iterator.get('goodsItemPrice'))
+
+			});*/
+			this.refreshGoodsPrice();
 		},
 		nameUpDate: function (){
 

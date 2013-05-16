@@ -10,6 +10,7 @@ var App = App || {};
 			//this.model.on( 'change', this.render, this);
 			this.model.on( 'change', this.unitChange, this);
 			this.model.on( 'destroy', this.unitRemoveItem, this );
+			this.model.on( 'change:unitPrice', this.refreshUnitPrice, this);
 		},
 		events: {
 			'click .unit_name' : 'unitToggle',
@@ -41,8 +42,10 @@ var App = App || {};
 			//this.render();
 			//this.unitToggle();
 			this.$el.find('.unit_name').html(this.model.get('name'));
+		},
+		refreshUnitPrice: function (){
 			this.$el.find('.unitPrice').html('$'+this.model.get('unitPrice'));
-			console.log( );
+			App.Events.trigger('refreshGoodsPrice', this.model);
 		},
 		unitToggle: function () {
 			
