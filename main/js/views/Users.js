@@ -172,6 +172,7 @@ var App = App || {};
 		chooseRole: function () {
 
 			$('.container').html('');
+
 			//$('.container').append( _.template ( $('#chooseRole').html() ) );
 			$('.container').append( _.template ( $('#loginForm').html() ) );
 			$('#inputLogin').focus();
@@ -265,7 +266,7 @@ var App = App || {};
 				active  : '',
 			}) ); 
 			$('#materials').append( viewMaterials.el );
-			$('#login').html('Quit');
+			$('#login').html('Quit').click(function(){ window.location.replace('/#'); });
 			$('#roles').remove();
 
 		},
@@ -314,7 +315,7 @@ var App = App || {};
 			$('#units').append( $( '#addMaterial2UnitModal' ).html() );
 			var addNewUnits = new App.Views.AddUnit( { collection: App.Materials } );
 			$('#units').append( viewUnits.el );
-			$('#login').html('Quit');
+			$('#login').html('Quit').click(function(){ window.location.replace('/#'); });
 			$('#roles').remove();
 
 		},
@@ -340,8 +341,9 @@ var App = App || {};
 				active  : ' in active',
 			}) ); 
 			$('#materials').append( viewMaterials.el );
-			$('#login').html('Quit');
+			$('#login').html('Quit').click(function(){ window.location.replace('/#'); });
 			$('#roles').remove();
+
 			
 		},
 		renderBeginning: function ( userName, tabName ) {
