@@ -15,13 +15,17 @@ var App = App || {};
 			'keypress .editUnitsCount': 'updateOnEnter',
 			'blur .editUnitsCount': 'close'
 		},
-		template: _.template( $('#goods-count').html() ),
 		render: function () {	
 			
 			this.model.set('nameGoods', this.options.goodsModel.cid);
 			this.model.set('nameGoods', this.options.goodsModel.get('nameG'));
 
-			var strTemplate = this.template( this.model.toJSON());
+			if ( App.userRole === 'customer' ) {
+				var strTemplate = _.template( $('#goods-count-customer').html(), this.model.toJSON() );
+			} else {
+				var strTemplate = _.template( $('#goods-count').html(), this.model.toJSON() );
+			}
+
 			this.$el.html( strTemplate );
 			this.$input = this.$('.editUnitsCount');
 			this.$input.val( this.model.get( 'count' ) );
@@ -74,12 +78,20 @@ var App = App || {};
 			this.el.id=this.model.cid;	
 
 		},
-		template: _.template( $('#units-table').html() ),
 		render: function () {
-			var strTemplate = this.template( { nameGoods:this.model.cid, goodsPrice : this.model.get('goodsPrice') } );
+			if ( App.userRole === 'customer' ) {
+				var strTemplate = _.template( $('#units-table-customer').html(), { nameGoods:this.model.cid, goodsPrice : this.model.get('goodsPrice') } );	
+			} else {
+				var strTemplate = _.template( $('#units-table').html(), { nameGoods:this.model.cid, goodsPrice : this.model.get('goodsPrice') } );	
+			}
+			
 			this.$el.html( strTemplate );
 			this.collection.each(this.addOne, this);
-			$('.buttonPlace').html($('#addUnit2GoodsButton').html());
+
+			if ( App.userRole !== 'customer' ) {
+				$('.buttonPlace').html( $('#addUnit2GoodsButton').html() );
+			}
+
 			return this;
 		},
 		addOne: function( modelGoodsItem ) {
@@ -90,7 +102,10 @@ var App = App || {};
 			
 			goodsItemView.render();
 			
-			$('.buttonPlace').html($('#addUnit2GoodsButton').html());
+			if ( App.userRole !== 'customer' ) {
+				$('.buttonPlace').html( $('#addUnit2GoodsButton').html() );
+			}
+
 		},
 		ItemRemove: function() {
 			//console.log(this);

@@ -16,7 +16,6 @@ var App = App || {};
 		},
 		
 		events: {
-		
 			'click .accordion-heading' : 'goodsToggle',
 			'click .delete_goods' : 'goodsDeleteItem',
 			'click .edit_right' : 'changeGoodsName',
@@ -24,7 +23,6 @@ var App = App || {};
 			'blur .edit_goods_name': 'close',
 			'click .btn': 'inputUnits'
 		},
-		template: _.template( $('#goods-name').html() ),
 		render: function () {	
 			
 			var goodsHrefId = this.model.cid;
@@ -32,7 +30,12 @@ var App = App || {};
 			this.model.set('hrefId', goodsHrefId);
 			console.log(JSON.stringify(this.model.toJSON()));
 
-			var strTemplate = this.template( this.model.toJSON() );
+			if ( App.userRole === 'customer' ) {
+				var strTemplate = _.template( $('#goods-customer').html(), this.model.toJSON() );
+			} else {
+				var strTemplate = _.template( $('#goods-name').html(), this.model.toJSON() );
+			}
+			
 			this.$el.html( strTemplate );
 			var newGoodsItemsList = new App.Views.GoodsItemsList( { collection: this.model.get( 'goodsCollection' ), model: this.model  } ) ;
 
