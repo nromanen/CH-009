@@ -6,13 +6,12 @@ form = cgi.FieldStorage()
 sys.stdout.write("Content-type: text/html \r\n\r\n")
 #sys.stdout.write(" Materials"+form['materials'].value+"<br><br>")
 #sys.stdout.write("Units"+form['units'].value+"<br><br>")
-sys.stdout.write("Goods"+form['goods'].value+"<br><br>")
+#sys.stdout.write("Goods"+form['goods'].value+"<br><br>")
 
-materials = json.load(form['materials'].value)
-units = json.load(form['units'].value)
-goods = json.load(form['goods'].value) 
-sys.stdout.write("asd" + materials)
-conn = psycopg2.connect("dbname='postgres' user='postgres' host='localhost' password='root'")
+materials = json.loads(form['materials'].value)
+units = json.loads(form['units'].value)
+goods = json.loads(form['goods'].value) 
+conn = psycopg2.connect("dbname='postgres' user='postgres' host='localhost' password='Syslick1'")
 
 cur = conn.cursor()
 cur.execute("DROP TABLE IF EXISTS materials, units, products")
@@ -27,14 +26,14 @@ while i<len(materials):
 
 i=0
 while i<len(units):
-
-	cur.execute("INSERT INTO units  (nameUnits, collectionMaterials) VALUES (%s, %s);",(units[i]['name'], str(units[i]['mcollection'])))
+	cur.execute("INSERT INTO units  (nameUnits, collectionMaterials) VALUES (%s, %s);",(units[i]['name'], json.dumps(units[i]['mcollection'])))
 	i +=1
+
 
 i=0
 while i<len(goods):
 
-	cur.execute("INSERT INTO products (nameProducts, collectionUnists) VALUES (%s, %s);",(str(goods[i]['nameG']), str(goods[i]['goodsCollection'])))
+	cur.execute("INSERT INTO products (nameProducts, collectionUnists) VALUES (%s, %s);",(str(goods[i]['nameG']), json.dumps(goods[i]['goodsCollection'])))
 	i +=1
 
 

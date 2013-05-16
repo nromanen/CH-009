@@ -78,9 +78,8 @@ var App = App || {};
    						url: "/cgi-bin/insertJSON.py",
    						data:{materials:matCol, units:uniCol, goods:gooCol},
    							success: function(msg){
-     							document.write(msg);
-     							
-     						
+     							alert(msg);
+     							   						
 
    							}
  					});
@@ -113,27 +112,54 @@ var App = App || {};
    						url: "/cgi-bin/fetch.py",
    						data:{fetchType:1},
    							success: function(msg){
-     							App.Events.trigger("fetchMaterialsPostDB", msg)
-     							
+     							App.Events.trigger("fetchMaterialsPostgDB", msg)
+     							console.log(msg);
+
      						
 
    							}
  					});
 				
+				
 			};
 
 			function fetchUnits() {
+						$.ajax({
+   						type: "POST",
+   						url: "/cgi-bin/fetch.py",
+   						data:{fetchType:2},
+   							success: function(msg){
+     							App.Events.trigger("fetchUnitsPostgDB", msg)
+     							console.log(msg);
 
-				var uni = App.Units.fetch( { update: true } );
-				uni ? console.log("units fetch done") : console.log("units fetch failed");
-				console.log(uni);
-				console.log(App.Units.toJSON());
+   							}
+ 					});
+
+
+				
+			};
+
+
+
+			function fetchGoods() {
+						$.ajax({
+   						type: "POST",
+   						url: "/cgi-bin/fetch.py",
+   						data:{fetchType:3},
+   							success: function(msg){
+     							App.Events.trigger("fetchGoodsPostgDB", msg)
+     							console.log(msg);
+
+   							}
+ 					});
+
+
 				
 			};
 
 			fetchMaterials();
-			//fetchUnits();
-			
+			fetchUnits();
+			fetchGoods()
 			/*console.log( App.Units.toJSON() );
 			console.log( App.Materials.toJSON() );
 			console.log( JSON.stringify(App.Units) );
