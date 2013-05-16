@@ -203,6 +203,7 @@ var App = App || {};
 			$('.colspan4').attr('colspan', '2');
 			$('.buttonPlace').html("");
 			$('#actionButton').remove();
+			$('#roles').remove();
 
 		},
 		openAccountant: function () {
@@ -260,8 +261,9 @@ var App = App || {};
 				id      : 'materials',
 				active  : '',
 			}) ); 
-			$('#materials').append( viewMaterials.el )
-	
+			$('#materials').append( viewMaterials.el );
+			$('#login').html('Quit');
+			$('#roles').remove();
 
 		},
 		openEngineer: function () {
@@ -300,6 +302,8 @@ var App = App || {};
 			$('#units').append( $( '#addMaterial2UnitModal' ).html() );
 			var addNewUnits = new App.Views.AddUnit( { collection: App.Materials } );
 			$('#units').append( viewUnits.el );
+			$('#login').html('Quit');
+			$('#roles').remove();
 
 		},
 		openStorekeeper: function () {
@@ -320,6 +324,8 @@ var App = App || {};
 				active  : ' in active',
 			}) ); 
 			$('#materials').append( viewMaterials.el );
+			$('#login').html('Quit');
+			$('#roles').remove();
 			
 		},
 		renderBeginning: function ( userName, tabName ) {
@@ -330,6 +336,7 @@ var App = App || {};
 			$('#fetchData').bind('click', function() { that.fetchData(); });
 			$('#clearDB').bind('click', function() { that.clearDB(); });
 			$('#saveCollectionsToDb').bind('click', function() { that.SaveCollectionsToDb(); });
+			$('#login').bind('click', function() { that.chooseRole() });
 
 			$('.container').html('');  //empty main container 
 			$('.container').append( App.HTML.Row );
