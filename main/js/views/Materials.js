@@ -29,6 +29,7 @@ var App = App || {};
 			this.$el.find('input').focus();
 		},
 		saveNewPrice : function () {
+			console.log('blur');
 			this.$el.removeClass('editing');
 		},
 		confirmRemove: function () {
