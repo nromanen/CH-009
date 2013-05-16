@@ -7,7 +7,7 @@ var App = App || {};
 	tagName: 'tr',
 		initialize: function (){
 			this.model.on( 'destroy', this.remove, this );
-			//this.model.on( 'change', this.render, this);
+			
 		},
 		events: {
 			'click .delete' : 'confirmRemove',
@@ -61,7 +61,8 @@ var App = App || {};
 			this.options.goodsModel.set('goodsPrice', this.options.goodsModel.get('goodsPrice')+this.model.get('goodsItemPrice'));
 			App.dbConnector.EditGoodsItems( this.options.goodsModel );
 			this.$el.removeClass('editing');
-			
+			this.$el.find(".count").html(value);
+			this.$el.find(".total").html(this.model.get('goodsItemPrice'))
 		},
 		updateOnEnter: function (e) {
 			if (e.keyCode == 13) {
