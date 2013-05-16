@@ -65,9 +65,30 @@ var App = App || {};
 		},
 		unitDeleteItem: function() {
 		
-			if ( confirm('Are you sure you want to delete this Unit?') ) {
-				App.Events.trigger( 'unitDelete', this.model );
-			}
+			var that = this;
+			App.Goods.each ( function (goodsModel) {
+
+				var unitsInside = goodsModel.get('goodsCollection');
+				var found = unitsInside.find( function (goodsItem) {
+					return that.model.get('name') === goodsItem.get('units'); 
+				});
+
+				if (found === undefined) {
+
+					if ( confirm('Are you sure you want to delete this Unit?') ) {
+						App.Events.trigger( 'unitDelete', that.model );
+					}	
+
+				} else {
+
+					$('#newUnitBtn').after('<div class="error">You CANNOT DELETE this unit, because it is already used in Goods!</div>');
+					setTimeout( function() { 
+						$('.error').fadeOut('slow')
+					}, 2000);
+
+				}
+
+			});
 		
 		},
 		unitRemoveItem: function() {
