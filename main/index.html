@@ -317,6 +317,19 @@
 			<div class="clear"></div>	
 		
 		</script>
+
+		<script type="text/template" id="goods-customer">
+			<div class="goods_holder">
+				<div class="accordion-heading">
+			      <a class="accordion-toggle" data-toggle="collapse" data-parent="#goods_holder" href="#<%= hrefId %>">
+			        <span id="<%= hrefId %>_goodsId" class="goods_name_id"><%= nameG %></span>
+			      </a>
+			    </div>
+	
+			</div>
+			<div class="clear"></div>	
+		
+		</script>
 		
 
 <!-- Unit View templates -->	
@@ -454,21 +467,51 @@
 
 		</script>
 
+		<script type="text/template" id="units-table-customer">
 
+		    <div class="accordion-inner">		
+		   	   <table class="table">
+					<thead>
+						
+						<th> Units </th>
+						<th> Quantity </th>
+						<th> Price total </th>
+					</thead>
+					<tbody id="<%= nameGoods %>_tableRow">
+
+	                	<tr>	
+	                		<td class="buttonPlace" colspan="2">
+	                				
+	                		</td>
+							<td>
+								Total price: <b class='goodsPrice'>$<%=goodsPrice%></b>
+							</td>
+	                	</tr>
+					</tbody>
+                	
+                </table>
+
+		      </div>
+
+		</script>
 		
 		<script type="text/template" id="goods-count">
-
-
-					 
-					     
-				                	<td><div class="units_in_Goods"><%= units %></div></td>
-				                	<td> <div class="count"><%= count %></div> </td>
-				                	<td> <div class="editCount"></div> </td>
-				                	<td> <div class="delete" title="Delete <%= units %> material"></div></td>
-				                	<td> <%=goodsItemPrice%> </td>
+		     
+        	<td><div class="units_in_Goods"><%= units %></div></td>
+        	<td> <div class="count"><%= count %></div> </td>
+        	<td> <div class="editCount"></div> </td>
+        	<td> <div class="delete" title="Delete <%= units %> material"></div></td>
+        	<td> $<%=goodsItemPrice%> </td>
 				        
-		</script>		
+		</script>	
 
+		<script type="text/template" id="goods-count-customer">
+		     
+        	<td><div class="units_in_Goods"><%= units %></div></td>
+        	<td> <div class="count"><%= count %></div> </td>
+        	<td> $<%=goodsItemPrice%> </td>
+				        
+		</script>
 		
 		<script type="text/template" id="goods-count-plus">
 			  <div class="holder">	

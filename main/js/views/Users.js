@@ -191,17 +191,6 @@ var App = App || {};
 			$('#products').html( viewProducts.el );
 
 			viewProducts.render();
-			$('.delete').remove();
-			$('.edit_right').remove();
-			$('.delete_goods').remove();
-			$('.delete').remove();
-			$('.edit_right').remove();
-			$('#products table tr th:nth-child(3)').hide();
-			$('#products table tbody tr td:nth-child(3)').hide();
-			$('#products table tr th:nth-child(4)').hide();
-			$('#products table tbody tr td:nth-child(4)').hide();
-			$('.colspan4').attr('colspan', '2');
-			$('.buttonPlace').html("")
 
 		},
 		openAccountant: function () {
