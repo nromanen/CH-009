@@ -10,7 +10,7 @@
 	<div class="container-navbar"></div>
 	<div  class="container"></div>
 	
-<!-- NavBar template -->
+<!-- NavBar template --> 
 
 		<script type="text/template" id="navbar">
 			<div class="navbar navbar-static-top" style="margin-bottom:20px;">
@@ -287,7 +287,10 @@
 		
 		<script type="text/template" id="materials-storekeeper">
 		  	<td> <%= material %> </td>
-			<td> <%= price %> </td>
+			<td> 
+				<span class="price"> <%= price %> </span>
+				<input type="text" value="<%= price %>" class="editPrice">
+			</td>
 			<td> <div class="edit"></div> </td>
 			<td> <div class="delete"></div> </td>
 		</script>
