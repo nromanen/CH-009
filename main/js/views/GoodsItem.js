@@ -7,13 +7,14 @@ var App = App || {};
 	tagName: 'tr',
 		initialize: function (){
 			this.model.on( 'destroy', this.remove, this );
-			//this.model.on( 'change', this.render, this);
+			
 		},
 		events: {
 			'click .delete' : 'confirmRemove',
-			'click .editCount' : 'changeCount',
-			'keypress .editUnitsCount': 'updateOnEnter',
-			'blur .editUnitsCount': 'close'
+			'click .edit' : 'changeCount',
+			'keypress .edit_units_count': 'updateOnEnter',
+			'blur .edit_units_count': 'close'
+			
 		},
 		render: function () {	
 			
@@ -27,7 +28,7 @@ var App = App || {};
 			}
 
 			this.$el.html( strTemplate );
-			this.$input = this.$('.editUnitsCount');
+			this.$input = this.$('.edit_units_count');
 			this.$input.val( this.model.get( 'count' ) );
 
 		},
@@ -42,22 +43,26 @@ var App = App || {};
 			this.$el.remove();
 		},
 		changeCount: function () {
-			this.$el.addClass('editingCount');
+			this.$el.addClass('editing');
 			this.$input.focus();
 		},
 		close: function () {
 			var value = this.$input.val().trim();
+
 			 if ( isNaN ( value )  || value <0 || value == '') {
-				this.$el.removeClass('editingCount');
+				this.$el.removeClass('editing');
+				alert(value);
 				this.render();
+			
 				return;
 			}	
 			this.options.goodsModel.set('goodsPrice', this.options.goodsModel.get('goodsPrice')-this.model.get('goodsItemPrice'));
-			App.Events.trigger('newUnitsCount', this.model, value, newPrice);
+			App.Events.trigger('newUnitsCount', this.model, value);
 			this.options.goodsModel.set('goodsPrice', this.options.goodsModel.get('goodsPrice')+this.model.get('goodsItemPrice'));
 			App.dbConnector.EditGoodsItems( this.options.goodsModel );
-			this.$el.removeClass('editingCount');
-			
+			this.$el.removeClass('editing');
+			this.$el.find(".count").html(value);
+			this.$el.find(".total").html(this.model.get('goodsItemPrice'))
 		},
 		updateOnEnter: function (e) {
 			if (e.keyCode == 13) {
