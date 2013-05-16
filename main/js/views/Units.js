@@ -69,10 +69,16 @@ var App = App || {};
 
 				var unitsInside = goodsModel.get('goodsCollection');
 				var found = unitsInside.find( function (goodsItem) {
-					return that.model.get('name') === goodsItem.get('units'); 
+					if ( that.model.get('name') === goodsItem.get('units') ) {
+						return true;
+					} else {
+						return false;
+					}
 				});
 
-				if (found === undefined) {
+				console.log(found);
+
+				if (found === false) {
 
 					if ( confirm('Are you sure you want to delete this Unit?') ) {
 						App.Events.trigger( 'unitDelete', that.model );
