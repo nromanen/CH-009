@@ -1,47 +1,47 @@
 import cgi, json
 import psycopg2, sys, os
 
-form = cgi.FieldStorage()
+postInputs = cgi.FieldStorage()
 
 sys.stdout.write("Content-type: text/html \r\n\r\n")
-conn = psycopg2.connect("dbname='postgres' user='postgres' host='localhost' password='Syslick1'")
+conn = psycopg2.connect("dbname='postgres' user='postgres' host='localhost' password='root'")
 cur = conn.cursor()
 
-if form['fetchType'].value == "1":
+if postInputs['fetchType'].value == "1":
 	cur.execute("SELECT * FROM materials")
-	rez =cur.fetchall()
+	result =cur.fetchall()
 	i=0
 	arJSON=[]
-	while i<len(rez):
-		arJSON.append(dict({"material":rez[i][1], "price":float(rez[i][2])}))
+	while i<len(result):
+		arJSON.append(dict({"material":result[i][1], "price":float(result[i][2])}))
 		i +=1
 
 	sys.stdout.write(json.dumps(arJSON))
 
-if form['fetchType'].value == "2":
+if postInputs['fetchType'].value == "2":
 	cur.execute("SELECT * FROM units")
 
-	rez =cur.fetchall()
+	result =cur.fetchall()
 	i=0
 	arJSON=[]
 	
 	
-	while i<len(rez):
-		arJSON.append(dict({"name":rez[i][1], "mcollection":rez[i][2]}))
+	while i<len(result):
+		arJSON.append(dict({"name":result[i][1], "mcollection":result[i][2]}))
 		i +=1
 
 	sys.stdout.write(json.dumps(arJSON))
 
-if form['fetchType'].value == "3":
+if postInputs['fetchType'].value == "3":
 	cur.execute("SELECT * FROM products")
 
-	rez =cur.fetchall()
+	result =cur.fetchall()
 	i=0
 	arJSON=[]
 	
 	
-	while i<len(rez):
-		arJSON.append(dict({"nameG":rez[i][1], "goodsCollection":rez[i][2]}))
+	while i<len(result):
+		arJSON.append(dict({"nameG":result[i][1], "goodsCollection":result[i][2]}))
 		i +=1
 
 	sys.stdout.write(json.dumps(arJSON))

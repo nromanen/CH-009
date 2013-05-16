@@ -96,6 +96,7 @@ var App = App || {};
 		fetchPostgDB: function (jsonUnits){
 			var unitsArray = JSON.parse(jsonUnits)
 			console.log(unitsArray)
+			var totalPrise=0;
 			for(i=0; i<=unitsArray .length-1;i++){
 			
 			
@@ -103,19 +104,23 @@ var App = App || {};
 				
 				unitCollection.add(JSON.parse(unitsArray[i].mcollection));
 
+				_.each(JSON.parse(unitsArray[i].mcollection),  function ( model ) {
 
+					totalPrise= parseFloat ( (totalPrise + model['unitItemPrice']).toFixed(2) );
+				
+				});
 
 
 				var mUnit = new App.Models.Unit({
 					name:unitsArray[i].name,
 					mcollection:unitCollection,
-					unitPrice:0
+					unitPrice:totalPrise
 							
 				});
 				//console.log(unitCollection)
 				
 				this.addModel(mUnit);
-				
+				totalPrise=0
 			}
 
 
@@ -222,12 +227,12 @@ var App = App || {};
 		initialize: function () {
 		
 			App.Events.on( 'addGoods', this.addModel, this );
-			App.Events.on('goodsDelete', this.deleteModel, this)
+			App.Events.on( 'goodsDelete', this.deleteModel, this)
 			App.Events.on( 'writeGoods', this.writeCollection, this );
 			App.Events.on( 'fetchGoods', this.fetchGoods, this );
 			App.Events.on( 'editGoodsName', this.changeName, this );
-			App.Events.on('newUnitsCount', this.editCount, this);
-			App.Events.on('fetchGoodsPostgDB', this.fetchPostgDB, this);
+			App.Events.on( 'newUnitsCount', this.editCount, this);
+			App.Events.on( 'fetchGoodsPostgDB', this.fetchPostgDB, this);
 
 		},
 		addModel: function (model) {
@@ -246,22 +251,31 @@ var App = App || {};
 			
 		},
 		fetchPostgDB: function (jsonGoods){
-			//console.log(jsonGoods);
+			
 			var goodsArray = JSON.parse(jsonGoods);
+			var totalPrice = 0;
 			for(i=0; i<goodsArray.length;i++){
 				
 				var goodsCollection = new App.Collections.GoodsItems();
 				
 				console.log(goodsArray[i].goodsPrice);
 				goodsCollection.add(JSON.parse(goodsArray[i].goodsCollection));
+
+				_.each( JSON.parse(goodsArray[i].goodsCollection),  function ( model ) {
+
+					 totalPrice = parseFloat( ( totalPrice + model['goodsItemPrice']).toFixed(2) );
+
+				});
+
 				var mGoods = new App.Models.Goods({
 					nameG:goodsArray[i].nameG,
 					goodsCollection: goodsCollection,
-					goodsPrice: 0
+					goodsPrice: totalPrice
 							
 				});
 
-				this.add(mGoods);
+				this.addModel(mGoods);
+				totalPrice=0;
 			}	
 
 
