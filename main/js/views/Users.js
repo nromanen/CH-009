@@ -201,7 +201,8 @@ var App = App || {};
 			$('#products table tr th:nth-child(4)').hide();
 			$('#products table tbody tr td:nth-child(4)').hide();
 			$('.colspan4').attr('colspan', '2');
-			$('.buttonPlace').html("")
+			$('.buttonPlace').html("");
+			$('#actionButton').remove();
 
 		},
 		openAccountant: function () {
@@ -231,6 +232,7 @@ var App = App || {};
 			$('#products table tr th:nth-child(4)').hide();
 			$('#products table tbody tr td:nth-child(4)').hide();
 			$('.colspan4').attr('colspan', '2');
+			$('#actionButton').remove();
 			
 			// rendering the content of the Units Tab
 			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
