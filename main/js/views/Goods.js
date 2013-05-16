@@ -11,12 +11,11 @@ var App = App || {};
 
 			this.model.on( 'change:nameG', this.nameUpDate, this);
 			this.model.on( 'destroy', this.goodsRemoveItem, this );
-			this.model.on( 'change', this.render, this );
+			this.model.on( 'change', this.refreshGoods, this );
 
 		},
 		
 		events: {
-		
 			'click .accordion-heading' : 'goodsToggle',
 			'click .delete_goods' : 'goodsDeleteItem',
 			'click .edit_right' : 'changeGoodsName',
@@ -24,7 +23,6 @@ var App = App || {};
 			'blur .edit_goods_name': 'close',
 			'click .btn': 'inputUnits'
 		},
-		template: _.template( $('#goods-name').html() ),
 		render: function () {	
 			
 			var goodsHrefId = this.model.cid;
@@ -32,7 +30,12 @@ var App = App || {};
 			this.model.set('hrefId', goodsHrefId);
 			console.log(JSON.stringify(this.model.toJSON()));
 
-			var strTemplate = this.template( this.model.toJSON() );
+			if ( App.userRole === 'customer' ) {
+				var strTemplate = _.template( $('#goods-name-customer').html(), this.model.toJSON() );
+			} else {
+				var strTemplate = _.template( $('#goods-name').html(), this.model.toJSON() );
+			}
+
 			this.$el.html( strTemplate );
 			var newGoodsItemsList = new App.Views.GoodsItemsList( { collection: this.model.get( 'goodsCollection' ), model: this.model  } ) ;
 
@@ -42,6 +45,10 @@ var App = App || {};
 			this.$input = this.$('.edit_goods_name');
 			
 		}, 
+		refreshGoods: function (){
+			this.$el.find('.goods_name_id').html(this.model.get('nameG'));
+			this.$el.find('.goodsPrice').html('$'+this.model.get('goodsPrice'));
+		},
 		nameUpDate: function (){
 
 			console.log($('#'+this.model.cid+"_goodsId").html(this.model.get("nameG")));

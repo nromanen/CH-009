@@ -191,10 +191,6 @@ var App = App || {};
 			$('#products').html( viewProducts.el );
 
 			viewProducts.render();
-			$('.delete').remove();
-			$('.edit_right').remove();
-			$('.delete_goods').remove();
-			$('.buttonPlace').html("")
 
 		},
 		openAccountant: function () {
@@ -212,13 +208,18 @@ var App = App || {};
 
 			viewProducts.render();
 			$('.buttonPlace').html("")
-			// rendering the content of the Units Tab
+			// rendering the content of the Goods Tab
 			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
 			viewUnits.render();
 			$('.delete').remove();
 			$('.edit_right').remove();
 			$('.delete_goods').remove();
 			$('.buttonPlace').html("")
+			$('#products table tr th:nth-child(3)').hide();
+			$('#products table tbody tr td:nth-child(3)').hide();
+			$('#products table tr th:nth-child(4)').hide();
+			$('#products table tbody tr td:nth-child(4)').hide();
+			$('.colspan4').attr('colspan', '2');
 			
 			// rendering the content of the Units Tab
 			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
@@ -228,6 +229,16 @@ var App = App || {};
 				active  : '',
 			}) );
 			$('#units').append( viewUnits.el );
+			$('.edit_right').remove();
+			$('.delete_unit').remove();
+			$('.edit').remove();
+			$('.delete').remove();
+			$('#units table tr th:nth-child(3)').hide();
+			$('#units table tbody tr td:nth-child(3)').hide();
+			$('#units table tr th:nth-child(4)').hide();
+			$('#units table tbody tr td:nth-child(4)').hide();
+			$('td a').remove();
+			$('.colspan4').attr('colspan', '2');
 
 			// rendering the content of the Materials Tab
 			var viewMaterials = new App.Views.List( { collection: App.Materials } );

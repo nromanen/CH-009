@@ -302,7 +302,6 @@ var App = App || {};
 					goods[i].goodsPrice = parseFloat( (goods[i].goodsPrice + model['goodsItemPrice']).toFixed(2) );
 
 				});
-				console.log(goods[i].goodsPrice);
 				goodsCollection.add(goods[i].goodsCollection);
 				var mGoods = new App.Models.Goods({
 					nameG:goods[i].nameG,
