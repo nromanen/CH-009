@@ -191,9 +191,10 @@ var App = App || {};
 			$('#products').html( viewProducts.el );
 
 			viewProducts.render();
+			$('.delete').remove();
+			$('.edit_right').remove();
 			$('.delete_goods').remove();
 			$('.buttonPlace').html("")
-			$('.goods_info').html("");
 
 		},
 		openAccountant: function () {

@@ -261,7 +261,7 @@ var App = App || {};
 							
 				});
 
-				this.addModel(mGoods);
+				this.add(mGoods);
 			}	
 
 
