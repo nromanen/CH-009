@@ -11,9 +11,27 @@ var App = App || {};
 			App.Events.on( 'addModel', this.addModel, this );
 			App.Events.on( 'fetchProducts', this.fetchProducts, this );
 			App.Events.on( 'writeProducts', this.writeProducts, this );
-			
+			App.Events.on('fetchMaterialsPostDB', this.fetchPostDB, this);
 			//App.dbConnector.openDatabase();
 			
+		},
+		fetchPostDB: function (jsonDate) {
+			var materialsArray = JSON.parse(jsonDate)
+			
+			for ( var i=0; i<=materialsArray .length-1; i++ )
+			{   
+			
+				var strMaterial = new App.Models.Material({ 
+					material: materialsArray[i].material, 
+					price: materialsArray[i].price 
+				});
+				this.addModel ( strMaterial );
+				
+			}
+
+
+
+
 		},
 		fetchProducts: function () {
 			
@@ -64,6 +82,7 @@ var App = App || {};
 			App.Events.on( 'fetchUnit', this.fetchUnits, this );
 			App.Events.on( 'writeUnits', this.writeCollection, this );
 			App.Events.on( 'editUnitName', this.changeName, this );
+			App.Events.on('fetchUnitsPostgDB', this.fetchPostgDB, this)
 			App.dbConnector.openDatabase();
 			
 		},
@@ -72,6 +91,35 @@ var App = App || {};
 			this.add( model );
 			App.dbConnector.AddUnit ( "Units", model );
 			 
+		},
+		fetchPostgDB: function (jsonUnits){
+			var unitsArray = JSON.parse(jsonUnits)
+			console.log(unitsArray)
+			for(i=0; i<=unitsArray .length-1;i++){
+			
+			
+				var unitCollection = new App.Collections.UnitItems();
+				
+				unitCollection.add(JSON.parse(unitsArray[i].mcollection));
+
+
+
+
+				var mUnit = new App.Models.Unit({
+					name:unitsArray[i].name,
+					mcollection:unitCollection,
+					unitPrice:0
+							
+				});
+				console.log(unitCollection)
+				
+				this.addModel(mUnit);
+				
+			}
+
+
+
+
 		},
 		fetchUnits: function(){
 			
@@ -178,6 +226,7 @@ var App = App || {};
 			App.Events.on( 'fetchGoods', this.fetchGoods, this );
 			App.Events.on( 'editGoodsName', this.changeName, this );
 			App.Events.on('newUnitsCount', this.editCount, this);
+			App.Events.on('fetchGoodsPostgDB', this.fetchPostgDB, this);
 
 		},
 		addModel: function (model) {
@@ -194,6 +243,27 @@ var App = App || {};
 			}
 
 			
+		},
+		fetchPostgDB: function (jsonGoods){
+			console.log(jsonGoods);
+			var goodsArray = JSON.parse(jsonGoods);
+			for(i=0; i<goodsArray.length;i++){
+				
+				var goodsCollection = new App.Collections.GoodsItems();
+				
+				console.log(goodsArray[i].goodsPrice);
+				goodsCollection.add(JSON.parse(goodsArray[i].goodsCollection));
+				var mGoods = new App.Models.Goods({
+					nameG:goodsArray[i].nameG,
+					goodsCollection: goodsCollection,
+					goodsPrice: 0
+							
+				});
+
+				this.addModel(mGoods);
+			}	
+
+
 		},
 		deleteModel: function(model) {			
 			App.dbConnector.deleteGoods(this.model.get('nameG'));
@@ -245,7 +315,7 @@ var App = App || {};
 		changeName: function(model, value){
 
 			App.dbConnector.changeGoodsName( model.get( 'nameG' ), value );
-			var goodsHrefId = value
+			var goodsHrefId = value;
 			goodsHrefId = goodsHrefId.replace(" ","");
 			model.set('hrefId', goodsHrefId);
 			console.log(model);
