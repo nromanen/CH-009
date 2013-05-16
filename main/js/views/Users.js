@@ -191,6 +191,8 @@ var App = App || {};
 			$('#products').html( viewProducts.el );
 
 			viewProducts.render();
+			$('.delete').remove();
+			$('.edit_right').remove();
 			$('.delete_goods').remove();
 			$('.delete').remove();
 			$('.edit_right').remove();
@@ -200,7 +202,6 @@ var App = App || {};
 			$('#products table tbody tr td:nth-child(4)').hide();
 			$('.colspan4').attr('colspan', '2');
 			$('.buttonPlace').html("")
-			$('.goods_info').html("");
 
 		},
 		openAccountant: function () {
