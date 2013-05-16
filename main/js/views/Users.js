@@ -108,7 +108,7 @@ var App = App || {};
 				//var mat = App.Materials.fetch( { update: true } );
 				//mat ? console.log("materials fetch done") : console.log("materials fetch failed");
 				$.ajax({
-   						type: "POST",
+   						type: "POST", 
    						url: "/cgi-bin/fetch.py",
    						data:{fetchType:1},
    							success: function(msg){
@@ -265,7 +265,11 @@ var App = App || {};
 				active  : ' in active',
 			}) ); 
 
-			$('#products').html( $( '#temlateGoods' ).html() );
+			$('#products').html( $( '#templateGoods' ).html() );
+
+			$('#addGoodsView').on('shown', function () {
+			    $('#addGoodsView').find('input').focus();
+			});
 
 			$('.container').append($('#addUnit2GoodsTemplate').html());
 			var addGoods2 = new App.Views.AddGoods ( { collection: App.Goods } );
@@ -284,6 +288,11 @@ var App = App || {};
 			}) );
 			$('#units').append( $( '#addNewUnitButton' ).html() );
 			$('#units').append( $( '#addNewUnitModal' ).html() );
+
+			$('#addNewUnit').on('shown', function () {
+			    $('#addNewUnit').find('input').focus();
+			});
+
 			$('#units').append( $( '#addMaterial2UnitModal' ).html() );
 			var addNewUnits = new App.Views.AddUnit( { collection: App.Materials } );
 			$('#units').append( viewUnits.el );
@@ -297,6 +306,10 @@ var App = App || {};
 			// rendering content of the Materials Tab
 			$('#TabContent').append( $( '#addNewMaterialButton' ).html() );
 			$('#TabContent').append( $( '#addNewMaterialModal' ).html() );
+
+			$('#addNewMaterial').on('shown', function () {
+			    $('#addNewMaterial').find('#material').focus();
+			});
 
 			var addNewMaterials = new App.Views.AddMaterial( { collection: App.Materials } );
 			var viewMaterials = new App.Views.List( { collection: App.Materials } );
@@ -329,7 +342,7 @@ var App = App || {};
 			 
 			this.$el.html('');
 			this.$el.append( $( '#navigation' ).html() );
-			this.$el.append( $( "#temlateMaterials" ).html() );
+			this.$el.append( $( "#templateMaterials" ).html() );
 			var addMaterial = new App.Views.AddMaterial( { collection: App.Materials } );
 			var viewMaterials = new App.Views.List( { collection: App.Materials } );
 			viewMaterials.render();

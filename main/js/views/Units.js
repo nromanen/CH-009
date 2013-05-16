@@ -7,7 +7,6 @@ var App = App || {};
 		tagName: 'div',
 		className: 'accordion-group',
 		initialize: function () {
-			//this.model.on( 'change', this.render, this);
 			this.model.on( 'change', this.unitChange, this);
 			this.model.on( 'destroy', this.unitRemoveItem, this );
 		},
