@@ -122,6 +122,33 @@ var App = App || {};
 		}
 		
 	}
+
+	App.dbConnector.changeMaterialPrice = function( inputModel )  {
+		try {
+		   	var transaction = localDatabase.db.transaction( "products" , "readwrite");
+			var store = transaction.objectStore( "products" );
+
+			if (localDatabase != null && localDatabase.db != null) {
+			var request = store.openCursor();
+			
+				request.onsuccess = function( evt ) {
+					console.log(evt.target.result);
+					var cursor = evt.target.result;
+
+					if ( cursor.value.product ===  inputModel.get ( 'name' ) ) {
+						var newValue = cursor.value;
+						newValue["productPrice"] = inputModel.get ( 'price' );
+						store.put(newValue);
+						return;	
+					}
+					cursor.continue(); 				
+				}	
+			}
+		}
+		catch(e){
+		   console.log(e);
+		}
+	}
 	
 	App.dbConnector.EditUnitItem = function ( model ) {
 	
