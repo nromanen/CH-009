@@ -6,7 +6,7 @@ var App = App || {};
 		tagName: 'tr',
 		initialize: function () {
 			//this.model.on('change:material', this.render, this);
-			//this.model.on('change:price', this.render, this);
+			this.model.on('change:price', this.changeUnitItemPrice, this);
 			this.model.on( 'destroy', this.remove, this );
 		},
 		events: {
@@ -39,6 +39,9 @@ var App = App || {};
 				App.dbConnector.changeMaterialPrice( this.model );
 				this.render();
 			}
+		},
+		changeUnitItemPrice: function (){
+			App.Events.trigger('changeUnitItemPrice', this.model);
 		},
 		confirmRemove: function () {
 			var delMat = this.model.get("material");
