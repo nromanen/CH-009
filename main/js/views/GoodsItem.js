@@ -56,7 +56,6 @@ var App = App || {};
 				this.$el.removeClass('editing');
 				alert(value);
 				this.render();
-			
 				return;
 			}	
 			this.options.goodsModel.set('goodsPrice', this.options.goodsModel.get('goodsPrice')-this.model.get('goodsItemPrice'));

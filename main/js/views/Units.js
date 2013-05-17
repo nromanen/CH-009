@@ -68,35 +68,38 @@ var App = App || {};
 		unitDeleteItem: function() {
 		
 			var that = this;
+			var found = false;
+			var foundFlag = false;
 			App.Goods.each ( function (goodsModel) {
+				if ( found === false ) {
+					var unitsInside = goodsModel.get('goodsCollection');
+					found = unitsInside.find( function (goodsItem) {
+						return that.model.get('name') === goodsItem.get('units');					
+					});
 
-				var unitsInside = goodsModel.get('goodsCollection');
-				var found = unitsInside.find( function (goodsItem) {
-					if ( that.model.get('name') === goodsItem.get('units') ) {
-						return true;
+					if (found === undefined) {
+
+						foundFlag = false;	
+
 					} else {
-						return false;
+
+						foundFlag = true;
+
 					}
-				});
-
-				console.log(found);
-
-				if (found === false) {
-
-					if ( confirm('Are you sure you want to delete this Unit?') ) {
-						App.Events.trigger( 'unitDelete', that.model );
-					}	
-
-				} else {
-
-					$('#newUnitBtn').after('<div class="error">You CANNOT DELETE this unit, because it is already used in Goods!</div>');
-					setTimeout( function() { 
-						$('.error').fadeOut('slow')
-					}, 2000);
-
 				}
 
 			});
+
+			if (foundFlag === true) {
+				$('#newUnitBtn').after('<div class="error">You CANNOT DELETE this unit, because it is already used in Goods!</div>');
+					setTimeout( function() { 
+						$('.error').fadeOut('slow')
+					}, 2000);
+			} else {
+				if ( confirm('Are you sure you want to delete this Unit?') ) {
+						App.Events.trigger( 'unitDelete', that.model );
+					};
+			}
 		
 		},
 		unitRemoveItem: function() {
