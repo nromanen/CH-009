@@ -83,9 +83,49 @@ var App = App || {};
 			var tovarStore = evt.currentTarget.result.createObjectStore
 					("Tovaru", {keyPath: "id", autoIncrement: true});
 				   tovarStore.createIndex("tovarName", "tovarName", { unique: true});        
-				   tovarStore.createIndex("tovarCollection", "tovarCollection", { unique: false });			            	   						  
+				   tovarStore.createIndex("tovarCollection", "tovarCollection", { unique: false });		
+
+
+		   function fetchMaterials(){
+					$.ajax({
+   						type: "POST", 
+   						url: "/cgi-bin/fetch.py",
+   						data:{fetchType:1},
+   							success: function(msg){
+     							App.Events.trigger("fetchMaterialsPostgDB", msg)
+     							console.log(msg);
+   							}
+   					});
+			};
+
+			function fetchUnits() {
+						$.ajax({
+   						type: "POST",
+   						url: "/cgi-bin/fetch.py",
+   						data:{fetchType:2},
+   							success: function(msg){
+     							App.Events.trigger("fetchUnitsPostgDB", msg)
+     							console.log(msg);
+   							}
+ 					});
+			};
+			function fetchGoods() {
+						$.ajax({
+   						type: "POST",
+   						url: "/cgi-bin/fetch.py",
+   						data:{fetchType:3},
+   							success: function(msg){
+     							App.Events.trigger("fetchGoodsPostgDB", msg)
+     							console.log(msg);
+   							}
+ 					});
+			};
+
+			fetchMaterials();
+			fetchUnits();
+			fetchGoods()
+
 			}
-	
 	}	
 		
 	App.dbConnector.addProduct = function ( material, price ) {
