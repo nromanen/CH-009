@@ -176,7 +176,7 @@ var App = App || {};
 
 					if ( cursor.value.matIndex ===  inputModel.get ( 'name' ) ) {
 						var newValue = cursor.value;
-						newValue["productPrice"] = inputModel.get ( 'price' );
+						newValue["priceIndex"] = inputModel.get ( 'price' );
 						store.put(newValue);
 						return;	
 					}

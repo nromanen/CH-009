@@ -12,6 +12,8 @@ var App = App || {};
 		events: {
 			'click .delete' : 'confirmRemove',
 			'click .edit' : 'edit',
+			'dblclick .price' : 'edit',
+			'keypress .editPrice' : 'onEnter',
 			'blur .editPrice' : 'saveNewPrice'
 		},
 		render: function () {
@@ -23,6 +25,11 @@ var App = App || {};
 			}
 			
 			this.$el.html( Template );
+		},
+		onEnter: function (e) {
+			if (e.which === 13) {
+				this.saveNewPrice();
+			}
 		},
 		edit: function () {
 			this.$el.addClass('editing');

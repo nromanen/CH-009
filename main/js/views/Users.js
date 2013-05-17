@@ -149,7 +149,7 @@ var App = App || {};
 		chooseRole: function () {
 
 			$('.container').html('');
-
+			$('#userRole').css('display', 'none');
 			//$('.container').append( _.template ( $('#chooseRole').html() ) );
 			$('.container').append( _.template ( $('#loginForm').html() ) );
 			$('#inputLogin').focus();
