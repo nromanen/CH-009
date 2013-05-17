@@ -132,7 +132,7 @@ var App = App || {};
 			var request = store.openCursor();
 			
 				request.onsuccess = function( evt ) {
-					console.log(evt);
+					//console.log(evt);
 					var cursor = evt.target.result;
 
 					if ( cursor.value.product ===  inputModel.get ( 'name' ) ) {
@@ -160,10 +160,10 @@ var App = App || {};
 			var request = store.openCursor();
 				request.onsuccess = function( evt ) {
 					var cursor = evt.target.result;
-					console.log(cursor);
+					//console.log(cursor);
 					if ( cursor ) {
 						if ( cursor.value.unitName ===  model.get('name') ) {
-							console.log("value event");
+							//console.log("value event");
 							var newValue = cursor.value;
 							newValue.unitName =  model.get('name');
 							newValue.unitCollection = JSON.stringify(model.get('mcollection'));
