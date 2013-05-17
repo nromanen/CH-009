@@ -228,7 +228,7 @@ var App = App || {};
 			App.Events.on( 'editGoodsName', this.changeName, this );
 			App.Events.on('newUnitsCount', this.editCount, this);
 			App.Events.on('fetchGoodsPostgDB', this.fetchPostgDB, this);
-
+			App.Events.on('changeGoodsPrice', this.changeGoodsPrice, this);
 		},
 		addModel: function (model) {
 			var search = this.where({nameG:model.get('nameG')})
@@ -265,6 +265,17 @@ var App = App || {};
 			}	
 
 
+		},
+		changeGoodsPrice: function (pointer){
+			var goodsArray = this.where({nameG: pointer});
+			if (goodsArray.length>0) {
+				_.each(goodsArray, function (currGoodsModel){
+					currGoodsModel.set('goodsPrice', 0);
+					currGoodsModel.get('goodsCollection').each(function(iterator) {
+						currGoodsModel.set('goodsPrice', currGoodsModel.get('goodsPrice')+iterator.get('goodsItemPrice') );
+					});
+				});
+			};
 		},
 		deleteModel: function(model) {			
 			App.dbConnector.deleteGoods(this.model.get('nameG'));
@@ -354,8 +365,8 @@ var App = App || {};
 		refreshPrice: function (pointerModel){
 			this.each( function (iterator){
 				if (iterator.get('units')===pointerModel.get('name')) {
-					iterator.set('goodsItemPrice', pointerModel.get('unitPrice'));
-					
+					iterator.set('goodsItemPrice', parseFloat((pointerModel.get('unitPrice')*iterator.get('count')).toFixed(2)));
+					App.Events.trigger('changeGoodsPrice', iterator.get('nameGoods'));
 				}
 			});
 		}

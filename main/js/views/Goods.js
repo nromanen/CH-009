@@ -13,7 +13,6 @@ var App = App || {};
 			this.model.on( 'destroy', this.goodsRemoveItem, this );
 			this.model.on( 'change:nameG', this.refreshGoodsName, this );
 			this.model.on( 'change:goodsPrice', this.refreshGoodsPrice, this );
-			this.model.on( 'change:goodsColletction', this.refreshGoodsCollection, this );
 		},
 		
 		events: {
@@ -51,15 +50,6 @@ var App = App || {};
 		}, 
 		refreshGoodsPrice: function (){
 			this.$el.find('.goodsPrice').html('$'+this.model.get('goodsPrice'));
-		},
-		refreshGoodsCollection: function (){
-			this.model.set('goodsPrice', 0);
-							console.log(this.model.get('goodsCollection'))
-			/*this.model.get('goodsCollection').each(function(iterator){
-				this.model.set('goodsPrice', this.mode.get('goodsPrice')+iterator.get('goodsItemPrice'))
-
-			});*/
-			this.refreshGoodsPrice();
 		},
 		nameUpDate: function (){
 
