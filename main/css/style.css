@@ -1,3 +1,10 @@
+.left20 {
+    margin: 0 0 0 20px;
+}
+#userRole {
+    margin: 10px 0 0 0;
+    font-size: 18px;
+}
 .edit_count, .editPrice, table tr td .edit_units_count {
     width: 20px;
 }
