@@ -41,8 +41,11 @@ var App = App || {};
      						}
      						else if(msg === 'storekeeper'){
      							window.location.replace('/#storekeeper');	
-     						}
-     						else{
+
+     						}else if(msg === 'accauntant'){
+     						window.location.replace('/#accountant');	
+
+     						}else{
      							alert(msg + "Error login and password")
      							window.location.replace('/#customer');
      						}
@@ -108,7 +111,7 @@ var App = App || {};
 				//var mat = App.Materials.fetch( { update: true } );
 				//mat ? console.log("materials fetch done") : console.log("materials fetch failed");
 				$.ajax({
-   						type: "POST",
+   						type: "POST", 
    						url: "/cgi-bin/fetch.py",
    						data:{fetchType:1},
    							success: function(msg){
@@ -169,6 +172,7 @@ var App = App || {};
 		chooseRole: function () {
 
 			$('.container').html('');
+
 			//$('.container').append( _.template ( $('#chooseRole').html() ) );
 			$('.container').append( _.template ( $('#loginForm').html() ) );
 			$('#inputLogin').focus();
@@ -191,6 +195,19 @@ var App = App || {};
 			$('#products').html( viewProducts.el );
 
 			viewProducts.render();
+			$('.delete').remove();
+			$('.edit_right').remove();
+			$('.delete_goods').remove();
+			$('.delete').remove();
+			$('.edit_right').remove();
+			$('#products table tr th:nth-child(3)').hide();
+			$('#products table tbody tr td:nth-child(3)').hide();
+			$('#products table tr th:nth-child(4)').hide();
+			$('#products table tbody tr td:nth-child(4)').hide();
+			$('.colspan4').attr('colspan', '2');
+			$('.buttonPlace').html("");
+			$('#actionButton').remove();
+			$('#roles').remove();
 
 		},
 		openAccountant: function () {
@@ -220,6 +237,7 @@ var App = App || {};
 			$('#products table tr th:nth-child(4)').hide();
 			$('#products table tbody tr td:nth-child(4)').hide();
 			$('.colspan4').attr('colspan', '2');
+			$('#actionButton').remove();
 			
 			// rendering the content of the Units Tab
 			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
@@ -247,8 +265,9 @@ var App = App || {};
 				id      : 'materials',
 				active  : '',
 			}) ); 
-			$('#materials').append( viewMaterials.el )
-	
+			$('#materials').append( viewMaterials.el );
+			$('#login').html('Quit').click(function(){ window.location.replace('/#'); });
+			$('#roles').remove();
 
 		},
 		openEngineer: function () {
@@ -265,7 +284,11 @@ var App = App || {};
 				active  : ' in active',
 			}) ); 
 
-			$('#products').html( $( '#temlateGoods' ).html() );
+			$('#products').html( $( '#templateGoods' ).html() );
+
+			$('#addGoodsView').on('shown', function () {
+			    $('#addGoodsView').find('input').focus();
+			});
 
 			$('.container').append($('#addUnit2GoodsTemplate').html());
 			var addGoods2 = new App.Views.AddGoods ( { collection: App.Goods } );
@@ -284,9 +307,16 @@ var App = App || {};
 			}) );
 			$('#units').append( $( '#addNewUnitButton' ).html() );
 			$('#units').append( $( '#addNewUnitModal' ).html() );
+
+			$('#addNewUnit').on('shown', function () {
+			    $('#addNewUnit').find('input').focus();
+			});
+
 			$('#units').append( $( '#addMaterial2UnitModal' ).html() );
 			var addNewUnits = new App.Views.AddUnit( { collection: App.Materials } );
 			$('#units').append( viewUnits.el );
+			$('#login').html('Quit').click(function(){ window.location.replace('/#'); });
+			$('#roles').remove();
 
 		},
 		openStorekeeper: function () {
@@ -298,6 +328,10 @@ var App = App || {};
 			$('#TabContent').append( $( '#addNewMaterialButton' ).html() );
 			$('#TabContent').append( $( '#addNewMaterialModal' ).html() );
 
+			$('#addNewMaterial').on('shown', function () {
+			    $('#addNewMaterial').find('#material').focus();
+			});
+
 			var addNewMaterials = new App.Views.AddMaterial( { collection: App.Materials } );
 			var viewMaterials = new App.Views.List( { collection: App.Materials } );
 			viewMaterials.render();
@@ -307,6 +341,9 @@ var App = App || {};
 				active  : ' in active',
 			}) ); 
 			$('#materials').append( viewMaterials.el );
+			$('#login').html('Quit').click(function(){ window.location.replace('/#'); });
+			$('#roles').remove();
+
 			
 		},
 		renderBeginning: function ( userName, tabName ) {
@@ -317,6 +354,7 @@ var App = App || {};
 			$('#fetchData').bind('click', function() { that.fetchData(); });
 			$('#clearDB').bind('click', function() { that.clearDB(); });
 			$('#saveCollectionsToDb').bind('click', function() { that.SaveCollectionsToDb(); });
+			$('#login').bind('click', function() { that.chooseRole() });
 
 			$('.container').html('');  //empty main container 
 			$('.container').append( App.HTML.Row );
@@ -329,7 +367,7 @@ var App = App || {};
 			 
 			this.$el.html('');
 			this.$el.append( $( '#navigation' ).html() );
-			this.$el.append( $( "#temlateMaterials" ).html() );
+			this.$el.append( $( "#templateMaterials" ).html() );
 			var addMaterial = new App.Views.AddMaterial( { collection: App.Materials } );
 			var viewMaterials = new App.Views.List( { collection: App.Materials } );
 			viewMaterials.render();

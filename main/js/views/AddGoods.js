@@ -3,9 +3,10 @@ var App = App || {};
 
 	App.Views.AddGoods = Backbone.View.extend({
 		
-		el: '#addGoods',
+		el: '#addGoodsView',
 		events: {
 			'keypress input': 'inputKeypress',
+			'click .save-goods' : 'validateItem'
 		},
 		inputKeypress: function(e) {
 			
@@ -27,6 +28,7 @@ var App = App || {};
 				return false;
 			}
 			
+			$('.close-addGoodsView').click();
 			this.addItem ( goodsName );
 		
 		},

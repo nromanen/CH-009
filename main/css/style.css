@@ -1,13 +1,13 @@
-.edit_count {
+.edit_count, .editPrice {
     width: 20px;
 }
-.accordion-toggle .edit_goods_name, .accordion-toggle .edit_unit_name, table tr td .edit_count {
+.accordion-toggle .edit_goods_name, .accordion-toggle .edit_unit_name, table tr td .edit_count, table tr td .editPrice {
     display: none;
 }
-.editing .edit_goods_name, .editing .edit_unit_name, table tr.editing td .edit_count {
+.editing .edit_goods_name, .editing .edit_unit_name, table tr.editing td .edit_count, table tr.editing td .editPrice {
     display: inline-block; 
 }
-.editing .goods_name_id, .editing .unit_name, .editing .count {
+.editing .goods_name_id, .editing .unit_name, .editing .count, .editing .price {
     display: none;
 }
 .nobullets {

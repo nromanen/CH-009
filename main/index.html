@@ -10,7 +10,7 @@
 	<div class="container-navbar"></div>
 	<div  class="container"></div>
 	
-<!-- NavBar template -->
+<!-- NavBar template --> 
 
 		<script type="text/template" id="navbar">
 			<div class="navbar navbar-static-top" style="margin-bottom:20px;">
@@ -19,7 +19,7 @@
 						<a class="brand"> Warehouse - <%= user %></a>
 						
 						<div class="btn-group">
-						  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+						  <a class="btn dropdown-toggle"  id="actionButton" data-toggle="dropdown" href="#">
 						    Action
 						    <span class="caret"></span>
 						  </a>
@@ -31,7 +31,9 @@
 						  </ul>
 						</div>	
 
-						<div class="btn-group pull-right">
+						<button type="button" id="login" class="btn btn-primary" data-loading-text="Loading...">login</button>
+
+						<div class="btn-group pull-right" id="roles">
 							<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
 								User Roles
 								<span class="caret"></span>
@@ -43,7 +45,7 @@
 								<li> <a href="#engineer"> Engineer </a> </li>
 								<li> <a href="#storekeeper"> Storekeeper </a> </li>
 							</ul>
-						</div>		
+						</div>
 
 					</div>
 				</nav>
@@ -231,30 +233,25 @@
 			</div>
 		</script>
 
-		<script type="text/template"  id="temlateGoods">
+		<script type="text/template" id="templateGoods">
 		 <div class="tab-pane fade in active" id="goodsView">
 		 <a href="#addGoodsView" role="button" class="btn btn-info" data-toggle="modal"><i class="icon-white icon-plus"></i> New Goods</a>
 
 			<div id="addGoodsView" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				  <div class="modal-header">
 				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				    <h3 id="myModalLabelGoods">Goods</h3>
+				    <h3 id="myModalLabelGoods">Add New Goods</h3>
 				  </div>
-				  <div class="modal-body">
-
-				   		<h1>Warehouse</h1><br>
-								
-							<div id="addGoods">
-
-							<div class="fl ">New goods:</div>
-							<div class="fle"><input class="textbox span3" id="goods" type="text"></div>
-							</div>
-							<div style="height:15px;"></div>
+				  <div class="modal-body">		
+						<div id="addGoods">
+							Goods name: <input class="textbox span3" id="goods" type="text">
+						</div>
+						<div style="height:15px;"></div>
 						<br>
 				  </div>
 				  <div class="modal-footer">
-				    <button class="btn" data-dismiss="modal" aria-hidden="true">Close goods Add</button>
-				    <button class="btn btn-primary">Save changes</button>
+				    <button class="btn close-addGoodsView" data-dismiss="modal" aria-hidden="true">Close</button>
+				    <button class="btn btn-primary save-goods">Save changes</button>
 				  </div>
 				</div>
 	
@@ -290,7 +287,10 @@
 		
 		<script type="text/template" id="materials-storekeeper">
 		  	<td> <%= material %> </td>
-			<td> <%= price %> </td>
+			<td> 
+				<span class="price"> <%= price %> </span>
+				<input type="text" value="<%= price %>" class="editPrice">
+			</td>
 			<td> <div class="edit"></div> </td>
 			<td> <div class="delete"></div> </td>
 		</script>
@@ -402,40 +402,6 @@
         	</li>
   
     	</script>  
-               
-        <script type="text/template"  id="temlateUnits">
-			
-				
-					<h1>Warehouse</h1><br>
-			
-					<div id="addUnit">
-							<div class="fl">New unit:</div>
-							<div class="fle"><input class="textbox" id="unit" type="text"></div>
-					</div>
-					<div style="height:15px;"></div>
-					<br>
-			
-					<div id="units_holder"></div>
-
-			 		     	 
-        
-        </script> 
-   
-        <script type="text/template"  id="temlateMaterials" >
-		
-				<h1>Warehouse</h1><br>
-			
-            	<div id="addMaterial">
-						<div class="fl">Material:</div>
-						<div class="fle"><input class="textbox" id="material" type="text"></div>
-						<div class="clear"></div>
-						<div class="fl">Price:</div> 
-						<div class="fle"><input class="textbox" id="price" type="text"></div> 
-            	</div>
-			
-            	<div id="table_holder"></div>
-         
-        </script> 
 
 		<script type="text/template" id="units-table">
 

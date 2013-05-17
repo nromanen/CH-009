@@ -10,7 +10,9 @@ var App = App || {};
 			this.model.on( 'destroy', this.remove, this );
 		},
 		events: {
-			'click .delete' : 'confirmRemove'
+			'click .delete' : 'confirmRemove',
+			'click .edit' : 'edit',
+			'blur .edit' : 'saveNewPrice'
 		},
 		render: function () {
 			
@@ -21,6 +23,14 @@ var App = App || {};
 			}
 			
 			this.$el.html( Template );
+		},
+		edit: function () {
+			this.$el.addClass('editing');
+			this.$el.find('input').focus();
+		},
+		saveNewPrice : function () {
+			console.log('blur');
+			this.$el.removeClass('editing');
 		},
 		confirmRemove: function () {
 			var delMat = this.model.get("material");
