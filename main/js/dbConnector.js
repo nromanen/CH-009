@@ -132,10 +132,9 @@ var App = App || {};
 			var request = store.openCursor();
 			
 				request.onsuccess = function( evt ) {
-					console.log(evt);
+					
 					var cursor = evt.target.result;
-
-					if ( cursor.value.product ===  inputModel.get ( 'name' ) ) {
+					if ( cursor.value.matIndex ===  inputModel.get ( 'name' ) ) {
 						var newValue = cursor.value;
 						newValue["productPrice"] = inputModel.get ( 'price' );
 						store.put(newValue);
