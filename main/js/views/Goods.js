@@ -11,8 +11,8 @@ var App = App || {};
 
 			this.model.on( 'change:nameG', this.nameUpDate, this);
 			this.model.on( 'destroy', this.goodsRemoveItem, this );
-			this.model.on( 'change', this.refreshGoods, this );
-
+			this.model.on( 'change:nameG', this.refreshGoodsName, this );
+			this.model.on( 'change:goodsPrice', this.refreshGoodsPrice, this );
 		},
 		
 		events: {
@@ -45,8 +45,10 @@ var App = App || {};
 			this.$input = this.$('.edit_goods_name');
 			
 		}, 
-		refreshGoods: function (){
+		refreshGoodsName: function (){
 			this.$el.find('.goods_name_id').html(this.model.get('nameG'));
+		}, 
+		refreshGoodsPrice: function (){
 			this.$el.find('.goodsPrice').html('$'+this.model.get('goodsPrice'));
 		},
 		nameUpDate: function (){

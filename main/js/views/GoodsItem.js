@@ -7,7 +7,7 @@ var App = App || {};
 	tagName: 'tr',
 		initialize: function (){
 			this.model.on( 'destroy', this.remove, this );
-			
+			this.model.on( 'change', this.refreshPrice, this);
 		},
 		events: {
 			'click .delete' : 'confirmRemove',
@@ -31,6 +31,9 @@ var App = App || {};
 			this.$input = this.$('.edit_units_count');
 			this.$input.val( this.model.get( 'count' ) );
 
+		},
+		refreshPrice: function () {
+			this.$el.find('.goodsItemPrice').html('$'+this.model.get('goodsItemPrice'));
 		},
 		confirmRemove: function () {
 			if ( confirm('Are you sure you want to delete this Goods Item?') ) {
