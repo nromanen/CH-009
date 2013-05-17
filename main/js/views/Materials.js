@@ -12,7 +12,7 @@ var App = App || {};
 		events: {
 			'click .delete' : 'confirmRemove',
 			'click .edit' : 'edit',
-			'blur .edit' : 'saveNewPrice'
+			'blur .editPrice' : 'saveNewPrice'
 		},
 		render: function () {
 			
@@ -29,8 +29,16 @@ var App = App || {};
 			this.$el.find('input').focus();
 		},
 		saveNewPrice : function () {
-			console.log('blur');
-			this.$el.removeClass('editing');
+			var value = this.$el.find('input').val();
+			if ( isNaN ( value ) || value <0 || value == '') {
+				this.$el.removeClass('editing');
+				return;
+			} else {
+				this.$el.removeClass('editing');
+				this.model.set('price', value);
+				App.dbConnector.changeMaterialPrice( this.model );
+				this.render();
+			}
 		},
 		confirmRemove: function () {
 			var delMat = this.model.get("material");
@@ -43,14 +51,15 @@ var App = App || {};
 
 					if (arr[j].material === delMat) {
 
-							$('#NewMaterialButton').after('<div class="error">Attention! This material is used in unit: ' + unitModels[i].get("name") + '</div>');
-							//alert("Attention! This material is used in unit: " + unitModels[i].get("name") );
-						};
+						$('#NewMaterialButton').after('<div class="error">Attention! This material is used in unit: ' + unitModels[i].get("name") + '</div>');
+						
 					};
 				};
+			};
+			
 			if ( confirm('Are you sure you want to delete this product?') ) {
-							App.Events.trigger( 'destroyModel', this.model );
-							};
+				App.Events.trigger( 'destroyModel', this.model );
+			};
 
 			$('#TabContent').find('.error').remove(); //detele eror message after confirm  
 		},
