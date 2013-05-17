@@ -81,8 +81,7 @@ var App = App || {};
 		initialize: function () {
 			this.collection.off('add');
 			this.collection.on('add', this.addOne, this);
-			this.el.id=this.model.cid;	
-
+			this.el.id = this.model.cid;	
 		},
 		render: function () {
 			if ( App.userRole === 'customer' ) {
@@ -114,7 +113,6 @@ var App = App || {};
 
 		},
 		ItemRemove: function() {
-			//console.log(this);
 			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
 			goodsItemView.render();
 			this.$el.append( goodsItemView.el );
