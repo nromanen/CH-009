@@ -9,6 +9,7 @@ var App = App || {};
 		initialize: function () {
 			this.model.on( 'change', this.unitChange, this);
 			this.model.on( 'destroy', this.unitRemoveItem, this );
+			this.model.on( 'change:unitPrice', this.refreshUnitPrice, this);
 		},
 		events: {
 			'click .unit_name' : 'unitToggle',
@@ -40,8 +41,10 @@ var App = App || {};
 			//this.render();
 			//this.unitToggle();
 			this.$el.find('.unit_name').html(this.model.get('name'));
+		},
+		refreshUnitPrice: function (){
 			this.$el.find('.unitPrice').html('$'+this.model.get('unitPrice'));
-			console.log( );
+			App.Events.trigger('refreshGoodsPrice', this.model);
 		},
 		unitToggle: function () {
 			
@@ -65,33 +68,34 @@ var App = App || {};
 		unitDeleteItem: function() {
 		
 			var that = this;
+			var found = false;
+			var foundFlag = false;
 			App.Goods.each ( function (goodsModel) {
+				if ( found === false ) {
+					var unitsInside = goodsModel.get('goodsCollection');
+					found = unitsInside.find( function (goodsItem) {
+						return that.model.get('name') === goodsItem.get('units');					
+					});
 
-				var unitsInside = goodsModel.get('goodsCollection');
-				var found = unitsInside.find( function (goodsItem) {
-					if ( that.model.get('name') === goodsItem.get('units') ) {
-						return true;
-					} else {
-						return false;
+					if (found === undefined) {
+
+						foundFlag = true;
+
 					}
-				});
-
-				if (found === false) {
-
-					if ( confirm('Are you sure you want to delete this Unit?') ) {
-						App.Events.trigger( 'unitDelete', that.model );
-					}	
-
-				} else {
-
-					$('#newUnitBtn').after('<div class="error">You CANNOT DELETE this unit, because it is already used in Goods!</div>');
-					setTimeout( function() { 
-						$('.error').fadeOut('slow')
-					}, 2000);
-
 				}
 
 			});
+
+			if (foundFlag === true) {
+				$('#newUnitBtn').after('<div class="error">You CANNOT DELETE this unit, because it is already used in Goods!</div>');
+					setTimeout( function() { 
+						$('.error').fadeOut('slow')
+					}, 2000);
+			} else {
+				if ( confirm('Are you sure you want to delete this Unit?') ) {
+						App.Events.trigger( 'unitDelete', that.model );
+					};
+			}
 		
 		},
 		unitRemoveItem: function() {

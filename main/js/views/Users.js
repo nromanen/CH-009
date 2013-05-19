@@ -17,6 +17,8 @@ var App = App || {};
 			App.Events.on ( 'openEngineer', this.openEngineer, this );
 			App.Events.on ( 'openStorekeeper', this.openStorekeeper, this );
 			App.Events.on ( 'sendData', this.sendData, this );
+		
+		
 		},
 		events:{
 			"click #loginButton":"loginUser",
@@ -35,7 +37,7 @@ var App = App || {};
    						url: "/cgi-bin/login.py",
    						data:{login:userDate['login'], password:userDate['password']},
    							success: function(msg){
-     							alert(msg);
+     						
      							if(msg==='engineer'){
      							window.location.replace('/#engineer');	
      						}
@@ -108,8 +110,6 @@ var App = App || {};
 
 
 			function fetchMaterials(){
-				//var mat = App.Materials.fetch( { update: true } );
-				//mat ? console.log("materials fetch done") : console.log("materials fetch failed");
 				$.ajax({
    						type: "POST", 
    						url: "/cgi-bin/fetch.py",
@@ -117,15 +117,9 @@ var App = App || {};
    							success: function(msg){
      							App.Events.trigger("fetchMaterialsPostgDB", msg)
      							console.log(msg);
-
-     						
-
    							}
  					});
-				
-				
 			};
-
 			function fetchUnits() {
 						$.ajax({
    						type: "POST",
@@ -134,16 +128,9 @@ var App = App || {};
    							success: function(msg){
      							App.Events.trigger("fetchUnitsPostgDB", msg)
      							console.log(msg);
-
    							}
  					});
-
-
-				
 			};
-
-
-
 			function fetchGoods() {
 						$.ajax({
    						type: "POST",
@@ -152,27 +139,17 @@ var App = App || {};
    							success: function(msg){
      							App.Events.trigger("fetchGoodsPostgDB", msg)
      							console.log(msg);
-
    							}
  					});
-
-
-				
 			};
-
 			fetchMaterials();
 			fetchUnits();
 			fetchGoods()
-			/*console.log( App.Units.toJSON() );
-			console.log( App.Materials.toJSON() );
-			console.log( JSON.stringify(App.Units) );
-			console.log( JSON.stringify(App.Materials) );*/
-
 		},
 		chooseRole: function () {
 
 			$('.container').html('');
-
+			$('#userRole').css('display', 'none');
 			//$('.container').append( _.template ( $('#chooseRole').html() ) );
 			$('.container').append( _.template ( $('#loginForm').html() ) );
 			$('#inputLogin').focus();

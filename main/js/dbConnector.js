@@ -83,9 +83,49 @@ var App = App || {};
 			var tovarStore = evt.currentTarget.result.createObjectStore
 					("Tovaru", {keyPath: "id", autoIncrement: true});
 				   tovarStore.createIndex("tovarName", "tovarName", { unique: true});        
-				   tovarStore.createIndex("tovarCollection", "tovarCollection", { unique: false });			            	   						  
+				   tovarStore.createIndex("tovarCollection", "tovarCollection", { unique: false });		
+
+
+		   function fetchMaterials(){
+					$.ajax({
+   						type: "POST", 
+   						url: "/cgi-bin/fetch.py",
+   						data:{fetchType:1},
+   							success: function(msg){
+     							App.Events.trigger("fetchMaterialsPostgDB", msg)
+     							console.log(msg);
+   							}
+   					});
+			};
+
+			function fetchUnits() {
+						$.ajax({
+   						type: "POST",
+   						url: "/cgi-bin/fetch.py",
+   						data:{fetchType:2},
+   							success: function(msg){
+     							App.Events.trigger("fetchUnitsPostgDB", msg)
+     							console.log(msg);
+   							}
+ 					});
+			};
+			function fetchGoods() {
+						$.ajax({
+   						type: "POST",
+   						url: "/cgi-bin/fetch.py",
+   						data:{fetchType:3},
+   							success: function(msg){
+     							App.Events.trigger("fetchGoodsPostgDB", msg)
+     							console.log(msg);
+   							}
+ 					});
+			};
+
+			fetchMaterials();
+			fetchUnits();
+			fetchGoods()
+
 			}
-	
 	}	
 		
 	App.dbConnector.addProduct = function ( material, price ) {
@@ -122,6 +162,32 @@ var App = App || {};
 		}
 		
 	}
+
+	App.dbConnector.changeMaterialPrice = function( inputModel )  {
+		try {
+		   	var transaction = localDatabase.db.transaction( "products" , "readwrite");
+			var store = transaction.objectStore( "products" );
+
+			if (localDatabase != null && localDatabase.db != null) {
+			var request = store.openCursor();
+			
+				request.onsuccess = function( evt ) {
+					var cursor = evt.target.result;
+
+					if ( cursor.value.matIndex ===  inputModel.get ( 'name' ) ) {
+						var newValue = cursor.value;
+						newValue.productPrice = inputModel.get ( 'price' );
+						store.put(newValue);
+						return;	
+					}
+					cursor.continue(); 				
+				}	
+			}
+		}
+		catch(e){
+		   console.log(e);
+		}
+	}
 	
 	App.dbConnector.EditUnitItem = function ( model ) {
 	
@@ -133,9 +199,10 @@ var App = App || {};
 			var request = store.openCursor();
 				request.onsuccess = function( evt ) {
 					var cursor = evt.target.result;
+					//console.log(cursor);
 					if ( cursor ) {
 						if ( cursor.value.unitName ===  model.get('name') ) {
-							console.log("value event");
+							//console.log("value event");
 							var newValue = cursor.value;
 							newValue.unitName =  model.get('name');
 							newValue.unitCollection = JSON.stringify(model.get('mcollection'));

@@ -10,15 +10,17 @@
 	<div class="container-navbar"></div>
 	<div  class="container"></div>
 	
-<!-- NavBar template -->
+<!-- NavBar template --> 
 
 		<script type="text/template" id="navbar">
 			<div class="navbar navbar-static-top" style="margin-bottom:20px;">
 				<nav class="navbar-inner">
 					<div style="width: 570px; margin: 0 auto;">
-						<a class="brand"> Warehouse - <%= user %></a>
-						
-						<div class="btn-group">
+						<a class="brand"> Warehouse </a>
+
+						<button type="button" id="login" class="btn btn-primary pull-right left20" data-loading-text="Loading...">login</button>
+
+						<div class="btn-group pull-right left20">
 						  <a class="btn dropdown-toggle"  id="actionButton" data-toggle="dropdown" href="#">
 						    Action
 						    <span class="caret"></span>
@@ -29,22 +31,10 @@
 							<li><a id="clearDB"><span class="label label-important">Delete Database</span></a></li>
 							<li><a id="saveCollectionsToDb"><span class="label label-info">Save to Database</span></a></li>
 						  </ul>
-						</div>	
+						</div>
 
-						<button type="button" id="login" class="btn btn-primary" data-loading-text="Loading...">login</button>
-
-						<div class="btn-group pull-right" id="roles">
-							<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
-								User Roles
-								<span class="caret"></span>
-							</a>
-
-							<ul class="dropdown-menu">
-								<li> <a href="#customer"> Customer </a> </li>
-								<li> <a href="#accountant"> Accountant </a> </li>
-								<li> <a href="#engineer"> Engineer </a> </li>
-								<li> <a href="#storekeeper"> Storekeeper </a> </li>
-							</ul>
+						<div class="pull-right" id="userRole">
+							<%= user %>
 						</div>
 
 					</div>
@@ -287,7 +277,10 @@
 		
 		<script type="text/template" id="materials-storekeeper">
 		  	<td> <%= material %> </td>
-			<td> <%= price %> </td>
+			<td> 
+				<span class="price"> <%= price %> </span>
+				<input type="text" value="<%= price %>" class="editPrice">
+			</td>
 			<td> <div class="edit"></div> </td>
 			<td> <div class="delete"></div> </td>
 		</script>
@@ -464,7 +457,7 @@
         	<td> <div class="count"><%= count %></div> <input class="edit_units_count" type="text"> </td>
         	<td> <div class="edit"></div> </td>
         	<td> <div class="delete" title="Delete <%= units %> material"></div></td>
-        	<td class="total"> $<%=goodsItemPrice%> </td>
+        	<td class='goodsItemPrice'> $<%=goodsItemPrice%> </td>
 				        
 		</script>	
 
@@ -472,7 +465,7 @@
 		     
         	<td><div class="units_in_Goods"><%= units %></div></td>
         	<td> <div class="count"><%= count %></div> </td>
-        	<td class="total"> $<%=goodsItemPrice%> </td>
+        	<td class='goodsItemPrice'> $<%=goodsItemPrice%> </td>
 				        
 		</script>
 		

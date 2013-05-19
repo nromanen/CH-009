@@ -1,18 +1,20 @@
-.edit_count {
+.left20 {
+    margin: 0 0 0 20px;
+}
+#userRole {
+    margin: 10px 0 0 0;
+    font-size: 18px;
+}
+.edit_count, .editPrice, table tr td .edit_units_count {
     width: 20px;
 }
-.accordion-toggle .edit_goods_name, .accordion-toggle .edit_unit_name, table tr td .edit_count{
+.accordion-toggle .edit_goods_name, .accordion-toggle .edit_unit_name, table tr td .edit_count, table tr td .editPrice, table tr td .edit_count,  table tr td .edit_units_count {
     display: none;
 }
-
-table tr td .edit_units_count{
-     display: none;
-}
-
-.editing .edit_goods_name, .editing .edit_unit_name, table tr.editing td .edit_count, table tr.editing td .edit_units_count{
+.editing .edit_goods_name, .editing .edit_unit_name, table tr.editing td .edit_count, table tr.editing td .editPrice, table tr.editing td .edit_units_count {
     display: inline-block; 
 }
-.editing .goods_name_id, .editing .unit_name, .editing .count {
+.editing .goods_name_id, .editing .unit_name, .editing .count, .editing .price {
     display: none;
 }
 .nobullets {

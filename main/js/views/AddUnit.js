@@ -18,28 +18,32 @@ var App = App || {};
 
 			this.$el.find('.error').remove();
 			var strUnit = $('#unit').val().trim(); 	
-			
-			if ( strUnit === "" ) {
 
-				$('#myModalLabelUnit').after('<div class="error">Please enter the Unit name!</div>');
-				$('#unit').val('');
+			var found = App.Units.find ( function (modelUnit) {
+				return strUnit === modelUnit.get('name');
+			});
+
+			if ( found === undefined ) {
+				if ( strUnit === "" ) {
+
+					$('#myModalLabelUnit').after('<div class="error">Please enter the Unit name!</div>');
+					$('#unit').val('');
+					$('#unit').focus();
+					return false;
+				} 
+				$('.close-addNewUnit').click();
+				this.addItem ( strUnit );
+			} else {
+				$('#myModalLabelUnit').after('<div class="error">Such name is used already. Please change the unit name.</div>');
 				$('#unit').focus();
 				return false;
 			}
-			
-			$('.close-addNewUnit').click();
-			this.addItem ( strUnit );
 		
 		},
 		addItem: function( strUnit ) {
 			
-			var newUnitCollection = new App.Collections.UnitItems([
-				/*{
-					unitID: 1,
-					material: 'empty',
-					count: 0	
-				}*/
-			]);
+
+			var newUnitCollection = new App.Collections.UnitItems([]);
 			
 			var modelUnit = new App.Models.Unit ({
 				
