@@ -92,31 +92,25 @@ var App = App || {};
 		},
 		confirmQuantity: function () {
 			var quantity = prompt( 'Please enter the quantity of ' + this.model.get ( 'material' ),1 );
-			if(quantity !== null){ // if user click cancel, nothing to do
+				if(quantity !== null){ // if user click cancel, nothing to do
 				var clearQuantity = quantity.replace(/\s/g, ""); // delete all spaces
 
-				if ( ( clearQuantity !== '' ) && ( clearQuantity !== null ) && ( !isNaN(clearQuantity) ) ) {
+					if ( validateMaterialConfirmQuantity (clearQuantity) ) {
 
-				this.addUnitItem( parseFloat(clearQuantity) );
+						this.addUnitItem( parseFloat(clearQuantity) );
 
-				} else {
-					this.confirmQuantity();
+					} else {
+						this.confirmQuantity();
+					}
 				}
-			}
-			else return false;
+				else return false;
+
 		},
 		saveUnitCollection: function () {
 
 			//App.dbConnector.EditUnitItem ( this.options.something );
 			console.log('App.dbConnector.EditUnitItem triggered!');
 
-		},
-		
-		
-		plus: function () {
-		
-		
-		
 		}
 	});
 	

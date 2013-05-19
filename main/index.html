@@ -78,17 +78,17 @@
 					<div >
 					<div class="span5 offset3 ">
 					
-						<form class="form-horizontal">
+						<form class="form-horizontal" id="loginForm2">
   						<div class="control-group">
     					<label class="control-label" for="inputLogin">Login</label>
     					<div class="controls">
-      					<input type="text" id="inputLogin" placeholder="Login">
+      					<input type="text" id="inputLogin" placeholder="Login" name="login">
     					</div>
   						</div>
   						<div class="control-group">
     					<label class="control-label" for="inputPassword">Password</label>
     					<div class="controls">
-      					<input type="password" id="inputPassword" placeholder="Password">
+      					<input type="password" id="inputPassword" placeholder="Password" name="pswd">
     					</div>
   						</div>
   						<div class="control-group">
@@ -168,7 +168,7 @@
 				  </div>
 				  <div class="modal-body">
 				    	
-					Unit name: <input class="textbox" id="unit" type="text">
+					Unit name: <input class="textbox" id="unit" class="required" type="text">
 
 				  </div>
 				  <div class="modal-footer">
@@ -504,12 +504,16 @@
 		<script src="js/lib/jquery.js"></script>
 		<script src="js/lib/boostrap/bootstrap.min.js"></script>
 		<script src="js/lib/jquery-ui.js"></script>
+		<script src="js/lib/jquery.validate.js"></script>
 
 		<script src="js/lib/underscore.js"></script>
 		<script src="js/lib/backbone.js"></script>
-		
+
 		<script src="js/defaults.js"></script>
 		<script src="js/dbConnector.js"></script>
+		<script src="js/validation/materialsValidation.js"></script>
+		
+		<script src="js/validation/jQvalidation.js"></script>
 
 		<script src="js/models/models.js"></script>
 		<script src="js/collections/collections.js"></script>
@@ -526,6 +530,7 @@
 		<script src="js/views/Users.js"></script>
 
 		<script src="js/router/router.js"></script>
+
 		
 		<script src="js/app.js"></script>
 

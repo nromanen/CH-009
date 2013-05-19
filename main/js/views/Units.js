@@ -76,8 +76,6 @@ var App = App || {};
 					}
 				});
 
-				console.log(found);
-
 				if (found === false) {
 
 					if ( confirm('Are you sure you want to delete this Unit?') ) {
