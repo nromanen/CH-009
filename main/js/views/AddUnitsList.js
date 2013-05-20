@@ -80,7 +80,7 @@ var App = App || {};
 				this.collection.add ( this.model );
 				this.options.something.set( "goodsPrice", this.options.something.get('goodsPrice')+this.model.get( 'goodsItemPrice' ) );
 			} else {
-				var sum = parseFloat( found.get( 'count' ) ) + quantity;
+				var sum = parseFloat( found.get( 'count' ) ) + parseFloat(quantity);
 				var newPrice = parseFloat( found.get( 'goodsItemPrice' ) ) + this.model.get('unitPrice')*quantity;
 				found.set('count', sum);
 				found.set('goodsItemPrice', newPrice);
@@ -108,11 +108,7 @@ var App = App || {};
 				
 				if ( ( clearQuantity !== '' ) && ( clearQuantity !== null ) && ( !isNaN(clearQuantity) ) ) {
 
-					newModel = new App.Models.GoodsItem({units:this.model.get ( 'name' ), count:clearQuantity, goodsItemPrice: this.model.get('unitPrice')*clearQuantity})
-					this.collection.add (newModel);
-					this.options.something.set("goodsPrice", this.options.something.get("goodsPrice")+newModel.get('goodsItemPrice') );
-					this.options.something.set("goodsCollection", this.collection);
- 					App.dbConnector.EditGoodsItems(this.options.something);
+					this.addGoodsItem( clearQuantity );
 				
 				}
 				else{
