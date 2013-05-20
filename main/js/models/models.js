@@ -8,23 +8,24 @@ var App = App || {};
 		price: 0
 	
 	});
-	
+/*	
 	App.Models.UnitItem = Backbone.Model.extend({
 	
 		unitID: 1,
 		material: '',
 		count: 0,
 		unitItemPrice: 0
-	
+
 	});
 	
 	App.Models.Unit = Backbone.Model.extend({
 	
 		name: 'unit',
 		mcollection: '',
-		unitPrice: 0
+		unitPrice: 0,
+
 	});
-	
+*/	
 	App.Models.Goods = Backbone.Model.extend({
 	
 		nameG: 'Goods',
