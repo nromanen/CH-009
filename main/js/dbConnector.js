@@ -172,6 +172,7 @@ var App = App || {};
 			var request = store.openCursor();
 			
 				request.onsuccess = function( evt ) {
+
 					var cursor = evt.target.result;
 
 					if ( cursor.value.matIndex ===  inputModel.get ( 'name' ) ) {
