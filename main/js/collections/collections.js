@@ -166,6 +166,7 @@ var App = App || {};
 			}
 		},
 		deleteModel: function( model ) {
+			
 			App.dbConnector.deleteUnit( model.get( "name" ) );
 			model.destroy();
 

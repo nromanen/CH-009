@@ -24,8 +24,6 @@ var App = App || {};
 		},
 		saveUnitCollection: function () {
 			App.dbConnector.EditUnitItem ( this.model );
-			console.log('App.dbConnector.EditUnitItem triggered!');
-		
 		}
 	
 	});
@@ -70,13 +68,15 @@ var App = App || {};
 			console.log(this.model); // модель, яка додається (на яку клікнули)
 			console.log(this.options.something);
 			
+			console.log(this.model.get('name'));
+
 			var that = this;
 			var found = this.collection.find( function( model ) {
-			    return model.get('name') === that.model.get('name');
+			    return model.get('units') === that.model.get('name');
 			});
-			
+			console.log(found);
 			if ( found === undefined ) {
-				this.model.set ( { count: quantity, goodsItemPrice: quantity*this.model.get( 'unitPrice' ) } );
+				this.model.set ( { count: quantity, units: this.model.get('name'), goodsItemPrice: quantity*this.model.get( 'unitPrice' ) } );
 				this.collection.add ( this.model );
 				this.options.something.set( "goodsPrice", this.options.something.get('goodsPrice')+this.model.get( 'goodsItemPrice' ) );
 			} else {
@@ -87,16 +87,15 @@ var App = App || {};
 				this.options.something.set("goodsPrice", this.options.something.get('goodsPrice')+this.model.get( 'unitPrice' )*quantity);	
 			}
 			
-			this.options.something.set( "mcollection", this.collection );	
+			this.options.something.set( "goodsCollection", this.collection );	
 
-			App.dbConnector.EditUnitItem ( this.options.something );
+			App.dbConnector.EditGoodsItems( this.options.something );
 			
 			//editing the sentence in the Add Unit to Goods Modal
 			var unitsInGoodsSentence = ''; // for #addUnit2Goods sentence
 			
 			_.each ( this.collection.models, function ( goodsItem ) {
-				console.log ( goodsItem.get('units') + ' - ' + goodsItem.get('count') );
-				unitsInGoodsSentence = unitsInGoodsSentence + ', ' + goodsItem.get('units') + ' ($' + goodsItem.get('price') + ') <b>x ' + goodsItem.get('count') + '</b>';
+				unitsInGoodsSentence = unitsInGoodsSentence + ', ' + goodsItem.get('units') + ' <b>x ' + goodsItem.get('count') + '</b>';
 			} )
 			$('#addUnit2Goods').find('.goodItems_list').html( unitsInGoodsSentence.substr(2) );
 			
@@ -126,8 +125,8 @@ var App = App || {};
 		},
 		saveUnitCollection: function () {
 		
-			//App.dbConnector.EditUnitItem (this.options.something);
 			console.log('App.dbConnector.EditUnitItem triggered!');
+			
 		},
 		
 		

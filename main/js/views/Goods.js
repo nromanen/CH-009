@@ -10,6 +10,7 @@ var App = App || {};
 		initialize: function () {		
 			this.model.on( 'change:nameG', this.nameUpDate, this);
 			this.model.on( 'destroy', this.goodsRemoveItem, this );
+			this.model.on( 'changes', this.goodsChange );
 			this.model.on( 'change:nameG', this.refreshGoodsName, this );
 			this.model.on( 'change:goodsPrice', this.refreshGoodsPrice, this );
 		},
@@ -44,6 +45,9 @@ var App = App || {};
 			this.$input = this.$('.edit_goods_name');
 			
 		}, 
+		goodsChange: function () {
+			//
+		},
 		refreshGoodsName: function (){
 			this.$el.find('.goods_name_id').html(this.model.get('nameG'));
 		}, 
@@ -124,13 +128,12 @@ var App = App || {};
 		tagName: 'div',
 
 		initialize: function () {
-			this.collection.on('add', this.addOne, this);
+			this.collection.on('add', this.render, this);
 			
 		},
 		render: function () {
 				
             this.$el.html('');
-
           	this.collection.each( this.addOne, this );
 			return this;
 			
