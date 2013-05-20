@@ -52,10 +52,10 @@ var App = App || {};
 		},
  		addUnitItem: function( quantity ) {
 
-			//this.model.set ( { count: quantity, unitItemPrice: quantity*this.model.get( 'price' ) } );
+
 			var that = this;
 			var found = this.collection.find( function( model ) {
-				//console.log( model.get('material') + ' - ' + model.get('count') )
+
 			    return model.get('material') === that.model.get('material');
 			});
 			
@@ -64,7 +64,7 @@ var App = App || {};
 				this.collection.add ( this.model );
 				this.options.something.set( "unitPrice", this.options.something.get('unitPrice')+this.model.get( 'unitItemPrice' ) );
 			} else {
-				//console.log( '1st found.get("count"): ' + found.get('count') );
+
 				var sum = parseFloat( found.get( 'count' ) ) + quantity;
 				var newPrice = parseFloat( found.get( 'unitItemPrice' ) ) + this.model.get('price')*quantity;
 				console.log ('quantity: ' + quantity)
@@ -73,8 +73,6 @@ var App = App || {};
 				found.set('unitItemPrice',newPrice);
 				this.options.something.set("unitPrice", this.options.something.get('unitPrice')+this.model.get( 'price' )*quantity);	
 
-				//console.log( '2nd found.get("count"): ' + found.get('count') );
-				//console.log( this.collection );
 			}
 			
 			this.options.something.set( "mcollection", this.collection );	

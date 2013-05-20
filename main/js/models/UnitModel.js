@@ -47,12 +47,9 @@ var App = App || {};
 		},
 		refreshUnitPrice: function(){
 			var that=this;
-			this.set('unitPrice', 0);
-			console.log(this.get('mcollection'));
-			_.each( that.get('mcollection'),  function ( currModel ) {
-				console.log(currModel);
-				console.log(that);
-				//that.set('unitPrice', parseFloat ( that.get('unitPrice') +currModel.get('unitItemPrice') ).toFixed(2) );
+			that.set('unitPrice', 0);
+			this.get('mcollection').each( function ( currModel ) {
+				that.set('unitPrice', parseFloat (( that.get('unitPrice') + currModel.get('unitItemPrice') ).toFixed(2)) );
 			});
 		}
 	})

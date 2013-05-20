@@ -47,10 +47,8 @@ var App = App || {};
 				//this.render();
 				return;
 			};	
-			this.options.unitModel.set('unitPrice', this.options.unitModel.get('unitPrice')-this.model.get('unitItemPrice'));
 			this.model.setCount(value);
-			//this.options.unitModel.refreshUnitPrice();
-			this.options.unitModel.set('unitPrice', parseFloat( ( this.options.unitModel.get('unitPrice') + this.model.get('unitItemPrice') ).toFixed(2) ) ) ;			
+			this.options.unitModel.refreshUnitPrice();
 			App.dbConnector.changeCount( this.options.unitModel );
 			this.$el.removeClass('editing');
 			

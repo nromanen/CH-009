@@ -191,7 +191,7 @@ var App = App || {};
 			App.Events.on( 'addUnitItem', this.addModel, this );
 			App.Events.on( 'destroyItemModel', this.destroyModel, this );
 			this.on('add', this.saveUnitCollection, this);
-			//App.Events.on('changeUnitItemPrice', this.changeUnitItemPrice, this)
+			App.Events.on('changeUnitItemPrice', this.changeUnitItemPrice, this)
 		},
 		addModel: function ( model ) {
 			
