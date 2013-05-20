@@ -5,6 +5,7 @@ var App = App || {};
 	App.Views.AddUnitsList = Backbone.View.extend({
 	
 		tagName: 'ul',
+		className: 'nobullets',
 		initialize: function () {
 			this.collection.on('add', this.addOne, this);
 			this.model.on('change', this.saveUnitCollection, this);
@@ -32,23 +33,80 @@ var App = App || {};
 	App.Views.UnitPlus = Backbone.View.extend({ // это вид модели
 		tagName: 'li',
 		initialize: function () {
-			//this.model.on('change:material', this.render, this);
-			//this.model.on('change:price', this.render, this);
 			this.collection.on('add', this.saveUnitCollection, this);
 			this.model.on( 'plus', this.plus, this );
 		},
 		events: {
-			'click .icon-plus' : 'confirmQuantity'
+			'mouseenter .add_item' : 'elementMouseEnter',
+			'mouseleave .add_item' : 'elementMouseLeave',
+			'click a' : 'addOne',
+			'click .add': 'addQuantity',
+			'keypress input': 'keypress'
 		},
 		template: _.template( $('#goods-count-plus').html() ),
 		render: function () {
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
 		},
-		confirmQuantity: function () {
-			var quantity = prompt( 'Please enter the quantity of ' + this.model.get ( 'name' ), 1 );
+		addOne: function () {
+			this.addGoodsItem(1);
+		},
+		keypress: function (e) {
+			if (e.which === 13) {
+				this.addQuantity();
+			}
+		},
+		elementMouseEnter: function () {
+			this.$el.find('.additional').show();
+			this.$el.find('input').val('1');
+			this.$el.find('input').focus();
+		},
+		elementMouseLeave: function () {
+			this.$el.find('.additional').hide();
+		},
+		addGoodsItem: function( quantity ) {
+
+			console.log(this.collection); // коллекція юнітів (goodsItems Collection), яка містить додані юніти
+			console.log(this.model); // модель, яка додається (на яку клікнули)
+			console.log(this.options.something);
+			
+			var that = this;
+			var found = this.collection.find( function( model ) {
+			    return model.get('name') === that.model.get('name');
+			});
+			
+			if ( found === undefined ) {
+				this.model.set ( { count: quantity, goodsItemPrice: quantity*this.model.get( 'unitPrice' ) } );
+				this.collection.add ( this.model );
+				this.options.something.set( "goodsPrice", this.options.something.get('goodsPrice')+this.model.get( 'goodsItemPrice' ) );
+			} else {
+				var sum = parseFloat( found.get( 'count' ) ) + quantity;
+				var newPrice = parseFloat( found.get( 'goodsItemPrice' ) ) + this.model.get('unitPrice')*quantity;
+				found.set('count', sum);
+				found.set('goodsItemPrice', newPrice);
+				this.options.something.set("goodsPrice", this.options.something.get('goodsPrice')+this.model.get( 'unitPrice' )*quantity);	
+			}
+			
+			this.options.something.set( "mcollection", this.collection );	
+
+			App.dbConnector.EditUnitItem ( this.options.something );
+			
+			//editing the sentence in the Add Unit to Goods Modal
+			var unitsInGoodsSentence = ''; // for #addUnit2Goods sentence
+			
+			_.each ( this.collection.models, function ( goodsItem ) {
+				console.log ( goodsItem.get('units') + ' - ' + goodsItem.get('count') );
+				unitsInGoodsSentence = unitsInGoodsSentence + ', ' + goodsItem.get('units') + ' ($' + goodsItem.get('price') + ') <b>x ' + goodsItem.get('count') + '</b>';
+			} )
+			$('#addUnit2Goods').find('.goodItems_list').html( unitsInGoodsSentence.substr(2) );
+			
+		},
+		addQuantity: function () {
+			var quantity = this.$el.find('input').val();
+
 			if ( quantity !== null ) {
 				var clearQuantity = quantity.replace(/\s/g, ""); // delete all spaces
+				
 				if ( ( clearQuantity !== '' ) && ( clearQuantity !== null ) && ( !isNaN(clearQuantity) ) ) {
 
 					newModel = new App.Models.GoodsItem({units:this.model.get ( 'name' ), count:clearQuantity, goodsItemPrice: this.model.get('unitPrice')*clearQuantity})
@@ -57,12 +115,10 @@ var App = App || {};
 					this.options.something.set("goodsCollection", this.collection);
  					App.dbConnector.EditGoodsItems(this.options.something);
 				
-				
 				}
 				else{
-					this.confirmQuantity();
+					//do some error
 				}
-
 
 			} else {
 				return false;

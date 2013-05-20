@@ -8,7 +8,6 @@ var App = App || {};
 		tagName: 'div',
 		className:"accordion-group",
 		initialize: function () {		
-
 			this.model.on( 'change:nameG', this.nameUpDate, this);
 			this.model.on( 'destroy', this.goodsRemoveItem, this );
 			this.model.on( 'change:nameG', this.refreshGoodsName, this );
@@ -67,6 +66,15 @@ var App = App || {};
 				var AddUnitsList = new App.Views.AddUnitsList( { collection: App.Units, model : this.model	} );
 				AddUnitsList.render();
 				$( '#unitContainer' ).html( AddUnitsList.el );
+
+				$('#addUnit2Goods').find('#myModalLabel').html('Add Units to ' + this.model.get('nameG') );
+				
+				var unitsInGoods = this.model.get( 'goodsCollection' );
+				var unitsInGoodsSentence = ''; // for #addUnit2Goods sentence
+				_.each ( unitsInGoods.models, function ( goodsItem ) {
+					unitsInGoodsSentence = unitsInGoodsSentence + ', ' + goodsItem.attributes.units + ' <b>x ' + goodsItem.attributes.count + '</b>';
+				} )
+				$('#addUnit2Goods').find('.goods_text').html( '<b>' + this.model.get('nameG') + '</b> already contains: <span class="goodItems_list">' + unitsInGoodsSentence.substr(2) + '</span>' );
 
 		},
 		goodsDeleteItem: function() {

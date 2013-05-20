@@ -14,7 +14,6 @@ var App = App || {};
 			'click .edit' : 'changeCount',
 			'keypress .edit_units_count': 'updateOnEnter',
 			'blur .edit_units_count': 'close'
-			
 		},
 		render: function () {	
 			

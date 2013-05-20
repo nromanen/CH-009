@@ -55,9 +55,7 @@ var App = App || {};
 			}
 		},
 		addOne: function () {
-
 			this.addUnitItem(1);
-
 		},
 		elementMouseEnter: function () {
 			this.$el.find('.additional').show();
