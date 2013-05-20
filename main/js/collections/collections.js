@@ -79,10 +79,8 @@ var App = App || {};
 		initialize: function () {
 			
 			App.Events.on( 'addUnit', this.addModel, this );
-			App.Events.on( 'unitDelete', this.deleteModel, this );
 			App.Events.on( 'fetchUnit', this.fetchUnits, this );
 			App.Events.on( 'writeUnits', this.writeCollection, this );
-			App.Events.on( 'editUnitName', this.changeName, this );
 			App.Events.on('fetchUnitsPostgDB', this.fetchPostgDB, this);
 			App.Events.on('updateUnitPrice', this.updateUnitPrice, this);
 			App.dbConnector.openDatabase();
@@ -180,18 +178,6 @@ var App = App || {};
 			})
 			
 
-		},
-		deleteModel: function( model ) {
-			App.dbConnector.deleteUnit( model.get( "name" ) );
-			model.destroy();
-
-		},
-		
-		changeName: function ( model, value ) {
-
-			App.dbConnector.changeUnitName( model.get( 'name' ), value );
-			model.set({ name: value });
-
 		}
 	
 	});
@@ -204,9 +190,8 @@ var App = App || {};
 			
 			App.Events.on( 'addUnitItem', this.addModel, this );
 			App.Events.on( 'destroyItemModel', this.destroyModel, this );
-			App.Events.on('newMaterialCount', this.editCount, this);
 			this.on('add', this.saveUnitCollection, this);
-			App.Events.on('changeUnitItemPrice', this.changeUnitItemPrice, this)
+			//App.Events.on('changeUnitItemPrice', this.changeUnitItemPrice, this)
 		},
 		addModel: function ( model ) {
 			
@@ -233,14 +218,6 @@ var App = App || {};
 					App.Events.trigger('updateUnitPrice', that);
 				}
 			})
-		},
-		editCount: function (model, value) {
-			var found = App.Materials.find( function( currentModel ) {
-				return currentModel.get('material') === model.get('material');
-			});
-			var newprice = ( value*found.get('price') ).toFixed(2);
-			newprice = parseFloat( newprice );
-			model.set({ count: value, unitItemPrice: newprice });
 		}
 
 	});
