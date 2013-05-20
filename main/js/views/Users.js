@@ -324,6 +324,7 @@ var App = App || {};
 			
 		},
 		renderBeginning: function ( userName, tabName ) {
+
 			var that = this;
 			$('.container-navbar').html(''); 
 			$('.container-navbar').append ( _.template ( $('#navbar').html(), { user : userName } ) );
@@ -337,7 +338,6 @@ var App = App || {};
 			$('.container').append( App.HTML.Row );
 			$('.content').append( $('#' + tabName ).html() );
 			$('.content').append( App.HTML.tabContentHeader );
-
 
 		},
 		showMaterials: function() {

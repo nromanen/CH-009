@@ -38,17 +38,34 @@ var App = App || {};
 			this.model.on( 'plus', this.plus, this );
 		},
 		events: {
-			'click .icon-plus'    : 'confirmQuantity',
+			'mouseenter .add_item' : 'elementMouseEnter',
+			'mouseleave .add_item' : 'elementMouseLeave',
+			'click a' : 'addOne',
+			'click .add': 'addQuantity',
+			'keypress input': 'keypress'
 		},
 		template: _.template( $('#material-price-plus').html() ),
 		render: function () {
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
 		},
+		keypress: function (e) {
+			if (e.which === 13) {
+				this.addQuantity();
+			}
+		},
 		addOne: function () {
 
-			this.confirmQuantity();
+			this.addUnitItem(1);
 
+		},
+		elementMouseEnter: function () {
+			this.$el.find('.additional').show();
+			this.$el.find('input').val('1');
+			this.$el.find('input').focus();
+		},
+		elementMouseLeave: function () {
+			this.$el.find('.additional').hide();
 		},
  		addUnitItem: function( quantity ) {
 
@@ -90,9 +107,10 @@ var App = App || {};
 			$('#addMaterial2Unit').find('.unitItems_list').html( materialsInUnitSentence.substr(2) );
 
 		},
-		confirmQuantity: function () {
-			var quantity = prompt( 'Please enter the quantity of ' + this.model.get ( 'material' ),1 );
-			if(quantity !== null){ // if user click cancel, nothing to do
+		addQuantity: function () {
+			var quantity = this.$el.find('input').val();
+			if (quantity !== null) { 
+				
 				var clearQuantity = quantity.replace(/\s/g, ""); // delete all spaces
 
 				if ( ( clearQuantity !== '' ) && ( clearQuantity !== null ) && ( !isNaN(clearQuantity) ) ) {
@@ -100,7 +118,7 @@ var App = App || {};
 				this.addUnitItem( parseFloat(clearQuantity) );
 
 				} else {
-					this.confirmQuantity();
+					//do some error
 				}
 			}
 			else return false;

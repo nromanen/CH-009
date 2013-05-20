@@ -8,14 +8,14 @@
 .edit_count, .editPrice, table tr td .edit_units_count {
     width: 20px;
 }
-.accordion-toggle .edit_goods_name, .accordion-toggle .edit_unit_name, table tr td .edit_count, table tr td .editPrice, table tr td .edit_count,  table tr td .edit_units_count {
+.accordion-toggle .edit_goods_name, .accordion-toggle .edit_unit_name, 
+table tr td .edit_count, table tr td .editPrice, table tr td .edit_count,  
+table tr td .edit_units_count, .editing .goods_name_id, .editing .unit_name, 
+.editing .count, .editing .price, #materialsContainer ul li .add_item .additional {
     display: none;
 }
 .editing .edit_goods_name, .editing .edit_unit_name, table tr.editing td .edit_count, table tr.editing td .editPrice, table tr.editing td .edit_units_count {
     display: inline-block; 
-}
-.editing .goods_name_id, .editing .unit_name, .editing .count, .editing .price {
-    display: none;
 }
 .nobullets {
     list-style: none;
@@ -28,7 +28,26 @@
     cursor: pointer;
     opacity: 1;
 }
-
+#materialsContainer ul li .add_item .additional {
+    float: left;
+    height: 12px;
+}
+#materialsContainer ul li .add_item .additional .next {
+    float: left;
+    padding-left: 10px;
+}
+#materialsContainer ul li .add_item .additional input {
+    width: 20px;
+    height: 12px;
+    font-size: 11px;
+}
+#materialsContainer ul li .add_item .general {
+    clear:both; 
+    float:left;
+}
+#materialsContainer ul li a {
+    cursor: pointer;
+}
 .edit_right {
     float:right;
     position:relative;

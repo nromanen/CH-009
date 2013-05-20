@@ -490,8 +490,15 @@
 			<div style="height:15px;"></div>
 		</script>
 		
-		<script type="text/template" id="material-price-plus">			
-			<i class="icon-plus" title="Add <%= material %>"></i> <%= material %> ($<%= price %>)
+		<script type="text/template" id="material-price-plus">
+			<div class="add_item">			
+				<div class="general"> <a name="<%= material %>"> <%= material %> </a> </div> 
+				<div class="additional">
+					<span class="next"> <input type="text" value="1"> </span>
+					<span class="next"> <button class="add btn btn-mini btn-info"> Add </button> </span>
+					<span class="next"> ($<%= price %>) </span> 
+				</div> 
+			</div>	
 		</script>
 
 		<script src="js/lib/jquery.js"></script>
