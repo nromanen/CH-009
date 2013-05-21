@@ -17,13 +17,11 @@ var App = App || {};
 			'blur .editPrice' : 'saveNewPrice'
 		},
 		render: function () {
-			
 			if ( App.userRole === 'accountant' ) {
 				var Template = _.template( $('#materials-accountant').html(), this.model.toJSON() );
 			} else if ( App.userRole === 'storekeeper' ) {
 				var Template = _.template( $('#materials-storekeeper').html(), this.model.toJSON() );
 			}
-			
 			this.$el.html( Template );
 		},
 		onEnter: function (e) {
@@ -44,8 +42,7 @@ var App = App || {};
 				this.$el.removeClass('editing');
 				this.model.set('price', value);
 				App.dbConnector.changeMaterialPrice( this.model );
-				console.log(this.model);
-				this.render();
+				this.$el.find('.price').html('$'+value);
 			}
 		},
 		changeUnitItemPrice: function (){

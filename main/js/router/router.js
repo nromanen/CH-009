@@ -7,7 +7,7 @@ var App = App || {};
 		
 
 		routes: {
-			''            : 'openCustomer',
+			''            : 'openStorekeeper',//'openCustomer',
 			'customer'    : 'chooseRole',
 			'accountant'  : 'openAccountant',
 			'engineer'    : 'openEngineer',
