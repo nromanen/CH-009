@@ -107,19 +107,22 @@ var App = App || {};
 		},
 		addQuantity: function () {
 			var quantity = this.$el.find('input').val();
-			if (quantity !== null) { 
+			if (quantity.length < 5) { 
 				
-				var clearQuantity = quantity.replace(/\s/g, ""); // delete all spaces
+				var clearQuantity =  Math.abs( quantity.replace(/\s/g, "") ); // delete all spaces, and make positive
 
 				if ( ( clearQuantity !== '' ) && ( clearQuantity !== null ) && ( !isNaN(clearQuantity) ) ) {
 
 				this.addUnitItem( parseFloat(clearQuantity) );
-
 				} else {
 					//do some error
+					this.$el.find('input').val('').focus();
 				}
 			}
-			else return false;
+			else {
+				this.$el.find('input').val('').focus();
+				return false;
+			}
 		},
 		saveUnitCollection: function () {
 

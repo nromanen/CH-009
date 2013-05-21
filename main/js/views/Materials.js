@@ -35,7 +35,8 @@ var App = App || {};
 		},
 		saveNewPrice : function () {
 			var value = this.$el.find('input').val();
-			if ( isNaN ( value ) || value <0 || value == '') {
+			if ( isNaN ( value ) || value <0 || value == '' || value.length > 6) {
+				this.$el.find('input').val('');
 				this.$el.removeClass('editing');
 				return;
 			} else {

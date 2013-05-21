@@ -168,63 +168,64 @@ table tr td .edit_units_count, .editing .goods_name_id, .editing .unit_name,
 
 /* line 85, ../sass/style.scss */
 .edit {
+  float: left;
   background: url("../img/edit16.png") no-repeat;
   opacity: 0.8;
 }
 
-/* line 90, ../sass/style.scss */
+/* line 91, ../sass/style.scss */
 .edit:hover {
   float: left;
   background: url("../img/edit16.png") no-repeat;
   opacity: 1;
 }
 
-/* line 97, ../sass/style.scss */
+/* line 98, ../sass/style.scss */
 .delete {
   float: left;
   background: url("../img/delete16.png") no-repeat;
   opacity: 0.6;
 }
 
-/* line 103, ../sass/style.scss */
+/* line 104, ../sass/style.scss */
 .delete:hover {
   float: left;
   background: url("../img/delete16.png") no-repeat;
   opacity: 1;
 }
 
-/* line 109, ../sass/style.scss */
+/* line 110, ../sass/style.scss */
 .delete_unit {
   background: url("../img/delete.png") no-repeat;
   opacity: 0.6;
 }
 
-/* line 114, ../sass/style.scss */
+/* line 115, ../sass/style.scss */
 .delete_unit:hover {
   background: url("../img/delete.png") no-repeat;
   opacity: 1;
 }
 
-/* line 120, ../sass/style.scss */
+/* line 121, ../sass/style.scss */
 .delete_goods {
   background: url("../img/delete.png") no-repeat;
   opacity: 0.6;
 }
 
-/* line 125, ../sass/style.scss */
+/* line 126, ../sass/style.scss */
 .delete_goods:hover {
   background: url("../img/delete.png") no-repeat;
   opacity: 1;
 }
 
-/* line 130, ../sass/style.scss */
+/* line 131, ../sass/style.scss */
 .error {
   font-size: 10px;
   color: red;
   font-weight: bold;
 }
 
-/* line 139, ../sass/style.scss */
+/* line 140, ../sass/style.scss */
 .test {
   color: green;
 }

@@ -24,7 +24,7 @@ var App = App || {};
 			});
 
 			if ( found === undefined ) {
-				if ( strUnit === "" ) {
+				if ( strUnit === "" || strUnit.length > 100) {
 
 					$('#myModalLabelUnit').after('<div class="error">Please enter the Unit name!</div>');
 					$('#unit').val('');
