@@ -67,23 +67,24 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
   display: block;
 }
 
-/* line 8, ../sass/style.scss */
+/* Vars */
+/* line 13, ../sass/style.scss */
 .left20 {
   margin: 0 0 0 20px;
 }
 
-/* line 11, ../sass/style.scss */
+/* line 16, ../sass/style.scss */
 #userRole {
   margin: 10px 0 0 0;
   font-size: 18px;
 }
 
-/* line 15, ../sass/style.scss */
+/* line 20, ../sass/style.scss */
 .edit_count, .editPrice, table tr td .edit_units_count {
   width: 20px;
 }
 
-/* line 22, ../sass/style.scss */
+/* line 27, ../sass/style.scss */
 .accordion-toggle .edit_goods_name, .accordion-toggle .edit_unit_name,
 table tr td .edit_count, table tr td .editPrice, table tr td .edit_count,
 table tr td .edit_units_count, .editing .goods_name_id, .editing .unit_name,
@@ -92,176 +93,138 @@ table tr td .edit_units_count, .editing .goods_name_id, .editing .unit_name,
   display: none;
 }
 
-/* line 25, ../sass/style.scss */
+/* line 30, ../sass/style.scss */
 .editing .edit_goods_name, .editing .edit_unit_name, table tr.editing td .edit_count, table tr.editing td .editPrice, table tr.editing td .edit_units_count {
   display: inline-block;
 }
 
-/* line 28, ../sass/style.scss */
+/* line 33, ../sass/style.scss */
 .nobullets {
   list-style: none;
 }
 
-/* line 31, ../sass/style.scss */
+/* line 36, ../sass/style.scss */
 .icon-plus {
   cursor: pointer;
   opacity: 0.8;
 }
 
-/* line 35, ../sass/style.scss */
+/* line 40, ../sass/style.scss */
 .icon-plus:hover {
   cursor: pointer;
   opacity: 1;
 }
 
-/* line 39, ../sass/style.scss */
+/* line 44, ../sass/style.scss */
 #unitContainer ul li .add_item .additional, #materialsContainer ul li .add_item .additional {
   float: left;
   height: 12px;
 }
 
-/* line 43, ../sass/style.scss */
+/* line 48, ../sass/style.scss */
 #unitContainer ul li .add_item .additional .next, #materialsContainer ul li .add_item .additional .next {
   float: left;
   padding-left: 10px;
 }
 
-/* line 47, ../sass/style.scss */
+/* line 52, ../sass/style.scss */
 #unitContainer ul li .add_item .additional input, #materialsContainer ul li .add_item .additional input {
   width: 20px;
   height: 12px;
   font-size: 11px;
 }
 
-/* line 52, ../sass/style.scss */
+/* line 57, ../sass/style.scss */
 #unitContainer ul li .add_item .general, #materialsContainer ul li .add_item .general {
   clear: both;
   float: left;
 }
 
-/* line 56, ../sass/style.scss */
+/* line 61, ../sass/style.scss */
 #unitContainer ul li a, #materialsContainer ul li a {
   cursor: pointer;
 }
 
-/* line 59, ../sass/style.scss */
-.edit_right {
+/* line 65, ../sass/style.scss */
+.editor, .edit_right, .edit_right:hover, .edit, .edit:hover, .delete, .delete:hover, .delete_unit, .delete_unit:hover, .delete_goods, .delete_goods:hover {
   float: right;
   position: relative;
   width: 26px;
   height: 26px;
-  background: url("../img/edit16.png") no-repeat;
-  opacity: 0.8;
   cursor: pointer;
 }
 
-/* line 68, ../sass/style.scss */
+/* line 74, ../sass/style.scss */
+.edit_right {
+  background: url("../img/edit16.png") no-repeat;
+  opacity: 0.8;
+}
+
+/* line 79, ../sass/style.scss */
 .edit_right:hover {
-  float: right;
-  position: relative;
-  width: 26px;
-  height: 26px;
   background: url("../img/edit16.png") no-repeat;
   opacity: 1;
-  cursor: pointer;
 }
 
-/* line 78, ../sass/style.scss */
+/* line 85, ../sass/style.scss */
 .edit {
-  float: left;
-  position: relative;
-  width: 26px;
-  height: 26px;
   background: url("../img/edit16.png") no-repeat;
   opacity: 0.8;
-  cursor: pointer;
 }
 
-/* line 87, ../sass/style.scss */
+/* line 90, ../sass/style.scss */
 .edit:hover {
   float: left;
-  position: relative;
-  width: 26px;
-  height: 26px;
   background: url("../img/edit16.png") no-repeat;
   opacity: 1;
-  cursor: pointer;
 }
 
-/* line 96, ../sass/style.scss */
+/* line 97, ../sass/style.scss */
 .delete {
   float: left;
-  position: relative;
-  width: 26px;
-  height: 26px;
   background: url("../img/delete16.png") no-repeat;
   opacity: 0.6;
-  cursor: pointer;
 }
 
-/* line 105, ../sass/style.scss */
+/* line 103, ../sass/style.scss */
 .delete:hover {
   float: left;
-  position: relative;
-  width: 26px;
-  height: 26px;
   background: url("../img/delete16.png") no-repeat;
   opacity: 1;
-  cursor: pointer;
+}
+
+/* line 109, ../sass/style.scss */
+.delete_unit {
+  background: url("../img/delete.png") no-repeat;
+  opacity: 0.6;
 }
 
 /* line 114, ../sass/style.scss */
-.delete_unit {
-  float: right;
-  position: relative;
-  width: 26px;
-  height: 26px;
-  background: url("../img/delete.png") no-repeat;
-  opacity: 0.6;
-  cursor: pointer;
-}
-
-/* line 123, ../sass/style.scss */
 .delete_unit:hover {
-  float: right;
-  position: relative;
-  width: 26px;
-  height: 26px;
   background: url("../img/delete.png") no-repeat;
   opacity: 1;
-  cursor: pointer;
 }
 
-/* line 133, ../sass/style.scss */
+/* line 120, ../sass/style.scss */
 .delete_goods {
-  float: right;
-  position: relative;
-  width: 26px;
-  height: 26px;
   background: url("../img/delete.png") no-repeat;
   opacity: 0.6;
-  cursor: pointer;
 }
 
-/* line 142, ../sass/style.scss */
+/* line 125, ../sass/style.scss */
 .delete_goods:hover {
-  float: right;
-  position: relative;
-  width: 26px;
-  height: 26px;
   background: url("../img/delete.png") no-repeat;
   opacity: 1;
-  cursor: pointer;
 }
 
-/* line 151, ../sass/style.scss */
+/* line 130, ../sass/style.scss */
 .error {
   font-size: 10px;
   color: red;
   font-weight: bold;
 }
 
-/* line 159, ../sass/style.scss */
+/* line 139, ../sass/style.scss */
 .test {
   color: green;
 }
