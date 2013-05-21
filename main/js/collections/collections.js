@@ -83,7 +83,8 @@ var App = App || {};
 			App.Events.on( 'fetchUnit', this.fetchUnits, this );
 			App.Events.on( 'writeUnits', this.writeCollection, this );
 			App.Events.on( 'editUnitName', this.changeName, this );
-			App.Events.on('fetchUnitsPostgDB', this.fetchPostgDB, this)
+			App.Events.on('fetchUnitsPostgDB', this.fetchPostgDB, this);
+			App.Events.on('updateUnitPrice', this.updateUnitPrice, this);
 			App.dbConnector.openDatabase();
 			
 		},
@@ -165,7 +166,23 @@ var App = App || {};
 				i++;
 			}
 		},
+		updateUnitPrice: function (unitItemCollection) {
+
+			this.each(function (iterator) {
+				if (iterator.get('mcollection')===unitItemCollection){
+					iterator.set('unitPrice', 0);
+					iterator.get('mcollection').each(function (material){
+						iterator.set('unitPrice', iterator.get('unitPrice')+material.get('unitItemPrice'));
+
+					});
+				}
+
+			})
+			
+
+		},
 		deleteModel: function( model ) {
+			
 			App.dbConnector.deleteUnit( model.get( "name" ) );
 			model.destroy();
 
@@ -190,7 +207,7 @@ var App = App || {};
 			App.Events.on( 'destroyItemModel', this.destroyModel, this );
 			App.Events.on('newMaterialCount', this.editCount, this);
 			this.on('add', this.saveUnitCollection, this);
-			
+			App.Events.on('changeUnitItemPrice', this.changeUnitItemPrice, this)
 		},
 		addModel: function ( model ) {
 			
@@ -208,6 +225,15 @@ var App = App || {};
 		
 			//console.log ( this );
 		
+		},
+		changeUnitItemPrice: function (newModel) {
+			that=this;
+			this.each(function (iterator) {
+				if (iterator.get('material')===newModel.get('material')) {
+					iterator.set('unitItemPrice', parseFloat((newModel.get('price')*iterator.get('count')).toFixed(2)));
+					App.Events.trigger('updateUnitPrice', that);
+				}
+			})
 		},
 		editCount: function (model, value) {
 			var found = App.Materials.find( function( currentModel ) {

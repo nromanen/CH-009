@@ -194,15 +194,13 @@
 				  <div class="modal-header">
 				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 				    <h3 id="myModalLabel">Add New Material</h3>
-				    <br>
-				    <p>Click PLUS to add 1 Material, and Double Click for specific quantity.</p>
 				  	<p class="unit_text"></p>
 				  </div>
 				  <div id="materialsContainer" class="modal-body">
 
 				  </div>
 				  <div class="modal-footer">
-				    <button class="btn btn-primary"  data-dismiss="modal" aria-hidden="true">Close Box</button>
+				    <button class="btn btn-primary"  data-dismiss="modal" aria-hidden="true">Close</button>
 				  </div>
 				</div>
 		</script>
@@ -211,14 +209,15 @@
 			<div id="addUnit2Goods" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			  <div class="modal-header">
 			    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			    <h3 id="myModalLabel">Add New Material</h3>
+			    <h3 id="myModalLabel">Add Units</h3>
+			    <br>
+			    <p class="goods_text"></p>
 			  </div>
 			  <div id="unitContainer" class="modal-body">
 
 			  </div>
 			  <div class="modal-footer">
-			    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-			    <button class="btn btn-primary save-material">Save changes</button>
+			    <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Close</button>
 			  </div>
 			</div>
 		</script>
@@ -470,10 +469,13 @@
 		</script>
 		
 		<script type="text/template" id="goods-count-plus">
-			  <div class="holder">	
-				<div class="material"><i class="icon-plus"></i> <%= name %></div>
-			  </div>
-			  <div class="clear"></div>
+			<div class="add_item">			
+				<div class="general"> <a name="<%= name %>"> <%= name %> </a> </div> 
+				<div class="additional">
+					<span class="next"> <input type="text" value="1"> </span>
+					<span class="next"> <button class="add btn btn-mini btn-info"> Add </button> </span> 
+				</div> 
+			</div>
 		</script>	
 
 		<script type="text/template" id="unit-name">
@@ -490,8 +492,15 @@
 			<div style="height:15px;"></div>
 		</script>
 		
-		<script type="text/template" id="material-price-plus">			
-			<i class="icon-plus" title="Add <%= material %>"></i> <%= material %> ($<%= price %>)
+		<script type="text/template" id="material-price-plus">
+			<div class="add_item">			
+				<div class="general"> <a name="<%= material %>"> <%= material %> </a> </div> 
+				<div class="additional">
+					<span class="next"> <input type="text" value="1"> </span>
+					<span class="next"> <button class="add btn btn-mini btn-info"> Add </button> </span>
+					<span class="next"> ($<%= price %>) </span> 
+				</div> 
+			</div>	
 		</script>
 
 		<script src="js/lib/jquery.js"></script>

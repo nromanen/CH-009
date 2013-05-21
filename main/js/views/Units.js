@@ -41,6 +41,7 @@ var App = App || {};
 			//this.render();
 			//this.unitToggle();
 			this.$el.find('.unit_name').html(this.model.get('name'));
+			this.$el.find('.unitPrice').html(this.model.get('unitPrice'));
 		},
 		refreshUnitPrice: function (){
 			this.$el.find('.unitPrice').html('$'+this.model.get('unitPrice'));

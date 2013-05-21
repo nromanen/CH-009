@@ -6,7 +6,7 @@ var App = App || {};
 		tagName: 'tr',
 		initialize: function () {
 			//this.model.on('change:material', this.render, this);
-			//this.model.on('change:price', this.render, this);
+			this.model.on('change:price', this.changeUnitItemPrice, this);
 			this.model.on( 'destroy', this.remove, this );
 		},
 		events: {
@@ -47,16 +47,16 @@ var App = App || {};
 				this.render();
 			}
 		},
+		changeUnitItemPrice: function (){
+			App.Events.trigger('changeUnitItemPrice', this.model);
+		},
 		confirmRemove: function () {
 			var delMat = this.model.get("material");
 			var unitModels = App.Units.models;
 
 			ValidateMaterialDelete( delMat, unitModels );
 
-			if ( confirm('Are you sure you want to delete this product?') ) {
-					App.Events.trigger( 'destroyModel', this.model );
-				};
-				for (var j = 0; j < arr.length; j++) {
+			 for (var j = 0; j < arr.length; j++) {
 
 					if (arr[j].material === delMat) {
 
@@ -64,7 +64,7 @@ var App = App || {};
 						
 					};
 				};
-			};
+			
 			
 			if ( confirm('Are you sure you want to delete this product?') ) {
 				App.Events.trigger( 'destroyModel', this.model );

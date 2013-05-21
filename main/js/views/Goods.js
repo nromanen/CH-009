@@ -8,9 +8,9 @@ var App = App || {};
 		tagName: 'div',
 		className:"accordion-group",
 		initialize: function () {		
-
 			this.model.on( 'change:nameG', this.nameUpDate, this);
 			this.model.on( 'destroy', this.goodsRemoveItem, this );
+			this.model.on( 'changes', this.goodsChange );
 			this.model.on( 'change:nameG', this.refreshGoodsName, this );
 			this.model.on( 'change:goodsPrice', this.refreshGoodsPrice, this );
 		},
@@ -45,6 +45,9 @@ var App = App || {};
 			this.$input = this.$('.edit_goods_name');
 			
 		}, 
+		goodsChange: function () {
+			//
+		},
 		refreshGoodsName: function (){
 			this.$el.find('.goods_name_id').html(this.model.get('nameG'));
 		}, 
@@ -67,6 +70,15 @@ var App = App || {};
 				var AddUnitsList = new App.Views.AddUnitsList( { collection: App.Units, model : this.model	} );
 				AddUnitsList.render();
 				$( '#unitContainer' ).html( AddUnitsList.el );
+
+				$('#addUnit2Goods').find('#myModalLabel').html('Add Units to ' + this.model.get('nameG') );
+				
+				var unitsInGoods = this.model.get( 'goodsCollection' );
+				var unitsInGoodsSentence = ''; // for #addUnit2Goods sentence
+				_.each ( unitsInGoods.models, function ( goodsItem ) {
+					unitsInGoodsSentence = unitsInGoodsSentence + ', ' + goodsItem.attributes.units + ' <b>x ' + goodsItem.attributes.count + '</b>';
+				} )
+				$('#addUnit2Goods').find('.goods_text').html( '<b>' + this.model.get('nameG') + '</b> already contains: <span class="goodItems_list">' + unitsInGoodsSentence.substr(2) + '</span>' );
 
 		},
 		goodsDeleteItem: function() {
@@ -116,13 +128,12 @@ var App = App || {};
 		tagName: 'div',
 
 		initialize: function () {
-			this.collection.on('add', this.addOne, this);
+			this.collection.on('add', this.render, this);
 			
 		},
 		render: function () {
 				
             this.$el.html('');
-
           	this.collection.each( this.addOne, this );
 			return this;
 			

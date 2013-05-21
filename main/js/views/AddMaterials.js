@@ -36,14 +36,18 @@ var App = App || {};
 			this.model.on( 'plus', this.plus, this );
 		},
 		events: {
-			'click .plus' : 'confirmQuantity'
+			'click .plus' : 'confirmQuantity',
+			'mouseenter a' : 'elementHover',
 		},
 		template: _.template( $('#material-price-plus').html() ),
 		render: function () {
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
 		},
-		
+		elementHover: function () {
+			console.log('hover');
+			this.$el.find('a').attr('color', 'red');
+		},
 		saveUnitCollection: function () {
 			
 

@@ -8,6 +8,7 @@ var App = App || {};
 		initialize: function (){
 			this.model.on( 'destroy', this.remove, this );
 			this.model.on( 'change', this.render, this);
+	
 		},
 		events: {
 			'click .delete' : 'confirmRemove',

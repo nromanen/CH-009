@@ -19,7 +19,6 @@ var App = App || {};
 	});
 	
 	App.Models.Unit = Backbone.Model.extend({
-	
 		name: 'unit',
 		mcollection: '',
 		unitPrice: 0
