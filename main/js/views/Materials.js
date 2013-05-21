@@ -44,6 +44,7 @@ var App = App || {};
 				this.$el.removeClass('editing');
 				this.model.set('price', value);
 				App.dbConnector.changeMaterialPrice( this.model );
+				console.log(this.model);
 				this.render();
 			}
 		},

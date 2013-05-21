@@ -22,9 +22,6 @@ var App = App || {};
 		},
 		events:{
 			"click #loginButton":"loginUser",
-			"click #showMaterial" : "showMaterials",
-			"click #showUnit" : "showUnit",
-			"click #showGoods" : "showGoods"
 		},
 		loginUser: function(){
 				var userDate = [];
@@ -339,55 +336,10 @@ var App = App || {};
 			$('.content').append( $('#' + tabName ).html() );
 			$('.content').append( App.HTML.tabContentHeader );
 
-		},
-		showMaterials: function() {
-			 
-			this.$el.html('');
-			this.$el.append( $( '#navigation' ).html() );
-			this.$el.append( $( "#templateMaterials" ).html() );
-			var addMaterial = new App.Views.AddMaterial( { collection: App.Materials } );
-			var viewMaterials = new App.Views.List( { collection: App.Materials } );
-			viewMaterials.render();
-			$('#table_holder').html( viewMaterials.el );
-			$( '.AddMaterialsList' ).hide();
-			
-		},
-		showUnit: function() {
-		 
-			this.$el.html('');
-			this.$el.append( $('#navigation').html() );
-			this.$el.append( $("#temlateUnits").html() );
-			var addUnit = new App.Views.AddUnit ( { collection: App.Units } );
-			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
-			viewUnits.render();
-			console.log(addUnit);
-			addUnit.addItem("adf");
-			$('#units_holder').html( viewUnits.el );
-			$( '.AddMaterialsList' ).draggable();
-			$( '.AddUnitsList' ).hide();
-			$( '.AddMaterialsList' ).hide();
-			$( '.unit' ).each ( function () {
-				$( this ).find( '.unit_info' ).hide();
-			});
-		},
-		showGoods: function() {
-		
-
-		
-			//$('#myTab').append( $('#navigation').html() );
-			
-			//$('#products').html( $("#temlateGoods").html() );
-			
-
-			var addGoods = new App.Views.AddGoods ( { collection: App.Goods } );
-			var viewGoods = new App.Views.GoodsList( { collection: App.Goods } );
-			viewGoods.render();
-			
-			$('#goods_holder').html( viewGoods.el );
-			$( '.AddUnitsList' ).draggable();
-			$( '.AddMaterialsList' ).hide();
-	
 		}
+
+	
+	
 
     });
     

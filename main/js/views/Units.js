@@ -10,10 +10,11 @@ var App = App || {};
 			this.model.on( 'change', this.unitChange, this);
 			this.model.on( 'destroy', this.unitRemoveItem, this );
 			this.model.on( 'change:unitPrice', this.refreshUnitPrice, this);
+		
 		},
 		events: {
 			'click .unit_name' : 'unitToggle',
-			'click .delete_unit' : 'unitDeleteItem',
+			'click .delete_unit' : 'requestUnitDelete',
 			'click .edit_right' : 'changeUnitName',
 			'keypress .edit_unit_name': 'updateOnEnter',
 			'blur .edit_unit_name': 'close',
@@ -32,14 +33,9 @@ var App = App || {};
 			newUnitItemsList.render();
 
 			this.$el.append( newUnitItemsList.el );
-			//$( this.el ).append ('something');
-
 
 		},
 		unitChange: function () {
-
-			//this.render();
-			//this.unitToggle();
 			this.$el.find('.unit_name').html(this.model.get('name'));
 			this.$el.find('.unitPrice').html(this.model.get('unitPrice'));
 		},
@@ -66,38 +62,20 @@ var App = App || {};
 			$('#addMaterial2Unit').find('.unit_text').html( '<b>' + this.model.get('name') + '</b> already contains: <span class="unitItems_list">' + materialsInUnitSentence.substr(2) + '</span>' );
 
 		},
-		unitDeleteItem: function() {
-		
-			var that = this;
-			var found = false;
-			var foundFlag = false;
-			App.Goods.each ( function (goodsModel) {
-				if ( found === false ) {
-					var unitsInside = goodsModel.get('goodsCollection');
-					found = unitsInside.find( function (goodsItem) {
-						return that.model.get('name') === goodsItem.get('units');					
-					});
 
-					if (found === undefined) {
-
-						foundFlag = true;
-
-					}
-				}
-
-			});
+		requestUnitDelete: function() {
+			foundFlag=this.model.requestUnitDelete();
 
 			if (foundFlag === true) {
-				$('#newUnitBtn').after('<div class="error">You CANNOT DELETE this unit, because it is already used in Goods!</div>');
-					setTimeout( function() { 
-						$('.error').fadeOut('slow')
-					}, 2000);
-			} else {
-				if ( confirm('Are you sure you want to delete this Unit?') ) {
-						App.Events.trigger( 'unitDelete', that.model );
+					$('#newUnitBtn').after('<div class="error">You CANNOT DELETE this unit, because it is already used in Goods!</div>');
+						setTimeout( function() { 
+							$('.error').fadeOut('slow')
+						}, 2000);
+				} else {
+					if ( confirm('Are you sure you want to delete this Unit?') ) {
+						this.model.deleteUnit();
 					};
-			}
-		
+				}		
 		},
 		unitRemoveItem: function() {
 		
@@ -131,13 +109,11 @@ var App = App || {};
 
 			});
 
-			//this.model.get('name')
-			
-					
+				
 
 		},
 		close: function () {
-
+			console.log(this.model);
 			if ( this.$el.hasClass('editing') ) {
 
 
@@ -155,7 +131,7 @@ var App = App || {};
 					});
 
 					if ( found === undefined || found === false ) {
-						App.Events.trigger('editUnitName', this.model, value);
+						this.model.setName(value);
 						this.$el.removeClass('editing');
 					} else if ( found !== undefined && found !== false ) {
 						alert (value + ' name is already in use!');

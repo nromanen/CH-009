@@ -9,7 +9,9 @@ var App = App || {};
 		Collections: App.Collections || {},
 		dbConnector: App.dbConnector || {},
 		Events : _.extend( {}, Backbone.Events ),
-		HTML : App.HTML || {}
+		HTML : App.HTML || {},
+		State: App.State || {},
+		StateMachine: App.StateMachine || {}
 		
 	};
 	

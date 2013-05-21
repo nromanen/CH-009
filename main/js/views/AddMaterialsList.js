@@ -67,8 +67,11 @@ var App = App || {};
 		},
  		addUnitItem: function( quantity ) {
 
+
+
 			var that = this;
 			var found = this.collection.find( function( model ) {
+
 			    return model.get('material') === that.model.get('material');
 			});
 			
@@ -79,7 +82,6 @@ var App = App || {};
 				this.options.something.set( "unitPrice", this.options.something.get('unitPrice')+this.model.get( 'unitItemPrice' ) );
 			
 			} else {
-				
 				var sum = parseFloat( found.get( 'count' ) ) + quantity;
 				var newPrice = parseFloat( found.get( 'unitItemPrice' ) ) + this.model.get('price')*quantity;
 				console.log ('quantity: ' + quantity)
