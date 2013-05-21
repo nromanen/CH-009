@@ -1,0 +1,142 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/reset";
+
+/* Vars */
+$editor_width: 26px;
+$editor_height: 26px;
+
+
+.left20 {
+    margin: 0 0 0 20px;
+}
+#userRole {
+    margin: 10px 0 0 0;
+    font-size: 18px;
+}
+.edit_count, .editPrice, table tr td .edit_units_count {
+    width: 20px;
+}
+.accordion-toggle .edit_goods_name, .accordion-toggle .edit_unit_name, 
+table tr td .edit_count, table tr td .editPrice, table tr td .edit_count,  
+table tr td .edit_units_count, .editing .goods_name_id, .editing .unit_name, 
+.editing .count, .editing .price, #materialsContainer ul li .add_item .additional, 
+#unitContainer ul li .add_item .additional {
+    display: none;
+}
+.editing .edit_goods_name, .editing .edit_unit_name, table tr.editing td .edit_count, table tr.editing td .editPrice, table tr.editing td .edit_units_count {
+    display: inline-block; 
+}
+.nobullets {
+    list-style: none;
+}
+.icon-plus {
+    cursor: pointer;
+    opacity: 0.8;
+}
+.icon-plus:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+#unitContainer ul li .add_item .additional, #materialsContainer ul li .add_item .additional {
+    float: left;
+    height: 12px;
+}
+#unitContainer ul li .add_item .additional .next, #materialsContainer ul li .add_item .additional .next {
+    float: left;
+    padding-left: 10px;
+}
+#unitContainer ul li .add_item .additional input , #materialsContainer ul li .add_item .additional input {
+    width: 20px;
+    height: 12px;
+    font-size: 11px;
+}
+#unitContainer ul li .add_item .general, #materialsContainer ul li .add_item .general {
+    clear:both; 
+    float:left;
+}
+#unitContainer ul li a, #materialsContainer ul li a {
+    cursor: pointer;
+}
+
+.editor {
+    float:right;
+    position:relative;
+    width: $editor_width;
+    height: $editor_height;
+    cursor: pointer;
+
+}
+
+.edit_right {
+    @extend .editor;
+    background: url('../img/edit16.png') no-repeat;
+    opacity: 0.8;
+}
+.edit_right:hover {
+    @extend .editor;
+    background: url('../img/edit16.png') no-repeat;
+    opacity: 1;
+}
+
+.edit {
+    @extend .editor;
+    background: url('../img/edit16.png') no-repeat;
+    opacity: 0.8;
+}
+.edit:hover {
+    @extend .editor;
+    float:left;
+    background: url('../img/edit16.png') no-repeat;
+    opacity: 1;
+}
+
+.delete {
+    @extend .editor;
+    float:left;
+    background: url('../img/delete16.png') no-repeat;
+    opacity: 0.6;
+}
+.delete:hover {
+    @extend .editor;
+    float:left;
+    background: url('../img/delete16.png') no-repeat;
+    opacity: 1;
+}
+.delete_unit {
+    @extend .editor;
+    background: url('../img/delete.png') no-repeat;
+    opacity: 0.6;
+}
+.delete_unit:hover {
+    @extend .editor;
+    background: url('../img/delete.png') no-repeat;
+    opacity: 1;
+}
+
+.delete_goods {
+    @extend .editor;
+    background: url('../img/delete.png') no-repeat;
+    opacity: 0.6;
+}
+.delete_goods:hover {
+    @extend .editor;
+    background: url('../img/delete.png') no-repeat;
+    opacity: 1;
+}
+.error{
+    font-size: 10px;
+    color: red;
+    font-weight: bold;
+}
+
+$color: green;
+$color2: red;
+
+.test {
+	color: $color;
+}
+

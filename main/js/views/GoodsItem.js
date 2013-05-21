@@ -7,15 +7,13 @@ var App = App || {};
 	tagName: 'tr',
 		initialize: function (){
 			this.model.on( 'destroy', this.remove, this );
-			this.model.on( 'change', this.refreshPrice, this);
-
+			this.model.on( 'change', this.refresh, this);
 		},
 		events: {
 			'click .delete' : 'confirmRemove',
 			'click .edit' : 'changeCount',
 			'keypress .edit_units_count': 'updateOnEnter',
 			'blur .edit_units_count': 'close'
-			
 		},
 		render: function () {	
 			
@@ -33,7 +31,8 @@ var App = App || {};
 			this.$input.val( this.model.get( 'count' ) );
 
 		},
-		refreshPrice: function () {
+		refresh: function () {
+			this.$el.find('.count').html(this.model.get('count'));
 			this.$el.find('.goodsItemPrice').html('$'+this.model.get('goodsItemPrice'));
 		},
 		confirmRemove: function () {
@@ -82,8 +81,7 @@ var App = App || {};
 		initialize: function () {
 			this.collection.off('add');
 			this.collection.on('add', this.addOne, this);
-			this.el.id=this.model.cid;	
-
+			this.el.id = this.model.cid;	
 		},
 		render: function () {
 			if ( App.userRole === 'customer' ) {
@@ -115,7 +113,6 @@ var App = App || {};
 
 		},
 		ItemRemove: function() {
-			//console.log(this);
 			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
 			goodsItemView.render();
 			this.$el.append( goodsItemView.el );

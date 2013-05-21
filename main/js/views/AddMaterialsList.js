@@ -38,17 +38,32 @@ var App = App || {};
 			this.model.on( 'plus', this.plus, this );
 		},
 		events: {
-			'click .icon-plus'    : 'confirmQuantity',
+			'mouseenter .add_item' : 'elementMouseEnter',
+			'mouseleave .add_item' : 'elementMouseLeave',
+			'click a' : 'addOne',
+			'click .add': 'addQuantity',
+			'keypress input': 'keypress'
 		},
 		template: _.template( $('#material-price-plus').html() ),
 		render: function () {
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
 		},
+		keypress: function (e) {
+			if (e.which === 13) {
+				this.addQuantity();
+			}
+		},
 		addOne: function () {
-
-			this.confirmQuantity();
-
+			this.addUnitItem(1);
+		},
+		elementMouseEnter: function () {
+			this.$el.find('.additional').show();
+			this.$el.find('input').val('1');
+			this.$el.find('input').focus();
+		},
+		elementMouseLeave: function () {
+			this.$el.find('.additional').hide();
 		},
  		addUnitItem: function( quantity ) {
 
@@ -56,21 +71,23 @@ var App = App || {};
 			var that = this;
 			var found = this.collection.find( function( model ) {
 
-			    return model.get('material') === that.model.get('material');
+		    return model.get('material') === that.model.get('material');
 			});
 			
 			if ( found === undefined ) {
+			
 				this.model.set ( { count: quantity, unitItemPrice: quantity*this.model.get( 'price' ) } );
 				this.collection.add ( this.model );
 				this.options.something.set( "unitPrice", this.options.something.get('unitPrice')+this.model.get( 'unitItemPrice' ) );
+			
 			} else {
 
 				var sum = parseFloat( found.get( 'count' ) ) + quantity;
 				var newPrice = parseFloat( found.get( 'unitItemPrice' ) ) + this.model.get('price')*quantity;
 				console.log ('quantity: ' + quantity)
 				console.log ('sum: ' + sum);
-				found.set ('count',sum);
-				found.set('unitItemPrice',newPrice);
+				found.set('count', sum);
+				found.set('unitItemPrice', newPrice);
 				this.options.something.set("unitPrice", this.options.something.get('unitPrice')+this.model.get( 'price' )*quantity);	
 
 			}
@@ -88,9 +105,10 @@ var App = App || {};
 			$('#addMaterial2Unit').find('.unitItems_list').html( materialsInUnitSentence.substr(2) );
 
 		},
-		confirmQuantity: function () {
-			var quantity = prompt( 'Please enter the quantity of ' + this.model.get ( 'material' ),1 );
-			if(quantity !== null){ // if user click cancel, nothing to do
+		addQuantity: function () {
+			var quantity = this.$el.find('input').val();
+			if (quantity !== null) { 
+				
 				var clearQuantity = quantity.replace(/\s/g, ""); // delete all spaces
 
 				if ( ( clearQuantity !== '' ) && ( clearQuantity !== null ) && ( !isNaN(clearQuantity) ) ) {
@@ -98,7 +116,7 @@ var App = App || {};
 				this.addUnitItem( parseFloat(clearQuantity) );
 
 				} else {
-					this.confirmQuantity();
+					//do some error
 				}
 			}
 			else return false;

@@ -177,10 +177,10 @@ var App = App || {};
 			$('.delete_goods').remove();
 			$('.delete').remove();
 			$('.edit_right').remove();
-			$('#products table tr th:nth-child(3)').hide();
-			$('#products table tbody tr td:nth-child(3)').hide();
-			$('#products table tr th:nth-child(4)').hide();
-			$('#products table tbody tr td:nth-child(4)').hide();
+			//$('#products table tr th:nth-child(3)').hide();
+			//$('#products table tbody tr td:nth-child(3)').hide();
+			//$('#products table tr th:nth-child(4)').hide();
+			//$('#products table tbody tr td:nth-child(4)').hide();
 			$('.colspan4').attr('colspan', '2');
 			$('.buttonPlace').html("");
 			$('#actionButton').remove();
@@ -324,6 +324,7 @@ var App = App || {};
 			
 		},
 		renderBeginning: function ( userName, tabName ) {
+
 			var that = this;
 			$('.container-navbar').html(''); 
 			$('.container-navbar').append ( _.template ( $('#navbar').html(), { user : userName } ) );
@@ -337,7 +338,6 @@ var App = App || {};
 			$('.container').append( App.HTML.Row );
 			$('.content').append( $('#' + tabName ).html() );
 			$('.content').append( App.HTML.tabContentHeader );
-
 
 		},
 		showMaterials: function() {
