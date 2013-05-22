@@ -28,7 +28,6 @@ var App = App || {};
 			var goodsHrefId = this.model.cid;
 			goodsHrefId = goodsHrefId.replace(" ","");
 			this.model.set('hrefId', goodsHrefId);
-			console.log(JSON.stringify(this.model.toJSON()));
 
 			if ( App.userRole === 'customer' ) {
 				var strTemplate = _.template( $('#goods-name-customer').html(), this.model.toJSON() );

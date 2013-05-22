@@ -575,8 +575,7 @@ var App = App || {};
 						
 						var deleteRequest = localDatabase.db.transaction( ["Tovaru"] , "readwrite" ).objectStore("Tovaru").delete( cursor.key );
 						deleteRequest.onsuccess = function( ev ) {
-							
-							console.log("deleted id:" + cursor.key + " !");
+
 							
 						}
 					
