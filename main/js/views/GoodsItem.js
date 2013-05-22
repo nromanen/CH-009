@@ -51,9 +51,8 @@ var App = App || {};
 		},
 		close: function () {
 			var value = this.$input.val().trim();
-			 if ( isNaN ( value )  || value <0 || value == '') {
+			 if ( isNaN ( value )  || value <0 || value == '' || value.length > 5) {
 				this.$el.removeClass('editing');
-				alert(value);
 				this.render();
 				return;
 			}	

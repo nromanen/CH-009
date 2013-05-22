@@ -277,7 +277,7 @@
 		<script type="text/template" id="materials-storekeeper">
 		  	<td> <%= material %> </td>
 			<td> 
-				<span class="price"> <%= price %> </span>
+				<span class="price"> $<%= price %> </span>
 				<input type="text" value="<%= price %>" class="editPrice">
 			</td>
 			<td> <div class="edit"></div> </td>
@@ -286,7 +286,7 @@
 
 		<script type="text/template" id="materials-accountant">
 		  	<td> <%= material %> </td>
-			<td> <%= price %> </td>
+			<td> $<%= price %> </td>
 		</script>
 
 <!-- Goods View templates -->
@@ -456,6 +456,7 @@
         	<td> <div class="count"><%= count %></div> <input class="edit_units_count" type="text"> </td>
         	<td> <div class="edit"></div> </td>
         	<td> <div class="delete" title="Delete <%= units %> material"></div></td>
+
         	<td class='goodsItemPrice'> $<%=goodsItemPrice%> </td>
 				        
 		</script>	
@@ -465,7 +466,7 @@
         	<td><div class="units_in_Goods"><%= units %></div></td>
         	<td> <div class="count"><%= count %></div> </td>
         	<td class='goodsItemPrice'> $<%=goodsItemPrice%> </td>
-				        
+        
 		</script>
 		
 		<script type="text/template" id="goods-count-plus">
@@ -513,7 +514,12 @@
 		<script src="js/defaults.js"></script>
 		<script src="js/dbConnector.js"></script>
 
-		<script src="js/models/models.js"></script>
+		<script src="js/models/MaterialModel.js"></script>
+		<script src="js/models/UnitModel.js"></script>
+		<script src="js/models/UnitItemModel.js"></script>
+		<script src="js/models/GoodsModel.js"></script>
+		<script src="js/models/GoodsItemModel.js"></script>
+
 		<script src="js/collections/collections.js"></script>
 		
 		<script src="js/views/Materials.js"></script>

@@ -67,9 +67,11 @@ var App = App || {};
 		},
  		addUnitItem: function( quantity ) {
 
+
 			var that = this;
 			var found = this.collection.find( function( model ) {
-			    return model.get('material') === that.model.get('material');
+
+		    return model.get('material') === that.model.get('material');
 			});
 			
 			if ( found === undefined ) {
@@ -79,7 +81,7 @@ var App = App || {};
 				this.options.something.set( "unitPrice", this.options.something.get('unitPrice')+this.model.get( 'unitItemPrice' ) );
 			
 			} else {
-				
+
 				var sum = parseFloat( found.get( 'count' ) ) + quantity;
 				var newPrice = parseFloat( found.get( 'unitItemPrice' ) ) + this.model.get('price')*quantity;
 				console.log ('quantity: ' + quantity)
@@ -105,19 +107,22 @@ var App = App || {};
 		},
 		addQuantity: function () {
 			var quantity = this.$el.find('input').val();
-			if (quantity !== null) { 
+			if (quantity.length < 5) { 
 				
-				var clearQuantity = quantity.replace(/\s/g, ""); // delete all spaces
+				var clearQuantity =  Math.abs( quantity.replace(/\s/g, "") ); // delete all spaces, and make positive
 
 				if ( ( clearQuantity !== '' ) && ( clearQuantity !== null ) && ( !isNaN(clearQuantity) ) ) {
 
 				this.addUnitItem( parseFloat(clearQuantity) );
-
 				} else {
 					//do some error
+					this.$el.find('input').val('').focus();
 				}
 			}
-			else return false;
+			else {
+				this.$el.find('input').val('').focus();
+				return false;
+			}
 		},
 		saveUnitCollection: function () {
 

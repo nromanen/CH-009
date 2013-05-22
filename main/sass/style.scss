@@ -84,6 +84,7 @@ table tr td .edit_units_count, .editing .goods_name_id, .editing .unit_name,
 
 .edit {
     @extend .editor;
+    float:left;
     background: url('../img/edit16.png') no-repeat;
     opacity: 0.8;
 }
