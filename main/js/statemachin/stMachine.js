@@ -10,18 +10,22 @@ var App = App || {};
 
 				case "customer":
 					console.log("fire custumer")
+					App.Goods.off("add");
 					break;
 
 				case "accountant":
-
+					App.Goods.off("add");
+					App.Units.off("add");
 					break;
 
 				case "engineer":
-
+					App.Goods.off("add");
+					App.Units.off("add");
+					App.Materials.off("add");
 					break;
 
 				case "storekeeper":
-
+					App.Materials.off("add")
 					break;
 
 				default:

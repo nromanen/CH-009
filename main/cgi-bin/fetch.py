@@ -1,4 +1,4 @@
-git import cgi, json
+import cgi, json
 import psycopg2, sys, os
 
 postInputs = cgi.FieldStorage()
