@@ -229,3 +229,25 @@ table tr td .edit_units_count, .editing .goods_name_id, .editing .unit_name,
 .test {
   color: green;
 }
+
+/* line 144, ../sass/style.scss */
+.unit_name {
+  font-size: 22px;
+}
+
+/* line 147, ../sass/style.scss */
+.goods_name_id {
+  font-size: 22px;
+}
+
+/* line 150, ../sass/style.scss */
+.left {
+  float: left;
+  padding-left: 5px;
+}
+
+/* line 154, ../sass/style.scss */
+#addGoodsView {
+  float: left;
+  display: block;
+}
