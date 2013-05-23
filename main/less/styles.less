@@ -1,0 +1,231 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 17, ../../../../../Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+/* line 22, ../../../../../Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+html {
+  line-height: 1;
+}
+
+/* line 24, ../../../../../Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+ol, ul {
+  list-style: none;
+}
+
+/* line 26, ../../../../../Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 28, ../../../../../Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+/* line 30, ../../../../../Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q, blockquote {
+  quotes: none;
+}
+/* line 103, ../../../../../Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+/* line 32, ../../../../../Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+a img {
+  border: none;
+}
+
+/* line 116, ../../../../../Ruby200-x64/lib/ruby/gems/2.0.0/gems/compass-0.12.2/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+/* Vars */
+/* line 13, ../sass/style.scss */
+.left20 {
+  margin: 0 0 0 20px;
+}
+
+/* line 16, ../sass/style.scss */
+#userRole {
+  margin: 10px 0 0 0;
+  font-size: 18px;
+}
+
+/* line 20, ../sass/style.scss */
+.edit_count, .editPrice, table tr td .edit_units_count {
+  width: 20px;
+}
+
+/* line 27, ../sass/style.scss */
+.accordion-toggle .edit_goods_name, .accordion-toggle .edit_unit_name,
+table tr td .edit_count, table tr td .editPrice, table tr td .edit_count,
+table tr td .edit_units_count, .editing .goods_name_id, .editing .unit_name,
+.editing .count, .editing .price, #materialsContainer ul li .add_item .additional,
+#unitContainer ul li .add_item .additional {
+  display: none;
+}
+
+/* line 30, ../sass/style.scss */
+.editing .edit_goods_name, .editing .edit_unit_name, table tr.editing td .edit_count, table tr.editing td .editPrice, table tr.editing td .edit_units_count {
+  display: inline-block;
+}
+
+/* line 33, ../sass/style.scss */
+.nobullets {
+  list-style: none;
+}
+
+/* line 36, ../sass/style.scss */
+.icon-plus {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+/* line 40, ../sass/style.scss */
+.icon-plus:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+/* line 44, ../sass/style.scss */
+#unitContainer ul li .add_item .additional, #materialsContainer ul li .add_item .additional {
+  float: left;
+  height: 12px;
+}
+
+/* line 48, ../sass/style.scss */
+#unitContainer ul li .add_item .additional .next, #materialsContainer ul li .add_item .additional .next {
+  float: left;
+  padding-left: 10px;
+}
+
+/* line 52, ../sass/style.scss */
+#unitContainer ul li .add_item .additional input, #materialsContainer ul li .add_item .additional input {
+  width: 20px;
+  height: 12px;
+  font-size: 11px;
+}
+
+/* line 57, ../sass/style.scss */
+#unitContainer ul li .add_item .general, #materialsContainer ul li .add_item .general {
+  clear: both;
+  float: left;
+}
+
+/* line 61, ../sass/style.scss */
+#unitContainer ul li a, #materialsContainer ul li a {
+  cursor: pointer;
+}
+
+/* line 65, ../sass/style.scss */
+.editor, .edit_right, .edit_right:hover, .edit, .edit:hover, .delete, .delete:hover, .delete_unit, .delete_unit:hover, .delete_goods, .delete_goods:hover {
+  float: right;
+  position: relative;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+}
+
+/* line 74, ../sass/style.scss */
+.edit_right {
+  background: url("../img/edit16.png") no-repeat;
+  opacity: 0.8;
+}
+
+/* line 79, ../sass/style.scss */
+.edit_right:hover {
+  background: url("../img/edit16.png") no-repeat;
+  opacity: 1;
+}
+
+/* line 85, ../sass/style.scss */
+.edit {
+  float: left;
+  background: url("../img/edit16.png") no-repeat;
+  opacity: 0.8;
+}
+
+/* line 91, ../sass/style.scss */
+.edit:hover {
+  float: left;
+  background: url("../img/edit16.png") no-repeat;
+  opacity: 1;
+}
+
+/* line 98, ../sass/style.scss */
+.delete {
+  float: left;
+  background: url("../img/delete16.png") no-repeat;
+  opacity: 0.6;
+}
+
+/* line 104, ../sass/style.scss */
+.delete:hover {
+  float: left;
+  background: url("../img/delete16.png") no-repeat;
+  opacity: 1;
+}
+
+/* line 110, ../sass/style.scss */
+.delete_unit {
+  background: url("../img/delete.png") no-repeat;
+  opacity: 0.6;
+}
+
+/* line 115, ../sass/style.scss */
+.delete_unit:hover {
+  background: url("../img/delete.png") no-repeat;
+  opacity: 1;
+}
+
+/* line 121, ../sass/style.scss */
+.delete_goods {
+  background: url("../img/delete.png") no-repeat;
+  opacity: 0.6;
+}
+
+/* line 126, ../sass/style.scss */
+.delete_goods:hover {
+  background: url("../img/delete.png") no-repeat;
+  opacity: 1;
+}
+
+/* line 131, ../sass/style.scss */
+.error {
+  font-size: 10px;
+  color: red;
+  font-weight: bold;
+}
+
+/* line 140, ../sass/style.scss */
+.test {
+  color: green;
+}
