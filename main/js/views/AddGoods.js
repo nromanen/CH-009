@@ -1,15 +1,42 @@
 var App = App || {};
 (function () {
 
-	App.Views.AddGoods = Backbone.View.extend({
+	App.Views.AddGoodsButton = Backbone.View.extend({
+
+		el: 'div',
+		initialize: function() {
+			this.render();
+		},
+		events: {
+			'click .addGoodsButton' : 'showAddGoodsView'
+		},
+		template: _.template( $('#addGoodsButtonTemplate').html() ),
+		render: function() {
+			$('#products').append( this.template() );
+		},
+		showAddGoodsView: function () {
+			$('#addGoodsView').show();
+			$('#addGoodsView').find('input').focus();
+		}
+
+	});
+
+	App.Views.AddGoodsView = Backbone.View.extend({
 		
-		el: '#addGoodsView',
+		el: 'div',
 		events: {
 			'keypress input': 'inputKeypress',
-			'click .save-goods' : 'validateItem'
+			'click .add-goods' : 'validateItem',
+			'click .cancel-goods' : 'cancelGoods'
+		},
+		initialize: function () {
+			this.render();
+		},
+		template: _.template( $('#addGoodsViewTemplate').html() ),
+		render: function () {
+			$('#products').append( this.template() );
 		},
 		inputKeypress: function(e) {
-			
 			if (e.which === 13) {
 				this.validateItem();
 			}
@@ -65,11 +92,10 @@ var App = App || {};
 			$('#goods').val('');
 			$('#goods').focus();
 
+		},
+		cancelGoods: function () {
+			$('#addGoodsView').hide();
 		}		
-		
-		
-		
-
 		
 		});
 	
