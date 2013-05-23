@@ -4,7 +4,7 @@ import psycopg2, sys, os
 postInputs = cgi.FieldStorage()
 
 sys.stdout.write("Content-type: text/html \r\n\r\n")
-conn = psycopg2.connect("dbname='postgres' user='postgres' host='localhost' password='root' ") #port='5433'
+conn = psycopg2.connect("dbname='postgres' user='postgres' host='localhost' password='root' port='5433'") #port='5433'
 cur = conn.cursor()
 
 if postInputs['fetchType'].value == "1":
