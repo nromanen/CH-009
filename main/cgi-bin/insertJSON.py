@@ -9,7 +9,11 @@ sys.stdout.write("Content-type: text/html \r\n\r\n")
 materials = json.loads(postInputs['materials'].value)
 units = json.loads(postInputs['units'].value)
 goods = json.loads(postInputs['goods'].value) 
+<<<<<<< HEAD
 conn = psycopg2.connect("dbname='postgres' user='postgres' host='localhost' password='root' ")
+=======
+conn = psycopg2.connect("dbname='postgres' user='postgres' host='localhost' password='root' port='5433'")
+>>>>>>> 08a229965ddf57aa7ed3aee17757a8e429996055
 
 
 cur = conn.cursor()
