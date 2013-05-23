@@ -229,3 +229,13 @@ table tr td .edit_units_count, .editing .goods_name_id, .editing .unit_name,
 .test {
   color: green;
 }
+
+/* line 144, ../sass/style.scss */
+.unit_name {
+  font-size: 22px;
+}
+
+/* line 147, ../sass/style.scss */
+.goods_name_id {
+  font-size: 22px;
+}
