@@ -42,14 +42,14 @@ var App = App || {};
 		},
 		close: function () {
 			var value = this.$el.find('input').val().trim();
-			if ( isNaN ( value ) || value <=0 || value == '') {
+			if ( isNaN ( value ) || value <=0 || value == '' || value.length > 5) {
+				this.$el.find('input').val('');
 				this.$el.removeClass('editing');
 				//this.render();
 				return;
 			};	
-			this.options.unitModel.set('unitPrice', this.options.unitModel.get('unitPrice')-this.model.get('unitItemPrice'));
-			App.Events.trigger('newMaterialCount', this.model, value);
-			this.options.unitModel.set('unitPrice', parseFloat( ( this.options.unitModel.get('unitPrice') + this.model.get('unitItemPrice') ).toFixed(2) ) ) ;			
+			this.model.setCount(value);
+			this.options.unitModel.refreshUnitPrice();
 			App.dbConnector.changeCount( this.options.unitModel );
 			this.$el.removeClass('editing');
 			

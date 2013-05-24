@@ -104,14 +104,14 @@ var App = App || {};
 			var quantity = this.$el.find('input').val();
 
 			if ( quantity !== null ) {
-				var clearQuantity = quantity.replace(/\s/g, ""); // delete all spaces
+				var clearQuantity = Math.abs( quantity.replace(/\s/g, "") ); // delete all spaces
 				
 				if ( ( clearQuantity !== '' ) && ( clearQuantity !== null ) && ( !isNaN(clearQuantity) ) ) {
 
 					this.addGoodsItem( clearQuantity );
-				
 				}
 				else{
+					this.$el.find('input').val('').focus();
 					//do some error
 				}
 

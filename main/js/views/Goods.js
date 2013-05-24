@@ -129,10 +129,11 @@ var App = App || {};
 
 		initialize: function () {
 			this.collection.on('add', this.render, this);
-			
+			this.render();
 		},
 		render: function () {
-				
+			
+			$('#products').append( this.el );	
             this.$el.html('');
           	this.collection.each( this.addOne, this );
 			return this;
