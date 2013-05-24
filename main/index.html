@@ -10,40 +10,29 @@
 		<link href="css/modern.css" rel="stylesheet">
 		<!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
 	</head>
-	<body class="metrouicss grid">
+	<body class="metrouicss">
 	<div class="container-navbar"></div>
 	<div  class="container"></div>
-	
 <!-- NavBar template --> 
 
 		<script type="text/template" id="navbar">
-			<div class="nav-bar bg-color-white" style="margin-bottom:20px;">
+			<div class="grid">
+			<div class="nav-bar bg-color-white row" style="margin-bottom:20px;">
 				<nav class="nav-bar-inner">
-					<div style="width: 570px; margin: 0 auto;">
+					<div class="offset4">
 						<span class="element">Warehouse</span>
 						<span class="divider"></span>
 						<ul class="menu">
 							
 			                
 			            
+						 <button class="mini"><a id="fetchData">Fetch Data</a></button>
+						 <button class="mini"><a id="sendData" href="#sendData">Send Data</a></button>
+						 <button class="mini"><a id="clearDB">Delete Database</a></button>
+						 <button class="mini"><a id="saveCollectionsToDb">Save to Database</a></button>
+						 <button type="button" id="login"  class="default">login</button>
 
-						<button type="button" id="login"  class="default">login</button>
-
-						<div>
-						  <a id="actionButton" data-toggle="dropdown" href="#">
-						    Action
-						    <span class="caret"></span>
-						  </a>
-						  <ul class="dropdown-menu">
-						  <li data-role="dropdown"><a id="actionButton" data-toggle="dropdown" href="#">
-						  	<li><a id="fetchData">Fetch Data</a></li>
-							<li><a id="sendData" href="#sendData">Send Data</a></li> 
-							<li><a id="clearDB">Delete Database</a></li>
-							<li><a id="saveCollectionsToDb">Save to Database</a></li>
-						  </ul>
-						  </li>
-						  </ul>
-						</div>
+						
 
 						<div class="pull-right" id="userRole">
 							<%= user %>
@@ -51,10 +40,11 @@
 
 					</div>
 				</nav>
-			</div>		
+			</div>	
+			</div>	
 		</script>
 
-		<script type="text/template" id="chooseRole">
+		<!-- <script type="text/template" id="chooseRole">
 			<div class="grid">
 			<div class="row" style="margin-top:15%;">
 				<div class="span5"></div>
@@ -70,18 +60,19 @@
 				</div>
 				<div class="span5"></div>
 			</div>
-		</script>
+		</script> -->
 
 <!-- User form template -->
 
 	<script type="text/template" id="loginForm">
+			<div class="grid">
 			<div class="row" style="margin-top:15%;">
 
-				<div class="span12"><h3 class="text-center">Welcome!</h3>
+				<div class="span6 offset3">
 				<div class="row">
 					<div >
-					<div class="span5 offset3 ">
-					
+					<div class="span6 offset3 ">
+					<h3 id="welcome">Welcome!</h3>
 						<form class="form-horizontal">
 	  						<div class="control-group">
 		    					<div class="input-control text span2">
@@ -103,6 +94,7 @@
 						</form>
 					</div>
 				<div>
+			</div>
 			</div>
 		</script>
 		
@@ -517,6 +509,7 @@
 				</div> 
 			</div>	
 		</script>
+
 
 		<script src="js/lib/jquery.js"></script>
 		<script src="js/lib/boostrap/bootstrap.min.js"></script>
