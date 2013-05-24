@@ -260,7 +260,7 @@ var App = App || {};
 			$('.container').append($('#addUnit2GoodsTemplate').html()); 
 			var viewProducts = new App.Views.GoodsList( { collection: App.Goods } );
 			$('.buttonPlace').html( $('#addUnit2GoodsButton').html() );
-
+			$('#addGoodsView').css({'display': 'none'});
 			// rendering the content of the Units Tab
 			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
 			viewUnits.render();
