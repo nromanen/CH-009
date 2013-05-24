@@ -249,5 +249,5 @@ table tr td .edit_units_count, .editing .goods_name_id, .editing .unit_name,
 /* line 154, ../sass/style.scss */
 #addGoodsView {
   float: left;
-  display: block;
+  display: none;
 }
