@@ -10,30 +10,38 @@
 		<link href="css/modern.css" rel="stylesheet">
 		<!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
 	</head>
-	<body class="metrouicss">
+	<body class="metrouicss grid">
 	<div class="container-navbar"></div>
 	<div  class="container"></div>
 	
 <!-- NavBar template --> 
 
 		<script type="text/template" id="navbar">
-			<div class="navbar navbar-static-top" style="margin-bottom:20px;">
-				<nav class="navbar-inner">
+			<div class="nav-bar bg-color-white" style="margin-bottom:20px;">
+				<nav class="nav-bar-inner">
 					<div style="width: 570px; margin: 0 auto;">
-						<a class="brand"> Warehouse </a>
+						<span class="element">Warehouse</span>
+						<span class="divider"></span>
+						<ul class="menu">
+							
+			                
+			            
 
-						<button type="button" id="login" class="btn btn-primary pull-right left20" data-loading-text="Loading...">login</button>
+						<button type="button" id="login"  class="default">login</button>
 
-						<div class="btn-group pull-right left20">
-						  <a class="btn dropdown-toggle"  id="actionButton" data-toggle="dropdown" href="#">
+						<div>
+						  <a id="actionButton" data-toggle="dropdown" href="#">
 						    Action
 						    <span class="caret"></span>
 						  </a>
 						  <ul class="dropdown-menu">
-						  	<li><a id="fetchData"><span class="label label-success">Fetch Data</span></a></li>
-							<li><a id="sendData" href="#sendData"><span class="label label-success">Send Data</span></a></li> 
-							<li><a id="clearDB"><span class="label label-important">Delete Database</span></a></li>
-							<li><a id="saveCollectionsToDb"><span class="label label-info">Save to Database</span></a></li>
+						  <li data-role="dropdown"><a id="actionButton" data-toggle="dropdown" href="#">
+						  	<li><a id="fetchData">Fetch Data</a></li>
+							<li><a id="sendData" href="#sendData">Send Data</a></li> 
+							<li><a id="clearDB">Delete Database</a></li>
+							<li><a id="saveCollectionsToDb">Save to Database</a></li>
+						  </ul>
+						  </li>
 						  </ul>
 						</div>
 
@@ -47,6 +55,7 @@
 		</script>
 
 		<script type="text/template" id="chooseRole">
+			<div class="grid">
 			<div class="row" style="margin-top:15%;">
 				<div class="span5"></div>
 				<div class="span2">
@@ -57,6 +66,7 @@
 						<li> <a href="#engineer"> Engineer </a> </li>
 						<li> <a href="#storekeeper"> Storekeeper </a> </li>
 					</ul>
+				</div>
 				</div>
 				<div class="span5"></div>
 			</div>
@@ -516,6 +526,7 @@
 
 		<script src="js/lib/underscore.js"></script>
 		<script src="js/lib/backbone.js"></script>
+		<script src="js/lib/modern/dropdown.js"></script>
 		
 		<script src="js/defaults.js"></script>
 		<script src="js/dbConnector.js"></script>
