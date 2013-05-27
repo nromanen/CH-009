@@ -17,11 +17,11 @@ var App = App || {};
 			App.Events.on ( 'openEngineer', this.openEngineer, this );
 			App.Events.on ( 'openStorekeeper', this.openStorekeeper, this );
 			App.Events.on ( 'sendData', this.sendData, this );
-		
-		
 		},
 		events:{
 			"click #loginButton":"loginUser",
+			"click #addGoodsButton" : "showAddGoodsView"
+
 		},
 		loginUser: function(){
 				var userDate = [];
@@ -249,27 +249,17 @@ var App = App || {};
 			App.userRole = 'engineer';
 			this.renderBeginning( 'Engineer' , App.userRole + 'Tab' );
 			
-		
-			// rendering the content of the Products Tab
-			var viewProducts = new App.Views.GoodsList( { collection: App.Goods } );
-			
+			// rendering the content of the Products Tab			
 			$('#TabContent').append ( _.template ( $('#tab').html(), { 
 				id      : 'products',
 				active  : ' in active',
-			}) ); 
+			}) );
 
-			$('#products').html( $( '#templateGoods' ).html() );
+			var addGoodsButton = new App.Views.AddGoodsButton();
+			var addGoodsView = new App.Views.AddGoodsView({ collection: App.Goods });
 
-			$('#addGoodsView').on('shown', function () {
-			    $('#addGoodsView').find('input').focus();
-			});
-
-			$('.container').append($('#addUnit2GoodsTemplate').html());
-			var addGoods2 = new App.Views.AddGoods ( { collection: App.Goods } );
-
-			$('#products').append( viewProducts.el );
-			
-			viewProducts.render();
+			$('.container').append($('#addUnit2GoodsTemplate').html()); 
+			var viewProducts = new App.Views.GoodsList( { collection: App.Goods } );
 			$('.buttonPlace').html( $('#addUnit2GoodsButton').html() );
 
 			// rendering the content of the Units Tab
@@ -336,10 +326,13 @@ var App = App || {};
 			$('.content').append( $('#' + tabName ).html() );
 			$('.content').append( App.HTML.tabContentHeader );
 
+
+		},
+		showAddGoodsView: function () {
+			 console.log('test');
+			 $('#addGoodsView').show();
 		}
 
-	
-	
 
     });
     

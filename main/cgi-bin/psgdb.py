@@ -2,8 +2,7 @@ import cgi
 import psycopg2, sys, os
 
 form = cgi.FieldStorage()
-
-conn = psycopg2.connect("dbname='postgres' user='postgres' host='localhost' password='root'")
+conn = psycopg2.connect("dbname='postgres' user='postgres' host='localhost' password='root' port='5432'")
 
 cur = conn.cursor()
 cur.execute("DROP TABLE IF EXISTS peple, materials, units, products")
