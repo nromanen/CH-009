@@ -4,16 +4,13 @@ var App = App || {};
 
 	App.Router = Backbone.Router.extend({
 
-		
-
 		routes: {
-			''            : 'openEngineer',
+			''            : 'openCustomer',
 			'customer'    : 'chooseRole',
 			'accountant'  : 'openAccountant',
 			'engineer'    : 'openEngineer',
 			'storekeeper' : 'openStorekeeper',
 			'sendData'	  : 'sendData'
-
 		},
 		sendData: function () {
 			console.log('sendData');
