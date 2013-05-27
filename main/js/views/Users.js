@@ -324,19 +324,11 @@ var App = App || {};
 			$('.container').append( App.HTML.Row );
 			$('.content').append( $('#' + tabName ).html() );
 			$('.content').append( App.HTML.tabContentHeader );
-
-<<<<<<< HEAD
 		},
 		showAddGoodsView: function () {
 			 console.log('test');
 			 $('#addGoodsView').show();
 		}
-=======
-		}
-
-	
-	
->>>>>>> a29a9117e3a89d86f89e36c7d1743bb197acc4b2
 
     });
     

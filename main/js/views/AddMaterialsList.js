@@ -109,7 +109,6 @@ var App = App || {};
 			var quantity = this.$el.find('input').val();
 			if (quantity.length < 5) { 
 				
-
 				var clearQuantity =  Math.abs( quantity.replace(/\s/g, "") ); // delete all spaces, and make positive
 
 
@@ -117,7 +116,6 @@ var App = App || {};
 
 						this.addUnitItem( parseFloat(clearQuantity) );
 
-				this.addUnitItem( parseFloat(clearQuantity) );
 				} else {
 					//do some error
 					this.$el.find('input').val('').focus();
@@ -127,12 +125,6 @@ var App = App || {};
 				this.$el.find('input').val('').focus();
 				return false;
 			}
-
-				} else {
-					//do some error
-
-				}
-			}else {return false};
 
 		},
 		saveUnitCollection: function () {
