@@ -18,8 +18,8 @@ var App = App || {};
 		showAddUnitsView: function() {
 			$('#addUnitsView').show();
 			$('#addUnitsView').find('input').focus();
-			$('.content').on('mouseleave', function() { $('#addUnitsView').hide() });
-			$('#addUnitsView').on('mouseenter', function() { $('#addUnitsView').show() });
+			$('#units .accordion').on('click', function() { $('#addUnitsView').hide() });
+			//$('.content').on('mouseover', function() { $('#addUnitsView').show() });
 		}
 
 	});
@@ -102,8 +102,8 @@ var App = App || {};
 			this.clearTextBoxes();
 		},
 		clearTextBoxes: function() {
-			$('#unit').val('');
-			$('#unit').focus();
+			$('#unitsName').val('');
+			$('#unitsName').focus();
 		},
 		cancelUnits: function() {
 			$('#unitsName').val('').focus();

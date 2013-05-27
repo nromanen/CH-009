@@ -65,10 +65,10 @@ var App = App || {};
 		requestUnitDelete: function() {
 			foundFlag=this.model.requestUnitDelete();
 			if (foundFlag === true) {
-					$('#newUnitBtn').after('<div class="error">You CANNOT DELETE this unit, because it is already used in Goods!</div>');
-						setTimeout( function() { 
-							$('.error').fadeOut('slow')
-						}, 2000);
+					$('#units .accordion').before('<div class="alert alert-error">You CANNOT DELETE this unit, because it is already used in Goods!<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+					setTimeout( function() { 
+						$('.close').click();
+					}, 2000);
 				} else {
 					if ( confirm('Are you sure you want to delete this Unit?') ) {
 						this.model.deleteUnit();
