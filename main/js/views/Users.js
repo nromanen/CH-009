@@ -265,8 +265,7 @@ var App = App || {};
 			$('#addGoodsView').css({'display': 'none'});
 			
 			// rendering the content of the Units Tab
-			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
-			viewUnits.render();
+			
 			$('#TabContent').append ( _.template ( $('#tab').html(), { 
 				id      : 'units',
 				active  : '',
@@ -276,14 +275,17 @@ var App = App || {};
 			var addUnitsView = new App.Views.AddUnitsView({ collection: App.Units });
 
 
-			$('.container').append(  $('#addMaterial2UnitModal').html());
-
+			$('.container').append( $('#addMaterial2UnitModal').html() );
+			
 			$('#units').append( $( '#addNewUnitButton' ).html() );
 			$('#units').append( $( '#addNewUnitModal' ).html() );
 
 			$('#units').append( $( '#addMaterial2UnitModal' ).html() );
 			//var addNewUnits = new App.Views.AddUnit( { collection: App.Materials } );
+			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
+			viewUnits.render();
 			$('#units').append( viewUnits.el );
+			$('#addUnitsView').css({'display': 'none'});
 			$('#login').html('Quit').click(function(){ window.location.replace('/#'); });
 			$('#roles').remove();
 

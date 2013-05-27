@@ -161,7 +161,6 @@ var App = App || {};
 			this.render();
 		},
 		render: function () {
-			
 			$('#units').append( this.el );	
             this.$el.html('');
           	this.collection.each( this.addOne, this );
