@@ -67,11 +67,10 @@ var App = App || {};
 		},
  		addUnitItem: function( quantity ) {
 
-
+		    return model.get('material') === that.model.get('material');
 			var that = this;
 			var found = this.collection.find( function( model ) {
-
-		    return model.get('material') === that.model.get('material');
+			    return model.get('material') === that.model.get('material');
 			});
 			
 			if ( found === undefined ) {
@@ -105,13 +104,18 @@ var App = App || {};
 			$('#addMaterial2Unit').find('.unitItems_list').html( materialsInUnitSentence.substr(2) );
 
 		},
+
 		addQuantity: function () {
 			var quantity = this.$el.find('input').val();
 			if (quantity.length < 5) { 
 				
+
 				var clearQuantity =  Math.abs( quantity.replace(/\s/g, "") ); // delete all spaces, and make positive
 
-				if ( ( clearQuantity !== '' ) && ( clearQuantity !== null ) && ( !isNaN(clearQuantity) ) ) {
+
+					if ( validateMaterialConfirmQuantity (clearQuantity) ) {
+
+						this.addUnitItem( parseFloat(clearQuantity) );
 
 				this.addUnitItem( parseFloat(clearQuantity) );
 				} else {
@@ -123,19 +127,19 @@ var App = App || {};
 				this.$el.find('input').val('').focus();
 				return false;
 			}
+
+				} else {
+					//do some error
+
+				}
+			}else {return false};
+
 		},
 		saveUnitCollection: function () {
 
 			//App.dbConnector.EditUnitItem ( this.options.something );
 			console.log('App.dbConnector.EditUnitItem triggered!');
 
-		},
-		
-		
-		plus: function () {
-		
-		
-		
 		}
 	});
 	

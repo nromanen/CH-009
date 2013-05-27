@@ -53,10 +53,9 @@ var App = App || {};
 			var delMat = this.model.get("material");
 			var unitModels = App.Units.models;
 
-			for(var i = 0; i < unitModels.length; i++ ) {
-				var arr = unitModels[i].get("mcollection").toJSON();
+			ValidateMaterialDelete( delMat, unitModels );
 
-				for (var j = 0; j < arr.length; j++) {
+			 for (var j = 0; j < arr.length; j++) {
 
 					if (arr[j].material === delMat) {
 
@@ -64,7 +63,7 @@ var App = App || {};
 						
 					};
 				};
-			};
+			
 			
 			if ( confirm('Are you sure you want to delete this product?') ) {
 				App.Events.trigger( 'destroyModel', this.model );
@@ -120,39 +119,24 @@ var App = App || {};
 			this.$el.find('.error').remove();
 			var strMaterial = $('#material').val().trim(); 	
 			var strPrice = $('#price').val().trim();
-			
+			 
+			if(ValidateMaterialPrice( strMaterial, strPrice)) {
 
-			if ( strMaterial === "" ) {
+				for ( var i = 0; i < this.collection.length; i++ ) {
+					
+					if ( strMaterial === this.collection.models[i].get ( 'material' ) ) {
 
-				$('#myModalLabel').after('<div class="error">Write name</div>');
-				$('#material').val('');
-				$('#material').focus();
-				return false;
-			}
-			
-			for ( var i = 0; i < this.collection.length; i++ ) {
-				
-				if ( strMaterial === this.collection.models[i].get ( 'material' ) ) {
-
-					$('#myModalLabel').after('<div class="error">Material named ' + strMaterial + ' already exists! There should be NO material names repeated!</div>');
-					$('#material').focus();
-					return false;
+						$('#myModalLabel').after('<div class="error">Material named ' + strMaterial + ' already exists! There should be NO material names repeated!</div>');
+						$('#material').focus();
+						return false;
+						
+					}
 					
 				}
-				
+
+				$('.close-addNewMaterial').click();
+				this.addItem ( strMaterial, strPrice );
 			}
-			
-			if ( isNaN( strPrice ) || strPrice < 0 || strPrice === "" )  {
-			
-				$('#myModalLabel').after('<div class="error">Price is incorrectly indicated!</div>');
-				$('#price').val('');
-				$('#price').focus();
-				return false;
-			
-			}
-			
-			$('.close-addNewMaterial').click();
-			this.addItem ( strMaterial, strPrice );
 		
 		},
 		addItem: function( strMaterial, strPrice ) {

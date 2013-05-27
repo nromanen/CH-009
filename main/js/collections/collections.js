@@ -176,8 +176,9 @@ var App = App || {};
 				}
 
 			})
+
 		}
-	
+		
 	});
 	
 	App.Collections.UnitItems = Backbone.Collection.extend({	

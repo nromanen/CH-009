@@ -11,7 +11,6 @@ units = json.loads(postInputs['units'].value)
 goods = json.loads(postInputs['goods'].value) 
 conn = psycopg2.connect("dbname='postgres' user='postgres' host='localhost' password='root' ")
 
-
 cur = conn.cursor()
 cur.execute("DROP TABLE IF EXISTS materials, units, products")
 cur.execute("CREATE TABLE materials ( id SERIAL PRIMARY KEY, nameMaterial varchar, priceMaterial numeric);")
