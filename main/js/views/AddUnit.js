@@ -2,12 +2,41 @@ var App = App || {};
 
 (function () {
 
-	App.Views.AddUnit = Backbone.View.extend({
-		el: '#addNewUnit',
-		tagName: 'addNewUnit',
+	App.Views.AddUnitsButton = Backbone.View.extend({
+
+		el: 'div',
+		initialize: function(){
+			this.render();
+		},
+		events: {
+			'click .addUnitsButton' : 'showAddUnitsView'
+		},
+		template: _.template( $('#addUnitsButtonTemplate').html() ),
+		render: function() {
+			$('#units').append( this.template() );
+		},
+		showAddUnitsView: function() {
+			$('#addUnitsView').show();
+			$('#addUnitsView').find('input').focus();
+		}
+
+	});
+
+
+	App.Views.AddUnitsView = Backbone.View.extend({
+
+		el: 'div',
 		events: {
 			'keypress input' : 'inputKeypress',
-			'click .save-material' : 'validateItem'
+			'click .add-units' : 'validateItem',
+			'click .cancel-units' : 'cancelUnits'
+		},
+		initialize: function() {
+			this.render();
+		},
+		template: _.template( $('#addUnitsViewTemplate').html() ),
+		remove: function() {
+			$('#units').append( this.template() );
 		},
 		inputKeypress: function(e) {
 			if (e.which === 13) {
@@ -66,6 +95,9 @@ var App = App || {};
 		clearTextBoxes: function() {
 			$('#unit').val('');
 			$('#unit').focus();
+		},
+		cancelUnits: function() {
+			$('addUnitsView').hide();
 		}
 	});
 

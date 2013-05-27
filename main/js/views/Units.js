@@ -158,9 +158,11 @@ var App = App || {};
 		className: 'accordion',
 		initialize: function () {
 			this.collection.on('add', this.render, this);
+			this.render();
 		},
 		render: function () {
 			
+			$('#units').append( this.el );	
             this.$el.html('');
           	this.collection.each( this.addOne, this );
 			return this;

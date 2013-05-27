@@ -19,8 +19,10 @@ var App = App || {};
 			App.Events.on ( 'sendData', this.sendData, this );
 		},
 		events:{
-			"click #loginButton":"loginUser",
-			"click #addGoodsButton" : "showAddGoodsView"
+			'click #loginButton' : 'loginUser',
+			'click #addGoodsButton' : 'showAddGoodsView',
+			'click #addUnitsButton' : 'showAddUnitsView'
+
 		},
 		loginUser: function(){
 				var userDate = [];
@@ -261,6 +263,7 @@ var App = App || {};
 			var viewProducts = new App.Views.GoodsList( { collection: App.Goods } );
 			$('.buttonPlace').html( $('#addUnit2GoodsButton').html() );
 			$('#addGoodsView').css({'display': 'none'});
+			
 			// rendering the content of the Units Tab
 			var viewUnits = new App.Views.UnitsList( { collection: App.Units } );
 			viewUnits.render();
@@ -268,15 +271,18 @@ var App = App || {};
 				id      : 'units',
 				active  : '',
 			}) );
+			
+			var addUnitsButton = new App.Views.AddUnitsButton();
+			var addUnitsView = new App.Views.AddUnitsView({ collection: App.Units });
+
+
+			$('.container').append(  $('#addMaterial2UnitModal').html());
+
 			$('#units').append( $( '#addNewUnitButton' ).html() );
 			$('#units').append( $( '#addNewUnitModal' ).html() );
 
-			$('#addNewUnit').on('shown', function () {
-			    $('#addNewUnit').find('input').focus();
-			});
-
 			$('#units').append( $( '#addMaterial2UnitModal' ).html() );
-			var addNewUnits = new App.Views.AddUnit( { collection: App.Materials } );
+			//var addNewUnits = new App.Views.AddUnit( { collection: App.Materials } );
 			$('#units').append( viewUnits.el );
 			$('#login').html('Quit').click(function(){ window.location.replace('/#'); });
 			$('#roles').remove();
@@ -329,6 +335,9 @@ var App = App || {};
 		showAddGoodsView: function () {
 			 console.log('test');
 			 $('#addGoodsView').show();
+		},
+		showAddUnitsView: function() {
+			$('addUnitsView').show();
 		}
 
     });
