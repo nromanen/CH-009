@@ -130,7 +130,7 @@
 
 <!-- Button templates -->
 
-		<script type="text/template" id="addNewUnitButton">
+		<script type="text/template" id="addUnitsButton">
 			<a href="#addNewUnit" role="button" class="btn btn-info" id="newUnitBtn" data-toggle="modal"><i class="icon-white icon-plus"></i> New Unit</a>
 			<div class="clear"></div>
 			<br>
@@ -240,6 +240,28 @@
 				</span>
 				<span class="left">
 					<button class="btn btn-small btn-danger cancel-goods"> Cancel </button>
+				</span>
+			 </div>	
+			<div class="clearfix"></div><br>
+        </script>
+
+        <script type="text/template" id="addUnitsButtonTemplate">
+			<div class="left">
+		 	 	<button class="btn btn-info addUnitsButton" data-toggle="modal"><i class="icon-white icon-plus"></i> New Units</button>
+			 </div>	
+			 <div class="clearfix"></div><br>
+		</script>
+
+		<script type="text/template" id="addUnitsViewTemplate">
+			 <div id="addUnitsView">
+			 	<span class="left">
+			 		<input class="textbox span2" id="units" type="text">
+			 	</span>
+				<span class="left">
+					<button class="btn btn-small btn-success add-units"> Add </button>
+				</span>
+				<span class="left">
+					<button class="btn btn-small btn-danger cancel-units"> Cancel </button>
 				</span>
 			 </div>	
 			<div class="clearfix"></div><br>
