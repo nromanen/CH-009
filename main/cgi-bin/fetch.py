@@ -1,10 +1,12 @@
-git import cgi, json
+import cgi, json
 import psycopg2, sys, os
 
 postInputs = cgi.FieldStorage()
 
 sys.stdout.write("Content-type: text/html \r\n\r\n")
+
 conn = psycopg2.connect("dbname='postgres' user='postgres' host='localhost' password='root' ")
+
 
 cur = conn.cursor()
 

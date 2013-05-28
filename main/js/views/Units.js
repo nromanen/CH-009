@@ -62,8 +62,10 @@ var App = App || {};
 			$('#addMaterial2Unit').find('.unit_text').html( '<b>' + this.model.get('name') + '</b> already contains: <span class="unitItems_list">' + materialsInUnitSentence.substr(2) + '</span>' );
 
 		},
+
 		requestUnitDelete: function() {
 			foundFlag=this.model.requestUnitDelete();
+
 			if (foundFlag === true) {
 					$('#newUnitBtn').after('<div class="error">You CANNOT DELETE this unit, because it is already used in Goods!</div>');
 						setTimeout( function() { 

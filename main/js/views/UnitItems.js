@@ -42,7 +42,8 @@ var App = App || {};
 		},
 		close: function () {
 			var value = this.$el.find('input').val().trim();
-			if ( isNaN ( value ) || value <=0 || value == '') {
+			if ( isNaN ( value ) || value <=0 || value == '' || value.length > 5) {
+				this.$el.find('input').val('');
 				this.$el.removeClass('editing');
 				//this.render();
 				return;

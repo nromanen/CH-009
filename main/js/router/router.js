@@ -4,8 +4,6 @@ var App = App || {};
 
 	App.Router = Backbone.Router.extend({
 
-		
-
 		routes: {
 			''            : 'openCustomer',
 			'customer'    : 'chooseRole',
@@ -13,7 +11,6 @@ var App = App || {};
 			'engineer'    : 'openEngineer',
 			'storekeeper' : 'openStorekeeper',
 			'sendData'	  : 'sendData'
-
 		},
 		sendData: function () {
 			console.log('sendData');
@@ -25,6 +22,7 @@ var App = App || {};
 		},
 		openCustomer: function () {
 			console.log("2");
+			App.StateMachine.execut("customer")
 			App.Events.trigger( 'openCustomer' );
 		},
 		openAccountant: function () {
@@ -33,6 +31,7 @@ var App = App || {};
 		},
 		openEngineer: function () {
 			console.log("4");
+				App.StateMachine.execut("engineer");
 			App.Events.trigger( 'openEngineer' );
 		},
 		openStorekeeper: function () {
