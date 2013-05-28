@@ -17,6 +17,7 @@ var App = App || {};
 		showAddGoodsView: function () {
 			$('#addGoodsView').show();
 			$('#addGoodsView').find('input').focus();
+			$('#products .accordion-heading').on('click', function() { $('#addGoodsView').hide() });
 		}
 
 	});
@@ -51,7 +52,7 @@ var App = App || {};
 					setTimeout( function() { 
 						$('.close').click();
 					}, 2000);
-					
+
 				$('#goods').val('');
 				$('#goods').focus();
 				return false;
@@ -95,7 +96,7 @@ var App = App || {};
 
 		},
 		cancelGoods: function () {
-			$('#addGoodsView').hide();
+			$('#goods').val('').focus();
 		}		
 		
 		});

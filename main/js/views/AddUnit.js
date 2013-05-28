@@ -19,7 +19,7 @@ var App = App || {};
 			$('#addUnitsView').show();
 			$('#addUnitsView').find('input').focus();
 			$('#units .accordion').on('click', function() { $('#addUnitsView').hide() });
-			//$('.content').on('mouseover', function() { $('#addUnitsView').show() });
+			
 		}
 
 	});
