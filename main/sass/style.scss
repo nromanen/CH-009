@@ -192,7 +192,12 @@ body{
     cursor: pointer;
     position: relative;
     right: 30px;
-    left: 520px;
-    top: -10px;
-    display: inline;  
+    left: 400px;
+    top: -30px;
+    display: inline; 
+    margin-top:-3px; 
+}
+#products .accordion-heading {
+    height: 40px;
+    overflow: hidden;
 }
