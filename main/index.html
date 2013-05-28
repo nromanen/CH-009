@@ -55,17 +55,17 @@
 					<div >
 					<div class="span5 offset3 ">
 					
-						<form class="form-horizontal">
+						<form class="form-horizontal" id="loginForm2">
   						<div class="control-group">
     					<label class="control-label" for="inputLogin">Login</label>
     					<div class="controls">
-      					<input type="text" id="inputLogin" placeholder="Login">
+      					<input type="text" id="inputLogin" placeholder="Login" name="login">
     					</div>
   						</div>
   						<div class="control-group">
     					<label class="control-label" for="inputPassword">Password</label>
     					<div class="controls">
-      					<input type="password" id="inputPassword" placeholder="Password">
+      					<input type="password" id="inputPassword" placeholder="Password" name="pswd">
     					</div>
   						</div>
   						<div class="control-group">
@@ -171,7 +171,7 @@
 				  </div>
 				  <div class="modal-body">
 				    	
-					Unit name: <input class="textbox" id="unit" type="text">
+					Unit name: <input class="textbox" id="unit" class="required" type="text">
 
 				  </div>
 				  <div class="modal-footer">
@@ -339,10 +339,13 @@
 		<script type="text/template" id="goods-name-customer">
 			<div class="goods_holder">
 				<div class="accordion-heading">
-			      <a class="accordion-toggle" data-toggle="collapse" data-parent="#goods_holder" href="#<%= hrefId %>">
+			      <a class="accordion-toggle " style="height:5px" data-toggle="collapse" data-parent="#goods_holder" href="#<%= hrefId %>">
 			        <span id="<%= hrefId %>_goodsId" class="goods_name_id"><%= nameG %></span>
+
 			      </a>
+			      <span class="shoping"><i class="icon-shopping-cart"></i></span>
 			    </div>
+
 	
 			</div>
 			<div class="clear"></div>	
@@ -390,6 +393,34 @@
 			    </table> 
 			</div>			 
 		</script>
+	
+		<script type="text/template" id="basket-table">
+			<div class="accordion-inner">
+			   <table class="table">
+					<thead>
+						<tr>
+							<th> ItemsName </th>
+							<th> Quantity </th>
+							<th> Price total </th>
+							<th> Delete </th>
+						</tr>
+					</thead>
+					<tbody id="basket_tableRow" class="holder">						
+
+			            <tr>	
+			        		<td colspan="4" class="colspan4">
+								<a href="#"  class="btn btn-info btn-small "><i class="icon-white icon-plus"></i>Confirm</a>
+							</td>
+							<td>
+								Unit price: <b class='unitPrice'>$</b>
+							</td>
+			        	</tr>			
+					</tbody>			    	
+			    </table> 
+			</div>			 
+		</script>
+
+
 
 		<script type="text/template" id="materials-row-in-unit">
         	<td> <%= material %> </td>
@@ -403,6 +434,19 @@
         </script>
 
 <!-- other templates -->
+		<script type="text/template" id="basket">
+        	<td><%= itemsName %></td>
+        	    <td><span class="count"><%= counts %></span>
+        		<input type="text" class="edit_count" value="<%= counts %>"></td>
+        	   	<td><span> $<%=price%></span></td>
+        	 <td><div class="delete" title=""></div></td>
+        </script>		
+
+
+
+
+
+
 
 <!-- old templates -->
 
@@ -486,7 +530,7 @@
         	<td> <div class="delete" title="Delete <%= units %> material"></div></td>
 
         	<td class='goodsItemPrice'> $<%=goodsItemPrice%> </td>
-				        
+
 		</script>	
 
 		<script type="text/template" id="goods-count-customer">
@@ -494,7 +538,9 @@
         	<td><div class="units_in_Goods"><%= units %></div></td>
         	<td> <div class="count"><%= count %></div> </td>
         	<td class='goodsItemPrice'> $<%=goodsItemPrice%> </td>
-        
+
+
+
 		</script>
 		
 		<script type="text/template" id="goods-count-plus">
@@ -535,21 +581,28 @@
 		<script src="js/lib/jquery.js"></script>
 		<script src="js/lib/boostrap/bootstrap.min.js"></script>
 		<script src="js/lib/jquery-ui.js"></script>
+		<script src="js/lib/jquery.validate.js"></script>
 
 		<script src="js/lib/underscore.js"></script>
 		<script src="js/lib/backbone.js"></script>
-		
+
 		<script src="js/defaults.js"></script>
 		<script src="js/dbConnector.js"></script>
+		<script src="js/statemachin/stMachine.js"></script>
+		<script src="js/validation/materialsValidation.js"></script>
+		
+		<script src="js/validation/jQvalidation.js"></script>
 
 		<script src="js/models/MaterialModel.js"></script>
 		<script src="js/models/UnitModel.js"></script>
 		<script src="js/models/UnitItemModel.js"></script>
 		<script src="js/models/GoodsModel.js"></script>
 		<script src="js/models/GoodsItemModel.js"></script>
+		<script src="js/models/BasketItem.js"></script>
 
 		<script src="js/collections/collections.js"></script>
-		
+		<script src="js/collections/BasketItems.js"></script>
+
 		<script src="js/views/Materials.js"></script>
 		<script src="js/views/Units.js"></script>
 		<script src="js/views/UnitItems.js"></script>
@@ -559,9 +612,13 @@
 		<script src="js/views/AddGoods.js"></script>
 		<script src="js/views/GoodsItem.js"></script>
 		<script src="js/views/AddUnitsList.js"></script>
+		<script src="js/views/BasketItems.js"></script>
+		<script src="js/views/Basket.js"></script>
 		<script src="js/views/Users.js"></script>
 
+
 		<script src="js/router/router.js"></script>
+
 		
 		<script src="js/app.js"></script>
 

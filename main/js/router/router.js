@@ -7,7 +7,8 @@ var App = App || {};
 		
 
 		routes: {
-			''            : 'openStorekeeper',
+			
+			''            : 'openCustomer',
 			'customer'    : 'chooseRole',
 			'accountant'  : 'openAccountant',
 			'engineer'    : 'openEngineer',
@@ -25,6 +26,7 @@ var App = App || {};
 		},
 		openCustomer: function () {
 			console.log("2");
+			App.StateMachine.execut("customer")
 			App.Events.trigger( 'openCustomer' );
 		},
 		openAccountant: function () {
@@ -33,6 +35,7 @@ var App = App || {};
 		},
 		openEngineer: function () {
 			console.log("4");
+				App.StateMachine.execut("engineer");
 			App.Events.trigger( 'openEngineer' );
 		},
 		openStorekeeper: function () {

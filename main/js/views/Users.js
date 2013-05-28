@@ -23,6 +23,7 @@ var App = App || {};
 			'click #addGoodsButton' : 'showAddGoodsView',
 			'click #addUnitsButton' : 'showAddUnitsView'
 
+
 		},
 		loginUser: function(){
 				var userDate = [];
@@ -333,6 +334,7 @@ var App = App || {};
 			$('.content').append( $('#' + tabName ).html() );
 			$('.content').append( App.HTML.tabContentHeader );
 
+
 		},
 		showAddGoodsView: function () {
 			 console.log('test');
@@ -341,6 +343,7 @@ var App = App || {};
 		showAddUnitsView: function() {
 			$('addUnitsView').show();
 		}
+
 
     });
     

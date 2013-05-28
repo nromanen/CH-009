@@ -14,6 +14,7 @@ cur.execute("INSERT INTO peple (username, password, permition) VALUES (%s, %s, %
 cur.execute("INSERT INTO peple (username, password, permition) VALUES (%s, %s, %s);",('Engineer','1','engineer'))
 cur.execute("INSERT INTO peple (username, password, permition) VALUES (%s, %s, %s);",('Accountant','1','accauntant'))
 cur.execute("INSERT INTO peple (username, password, permition) VALUES (%s, %s, %s);",('Customer','1','customer'))
+cur.execute("INSERT INTO peple (username, password, permition) VALUES (%s, %s, %s);",('q','1','engineer'))
 #cur.execute("INSERT INTO peple (username, password, permition) VALUES (%s, %s, %s);",("'"+form['username'].value+"'",/
 #	"'"+form['password'].value+"'","'"+form['permition'].value+"'"))
 
