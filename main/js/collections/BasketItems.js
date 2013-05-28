@@ -11,11 +11,12 @@ var App = App || {};
 			},
 			addItem: function (model){
 				console.log(model);
+				
 			var itemBasket = new App.Models.BasketItem({
 
 				itemsName: model.get('nameG'),
 				price: model.get('goodsPrice'),
-				counts:1
+				counts:model.get('count')
 			})
 			this.add(itemBasket);
 

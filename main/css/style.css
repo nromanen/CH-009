@@ -264,6 +264,14 @@ table tr td .edit_units_count, .editing .goods_name_id, .editing .unit_name,
   left: 17px;
 }
 
+.shoping{
+position: relative;
+right: 30px;
+left: 420px;
+top: -10px;
+display: inline;
+}
+
 /* line 169, ../sass/style.scss */
 #addNewMaterial .modal-body {
   position: block;
@@ -325,12 +333,3 @@ body {
   background: white;
 }
 
-/* line 191, ../sass/style.scss */
-.shoping {
-  cursor: pointer;
-  position: relative;
-  right: 30px;
-  left: 520px;
-  top: -10px;
-  display: inline;
-}
