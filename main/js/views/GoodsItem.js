@@ -102,7 +102,6 @@ var App = App || {};
 	
 			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
 			$("#"+this.model.cid+"_tableRow").prepend( goodsItemView.el );
-			console.log("render");
 			
 			goodsItemView.render();
 			
