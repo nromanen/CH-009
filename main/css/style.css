@@ -304,3 +304,23 @@ body {
 #products table tr:nth-child(odd) {
   background: white;
 }
+
+/* line 185, ../sass/style.scss */
+#products .accordion-group:nth-child(even) {
+  background: #e7f7ff;
+}
+
+/* line 186, ../sass/style.scss */
+#products .accordion-group:nth-child(odd) {
+  background: white;
+}
+
+/* line 188, ../sass/style.scss */
+#units .accordion-group:nth-child(even) {
+  background: #e7f7ff;
+}
+
+/* line 189, ../sass/style.scss */
+#units .accordion-group:nth-child(odd) {
+  background: white;
+}

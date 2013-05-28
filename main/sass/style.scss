@@ -181,3 +181,9 @@ body{
 
 #products table tr:nth-child(even) {background: $trEvenColor}
 #products table tr:nth-child(odd) {background: $trOddColor}
+
+#products .accordion-group:nth-child(even) {background: $trEvenColor}
+#products .accordion-group:nth-child(odd)  {background: $trOddColor}
+
+#units .accordion-group:nth-child(even) {background: $trEvenColor}
+#units .accordion-group:nth-child(odd)  {background: $trOddColor}
