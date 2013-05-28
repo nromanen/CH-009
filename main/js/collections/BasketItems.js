@@ -8,9 +8,6 @@ var App = App || {};
 
 			initialize: function (){
 				App.Events.on('addItemtToBasket', this.addItem, this);
-
-
-
 			},
 			addItem: function (model){
 				console.log(model);
@@ -22,20 +19,7 @@ var App = App || {};
 			})
 			this.add(itemBasket);
 
-
-
-
-
-
 			}
-
-
-
-
-
-
-
-
 
 	})
 }());

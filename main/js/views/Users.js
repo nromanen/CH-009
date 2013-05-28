@@ -5,7 +5,7 @@ var App = App || {};
 	App.HTML.Row = '<div class="row"><div class="span3"></div><div class="span6 content"></div><div class="span3"></div>';
 	App.HTML.tabContentHeader = '<div id="TabContent" class="tab-content">';
 
-    App.Views.ControlView = Backbone.View.extend({
+    App.Views.Users = Backbone.View.extend({
 
 		initialize: function (){
 

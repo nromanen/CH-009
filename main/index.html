@@ -12,38 +12,38 @@
 	
 <!-- NavBar template --> 
 
-		<script type="text/template" id="navbar">
-			<div class="navbar navbar-static-top" style="margin-bottom:20px;">
-				<nav class="navbar-inner">
-					<div style="width: 570px; margin: 0 auto;">
-						<a class="brand"> Warehouse </a>
+	<script type="text/template" id="navbar">
+		<div class="navbar navbar-static-top" style="margin-bottom:20px;">
+			<nav class="navbar-inner">
+				<div style="width: 570px; margin: 0 auto;">
+					<a class="brand"> Warehouse </a>
 
-						<button type="button" id="login" class="btn btn-primary pull-right left20" data-loading-text="Loading...">login</button>
-						
-						<div class="pull-right" id="userRole">
-							<%= user %>
-						</div>
-
+					<button type="button" id="login" class="btn btn-primary pull-right left20" data-loading-text="Loading...">login</button>
+					
+					<div class="pull-right" id="userRole">
+						<%= user %>
 					</div>
-				</nav>
-			</div>		
-		</script>
 
-		<script type="text/template" id="chooseRole">
-			<div class="row" style="margin-top:15%;">
-				<div class="span5"></div>
-				<div class="span2">
-					<h3>Your role:</h3>
-					<ul class="dropdown-menu" style="display: block; position: static; margin-bottom: 5px;">
-						<li> <a href="#customer"> Customer </a> </li>
-						<li> <a href="#accountant"> Accountant </a> </li>
-						<li> <a href="#engineer"> Engineer </a> </li>
-						<li> <a href="#storekeeper"> Storekeeper </a> </li>
-					</ul>
 				</div>
-				<div class="span5"></div>
+			</nav>
+		</div>		
+	</script>
+
+	<script type="text/template" id="chooseRole">
+		<div class="row" style="margin-top:15%;">
+			<div class="span5"></div>
+			<div class="span2">
+				<h3>Your role:</h3>
+				<ul class="dropdown-menu" style="display: block; position: static; margin-bottom: 5px;">
+					<li> <a href="#customer"> Customer </a> </li>
+					<li> <a href="#accountant"> Accountant </a> </li>
+					<li> <a href="#engineer"> Engineer </a> </li>
+					<li> <a href="#storekeeper"> Storekeeper </a> </li>
+				</ul>
 			</div>
-		</script>
+			<div class="span5"></div>
+		</div>
+	</script>
 
 <!-- User form template -->
 
@@ -590,19 +590,38 @@
 		<script src="js/models/UnitItemModel.js"></script>
 		<script src="js/models/GoodsModel.js"></script>
 		<script src="js/models/GoodsItemModel.js"></script>
-		<script src="js/models/BasketItem.js"></script>
-
-		<script src="js/collections/collections.js"></script>
+		
 		<script src="js/collections/BasketItems.js"></script>
+		<script src="js/collections/Goods.js"></script>
+		<script src="js/collections/GoodsItems.js"></script>
+		<script src="js/collections/List.js"></script>
+		<script src="js/collections/Units.js"></script>
+		<script src="js/collections/UnitsItems.js"></script>
 
-		<script src="js/views/Materials.js"></script>
+		<script src="js/views/Material.js"></script>
+		<script src="js/views/List.js"></script>
+		<script src="js/views/AddMaterial.js"></script>
+		
 		<script src="js/views/Units.js"></script>
-		<script src="js/views/UnitItems.js"></script>
-		<script src="js/views/AddUnit.js"></script>
+		<script src="js/views/UnitsList.js"></script>
+		
+		<script src="js/views/UnitItem.js"></script>
+		<script src="js/views/UnitItemsList.js"></script>
+
+		<script src="js/views/AddUnitsButton.js"></script>
+		<script src="js/views/AddUnitsView.js"></script>
+
 		<script src="js/views/AddMaterialsList.js"></script>
+		<script src="js/views/PlusMaterial.js"></script>
+
 		<script src="js/views/Goods.js"></script>
-		<script src="js/views/AddGoods.js"></script>
+		<script src="js/views/GoodsList.js"></script>
 		<script src="js/views/GoodsItem.js"></script>
+		<script src="js/views/GoodsItemsList.js"></script>
+
+		<script src="js/views/AddGoodsButton.js"></script>
+		<script src="js/views/AddGoodsView.js"></script>
+		
 		<script src="js/views/AddUnitsList.js"></script>
 		<script src="js/views/BasketItems.js"></script>
 		<script src="js/views/Basket.js"></script>

@@ -162,7 +162,6 @@ $color2: red;
     float: left;
     display:block;
 }
-}
 #price{
     position: relative;
     left:17px;
@@ -188,3 +187,12 @@ body{
 
 #units .accordion-group:nth-child(even) {background: $trEvenColor}
 #units .accordion-group:nth-child(odd)  {background: $trOddColor}
+
+.shoping {
+    cursor: pointer;
+    position: relative;
+    right: 30px;
+    left: 520px;
+    top: -10px;
+    display: inline;  
+}
