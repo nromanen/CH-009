@@ -9,6 +9,9 @@
 $editor_width: 26px;
 $editor_height: 26px;
 
+$trEvenColor: #E7F7FF;
+$trOddColor: #FFF;
+
 
 .left20 {
     margin: 0 0 0 20px;
@@ -167,3 +170,14 @@ $color2: red;
     position: block;
     left: 100px;
 }
+body{
+    background: #fff;
+}
+#materials table tr:nth-child(even) {background: $trEvenColor}
+#materials table tr:nth-child(odd) {background: $trOddColor}
+
+#units table tr:nth-child(even) {background: $trEvenColor}
+#units table tr:nth-child(odd) {background: $trOddColor}
+
+#products table tr:nth-child(even) {background: $trEvenColor}
+#products table tr:nth-child(odd) {background: $trOddColor}
