@@ -265,8 +265,6 @@ table tr td .edit_units_count, .editing .goods_name_id, .editing .unit_name,
   left: 17px;
 }
 
-
-
 /* line 169, ../sass/style.scss */
 #addNewMaterial .modal-body {
   position: block;
@@ -333,11 +331,11 @@ body {
 .shoping {
   cursor: pointer;
   position: relative;
-  right: 30px;
-  left: 350px;
+  right: 15px;
   top: -30px;
-  display: inline;
   margin-top: -3px;
+  margin-left: 300px;
+  float: right;
 }
 
 /* line 200, ../sass/style.scss */
@@ -348,7 +346,7 @@ body {
 .headerPrice {
   cursor: pointer;
   position: relative;
-  right: 30px;
+  right: 15px;
   left: 480px;
   top: -30px;
   display: inline;
