@@ -191,11 +191,11 @@ body{
 .shoping {
     cursor: pointer;
     position: relative;
-    right: 30px;
-    left: 400px;
+    right: 15px;
     top: -30px;
-    display: inline; 
-    margin-top:-3px; 
+    margin-top:-3px;
+    margin-left: 300px; 
+    float:right;
 }
 #products .accordion-heading {
     height: 40px;
