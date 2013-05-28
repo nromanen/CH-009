@@ -9,7 +9,7 @@ var App = App || {};
 		initialize: function (){
 
 
-			this.collection.off('add');
+			//this.collection.off('add');
 			this.collection.on('add', this.addOne, this);
 			this.render()
 
