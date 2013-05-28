@@ -109,7 +109,7 @@ var App = App || {};
 				if ( ( clearQuantity !== '' ) && ( clearQuantity !== null ) && ( !isNaN(clearQuantity) ) ) {
 
 					this.addGoodsItem( clearQuantity );
-					
+
 				}
 				else{
 					this.$el.find('input').val('').focus();

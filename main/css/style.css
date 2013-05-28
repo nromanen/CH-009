@@ -250,4 +250,32 @@ table tr td .edit_units_count, .editing .goods_name_id, .editing .unit_name,
 #addGoodsView {
   float: left;
   display: none;
+
 }
+
+
+.shoping{
+position: relative;
+right: 30px;
+left: 500px;
+top: -10px;
+display: inline;
+
+
+}
+
+/* line 158, ../sass/style.scss */
+#addUnitsView {
+  float: left;
+  display: block;
+}
+.headerGoodsPrice{
+  position: relative;
+  right: 50px;
+  left: 450px;
+  top: -10px;
+  display: inline;
+  font-size: 16px;
+
+}
+

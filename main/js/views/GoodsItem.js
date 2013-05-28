@@ -7,6 +7,7 @@ var App = App || {};
 	tagName: 'tr',
 		initialize: function (){
 			this.model.on( 'destroy', this.remove, this );
+
 			this.model.on( 'change', this.refresh, this);
 		},
 		events: {

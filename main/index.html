@@ -130,7 +130,7 @@
 
 <!-- Button templates -->
 
-		<script type="text/template" id="addNewUnitButton">
+		<script type="text/template" id="addUnitsButton">
 			<a href="#addNewUnit" role="button" class="btn btn-info" id="newUnitBtn" data-toggle="modal"><i class="icon-white icon-plus"></i> New Unit</a>
 			<div class="clear"></div>
 			<br>
@@ -245,6 +245,28 @@
 			<div class="clearfix"></div><br>
         </script>
 
+        <script type="text/template" id="addUnitsButtonTemplate">
+			<div class="left">
+		 	 	<button class="btn btn-info addUnitsButton" data-toggle="modal"><i class="icon-white icon-plus"></i> New Units</button>
+			 </div>	
+			 
+		</script>
+
+		<script type="text/template" id="addUnitsViewTemplate">
+			 <div id="addUnitsView">
+			 	<span class="left">
+			 		<input class="textbox span2" id="unitsName" type="text">
+			 	</span>
+				<span class="left">
+					<button class="btn btn-small btn-success add-units"> Add </button>
+				</span>
+				<span class="left">
+					<button class="btn btn-small btn-danger cancel-units"> Clear </button>
+				</span>
+			 </div>	
+			<div class="clearfix"></div><br>
+        </script>
+
 <!-- send data template --> 
         <script type="text/template" id="sendDataTmp">
 			<h1>Send data to json</h1>
@@ -304,11 +326,13 @@
 		<script type="text/template" id="goods-name-customer">
 			<div class="goods_holder">
 				<div class="accordion-heading">
-			      <a class="accordion-toggle" data-toggle="collapse" data-parent="#goods_holder" href="#<%= hrefId %>">
-			        <span id="<%= hrefId %>_goodsId" class="goods_name_id" ><%= nameG %></span>
-			        <span> $<%= goodsPrice %> </span>
+			      <a class="accordion-toggle " style="height:10px; width:180px" data-toggle="collapse" data-parent="#goods_holder" href="#<%= hrefId %>">
+			        <span id="<%= hrefId %>_goodsId" class="goods_name_id"><%= nameG %></span>
 			      </a>
+				<span class="headerGoodsPrice">$<%=goodsPrice%></span>
+			    <span class="shoping"><i class="icon-shopping-cart"></i></span>
 			    </div>
+
 	
 			</div>
 			<div class="clear"></div>	
@@ -357,6 +381,34 @@
 			    </table> 
 			</div>			 
 		</script>
+	
+		<script type="text/template" id="basket-table">
+			<div class="accordion-inner">
+			   <table class="table">
+					<thead>
+						<tr>
+							<th> ItemsName </th>
+							<th> Quantity </th>
+							<th> Price total </th>
+							<th> Delete </th>
+						</tr>
+					</thead>
+					<tbody id="basket_tableRow" class="holder">						
+
+			            <tr>	
+			        		<td colspan="4" class="colspan4">
+								<a href="#"  class="btn btn-info btn-small "><i class="icon-white icon-plus"></i>Confirm</a>
+							</td>
+							<td>
+								Unit price: <b class='unitPrice'>$</b>
+							</td>
+			        	</tr>			
+					</tbody>			    	
+			    </table> 
+			</div>			 
+		</script>
+
+
 
 		<script type="text/template" id="materials-row-in-unit">
         	<td> <%= material %> </td>
@@ -370,6 +422,19 @@
         </script>
 
 <!-- other templates -->
+		<script type="text/template" id="basket">
+        	<td><%= itemsName %></td>
+        	    <td><span class="count"><%= counts %></span>
+        		<input type="text" class="edit_count" value="<%= counts %>"></td>
+        	   	<td><span> $<%=price%></span></td>
+        	 <td><div class="delete" title=""></div></td>
+        </script>		
+
+
+
+
+
+
 
 <!-- old templates -->
 
@@ -451,8 +516,14 @@
         	<td> <div class="count"><%= count %></div> <input class="edit_units_count" type="text"> </td>
         	<td> <div class="edit"></div> </td>
         	<td> <div class="delete" title="Delete <%= units %> material"></div></td>
+<<<<<<< HEAD
         	<td class='goodsItemPrice'> $<%=goodsItemPrice%> </td>
 				        
+=======
+
+        	<td class='goodsItemPrice'> $<%=goodsItemPrice%> </td>
+
+>>>>>>> dkozatc_myBranch
 		</script>	
 
 		<script type="text/template" id="goods-count-customer">
@@ -460,6 +531,11 @@
         	<td><div class="units_in_Goods"><%= units %></div></td>
         	<td> <div class="count"><%= count %></div> </td>
         	<td class='goodsItemPrice'> $<%=goodsItemPrice%> </td>
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> dkozatc_myBranch
 
 		</script>
 		
@@ -518,9 +594,11 @@
 		<script src="js/models/UnitItemModel.js"></script>
 		<script src="js/models/GoodsModel.js"></script>
 		<script src="js/models/GoodsItemModel.js"></script>
+		<script src="js/models/BasketItem.js"></script>
 
 		<script src="js/collections/collections.js"></script>
-		
+		<script src="js/collections/BasketItems.js"></script>
+
 		<script src="js/views/Materials.js"></script>
 		<script src="js/views/Units.js"></script>
 		<script src="js/views/UnitItems.js"></script>
@@ -530,7 +608,10 @@
 		<script src="js/views/AddGoods.js"></script>
 		<script src="js/views/GoodsItem.js"></script>
 		<script src="js/views/AddUnitsList.js"></script>
+		<script src="js/views/BasketItems.js"></script>
+		<script src="js/views/Basket.js"></script>
 		<script src="js/views/Users.js"></script>
+
 
 		<script src="js/router/router.js"></script>
 
