@@ -289,7 +289,7 @@ var App = App || {};
 			$('#addUnitsView').css({'display': 'none'});
 			$('#login').html('Quit').click(function(){ window.location.replace('/#'); });
 			$('#roles').remove();
-
+			$('.headerPrice').remove();
 		},
 		openStorekeeper: function () {
 

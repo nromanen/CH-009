@@ -345,4 +345,13 @@ body {
   height: 40px;
   overflow: hidden;
 }
+.headerPrice {
+  cursor: pointer;
+  position: relative;
+  right: 30px;
+  left: 480px;
+  top: -30px;
+  display: inline;
+  margin-top: -3px;
+}
 
