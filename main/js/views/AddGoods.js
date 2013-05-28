@@ -17,6 +17,7 @@ var App = App || {};
 		showAddGoodsView: function () {
 			$('#addGoodsView').show();
 			$('#addGoodsView').find('input').focus();
+			$('#products .accordion-heading').on('click', function() { $('#addGoodsView').hide() });
 		}
 
 	});
@@ -47,15 +48,16 @@ var App = App || {};
 			var goodsName = $('#goods').val().trim(); 	
 			
 			if ( goodsName === "" ) {
-				
-				$('#myModalLabelGoods').after('<div class="error">Please enter the goods name!</div>');
+				$('#products > div.clearfix').after('<div class="alert alert-error">Enter the goods name, please<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+					setTimeout( function() { 
+						$('.close').click();
+					}, 2000);
 
 				$('#goods').val('');
 				$('#goods').focus();
 				return false;
 			}
 			
-			$('.close-addGoodsView').click();
 			this.addItem ( goodsName );
 		
 		},
@@ -94,7 +96,7 @@ var App = App || {};
 
 		},
 		cancelGoods: function () {
-			$('#addGoodsView').hide();
+			$('#goods').val('').focus();
 		}		
 		
 		});

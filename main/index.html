@@ -130,7 +130,7 @@
 
 <!-- Button templates -->
 
-		<script type="text/template" id="addNewUnitButton">
+		<script type="text/template" id="addUnitsButton">
 			<a href="#addNewUnit" role="button" class="btn btn-info" id="newUnitBtn" data-toggle="modal"><i class="icon-white icon-plus"></i> New Unit</a>
 			<div class="clear"></div>
 			<br>
@@ -240,6 +240,28 @@
 				</span>
 				<span class="left">
 					<button class="btn btn-small btn-danger cancel-goods"> Cancel </button>
+				</span>
+			 </div>	
+			<div class="clearfix"></div><br>
+        </script>
+
+        <script type="text/template" id="addUnitsButtonTemplate">
+			<div class="left">
+		 	 	<button class="btn btn-info addUnitsButton" data-toggle="modal"><i class="icon-white icon-plus"></i> New Units</button>
+			 </div>	
+			 
+		</script>
+
+		<script type="text/template" id="addUnitsViewTemplate">
+			 <div id="addUnitsView">
+			 	<span class="left">
+			 		<input class="textbox span2" id="unitsName" type="text">
+			 	</span>
+				<span class="left">
+					<button class="btn btn-small btn-success add-units"> Add </button>
+				</span>
+				<span class="left">
+					<button class="btn btn-small btn-danger cancel-units"> Clear </button>
 				</span>
 			 </div>	
 			<div class="clearfix"></div><br>
@@ -359,6 +381,34 @@
 			    </table> 
 			</div>			 
 		</script>
+	
+		<script type="text/template" id="basket-table">
+			<div class="accordion-inner">
+			   <table class="table">
+					<thead>
+						<tr>
+							<th> ItemsName </th>
+							<th> Quantity </th>
+							<th> Price total </th>
+							<th> Delete </th>
+						</tr>
+					</thead>
+					<tbody id="basket_tableRow" class="holder">						
+
+			            <tr>	
+			        		<td colspan="4" class="colspan4">
+								<a href="#"  class="btn btn-info btn-small "><i class="icon-white icon-plus"></i>Confirm</a>
+							</td>
+							<td>
+								Unit price: <b class='unitPrice'>$</b>
+							</td>
+			        	</tr>			
+					</tbody>			    	
+			    </table> 
+			</div>			 
+		</script>
+
+
 
 		<script type="text/template" id="materials-row-in-unit">
         	<td> <%= material %> </td>
@@ -373,12 +423,11 @@
 
 <!-- other templates -->
 		<script type="text/template" id="basket">
-        	<span> <%= itemsName %> </span>
-        	 
-        		<span class="count"><%= counts %></span>
-        		<input type="text" class="edit_count" value="<%= counts %>">
-        	   	<span> $<%=price%></span>
-        	 <div class="delete" title=""></div>
+        	<td><%= itemsName %></td>
+        	    <td><span class="count"><%= counts %></span>
+        		<input type="text" class="edit_count" value="<%= counts %>"></td>
+        	   	<td><span> $<%=price%></span></td>
+        	 <td><div class="delete" title=""></div></td>
         </script>		
 
 

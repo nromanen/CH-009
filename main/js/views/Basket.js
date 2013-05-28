@@ -17,6 +17,7 @@ var App = App || {};
 
 		render: function (){
 			this.$el.html('');
+			this.$el.html($('#basket-table').html());
           	this.collection.each( this.addOne, this );
 			return this;
 
@@ -25,7 +26,7 @@ var App = App || {};
 		addOne: function(modelItems){
 			
 			var basketItems =  new App.Views.BasketItems({model:modelItems});
-			this.$el.prepend( basketItems.el );
+			$('#basket_tableRow').prepend( basketItems.el );
 			basketItems.render();
 
 		}

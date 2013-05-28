@@ -4,7 +4,7 @@ var App = App || {};
 
 	App.Views.BasketItems =  Backbone.View.extend({
 
-		tagName:'div',
+		tagName:'tr',
 
 		initialize: function (){
 
