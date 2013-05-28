@@ -265,13 +265,7 @@ table tr td .edit_units_count, .editing .goods_name_id, .editing .unit_name,
   left: 17px;
 }
 
-.shoping{
-  position: relative;
-  right: 30px;
-  left: 340px;
-  top: -10px;
-  display: inline;
-}
+
 
 /* line 169, ../sass/style.scss */
 #addNewMaterial .modal-body {
@@ -334,4 +328,21 @@ body {
   background: white;
 }
 
+
+/* line 191, ../sass/style.scss */
+.shoping {
+  cursor: pointer;
+  position: relative;
+  right: 30px;
+  left: 350px;
+  top: -30px;
+  display: inline;
+  margin-top: -3px;
+}
+
+/* line 200, ../sass/style.scss */
+#products .accordion-heading {
+  height: 40px;
+  overflow: hidden;
+}
 
