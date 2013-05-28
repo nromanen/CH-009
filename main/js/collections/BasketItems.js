@@ -18,7 +18,7 @@ var App = App || {};
 
 				itemsName: model.get('nameG'),
 				price: model.get('goodsPrice'),
-				counts:1
+				counts:model.get('count')
 			})
 			this.add(itemBasket);
 

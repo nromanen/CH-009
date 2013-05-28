@@ -22,7 +22,7 @@ var App = App || {};
 			'keypress .edit_goods_name': 'updateOnEnter',
 			'blur .edit_goods_name': 'close',
 			'click .btn': 'inputUnits',
-			'click .shoping':'addToBasket'
+			'click .Bay-item':'addToBasket'
 
 		},
 		render: function () {	
@@ -58,7 +58,11 @@ var App = App || {};
 				$("#shoping_cart").html(basket.el);
 
 			}
+
+			console.log(this.$el.find('.span1').val());
+			 this.model.set('count',this.$el.find('.span1').val());
 			App.Events.trigger("addItemtToBasket", this.model);
+			this.$el.find('.span1').val('1');
 
 		},
 		goodsChange: function () {
