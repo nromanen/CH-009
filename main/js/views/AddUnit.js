@@ -18,6 +18,8 @@ var App = App || {};
 		showAddUnitsView: function() {
 			$('#addUnitsView').show();
 			$('#addUnitsView').find('input').focus();
+			$('#units .accordion').on('click', function() { $('#addUnitsView').hide() });
+			
 		}
 
 	});
@@ -35,7 +37,7 @@ var App = App || {};
 			this.render();
 		},
 		template: _.template( $('#addUnitsViewTemplate').html() ),
-		remove: function() {
+		render: function() {
 			$('#units').append( this.template() );
 		},
 		inputKeypress: function(e) {
@@ -46,8 +48,7 @@ var App = App || {};
 		validateItem: function () {
 
 			this.$el.find('.error').remove();
-			var strUnit = $('#unit').val().trim(); 	
-
+			var strUnit = this.$el.find('#unitsName').val().trim();
 			var found = App.Units.find ( function (modelUnit) {
 				return strUnit === modelUnit.get('name');
 			});
@@ -55,15 +56,23 @@ var App = App || {};
 			if ( found === undefined ) {
 				if ( strUnit === "" || strUnit.length > 100) {
 
-					$('#myModalLabelUnit').after('<div class="error">Please enter the Unit name!</div>');
-					$('#unit').val('');
-					$('#unit').focus();
+					$('#units .accordion').before('<div class="alert alert-error">Enter unit name, please<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+					setTimeout( function() { 
+						$('.close').click();
+					}, 2000);
+					$('#unitsName').val('');
+					$('#unitsName').focus();
 					return false;
 				} 
-				$('.close-addNewUnit').click();
+
 				this.addItem ( strUnit );
+				return false;
 			} else {
-				$('#myModalLabelUnit').after('<div class="error">Such name is used already. Please change the unit name.</div>');
+				
+				$('#units .accordion').before('<div class="alert alert-error">Such name is used already. Please change the unit name.<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+					setTimeout( function() { 
+						$('.close').click();
+					}, 2000);
 				$('#unit').focus();
 				return false;
 			}
@@ -93,11 +102,11 @@ var App = App || {};
 			this.clearTextBoxes();
 		},
 		clearTextBoxes: function() {
-			$('#unit').val('');
-			$('#unit').focus();
+			$('#unitsName').val('');
+			$('#unitsName').focus();
 		},
 		cancelUnits: function() {
-			$('addUnitsView').hide();
+			$('#unitsName').val('').focus();
 		}
 	});
 

@@ -252,8 +252,20 @@ table tr td .edit_units_count, .editing .goods_name_id, .editing .unit_name,
   display: none;
 }
 
+
+.shoping{
+position: relative;
+right: 30px;
+left: 520px;
+top: -10px;
+display: inline;
+
+
+}
+
 /* line 158, ../sass/style.scss */
 #addUnitsView {
   float: left;
   display: block;
 }
+

@@ -67,7 +67,6 @@ var App = App || {};
 		},
  		addUnitItem: function( quantity ) {
 
-		    return model.get('material') === that.model.get('material');
 			var that = this;
 			var found = this.collection.find( function( model ) {
 			    return model.get('material') === that.model.get('material');
