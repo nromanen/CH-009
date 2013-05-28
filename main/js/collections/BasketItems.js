@@ -8,34 +8,19 @@ var App = App || {};
 
 			initialize: function (){
 				App.Events.on('addItemtToBasket', this.addItem, this);
-
-
-
 			},
 			addItem: function (model){
 				console.log(model);
+				
 			var itemBasket = new App.Models.BasketItem({
 
 				itemsName: model.get('nameG'),
 				price: model.get('goodsPrice'),
-				counts:1
+				counts:model.get('count')
 			})
 			this.add(itemBasket);
 
-
-
-
-
-
 			}
-
-
-
-
-
-
-
-
 
 	})
 }());

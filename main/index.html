@@ -12,51 +12,38 @@
 	
 <!-- NavBar template --> 
 
-		<script type="text/template" id="navbar">
-			<div class="navbar navbar-static-top" style="margin-bottom:20px;">
-				<nav class="navbar-inner">
-					<div style="width: 570px; margin: 0 auto;">
-						<a class="brand"> Warehouse </a>
+	<script type="text/template" id="navbar">
+		<div class="navbar navbar-static-top" style="margin-bottom:20px;">
+			<nav class="navbar-inner">
+				<div style="width: 570px; margin: 0 auto;">
+					<a class="brand"> Warehouse </a>
 
-						<button type="button" id="login" class="btn btn-primary pull-right left20" data-loading-text="Loading...">login</button>
-
-						<div class="btn-group pull-right left20">
-						  <a class="btn dropdown-toggle"  id="actionButton" data-toggle="dropdown" href="#">
-						    Action
-						    <span class="caret"></span>
-						  </a>
-						  <ul class="dropdown-menu">
-						  	<li><a id="fetchData"><span class="label label-success">Fetch Data</span></a></li>
-							<li><a id="sendData" href="#sendData"><span class="label label-success">Send Data</span></a></li> 
-							<li><a id="clearDB"><span class="label label-important">Delete Database</span></a></li>
-							<li><a id="saveCollectionsToDb"><span class="label label-info">Save to Database</span></a></li>
-						  </ul>
-						</div>
-
-						<div class="pull-right" id="userRole">
-							<%= user %>
-						</div>
-
+					<button type="button" id="login" class="btn btn-primary pull-right left20" data-loading-text="Loading...">login</button>
+					
+					<div class="pull-right" id="userRole">
+						<%= user %>
 					</div>
-				</nav>
-			</div>		
-		</script>
 
-		<script type="text/template" id="chooseRole">
-			<div class="row" style="margin-top:15%;">
-				<div class="span5"></div>
-				<div class="span2">
-					<h3>Your role:</h3>
-					<ul class="dropdown-menu" style="display: block; position: static; margin-bottom: 5px;">
-						<li> <a href="#customer"> Customer </a> </li>
-						<li> <a href="#accountant"> Accountant </a> </li>
-						<li> <a href="#engineer"> Engineer </a> </li>
-						<li> <a href="#storekeeper"> Storekeeper </a> </li>
-					</ul>
 				</div>
-				<div class="span5"></div>
+			</nav>
+		</div>		
+	</script>
+
+	<script type="text/template" id="chooseRole">
+		<div class="row" style="margin-top:15%;">
+			<div class="span5"></div>
+			<div class="span2">
+				<h3>Your role:</h3>
+				<ul class="dropdown-menu" style="display: block; position: static; margin-bottom: 5px;">
+					<li> <a href="#customer"> Customer </a> </li>
+					<li> <a href="#accountant"> Accountant </a> </li>
+					<li> <a href="#engineer"> Engineer </a> </li>
+					<li> <a href="#storekeeper"> Storekeeper </a> </li>
+				</ul>
 			</div>
-		</script>
+			<div class="span5"></div>
+		</div>
+	</script>
 
 <!-- User form template -->
 
@@ -97,14 +84,40 @@
 		<script type="text/template" id="storekeeperTab">
 			<ul id="myTab" class="nav nav-tabs">
               <li class="active"><a href="#materials" data-toggle="tab">Materials</a></li>
+	              <div class="btn-group pull-right">
+				  <a class="btn dropdown-toggle"  id="actionButton" data-toggle="dropdown" href="#">
+				    Action
+				    <span class="caret"></span>
+				  </a>
+				  <ul class="dropdown-menu">
+				  	<li><a id="fetchData"><span class="label label-success">Fetch Data</span></a></li>
+					<li><a id="sendData" href="#sendData"><span class="label label-success">Send Data</span></a></li> 
+					<li><a id="clearDB"><span class="label label-important">Delete Database</span></a></li>
+					<li><a id="saveCollectionsToDb"><span class="label label-info">Save to Database</span></a></li>
+				  </ul>
+				</div>
             </ul>
+
 		</script>
 
 		<script type="text/template" id="engineerTab">
 			<ul id="myTab" class="nav nav-tabs">
               <li class="active"><a href="#products" data-toggle="tab">Products</a></li>
               <li><a href="#units" data-toggle="tab">Units</a></li>
+	              <div class="btn-group pull-right">
+				  <a class="btn dropdown-toggle"  id="actionButton" data-toggle="dropdown" href="#">
+				    Action
+				    <span class="caret"></span>
+				  </a>
+				  <ul class="dropdown-menu">
+				  	<li><a id="fetchData"><span class="label label-success">Fetch Data</span></a></li>
+					<li><a id="sendData" href="#sendData"><span class="label label-success">Send Data</span></a></li> 
+					<li><a id="clearDB"><span class="label label-important">Delete Database</span></a></li>
+					<li><a id="saveCollectionsToDb"><span class="label label-info">Save to Database</span></a></li>
+				  </ul>
+				</div>
             </ul>
+
 		</script>
 
 		<script type="text/template" id="accountantTab">
@@ -329,8 +342,14 @@
 			      <a class="accordion-toggle " style="height:10px; width:180px" data-toggle="collapse" data-parent="#goods_holder" href="#<%= hrefId %>">
 			        <span id="<%= hrefId %>_goodsId" class="goods_name_id"><%= nameG %></span>
 			      </a>
-				<span class="headerGoodsPrice">$<%=goodsPrice%></span>
-			    <span class="shoping"><i class="icon-shopping-cart"></i></span>
+
+			      <span class="input-prepend input-append shoping">
+  					<span class="add-on">$<%=goodsPrice%></span>
+  					<input class="span1 appendedInputButton"  value=1 type="text">
+  					<button class="btn Bay-item" type="button"><i class="icon-plus"></i> Buy! </button>
+				</span>
+			     
+
 			    </div>
 
 	
@@ -352,7 +371,6 @@
 		      </a>
 		    </div>
 			<div class="clear"></div>	
-			<div style="height:15px;"></div>	
 		</script>
 
 		<script type="text/template" id="materials-table">
@@ -396,7 +414,7 @@
 					<tbody id="basket_tableRow" class="holder">						
 
 			            <tr>	
-			        		<td colspan="4" class="colspan4">
+			        		<td colspan="3" class="colspan4">
 								<a href="#"  class="btn btn-info btn-small "><i class="icon-white icon-plus"></i>Confirm</a>
 							</td>
 							<td>
@@ -429,11 +447,6 @@
         	   	<td><span> $<%=price%></span></td>
         	 <td><div class="delete" title=""></div></td>
         </script>		
-
-
-
-
-
 
 
 <!-- old templates -->
@@ -516,14 +529,8 @@
         	<td> <div class="count"><%= count %></div> <input class="edit_units_count" type="text"> </td>
         	<td> <div class="edit"></div> </td>
         	<td> <div class="delete" title="Delete <%= units %> material"></div></td>
-<<<<<<< HEAD
-        	<td class='goodsItemPrice'> $<%=goodsItemPrice%> </td>
-				        
-=======
-
         	<td class='goodsItemPrice'> $<%=goodsItemPrice%> </td>
 
->>>>>>> dkozatc_myBranch
 		</script>	
 
 		<script type="text/template" id="goods-count-customer">
@@ -531,11 +538,6 @@
         	<td><div class="units_in_Goods"><%= units %></div></td>
         	<td> <div class="count"><%= count %></div> </td>
         	<td class='goodsItemPrice'> $<%=goodsItemPrice%> </td>
-<<<<<<< HEAD
-=======
-
-
->>>>>>> dkozatc_myBranch
 
 		</script>
 		
@@ -595,26 +597,43 @@
 		<script src="js/models/GoodsModel.js"></script>
 		<script src="js/models/GoodsItemModel.js"></script>
 		<script src="js/models/BasketItem.js"></script>
-
-		<script src="js/collections/collections.js"></script>
+		
 		<script src="js/collections/BasketItems.js"></script>
+		<script src="js/collections/Goods.js"></script>
+		<script src="js/collections/GoodsItems.js"></script>
+		<script src="js/collections/List.js"></script>
+		<script src="js/collections/Units.js"></script>
+		<script src="js/collections/UnitsItems.js"></script>
 
-		<script src="js/views/Materials.js"></script>
+		<script src="js/views/Material.js"></script>
+		<script src="js/views/List.js"></script>
+		<script src="js/views/AddMaterial.js"></script>
+		
 		<script src="js/views/Units.js"></script>
-		<script src="js/views/UnitItems.js"></script>
-		<script src="js/views/AddUnit.js"></script>
+		<script src="js/views/UnitsList.js"></script>
+		
+		<script src="js/views/UnitItem.js"></script>
+		<script src="js/views/UnitItemsList.js"></script>
+
+		<script src="js/views/AddUnitsButton.js"></script>
+		<script src="js/views/AddUnitsView.js"></script>
+
 		<script src="js/views/AddMaterialsList.js"></script>
+		<script src="js/views/PlusMaterial.js"></script>
+
 		<script src="js/views/Goods.js"></script>
-		<script src="js/views/AddGoods.js"></script>
+		<script src="js/views/GoodsList.js"></script>
 		<script src="js/views/GoodsItem.js"></script>
+		<script src="js/views/GoodsItemsList.js"></script>
+
+		<script src="js/views/AddGoodsButton.js"></script>
+		<script src="js/views/AddGoodsView.js"></script>
+		
 		<script src="js/views/AddUnitsList.js"></script>
 		<script src="js/views/BasketItems.js"></script>
 		<script src="js/views/Basket.js"></script>
 		<script src="js/views/Users.js"></script>
-
-
 		<script src="js/router/router.js"></script>
-
 		
 		<script src="js/app.js"></script>
 

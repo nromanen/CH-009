@@ -30,15 +30,11 @@ var App = App || {};
 				
 			}
 
-
-
-
 		},
 		fetchProducts: function () {
 			
 			App.dbConnector.fetchAll();
-
-			
+		
 		},
 		writeProducts: function ( products ) {
 		
@@ -176,6 +172,7 @@ var App = App || {};
 				}
 
 			})
+			
 		}
 		
 	});

@@ -209,7 +209,7 @@ body {
   font-size: 14px;
   line-height: 20px;
   color: #333333;
-  background-color: #ffffff;
+  background-color: url(../img/grid.png) #ffffff;
 }
 a {
   color: #0088cc;

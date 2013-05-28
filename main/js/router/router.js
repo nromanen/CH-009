@@ -5,6 +5,7 @@ var App = App || {};
 	App.Router = Backbone.Router.extend({
 
 		routes: {
+			
 			''            : 'openCustomer',
 			'customer'    : 'chooseRole',
 			'accountant'  : 'openAccountant',

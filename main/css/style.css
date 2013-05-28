@@ -68,23 +68,23 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 }
 
 /* Vars */
-/* line 13, ../sass/style.scss */
+/* line 16, ../sass/style.scss */
 .left20 {
   margin: 0 0 0 20px;
 }
 
-/* line 16, ../sass/style.scss */
+/* line 19, ../sass/style.scss */
 #userRole {
   margin: 10px 0 0 0;
   font-size: 18px;
 }
 
-/* line 20, ../sass/style.scss */
+/* line 23, ../sass/style.scss */
 .edit_count, .editPrice, table tr td .edit_units_count {
   width: 20px;
 }
 
-/* line 27, ../sass/style.scss */
+/* line 30, ../sass/style.scss */
 .accordion-toggle .edit_goods_name, .accordion-toggle .edit_unit_name,
 table tr td .edit_count, table tr td .editPrice, table tr td .edit_count,
 table tr td .edit_units_count, .editing .goods_name_id, .editing .unit_name,
@@ -93,59 +93,59 @@ table tr td .edit_units_count, .editing .goods_name_id, .editing .unit_name,
   display: none;
 }
 
-/* line 30, ../sass/style.scss */
+/* line 33, ../sass/style.scss */
 .editing .edit_goods_name, .editing .edit_unit_name, table tr.editing td .edit_count, table tr.editing td .editPrice, table tr.editing td .edit_units_count {
   display: inline-block;
 }
 
-/* line 33, ../sass/style.scss */
+/* line 36, ../sass/style.scss */
 .nobullets {
   list-style: none;
 }
 
-/* line 36, ../sass/style.scss */
+/* line 39, ../sass/style.scss */
 .icon-plus {
   cursor: pointer;
   opacity: 0.8;
 }
 
-/* line 40, ../sass/style.scss */
+/* line 43, ../sass/style.scss */
 .icon-plus:hover {
   cursor: pointer;
   opacity: 1;
 }
 
-/* line 44, ../sass/style.scss */
+/* line 47, ../sass/style.scss */
 #unitContainer ul li .add_item .additional, #materialsContainer ul li .add_item .additional {
   float: left;
   height: 12px;
 }
 
-/* line 48, ../sass/style.scss */
+/* line 51, ../sass/style.scss */
 #unitContainer ul li .add_item .additional .next, #materialsContainer ul li .add_item .additional .next {
   float: left;
   padding-left: 10px;
 }
 
-/* line 52, ../sass/style.scss */
+/* line 55, ../sass/style.scss */
 #unitContainer ul li .add_item .additional input, #materialsContainer ul li .add_item .additional input {
   width: 20px;
   height: 12px;
   font-size: 11px;
 }
 
-/* line 57, ../sass/style.scss */
+/* line 60, ../sass/style.scss */
 #unitContainer ul li .add_item .general, #materialsContainer ul li .add_item .general {
   clear: both;
   float: left;
 }
 
-/* line 61, ../sass/style.scss */
+/* line 64, ../sass/style.scss */
 #unitContainer ul li a, #materialsContainer ul li a {
   cursor: pointer;
 }
 
-/* line 65, ../sass/style.scss */
+/* line 68, ../sass/style.scss */
 .editor, .edit_right, .edit_right:hover, .edit, .edit:hover, .delete, .delete:hover, .delete_unit, .delete_unit:hover, .delete_goods, .delete_goods:hover {
   float: right;
   position: relative;
@@ -154,128 +154,184 @@ table tr td .edit_units_count, .editing .goods_name_id, .editing .unit_name,
   cursor: pointer;
 }
 
-/* line 74, ../sass/style.scss */
+/* line 77, ../sass/style.scss */
 .edit_right {
   background: url("../img/edit16.png") no-repeat;
   opacity: 0.8;
 }
 
-/* line 79, ../sass/style.scss */
+/* line 82, ../sass/style.scss */
 .edit_right:hover {
   background: url("../img/edit16.png") no-repeat;
   opacity: 1;
 }
 
-/* line 85, ../sass/style.scss */
+/* line 88, ../sass/style.scss */
 .edit {
   float: left;
   background: url("../img/edit16.png") no-repeat;
   opacity: 0.8;
 }
 
-/* line 91, ../sass/style.scss */
+/* line 94, ../sass/style.scss */
 .edit:hover {
   float: left;
   background: url("../img/edit16.png") no-repeat;
   opacity: 1;
 }
 
-/* line 98, ../sass/style.scss */
+/* line 101, ../sass/style.scss */
 .delete {
   float: left;
   background: url("../img/delete16.png") no-repeat;
   opacity: 0.6;
 }
 
-/* line 104, ../sass/style.scss */
+/* line 107, ../sass/style.scss */
 .delete:hover {
   float: left;
   background: url("../img/delete16.png") no-repeat;
   opacity: 1;
 }
 
-/* line 110, ../sass/style.scss */
+/* line 113, ../sass/style.scss */
 .delete_unit {
   background: url("../img/delete.png") no-repeat;
   opacity: 0.6;
 }
 
-/* line 115, ../sass/style.scss */
+/* line 118, ../sass/style.scss */
 .delete_unit:hover {
   background: url("../img/delete.png") no-repeat;
   opacity: 1;
 }
 
-/* line 121, ../sass/style.scss */
+/* line 124, ../sass/style.scss */
 .delete_goods {
   background: url("../img/delete.png") no-repeat;
   opacity: 0.6;
 }
 
-/* line 126, ../sass/style.scss */
+/* line 129, ../sass/style.scss */
 .delete_goods:hover {
   background: url("../img/delete.png") no-repeat;
   opacity: 1;
 }
 
-/* line 131, ../sass/style.scss */
+/* line 134, ../sass/style.scss */
 .error {
   font-size: 10px;
   color: red;
   font-weight: bold;
 }
 
-/* line 140, ../sass/style.scss */
+/* line 143, ../sass/style.scss */
 .test {
   color: green;
 }
 
-/* line 144, ../sass/style.scss */
+/* line 147, ../sass/style.scss */
 .unit_name {
   font-size: 22px;
 }
 
-/* line 147, ../sass/style.scss */
+/* line 150, ../sass/style.scss */
 .goods_name_id {
   font-size: 22px;
 }
 
-/* line 150, ../sass/style.scss */
+/* line 153, ../sass/style.scss */
 .left {
   float: left;
   padding-left: 5px;
 }
 
-/* line 154, ../sass/style.scss */
+/* line 157, ../sass/style.scss */
 #addGoodsView {
   float: left;
   display: none;
 
 }
 
-
-.shoping{
-position: relative;
-right: 30px;
-left: 500px;
-top: -10px;
-display: inline;
-
-
-}
-
-/* line 158, ../sass/style.scss */
+/* line 161, ../sass/style.scss */
 #addUnitsView {
   float: left;
   display: block;
 }
-.headerGoodsPrice{
+
+/* line 165, ../sass/style.scss */
+#price {
   position: relative;
-  right: 50px;
-  left: 450px;
+  left: 17px;
+}
+
+.shoping{
+  position: relative;
+  right: 30px;
+  left: 340px;
   top: -10px;
   display: inline;
-  font-size: 16px;
-
 }
+
+/* line 169, ../sass/style.scss */
+#addNewMaterial .modal-body {
+  position: block;
+  left: 100px;
+}
+
+/* line 173, ../sass/style.scss */
+body {
+  background: #fff;
+}
+
+/* line 176, ../sass/style.scss */
+#materials table tr:nth-child(even) {
+  background: #e7f7ff;
+}
+
+/* line 177, ../sass/style.scss */
+#materials table tr:nth-child(odd) {
+  background: white;
+}
+
+/* line 179, ../sass/style.scss */
+#units table tr:nth-child(even) {
+  background: #e7f7ff;
+}
+
+/* line 180, ../sass/style.scss */
+#units table tr:nth-child(odd) {
+  background: white;
+}
+
+/* line 182, ../sass/style.scss */
+#products table tr:nth-child(even) {
+  background: #e7f7ff;
+}
+
+/* line 183, ../sass/style.scss */
+#products table tr:nth-child(odd) {
+  background: white;
+}
+
+/* line 185, ../sass/style.scss */
+#products .accordion-group:nth-child(even) {
+  background: #e7f7ff;
+}
+
+/* line 186, ../sass/style.scss */
+#products .accordion-group:nth-child(odd) {
+  background: white;
+}
+
+/* line 188, ../sass/style.scss */
+#units .accordion-group:nth-child(even) {
+  background: #e7f7ff;
+}
+
+/* line 189, ../sass/style.scss */
+#units .accordion-group:nth-child(odd) {
+  background: white;
+}
+
 
