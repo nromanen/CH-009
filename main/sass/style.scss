@@ -5,6 +5,11 @@
 
 @import "compass/reset";
 
+/* Vars */
+$editor_width: 26px;
+$editor_height: 26px;
+
+
 .left20 {
     margin: 0 0 0 20px;
 }
@@ -56,97 +61,72 @@ table tr td .edit_units_count, .editing .goods_name_id, .editing .unit_name,
 #unitContainer ul li a, #materialsContainer ul li a {
     cursor: pointer;
 }
-.edit_right {
+
+.editor {
     float:right;
     position:relative;
-    width: 26px;
-    height: 26px;
+    width: $editor_width;
+    height: $editor_height;
+    cursor: pointer;
+
+}
+
+.edit_right {
+    @extend .editor;
     background: url('../img/edit16.png') no-repeat;
     opacity: 0.8;
-    cursor: pointer;
 }
 .edit_right:hover {
-    float:right;
-    position:relative;
-    width:26px;
-    height:26px;
+    @extend .editor;
     background: url('../img/edit16.png') no-repeat;
     opacity: 1;
-    cursor: pointer;
 }
 
 .edit {
+    @extend .editor;
     float:left;
-    position:relative;
-    width: 26px;
-    height: 26px;
     background: url('../img/edit16.png') no-repeat;
     opacity: 0.8;
-    cursor: pointer;
 }
 .edit:hover {
+    @extend .editor;
     float:left;
-    position:relative;
-    width:26px;
-    height:26px;
     background: url('../img/edit16.png') no-repeat;
     opacity: 1;
-    cursor: pointer;
 }
+
 .delete {
+    @extend .editor;
     float:left;
-    position:relative;
-    width:26px;
-    height:26px;
     background: url('../img/delete16.png') no-repeat;
     opacity: 0.6;
-    cursor: pointer;
 }
 .delete:hover {
+    @extend .editor;
     float:left;
-    position: relative;
-    width:26px;
-    height:26px;
     background: url('../img/delete16.png') no-repeat;
     opacity: 1;
-    cursor: pointer;
 }
 .delete_unit {
-    float:right;
-    position:relative;
-    width:26px;
-    height:26px;
+    @extend .editor;
     background: url('../img/delete.png') no-repeat;
     opacity: 0.6;
-    cursor: pointer;
 }
 .delete_unit:hover {
-    float:right;
-    position: relative;
-    width:26px;
-    height:26px;
+    @extend .editor;
     background: url('../img/delete.png') no-repeat;
     opacity: 1;
-    cursor: pointer;
 }
 
 .delete_goods {
-    float:right;
-    position:relative;
-    width:26px;
-    height:26px;
+    @extend .editor;
     background: url('../img/delete.png') no-repeat;
     opacity: 0.6;
-    cursor: pointer;
 }
 .delete_goods:hover {
-    float:right;
-    position: relative;
-    width:26px;
-    height:26px;
+    @extend .editor;
     background: url('../img/delete.png') no-repeat;
     opacity: 1;
-    cursor: pointer;
 }
 .error{
     font-size: 10px;
@@ -155,7 +135,31 @@ table tr td .edit_units_count, .editing .goods_name_id, .editing .unit_name,
 }
 
 $color: green;
+$color2: red;
 
 .test {
-	color: $color;
+    color: $color;
+}
+
+.unit_name {
+    font-size: 22px;
+}
+.goods_name_id {
+    font-size: 22px;
+}
+.left {
+    float:left;
+    padding-left: 5px;
+}
+#addGoodsView {
+    float: left;
+<<<<<<< HEAD
+    display:none;
+=======
+    display:block;
+}
+#addUnitsView {
+    float: left;
+    display:block;
+>>>>>>> 952cb097e3b81df972d35945c55cf001a9959bd8
 }

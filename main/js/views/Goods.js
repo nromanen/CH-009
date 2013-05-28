@@ -21,7 +21,9 @@ var App = App || {};
 			'click .edit_right' : 'changeGoodsName',
 			'keypress .edit_goods_name': 'updateOnEnter',
 			'blur .edit_goods_name': 'close',
-			'click .btn': 'inputUnits'
+			'click .btn': 'inputUnits',
+			'click .shoping':'addToBasket'
+
 		},
 		render: function () {	
 			
@@ -45,6 +47,20 @@ var App = App || {};
 			this.$input = this.$('.edit_goods_name');
 			
 		}, 
+		addToBasket: function (){
+			if($('#shoping_cart').length==0){
+				$('#myTab').append('<li class=""><a href="#shoping_cart" data-toggle="tab">Basket</a></li>');
+				$('#TabContent').append ( _.template ( $('#tab').html(), { 
+				id      : 'shoping_cart',
+				active  : '',
+			}) );
+				var basket = new App.Views.Basket({collection:App.Basket})
+				$("#shoping_cart").html(basket.el);
+
+			}
+			App.Events.trigger("addItemtToBasket", this.model);
+
+		},
 		goodsChange: function () {
 			//
 		},
@@ -129,10 +145,11 @@ var App = App || {};
 
 		initialize: function () {
 			this.collection.on('add', this.render, this);
-			
+			this.render();
 		},
 		render: function () {
-				
+			
+			$('#products').append( this.el );	
             this.$el.html('');
           	this.collection.each( this.addOne, this );
 			return this;
