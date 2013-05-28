@@ -59,6 +59,7 @@ var App = App || {};
 			}
 			
 			this.addItem ( goodsName );
+			return false;
 		
 		},
 		addItem: function ( goodsName ) {

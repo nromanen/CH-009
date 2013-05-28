@@ -9,6 +9,9 @@
 $editor_width: 26px;
 $editor_height: 26px;
 
+$trEvenColor: #E7F7FF;
+$trOddColor: #FFF;
+
 
 .left20 {
     margin: 0 0 0 20px;
@@ -159,3 +162,29 @@ $color2: red;
     float: left;
     display:block;
 }
+}
+#price{
+    position: relative;
+    left:17px;
+}
+#addNewMaterial .modal-body{
+    position: block;
+    left: 100px;
+}
+body{
+    background: #fff;
+}
+#materials table tr:nth-child(even) {background: $trEvenColor}
+#materials table tr:nth-child(odd) {background: $trOddColor}
+
+#units table tr:nth-child(even) {background: $trEvenColor}
+#units table tr:nth-child(odd) {background: $trOddColor}
+
+#products table tr:nth-child(even) {background: $trEvenColor}
+#products table tr:nth-child(odd) {background: $trOddColor}
+
+#products .accordion-group:nth-child(even) {background: $trEvenColor}
+#products .accordion-group:nth-child(odd)  {background: $trOddColor}
+
+#units .accordion-group:nth-child(even) {background: $trEvenColor}
+#units .accordion-group:nth-child(odd)  {background: $trOddColor}
