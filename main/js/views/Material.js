@@ -55,16 +55,18 @@ var App = App || {};
 			var delMat = this.model.get("material");
 			var unitModels = App.Units.models;
 
-			ValidateMaterialDelete( delMat, unitModels );
+			for(var i = 0; i < unitModels.length; i++ ) {
+			var arr = unitModels[i].get("mcollection").toJSON();
 
-			 for (var j = 0; j < arr.length; j++) {
+				for (var j = 0; j < arr.length; j++) {
 
 					if (arr[j].material === delMat) {
 
 						$('#NewMaterialButton').after('<div class="error">Attention! This material is used in unit: ' + unitModels[i].get("name") + '</div>');
-						
 					};
 				};
+			};
+		
 			
 			if ( confirm('Are you sure you want to delete this product?') ) {
 				App.Events.trigger( 'destroyModel', this.model );
