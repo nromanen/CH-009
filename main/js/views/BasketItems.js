@@ -12,6 +12,12 @@ var App = App || {};
 
 			
 		},
+		events: {
+			'click .delete' : 'confirmRemove',
+
+
+
+		},
 
 		render: function (){
 			
@@ -23,7 +29,14 @@ var App = App || {};
 
 
 		},
-
+		confirmRemove: function () {
+			if ( confirm('Are you sure you want to delete this Goods Item?') ) {
+				
+				this.model.destroy();
+				this.$el.remove();
+				
+			}	
+		}
 
 
 
