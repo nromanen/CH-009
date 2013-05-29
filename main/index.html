@@ -330,7 +330,7 @@
 			        <div class="delete_goods"></div><div class="edit_right"></div>
 			      </a>
 			    </div>
-	
+			    <span class="headerPrice"> <strong>$<%=goodsPrice%></strong></span>	
 			</div>
 			<div class="clear"></div>	
 		
@@ -339,16 +339,20 @@
 		<script type="text/template" id="goods-name-customer">
 			<div class="goods_holder">
 				<div class="accordion-heading">
-			      <a class="accordion-toggle" data-toggle="collapse" data-parent="#goods_holder" href="#<%= hrefId %>">
-			        <span id="<%= hrefId %>_goodsId" class="goods_name_id"><%= nameG %></span>
 
+			      <a class="accordion-toggle" data-toggle="collapse" data-parent="#goods_holder" href="#<%= hrefId %>">
+
+			        <span id="<%= hrefId %>_goodsId" class="goods_name_id"><%= nameG %></span>
 			      </a>
 			      <span class="input-prepend input-append shoping">
-			      	<span class="add-on "><strong>$123</strong></span>
+
+			      	<span class="add-on "><strong>$<%=goodsPrice%></strong></span>
+
   					<input class="span1 appendedInputButton" style="text-align:right;" value=1 type="text">
   					<button class="btn Bay-item" type="button"><i class="icon-plus"></i> Buy! </button>
 				</span>
 			     
+
 			    </div>
 
 	
@@ -368,6 +372,7 @@
 				<div class="delete_unit"></div>
 				<div class="edit_right"></div>
 		      </a>
+		    <span class="headerPrice"> <strong>$<%=unitPrice%></strong></span>
 		    </div>
 			<div class="clear"></div>	
 		</script>
@@ -441,8 +446,8 @@
 <!-- other templates -->
 		<script type="text/template" id="basket">
         	<td><%= itemsName %></td>
-        	    <td><span class="count"><%= counts %></span>
-        		<input type="text" class="edit_count" value="<%= counts %>"></td>
+        	    <td>
+        		<input type="text" class="span1" value="<%= counts %>"></td>
         	   	<td><span> $<%=price%></span></td>
         	 <td><div class="delete" title=""></div></td>
         </script>		

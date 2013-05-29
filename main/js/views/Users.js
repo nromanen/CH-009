@@ -20,6 +20,7 @@ var App = App || {};
 		},
 		el: $( '.container' ),
 		events:{
+
 			'click #loginButton' : 'loginUser',
 			'click #addGoodsButton' : 'showAddGoodsView',
 			'click #addUnitsButton' : 'showAddUnitsView'
@@ -289,7 +290,7 @@ var App = App || {};
 			$('#addUnitsView').css({'display': 'none'});
 			$('#login').html('Quit').click(function(){ window.location.replace('/#'); });
 			$('#roles').remove();
-
+			$('.headerPrice').remove();
 		},
 		openStorekeeper: function () {
 
@@ -342,6 +343,7 @@ var App = App || {};
 		showAddUnitsView: function() {
 			$('addUnitsView').show();
 		}
+
 
     });
     

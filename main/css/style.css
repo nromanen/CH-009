@@ -250,6 +250,7 @@ table tr td .edit_units_count, .editing .goods_name_id, .editing .unit_name,
 #addGoodsView {
   float: left;
   display: none;
+
 }
 
 /* line 161, ../sass/style.scss */
@@ -325,6 +326,7 @@ body {
   background: white;
 }
 
+
 /* line 191, ../sass/style.scss */
 .shoping {
   cursor: pointer;
@@ -341,3 +343,13 @@ body {
   height: 40px;
   overflow: hidden;
 }
+.headerPrice {
+  cursor: pointer;
+  position: relative;
+  right: 15px;
+  left: 480px;
+  top: -30px;
+  display: inline;
+  margin-top: -3px;
+}
+
