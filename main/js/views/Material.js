@@ -50,6 +50,8 @@ var App = App || {};
 			App.Events.trigger('changeUnitItemPrice', this.model);
 		},
 		confirmRemove: function () {
+			//var arr = this.collection;
+			console.log(this.collection);
 			var delMat = this.model.get("material");
 			var unitModels = App.Units.models;
 
@@ -63,7 +65,6 @@ var App = App || {};
 						
 					};
 				};
-			
 			
 			if ( confirm('Are you sure you want to delete this product?') ) {
 				App.Events.trigger( 'destroyModel', this.model );

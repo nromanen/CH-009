@@ -250,7 +250,6 @@ table tr td .edit_units_count, .editing .goods_name_id, .editing .unit_name,
 #addGoodsView {
   float: left;
   display: none;
-
 }
 
 /* line 161, ../sass/style.scss */
@@ -268,66 +267,64 @@ table tr td .edit_units_count, .editing .goods_name_id, .editing .unit_name,
 /* line 169, ../sass/style.scss */
 #addNewMaterial .modal-body {
   position: block;
-  left: 100px;
 }
 
-/* line 173, ../sass/style.scss */
+/* line 172, ../sass/style.scss */
 body {
   background: #fff;
 }
 
-/* line 176, ../sass/style.scss */
+/* line 175, ../sass/style.scss */
 #materials table tr:nth-child(even) {
   background: #e7f7ff;
 }
 
-/* line 177, ../sass/style.scss */
+/* line 176, ../sass/style.scss */
 #materials table tr:nth-child(odd) {
   background: white;
 }
 
-/* line 179, ../sass/style.scss */
+/* line 178, ../sass/style.scss */
 #units table tr:nth-child(even) {
   background: #e7f7ff;
 }
 
-/* line 180, ../sass/style.scss */
+/* line 179, ../sass/style.scss */
 #units table tr:nth-child(odd) {
   background: white;
 }
 
-/* line 182, ../sass/style.scss */
+/* line 181, ../sass/style.scss */
 #products table tr:nth-child(even) {
   background: #e7f7ff;
 }
 
-/* line 183, ../sass/style.scss */
+/* line 182, ../sass/style.scss */
 #products table tr:nth-child(odd) {
   background: white;
 }
 
-/* line 185, ../sass/style.scss */
+/* line 184, ../sass/style.scss */
 #products .accordion-group:nth-child(even) {
   background: #e7f7ff;
 }
 
-/* line 186, ../sass/style.scss */
+/* line 185, ../sass/style.scss */
 #products .accordion-group:nth-child(odd) {
   background: white;
 }
 
-/* line 188, ../sass/style.scss */
+/* line 187, ../sass/style.scss */
 #units .accordion-group:nth-child(even) {
   background: #e7f7ff;
 }
 
-/* line 189, ../sass/style.scss */
+/* line 188, ../sass/style.scss */
 #units .accordion-group:nth-child(odd) {
   background: white;
 }
 
-
-/* line 191, ../sass/style.scss */
+/* line 190, ../sass/style.scss */
 .shoping {
   cursor: pointer;
   position: relative;
@@ -338,18 +335,8 @@ body {
   float: right;
 }
 
-/* line 200, ../sass/style.scss */
+/* line 199, ../sass/style.scss */
 #products .accordion-heading {
   height: 40px;
   overflow: hidden;
 }
-.headerPrice {
-  cursor: pointer;
-  position: relative;
-  right: 15px;
-  left: 480px;
-  top: -30px;
-  display: inline;
-  margin-top: -3px;
-}
-
