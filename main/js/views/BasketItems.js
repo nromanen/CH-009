@@ -34,7 +34,7 @@ var App = App || {};
 				
 				this.model.destroy();
 				this.$el.remove();
-				
+				$('#itemCount').html(App.Basket.length);
 			}	
 		}
 

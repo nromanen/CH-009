@@ -48,7 +48,8 @@ var App = App || {};
 		}, 
 		addToBasket: function (){
 			if($('#shoping_cart').length==0){
-				$('#myTab').append('<li class=""><a href="#shoping_cart" data-toggle="tab">Basket</a></li>');
+				$('#myTab').append('<li class=""><a href="#shoping_cart" data-toggle="tab">Basket \
+				 <i class="icon-shopping-cart"></i>=<span id="itemCount"></span></a></li>');
 				$('#TabContent').append ( _.template ( $('#tab').html(), { 
 				id      : 'shoping_cart',
 				active  : '',
@@ -62,6 +63,7 @@ var App = App || {};
 			 this.model.set('count',this.$el.find('.span1').val());
 			App.Events.trigger("addItemtToBasket", this.model);
 			this.$el.find('.span1').val('1');
+			$('#itemCount').html(App.Basket.length);
 
 		},
 		goodsChange: function () {
