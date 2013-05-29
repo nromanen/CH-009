@@ -81,15 +81,15 @@ var App = App || {};
 				
 				var clearQuantity =  Math.abs( quantity.replace(/\s/g, "") ); // delete all spaces, and make positive
 
-
-					if ( validateMaterialConfirmQuantity (clearQuantity) ) {
+					if(( clearQuantity !== '' ) && ( clearQuantity !== null ) && ( !isNaN(clearQuantity) )) {
 
 						this.addUnitItem( parseFloat(clearQuantity) );
-
-				} else {
+					}
+					else {
 					//do some error
 					this.$el.find('input').val('').focus();
 				}
+
 			}
 			else {
 				this.$el.find('input').val('').focus();

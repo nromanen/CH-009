@@ -20,23 +20,37 @@ var App = App || {};
 			var strMaterial = $('#material').val().trim(); 	
 			var strPrice = $('#price').val().trim();
 			 
-			if(ValidateMaterialPrice( strMaterial, strPrice)) {
+			if ( strMaterial === "" ) {
 
-				for ( var i = 0; i < this.collection.length; i++ ) {
-					
-					if ( strMaterial === this.collection.models[i].get ( 'material' ) ) {
+				$('#myModalLabel').after('<div class="error">Write name</div>');
+				$('#material').val('');
+				$('#material').focus();
+				return false;
+			};
 
-						$('#myModalLabel').after('<div class="error">Material named ' + strMaterial + ' already exists! There should be NO material names repeated!</div>');
-						$('#material').focus();
-						return false;
-						
-					}
+			if ( isNaN( strPrice ) || strPrice < 0 || strPrice === "" )  {
+			
+				$('#myModalLabel').after('<div class="error">Price is incorrectly indicated!</div>');
+				$('#price').val('');
+				$('#price').focus();
+				return false;
+			
+			};
+			for ( var i = 0; i < this.collection.length; i++ ) {
+				
+				if ( strMaterial === this.collection.models[i].get ( 'material' ) ) {
+
+					$('#myModalLabel').after('<div class="error">Material named ' + strMaterial + ' already exists! There should be NO material names repeated!</div>');
+					$('#material').focus();
+					return false;
 					
 				}
+				
+			}
 
 				$('.close-addNewMaterial').click();
 				this.addItem ( strMaterial, strPrice );
-			}
+			
 		
 		},
 		addItem: function( strMaterial, strPrice ) {
