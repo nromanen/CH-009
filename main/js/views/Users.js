@@ -18,6 +18,7 @@ var App = App || {};
 			App.Events.on ( 'openStorekeeper', this.openStorekeeper, this );
 			App.Events.on ( 'sendData', this.sendData, this );
 		},
+		el: $( '.container' ),
 		events:{
 			'click #loginButton' : 'loginUser',
 			'click #addGoodsButton' : 'showAddGoodsView',

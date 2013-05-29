@@ -3,7 +3,7 @@ var App = App || {};
 (function () {	
 
 	App.StateMachine.execut =  function (curentState){
-		console.log(App.State.Lest)
+		console.log(App.State.Lest);
 		if(App.State.Lest){
 
 			switch(App.State.Lest){
