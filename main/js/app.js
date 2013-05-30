@@ -1,6 +1,6 @@
 var App = App || {};
 
-(function () {
+!function () {
 	
 	App.Materials = new App.Collections.List;   
 	App.Units = new App.Collections.Units;
@@ -12,4 +12,4 @@ var App = App || {};
 	new App.Router();
 	Backbone.history.start({hashChange:true});
 
-}()); 
+}(); 
