@@ -39,7 +39,7 @@ var App = App || {};
 				
 				var goodsCollection = new App.Collections.GoodsItems();
 				
-				console.log(goodsArray[i].goodsPrice);
+				
 				goodsCollection.add(JSON.parse(goodsArray[i].goodsCollection));
 
 				_.each( JSON.parse(goodsArray[i].goodsCollection),  function ( model ) {
@@ -82,8 +82,8 @@ var App = App || {};
 				
 				var goodsCollection = new App.Collections.GoodsItems();
 				_.each( goods[i].goodsCollection,  function ( model ) {
-					console.log('first each');
-					App.Units.each( function (unit) {console.log('second each');
+					
+					App.Units.each( function (unit) {
 						if (model['units'] == unit.get('name')) {
 							model['goodsItemPrice'] = parseFloat( (unit.get('unitPrice') * model['count']).toFixed(2) );
 						}

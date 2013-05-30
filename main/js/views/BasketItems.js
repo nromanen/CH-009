@@ -35,6 +35,12 @@ var App = App || {};
 				this.model.destroy();
 				this.$el.remove();
 				$('#itemCount').html(App.Basket.length);
+				var	totalPrice = 0;
+				_.each ( App.Basket.models, function ( goodsItem ) {
+				
+					totalPrice = totalPrice + goodsItem.get('price');
+				} )
+				$('.BasketPrice').html("$" + totalPrice);
 			}	
 		}
 

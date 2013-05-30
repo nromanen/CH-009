@@ -58,11 +58,15 @@ var App = App || {};
 
 			}
 
-			console.log(this.$el.find('.span1').val());
-			 this.model.set('count',this.$el.find('.span1').val());
+			
+			this.model.set('count',this.$el.find('.span1').val());
 			App.Events.trigger("addItemtToBasket", this.model);
 			this.$el.find('.span1').val('1');
 			$('#itemCount').html(App.Basket.length);
+			$('body').append('<div id="alertAddItem"></div>');
+			$('#alertAddItem').html($("#alertAdd").html());
+			setTimeout( function() { $('#alertAddItem').remove() } , 1000)
+
 
 		},
 		goodsChange: function () {
@@ -76,7 +80,7 @@ var App = App || {};
 		},
 		nameUpDate: function (){
 
-			console.log($('#'+this.model.cid+"_goodsId").html(this.model.get("nameG")));
+		
 
 
 		},
