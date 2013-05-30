@@ -28,6 +28,12 @@ var App = App || {};
 			var basketItems =  new App.Views.BasketItems({model:modelItems});
 			$('#basket_tableRow').prepend( basketItems.el );
 			basketItems.render();
+			var	totalPrice = 0;
+			_.each ( App.Basket.models, function ( goodsItem ) {
+				
+					totalPrice = totalPrice + goodsItem.get('price');
+				} )
+			$('.BasketPrice').html("$" + totalPrice);
 
 		}
 

@@ -342,3 +342,15 @@ body {
   height: 40px;
   overflow: hidden;
 }
+
+#alertAddItem{
+
+position: fixed;
+top:2px;
+right:5px;
+
+
+
+
+
+}
