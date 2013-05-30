@@ -14,7 +14,7 @@ var App = App || {};
 		},
 		events: {
 			'click .delete' : 'confirmRemove',
-
+			'change .span1': 'changeCount'
 
 
 		},
@@ -36,13 +36,28 @@ var App = App || {};
 				this.$el.remove();
 				$('#itemCount').html(App.Basket.length);
 				var	totalPrice = 0;
+
 				_.each ( App.Basket.models, function ( goodsItem ) {
-				
-					totalPrice = totalPrice + goodsItem.get('price');
+					
+					totalPrice = totalPrice + (goodsItem.get('price')*goodsItem.get('counts'));
 				} )
 				$('.BasketPrice').html("$" + totalPrice);
 			}	
+		},
+		changeCount:  function () {
+			console.log(this.$el.find('.span1').val());
+			var	totalPrice = 0;
+			this.model.set('counts', this.$el.find('.span1').val())
+				_.each ( App.Basket.models, function ( goodsItem ) {
+					
+					totalPrice = totalPrice + (goodsItem.get('price')*goodsItem.get('counts'));
+				} )
+				$('.BasketPrice').html("$" + totalPrice);
+
+
+
 		}
+
 
 
 

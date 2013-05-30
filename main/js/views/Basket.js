@@ -18,7 +18,9 @@ var App = App || {};
 		render: function (){
 			this.$el.html('');
 			this.$el.html($('#basket-table').html());
+			this.$el.append($('#confirmFormTemplate').html());
           	this.collection.each( this.addOne, this );
+
 			return this;
 
 
@@ -30,8 +32,8 @@ var App = App || {};
 			basketItems.render();
 			var	totalPrice = 0;
 			_.each ( App.Basket.models, function ( goodsItem ) {
-				
-					totalPrice = totalPrice + goodsItem.get('price');
+					console.log(goodsItem)
+					totalPrice = totalPrice + (goodsItem.get('price')*goodsItem.get('counts'));
 				} )
 			$('.BasketPrice').html("$" + totalPrice);
 
