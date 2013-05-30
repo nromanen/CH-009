@@ -1,15 +1,18 @@
-var App = App || {};
-
-!function () {
+define([], function() {
+  
+  	var App = App || {
 	
-	App.Materials = new App.Collections.List;   
-	App.Units = new App.Collections.Units;
-	App.Goods = new App.Collections.Goods;
-	App.Basket = new App.Collections.BasketItems;
-	App.Views.Show = new App.Views.Users;
-	
-	location.hash = '';
-	new App.Router();
-	Backbone.history.start({hashChange:true});
+		Models: App.Models || {},
+		Views: App.Views || {},
+		Collections: App.Collections || {},
+		dbConnector: App.dbConnector || {},
+		Events : _.extend( {}, Backbone.Events ),
+		HTML : App.HTML || {},
+		State: App.State || {},
+		StateMachine: App.StateMachine || {}
+		
+	};
 
-}(); 
+  	return App;
+
+});
