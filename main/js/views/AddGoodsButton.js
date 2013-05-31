@@ -1,8 +1,11 @@
-var App = App || {};
+define([
+	'jquery',
+	'underscore',
+	'backbone'
 
-(function () {
+], function($, _, Backbone) {
 
-	App.Views.AddGoodsButton = Backbone.View.extend({
+	var AddGoodsButton = Backbone.View.extend({
 
 		el: 'div',
 		initialize: function() {
@@ -23,4 +26,6 @@ var App = App || {};
 
 	});
 
-})();
+	return AddGoodsButton;
+
+});

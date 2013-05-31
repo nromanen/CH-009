@@ -1,8 +1,12 @@
-var App = App || {};
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+	'unitsView'
 
-(function () {
+], function($, _, Backbone, unitsView) {
 
-	App.Views.UnitsList = Backbone.View.extend({  // это вид коллекции
+	var UnitsList = Backbone.View.extend({  // это вид коллекции
 	
 		tagName: 'div',
 		className: 'accordion',
@@ -19,7 +23,7 @@ var App = App || {};
 		},
 		addOne: function( modelUnit ) {
 
-			var UnitView = new App.Views.Unit({ model: modelUnit, collection: this.collection });
+			var UnitView = new unitsView({ model: modelUnit, collection: this.collection });
 			this.$el.prepend( UnitView.el );
 			UnitView.render();
 			
@@ -29,4 +33,6 @@ var App = App || {};
 	
 	});
 
-})();
+	return UnitsList;
+
+});

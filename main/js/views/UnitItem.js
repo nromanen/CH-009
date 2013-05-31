@@ -1,8 +1,12 @@
-var App = App || {};
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+	'app'
 
-(function () {
+], function($, _, Backbone, App) {
 
-	App.Views.UnitItem = Backbone.View.extend({
+	var UnitItem = Backbone.View.extend({
 
 		tagName: 'tr',
 		initialize: function (){
@@ -63,4 +67,6 @@ var App = App || {};
 	
 	});
 
-})();
+	return UnitItem;
+
+});

@@ -1,6 +1,6 @@
-var App = App || {};
-
-(function () {
+define([
+	'app'
+], function(App) {
 
 	var localDatabase = {};
 	var dbName = "productDB";
@@ -649,7 +649,8 @@ var App = App || {};
    //App.dbConnector.deleteDatabase();
 
 	App.dbConnector.createDatabase();
-	
-})();
 
+	return App.dbConnector;
+
+})
 

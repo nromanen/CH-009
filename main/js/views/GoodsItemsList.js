@@ -1,8 +1,13 @@
-var App = App || {};
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+	'app',
+	'goodsItemView'
 
-(function () {
+], function($, _, Backbone, App, goodsItemView) {
 
-	App.Views.GoodsItemsList = Backbone.View.extend({  // это вид коллекции
+	var GoodsItemsList = Backbone.View.extend({  // это вид коллекции
 	
 	tagName: 'div',
 	className:'accordion-body collapse',
@@ -29,10 +34,10 @@ var App = App || {};
 		},
 		addOne: function( modelGoodsItem ) {
 	
-			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
-			$("#"+this.model.cid+"_tableRow").prepend( goodsItemView.el );
+			var goodsItemViewInstance = new goodsItemView({ model: modelGoodsItem, goodsModel: this.model });
+			$("#"+this.model.cid+"_tableRow").prepend( goodsItemViewInstance.el );
 			
-			goodsItemView.render();
+			goodsItemViewInstance.render();
 			
 			if ( App.userRole !== 'customer' ) {
 				$('.buttonPlace').html( $('#addUnit2GoodsButton').html() );
@@ -40,9 +45,9 @@ var App = App || {};
 
 		},
 		ItemRemove: function() {
-			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
-			goodsItemView.render();
-			this.$el.append( goodsItemView.el );
+			var goodsItemViewInstance = new goodsItemView({ model: modelGoodsItem, goodsModel: this.model });
+			goodsItemViewInstance.render();
+			this.$el.append( goodsItemViewInstance.el );
 		},
 		ItemRemove: function() {
 			console.log(this);
@@ -50,4 +55,6 @@ var App = App || {};
 	
 	});
 
-})();
+	return GoodsItemsList;
+
+});

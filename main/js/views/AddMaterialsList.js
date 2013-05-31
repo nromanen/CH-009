@@ -1,8 +1,13 @@
-var App = App || {};
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+	'app',
+	'plusMaterialView'
 
-(function () {	
+], function($, _, Backbone, App, plusMaterialView) {
 
-	App.Views.AddMaterialsList = Backbone.View.extend({
+	var AddMaterialsList = Backbone.View.extend({
 	
 		tagName: 'ul',
 		className: 'nobullets',
@@ -17,7 +22,7 @@ var App = App || {};
 		addOne: function( modelMaterials ) {
 		
 			var MaterialsCollection = this.model.get ( 'mcollection' );
-			var PlusMaterial = new App.Views.PlusMaterial({ model: modelMaterials, collection: MaterialsCollection, something: this.model });
+			var PlusMaterial = new plusMaterialView({ model: modelMaterials, collection: MaterialsCollection, something: this.model });
 			//console.log( this.model );
 			PlusMaterial.render();
 			this.$el.append( PlusMaterial.el );
@@ -30,6 +35,7 @@ var App = App || {};
 		}
 	
 	});
-	
 
-}());
+	return AddMaterialsList;	
+
+});

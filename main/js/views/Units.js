@@ -1,8 +1,14 @@
-var App = App || {};
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+	'app',
+	'addMaterialsListView',
+	'unitItemsListView'
 
-(function () {
+], function($, _, Backbone, App, addMaterialsListView, unitItemsListView) {
 
-	App.Views.Unit = Backbone.View.extend({
+	var Unit = Backbone.View.extend({
 	
 		tagName: 'div',
 		className: 'accordion-group',
@@ -29,7 +35,7 @@ var App = App || {};
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
 
-			var newUnitItemsList = new App.Views.UnitItemsList( { collection: this.model.get( 'mcollection' ), model: this.model  } ) ;
+			var newUnitItemsList = new unitItemsListView( { collection: this.model.get( 'mcollection' ), model: this.model  } ) ;
 			newUnitItemsList.render();
 
 			this.$el.append( newUnitItemsList.el );
@@ -50,7 +56,7 @@ var App = App || {};
 		},
 		inputMaterials: function () {
 			
-			var AddMaterialsList = new App.Views.AddMaterialsList( { collection: App.Materials, model : this.model } );
+			var AddMaterialsList = new addMaterialsListView( { collection: App.Materials, model : this.model } );
 			AddMaterialsList.render();
 			$( '#materialsContainer' ).html( AddMaterialsList.el );
 			$('#addMaterial2Unit').find('#myModalLabel').html('Add New Material to ' + this.model.get('name') );
@@ -109,8 +115,6 @@ var App = App || {};
 
 			});
 
-				
-
 		},
 		close: function () {
 			console.log(this.model);
@@ -154,4 +158,6 @@ var App = App || {};
 		
 	});
 
-}());
+	return Unit;
+
+});

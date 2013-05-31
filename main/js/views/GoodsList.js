@@ -1,8 +1,12 @@
-var App = App || {};
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+	'goodsView'
 
-(function () {
+], function($, _, Backbone, goodsView) {
 
-	App.Views.GoodsList = Backbone.View.extend({  // это вид коллекции
+	var GoodsList = Backbone.View.extend({  // это вид коллекции
 		
 		tagName: 'div',
 
@@ -20,7 +24,7 @@ var App = App || {};
 		},
 		addOne: function( modelGoods ) {
 			
-			var GoodsView = new App.Views.Goods({ model: modelGoods });
+			var GoodsView = new goodsView({ model: modelGoods });
 			this.$el.prepend( GoodsView.el );
 			
 			GoodsView.render();
@@ -30,7 +34,8 @@ var App = App || {};
 
 		}
 			
-		
 	});
 
-})();
+	return GoodsList;
+
+});

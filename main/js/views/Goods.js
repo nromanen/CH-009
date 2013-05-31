@@ -1,8 +1,15 @@
-var App = App || {};
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+	'app',
+	'addUnitsListView',
+	'basketView',
+	'goodsItemsListView'
 
-(function () {
+], function($, _, Backbone, App, addUnitsListView, basketView, goodsItemsListView) {
 
-	App.Views.Goods = Backbone.View.extend({
+	var Goods = Backbone.View.extend({
 			
 		tagName: 'div',
 		className:"accordion-group",
@@ -37,7 +44,7 @@ var App = App || {};
 			}
 
 			this.$el.html( strTemplate );
-			var newGoodsItemsList = new App.Views.GoodsItemsList( { collection: this.model.get( 'goodsCollection' ), model: this.model  } ) ;
+			var newGoodsItemsList = new goodsItemsListView( { collection: this.model.get( 'goodsCollection' ), model: this.model  } ) ;
 
 			this.$el.append( newGoodsItemsList.el );
 			newGoodsItemsList.render();
@@ -53,7 +60,7 @@ var App = App || {};
 				id      : 'shoping_cart',
 				active  : '',
 			}) );
-				var basket = new App.Views.Basket({collection:App.Basket})
+				var basket = new basketView({collection:App.Basket})
 				$("#shoping_cart").html(basket.el);
 
 			}
@@ -91,7 +98,7 @@ var App = App || {};
 		},
 		inputUnits: function () {
 			
-				var AddUnitsList = new App.Views.AddUnitsList( { collection: App.Units, model : this.model	} );
+				var AddUnitsList = new addUnitsListView( { collection: App.Units, model : this.model	} );
 				AddUnitsList.render();
 				$( '#unitContainer' ).html( AddUnitsList.el );
 
@@ -144,5 +151,7 @@ var App = App || {};
 		}	
 		
 	});
+	
+	return Goods;
 
-}());
+});

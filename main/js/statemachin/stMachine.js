@@ -1,8 +1,10 @@
-var App = App || {};
+define([
+	'app'
+], function(App) {
 
-(function () {	
+	var App = App || {};
 
-	App.StateMachine.execut =  function (curentState){
+	App.StateMachine.execut = function (curentState){
 		console.log(App.State.Lest);
 		if(App.State.Lest){
 
@@ -39,13 +41,6 @@ var App = App || {};
 
 	}
 
+	return App.StateMachine;
 
-
-
-
-
-
-
-
-
-})()
+});

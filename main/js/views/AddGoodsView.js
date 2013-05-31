@@ -1,7 +1,12 @@
-var App = App || {};
-(function () {
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+	'app'
 
-	App.Views.AddGoodsView = Backbone.View.extend({
+], function($, _, Backbone, App) {
+
+	var AddGoodsView = Backbone.View.extend({
 		
 		el: 'div',
 		events: {
@@ -24,7 +29,7 @@ var App = App || {};
 		validateItem: function () {
 
 			$('#addGoodsView').find('.error').remove();
-			var goodsName = $('#goods').val().trim(); 	
+			var goodsName = this.$el.find('#goods').val().trim(); 	
 			
 			if ( goodsName === "" ) {
 				$('#products > div.clearfix').after('<div class="alert alert-error">Enter the goods name, please<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
@@ -80,5 +85,7 @@ var App = App || {};
 		}		
 		
 		});
+
+	return AddGoodsView;
 	
-}());
+});

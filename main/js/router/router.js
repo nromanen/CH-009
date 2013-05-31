@@ -1,6 +1,7 @@
-var App = App || {};
-
-(function () {
+define([
+	'backbone',
+	'app'
+], function(Backbone, App) {
 
 	App.Router = Backbone.Router.extend({
 
@@ -42,4 +43,6 @@ var App = App || {};
 
 	});
 
-}())
+	return App.Router;
+
+});

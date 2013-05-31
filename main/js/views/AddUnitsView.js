@@ -1,8 +1,12 @@
-var App = App || {};
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+	'app'
 
-(function () {
+], function($, _, Backbone, App) {
 
-	App.Views.AddUnitsView = Backbone.View.extend({
+	var AddUnitsView = Backbone.View.extend({
 
 		el: 'div',
 		events: {
@@ -87,4 +91,6 @@ var App = App || {};
 		}
 	});
 
-})();
+	return AddUnitsView;
+
+});

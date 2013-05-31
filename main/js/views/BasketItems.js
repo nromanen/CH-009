@@ -1,32 +1,27 @@
-var App = App || {};
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+	'app'
 
-(function () {
+], function($, _, Backbone, App) {
 
-	App.Views.BasketItems =  Backbone.View.extend({
+	var BasketItems = Backbone.View.extend({
 
 		tagName:'tr',
 
 		initialize: function (){
 
-
-
 			
 		},
 		events: {
 			'click .delete' : 'confirmRemove',
-
-
-
 		},
 
 		render: function (){
-			
 
 			var strTemplate = _.template( $('#basket').html(), this.model.toJSON() );
 			this.$el.html(strTemplate);
-
-
-
 
 		},
 		confirmRemove: function () {
@@ -44,7 +39,8 @@ var App = App || {};
 			}	
 		}
 
-
-
 	});
-})();
+
+	return BasketItems; 
+
+});

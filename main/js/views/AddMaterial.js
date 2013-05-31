@@ -1,8 +1,12 @@
-var App = App || {};
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+	'app'
 
-(function () {
-
-	App.Views.AddMaterial = Backbone.View.extend({
+], function($, _, Backbone, App) {
+	
+	var AddMaterial = Backbone.View.extend({
 		el: '#addNewMaterial',
 		events: {
 			'keypress input' : 'inputKeypress',
@@ -71,4 +75,6 @@ var App = App || {};
 		}
 	});	
 
-})();
+	return AddMaterial;
+
+});

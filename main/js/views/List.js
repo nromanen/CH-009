@@ -1,8 +1,13 @@
-var App = App || {};
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+	'app',
+	'materialView'
 
-(function () {
+], function($, _, Backbone, App, materialView) {
 
-	App.Views.List = Backbone.View.extend({  // это вид коллекции
+	var List = Backbone.View.extend({  // это вид коллекции
 	
 		tagName: 'table',
 		className: 'table',
@@ -19,11 +24,13 @@ var App = App || {};
 			return this;
 		},
 		addOne: function( modelMaterial ) {
-			var MaterialView = new App.Views.Material({ model: modelMaterial });
+			var MaterialView = new materialView({ model: modelMaterial });
 			MaterialView.render();
 			this.$el.append( MaterialView.el );
 		}
 	
 	});
 
-})();
+	return List;
+
+});

@@ -1,6 +1,9 @@
-var App = App || {};
+define([
+	'backbone',
+	'app'
+], function(Backbone, App) {
 
-(function () {
+	var App = App || {};
 
 	App.Models.BasketItem =  Backbone.Model.extend({
 
@@ -8,12 +11,8 @@ var App = App || {};
 		counts:0,
 		price:0
 
-
-
-
-
-
-
-
 	});
-}());
+
+	return App.Models.BasketItem;
+
+});

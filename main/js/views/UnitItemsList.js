@@ -1,8 +1,12 @@
-var App = App || {};
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+	'unitItemView'
 
-(function () {
+], function($, _, Backbone, unitItemView) {
 
-	App.Views.UnitItemsList = Backbone.View.extend({  // это вид коллекции
+	var UnitItemsList = Backbone.View.extend({  // это вид коллекции
 	
 		tagName: 'div',
 		initialize: function () {
@@ -24,12 +28,14 @@ var App = App || {};
 		},
 		addOne: function( modelUnitItem ) {
 
-			var unitItemView = new App.Views.UnitItem({ model: modelUnitItem, unitModel: this.model });
-			unitItemView.render();
-			this.$el.find( '#' + this.model.get( 'hrefID' ) + '_tableRow' ).prepend( unitItemView.el );
+			var unitItemViewInstance = new unitItemView({ model: modelUnitItem, unitModel: this.model });
+			unitItemViewInstance.render();
+			this.$el.find( '#' + this.model.get( 'hrefID' ) + '_tableRow' ).prepend( unitItemViewInstance.el );
 
 		}
 	
 	});
 
-})();
+	return UnitItemsList;
+
+});

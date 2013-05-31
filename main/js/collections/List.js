@@ -1,6 +1,9 @@
-var App = App || {};
+define([
+	'backbone',
+	'app'
+], function(Backbone, App) {
 
-(function () {
+	var App = App || {};
 
 	App.Collections.List = Backbone.Collection.extend({ 
 		model: App.Models.Material,
@@ -64,4 +67,7 @@ var App = App || {};
 		}
 	});
 
-})();
+	return App.Collections.List;
+
+});
+

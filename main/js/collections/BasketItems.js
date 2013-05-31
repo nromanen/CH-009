@@ -1,6 +1,9 @@
-var App = App || {};
+define([
+	'backbone',
+	'app'
+], function(Backbone, App) {
 
-(function () {
+	var App = App || {};
 
 	App.Collections.BasketItems = Backbone.Collection.extend({
 
@@ -22,5 +25,8 @@ var App = App || {};
 
 			}
 
-	})
-}());
+	});
+
+	return App.Collections.BasketItems;
+
+});

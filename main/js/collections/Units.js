@@ -1,10 +1,13 @@
-var App = App || {};
+define([
+	'backbone',
+	'app',
+	'dbConnector',
+	'unitModel'
+], function(Backbone, App, dbConnector, unitModel) {
 
-(function () {
+	var Units = Backbone.Collection.extend({
 
-	App.Collections.Units = Backbone.Collection.extend({
-
-		model: App.Models.Unit,
+		model: unitModel,
 		url: "/units.json",
 		initialize: function () {
 			
@@ -13,13 +16,13 @@ var App = App || {};
 			App.Events.on( 'writeUnits', this.writeCollection, this );
 			App.Events.on('fetchUnitsPostgDB', this.fetchPostgDB, this);
 			App.Events.on('updateUnitPrice', this.updateUnitPrice, this);
-			App.dbConnector.openDatabase();
+			dbConnector.openDatabase();
 			
 		},
 		addModel: function ( model ) {
 
 			this.add( model );
-			App.dbConnector.AddUnit ( "Units", model );
+			dbConnector.AddUnit ( "Units", model );
 			 
 		},
 		fetchPostgDB: function (jsonUnits){
@@ -46,19 +49,15 @@ var App = App || {};
 					unitPrice:totalPrise
 							
 				});
-				//console.log(unitCollection)
 				
 				this.addModel(mUnit);
 				totalPrise=0
 			}
 
-
-
-
 		},
 		fetchUnits: function(){
 			
-			App.dbConnector.fetchUnit();
+			dbConnector.fetchUnit();
 		
 		},
 		writeCollection: function(units){
@@ -111,4 +110,6 @@ var App = App || {};
 		
 	});
 
-})();
+	return Units;
+
+});

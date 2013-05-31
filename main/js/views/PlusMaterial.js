@@ -1,8 +1,12 @@
-var App = App || {};
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+	'app'
 
-(function () {
-
-	App.Views.PlusMaterial = Backbone.View.extend({ // это вид модели
+], function($, _, Backbone, App) {
+	
+	var PlusMaterial = Backbone.View.extend({ // это вид модели
 		tagName: 'li',
 		initialize: function () {
 			this.collection.on('add', this.saveUnitCollection, this);
@@ -105,4 +109,6 @@ var App = App || {};
 		}
 	});
 
-})();
+	return PlusMaterial;
+
+});

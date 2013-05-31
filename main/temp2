@@ -1,0 +1,11 @@
+App.Views.List
+App.Views.AddMaterial
+App.Views.UnitsList
+App.Views.AddUnitsView
+App.Views.AddUnitsButton
+
+App.Views.GoodsList
+App.Views.AddGoodsView
+App.Views.AddGoodsButton
+
+App.Views.GoodsList

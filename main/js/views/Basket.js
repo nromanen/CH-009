@@ -1,8 +1,13 @@
-var App = App || {};
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+	'app',
+	'basketItemsView'
 
-(function () {
+], function($, _, Backbone, App, basketItemsView) {
 
-	App.Views.Basket =  Backbone.View.extend({
+	var Basket =  Backbone.View.extend({
 
 		tagName:'div',
 
@@ -25,7 +30,7 @@ var App = App || {};
 		},
 		addOne: function(modelItems){
 			
-			var basketItems =  new App.Views.BasketItems({model:modelItems});
+			var basketItems =  new basketItemsView({model:modelItems});
 			$('#basket_tableRow').prepend( basketItems.el );
 			basketItems.render();
 			var	totalPrice = 0;
@@ -39,4 +44,7 @@ var App = App || {};
 
 
 	});
-})();
+
+	return Basket;
+	
+});

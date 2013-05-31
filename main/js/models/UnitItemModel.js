@@ -1,6 +1,10 @@
-var App = App || {};
+define([
+	'backbone',
+	'app'
+], function(Backbone, App) {
 
-(function () {
+	var App = App || {};
+
 	App.Models.UnitItem = Backbone.Model.extend({
 		defaults: function() {
 			return {
@@ -25,4 +29,7 @@ var App = App || {};
 			this.set({ count: value, unitItemPrice: newprice });
 		}
 	});
-}());	
+
+	return App.Models.UnitItem;
+
+});	

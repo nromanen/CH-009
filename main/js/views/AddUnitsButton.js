@@ -1,8 +1,11 @@
-var App = App || {};
+define([
+	'jquery',
+	'underscore',
+	'backbone'
 
-(function () {
+], function($, _, Backbone) {
 
-	App.Views.AddUnitsButton = Backbone.View.extend({
+	var AddUnitsButton = Backbone.View.extend({
 
 		el: 'div',
 		initialize: function(){
@@ -24,4 +27,6 @@ var App = App || {};
 
 	});
 
-})();
+	return AddUnitsButton;
+
+});

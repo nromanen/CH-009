@@ -1,5 +1,10 @@
-var App = App || {};
-(function() {
+define([
+	'backbone',
+	'app'
+], function(Backbone, App) {
+
+	var App = App || {};
+
 	App.Models.Unit = Backbone.Model.extend({
 		defaults: function() {
 			return {	
@@ -53,5 +58,7 @@ var App = App || {};
 			});
 		}
 	})
+
+	return App.Models.Unit;
 		
-}());
+})

@@ -1,6 +1,9 @@
-var App = App || {};
+define([
+	'backbone',
+	'app'
+], function(Backbone, App) {
 
-(function () {
+	var App = App || {};
 
 	App.Collections.UnitItems = Backbone.Collection.extend({	
 	
@@ -42,4 +45,6 @@ var App = App || {};
 
 	});
 
-})();
+	return App.Collections.UnitItems;
+
+});

@@ -1,6 +1,9 @@
-var App = App || {};
+define([
+	'backbone',
+	'app'
+], function(Backbone, App) {
 
-(function () {
+	var App = App || {};
 
 	App.Models.Goods = Backbone.Model.extend({
 	
@@ -9,5 +12,7 @@ var App = App || {};
 		goodsPrice: 0
 	
 	});
+
+	return App.Models.Goods;
 	
-}()); 
+});
