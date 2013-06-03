@@ -8,10 +8,11 @@ define([
 	'goodsItemsListView',
 	'text!../templates/goodsCustomer.html',
 	'text!../templates/goodsEngineer.html',
-	'text!../templates/tab.html'
+	'text!../templates/tab.html',
+	'text!../templates/alertAdd.html'
 
 ], function($, _, Backbone, App, addUnitsListView, basketView, goodsItemsListView,
-	goodsCustomerTemplate, goodsEngineerTemplate, tabTemplate) {
+	goodsCustomerTemplate, goodsEngineerTemplate, tabTemplate, alertAddTemplate) {
 
 	var Goods = Backbone.View.extend({
 			
@@ -74,7 +75,7 @@ define([
 			this.$el.find('.span1').val('1');
 			$('#itemCount').html(App.Basket.length);
 			$('body').append('<div id="alertAddItem"></div>');
-			$('#alertAddItem').html($("#alertAdd").html());
+			$('#alertAddItem').html( alertAddTemplate );
 			setTimeout( function() { $('#alertAddItem').remove() } , 1000)
 
 		},

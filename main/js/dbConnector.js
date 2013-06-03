@@ -1,6 +1,7 @@
 define([
+	'jquery',
 	'app'
-], function(App) {
+], function($, App) {
 
 	var localDatabase = {};
 	var dbName = "productDB";

@@ -4,9 +4,11 @@ define([
 	'backbone',
 	'app',
 	'addMaterialsListView',
-	'unitItemsListView'
+	'unitItemsListView',
+	'text!../templates/units.html'
 
-], function($, _, Backbone, App, addMaterialsListView, unitItemsListView) {
+], function($, _, Backbone, App, addMaterialsListView, unitItemsListView,
+	unitsTemplate) {
 
 	var Unit = Backbone.View.extend({
 	
@@ -26,7 +28,7 @@ define([
 			'blur .edit_unit_name': 'close',
 			'click .add-material-to-unit' : 'inputMaterials'
 		},
-		template: _.template( $('#unit-name').html() ),
+		template: _.template( unitsTemplate ),
 
 		render: function () {	
 			var nameTrimmed = this.model.get( 'name' ).replace(/\s/g, ''); // видаляє пробіли
