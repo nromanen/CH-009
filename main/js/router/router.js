@@ -1,10 +1,12 @@
-var App = App || {};
-
-(function () {
+define([
+	'backbone',
+	'app'
+], function(Backbone, App) {
 
 	App.Router = Backbone.Router.extend({
 
 		routes: {
+			
 			''            : 'openCustomer',
 			'customer'    : 'chooseRole',
 			'accountant'  : 'openAccountant',
@@ -41,4 +43,6 @@ var App = App || {};
 
 	});
 
-}())
+	return App.Router;
+
+});

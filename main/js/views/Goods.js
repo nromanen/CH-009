@@ -1,9 +1,20 @@
-var App = App || {};
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+	'app',
+	'addUnitsListView',
+	'basketView',
+	'goodsItemsListView',
+	'text!../templates/goodsCustomer.html',
+	'text!../templates/goodsEngineer.html',
+	'text!../templates/tab.html',
+	'text!../templates/alertAdd.html'
 
-(function () {
+], function($, _, Backbone, App, addUnitsListView, basketView, goodsItemsListView,
+	goodsCustomerTemplate, goodsEngineerTemplate, tabTemplate, alertAddTemplate) {
 
-	App.Views.Goods = Backbone.View.extend({
-	
+	var Goods = Backbone.View.extend({
 			
 		tagName: 'div',
 		className:"accordion-group",
@@ -21,23 +32,24 @@ var App = App || {};
 			'click .edit_right' : 'changeGoodsName',
 			'keypress .edit_goods_name': 'updateOnEnter',
 			'blur .edit_goods_name': 'close',
-			'click .btn': 'inputUnits'
+			'click .btn': 'inputUnits',
+			'click .Bay-item':'addToBasket'
+
 		},
 		render: function () {	
 			
 			var goodsHrefId = this.model.cid;
 			goodsHrefId = goodsHrefId.replace(" ","");
 			this.model.set('hrefId', goodsHrefId);
-			console.log(JSON.stringify(this.model.toJSON()));
 
 			if ( App.userRole === 'customer' ) {
-				var strTemplate = _.template( $('#goods-name-customer').html(), this.model.toJSON() );
+				var strTemplate = _.template( goodsCustomerTemplate, this.model.toJSON() );
 			} else {
-				var strTemplate = _.template( $('#goods-name').html(), this.model.toJSON() );
+				var strTemplate = _.template( goodsEngineerTemplate, this.model.toJSON() );
 			}
 
 			this.$el.html( strTemplate );
-			var newGoodsItemsList = new App.Views.GoodsItemsList( { collection: this.model.get( 'goodsCollection' ), model: this.model  } ) ;
+			var newGoodsItemsList = new goodsItemsListView( { collection: this.model.get( 'goodsCollection' ), model: this.model  } ) ;
 
 			this.$el.append( newGoodsItemsList.el );
 			newGoodsItemsList.render();
@@ -45,6 +57,28 @@ var App = App || {};
 			this.$input = this.$('.edit_goods_name');
 			
 		}, 
+		addToBasket: function (){
+			if($('#shoping_cart').length==0){
+				$('#myTab').append('<li class=""><a href="#shoping_cart" data-toggle="tab">Basket \
+				 <i class="icon-shopping-cart"></i>=<span id="itemCount"></span></a></li>');
+				$('#TabContent').append ( _.template ( tabTemplate, { 
+					id      : 'shoping_cart',
+					active  : '',
+				}) );
+				var basket = new basketView({collection:App.Basket})
+				$("#shoping_cart").html(basket.el);
+
+			}
+			
+			this.model.set('count',this.$el.find('.span1').val());
+			App.Events.trigger("addItemtToBasket", this.model);
+			this.$el.find('.span1').val('1');
+			$('#itemCount').html(App.Basket.length);
+			$('body').append('<div id="alertAddItem"></div>');
+			$('#alertAddItem').html( alertAddTemplate );
+			setTimeout( function() { $('#alertAddItem').remove() } , 1000)
+
+		},
 		goodsChange: function () {
 			//
 		},
@@ -54,20 +88,17 @@ var App = App || {};
 		refreshGoodsPrice: function (){
 			this.$el.find('.goodsPrice').html('$'+this.model.get('goodsPrice'));
 		},
-		nameUpDate: function (){
-
-			console.log($('#'+this.model.cid+"_goodsId").html(this.model.get("nameG")));
-
+		nameUpDate: function () {
 
 		},
 		goodsToggle: function () {
 			
-				this.$('.goods_info').show();
+			this.$('.goods_info').show();
 							
 		},
 		inputUnits: function () {
 			
-				var AddUnitsList = new App.Views.AddUnitsList( { collection: App.Units, model : this.model	} );
+				var AddUnitsList = new addUnitsListView( { collection: App.Units, model : this.model	} );
 				AddUnitsList.render();
 				$( '#unitContainer' ).html( AddUnitsList.el );
 
@@ -117,41 +148,10 @@ var App = App || {};
 			if (e.keyCode == 13) {
 				this.close(); 
 			}
-		},
-		
-		
+		}	
 		
 	});
 	
-	App.Views.GoodsList = Backbone.View.extend({  // это вид коллекции
-		
-		tagName: 'div',
+	return Goods;
 
-		initialize: function () {
-			this.collection.on('add', this.render, this);
-			this.render();
-		},
-		render: function () {
-			
-			$('#products').append( this.el );	
-            this.$el.html('');
-          	this.collection.each( this.addOne, this );
-			return this;
-			
-		},
-		addOne: function( modelGoods ) {
-			
-			var GoodsView = new App.Views.Goods({ model: modelGoods });
-			this.$el.prepend( GoodsView.el );
-			
-			GoodsView.render();
-			
-			var jq_goods_info = '.goods_info';
-			this.$el.find( jq_goods_info ).hide();
-
-		}
-			
-		
-	});
-
-}());
+});

@@ -9,6 +9,8 @@
 $editor_width: 26px;
 $editor_height: 26px;
 
+$trEvenColor: #E7F7FF;
+$trOddColor: #FFF;
 
 .left20 {
     margin: 0 0 0 20px;
@@ -20,15 +22,15 @@ $editor_height: 26px;
 .edit_count, .editPrice, table tr td .edit_units_count {
     width: 20px;
 }
-.accordion-toggle .edit_goods_name, .accordion-toggle .edit_unit_name, 
-table tr td .edit_count, table tr td .editPrice, table tr td .edit_count,  
-table tr td .edit_units_count, .editing .goods_name_id, .editing .unit_name, 
-.editing .count, .editing .price, #materialsContainer ul li .add_item .additional, 
+.accordion-toggle .edit_goods_name, .accordion-toggle .edit_unit_name,
+table tr td .edit_count, table tr td .editPrice, table tr td .edit_count,
+table tr td .edit_units_count, .editing .goods_name_id, .editing .unit_name,
+.editing .count, .editing .price, #materialsContainer ul li .add_item .additional,
 #unitContainer ul li .add_item .additional {
     display: none;
 }
 .editing .edit_goods_name, .editing .edit_unit_name, table tr.editing td .edit_count, table tr.editing td .editPrice, table tr.editing td .edit_units_count {
-    display: inline-block; 
+    display: inline-block;
 }
 .nobullets {
     list-style: none;
@@ -55,7 +57,7 @@ table tr td .edit_units_count, .editing .goods_name_id, .editing .unit_name,
     font-size: 11px;
 }
 #unitContainer ul li .add_item .general, #materialsContainer ul li .add_item .general {
-    clear:both; 
+    clear:both;
     float:left;
 }
 #unitContainer ul li a, #materialsContainer ul li a {
@@ -154,4 +156,59 @@ $color2: red;
 #addGoodsView {
     float: left;
     display:none;
+}
+#addUnitsView {
+    float: left;
+    display:block;
+}
+#price{
+    position: relative;
+    left:17px;
+}
+#addNewMaterial .modal-body{
+    position: block;
+}
+body{
+    background: url('../img/grey.png');
+}
+
+#materials table tr:nth-child(even) {background: $trEvenColor}
+#materials table tr:nth-child(odd) {background: $trOddColor}
+
+#units table tr:nth-child(even) {background: $trEvenColor}
+#units table tr:nth-child(odd) {background: $trOddColor}
+
+#products table tr:nth-child(even) {background: $trEvenColor}
+#products table tr:nth-child(odd) {background: $trOddColor}
+
+#products .accordion-group:nth-child(even) {background: $trEvenColor}
+#products .accordion-group:nth-child(odd)  {background: $trOddColor}
+
+#units .accordion-group:nth-child(even) {background: $trEvenColor}
+#units .accordion-group:nth-child(odd)  {background: $trOddColor}
+
+.shoping {
+    cursor: pointer;
+    position: relative;
+    right: 15px;
+    top: -30px;
+    margin-top:-3px;
+    margin-left: 300px;
+    float:right;
+}
+#products .accordion-heading {
+    height: 40px;
+    overflow: hidden;
+}
+
+.add-on .bigprice {
+    font-size: 22px;
+    font-weight: bold;
+    color: #16402B;
+}
+
+.headerPrice {
+    float:right;
+    position: relative;
+    left: -30px;
 }

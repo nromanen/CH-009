@@ -1,14 +1,22 @@
-var App = App || {};
+define([
+	'underscore',
+	'backbone'
+], function(_, Backbone) {
 
-(function () {
-	
-	App.Materials = new App.Collections.List;   
-	App.Units = new App.Collections.Units;
-	App.Goods = new App.Collections.Goods;
+	var App = new Array;
+	var App = {
 
-	App.Views.Show = new App.Views.ControlView ( { el: $( '.container' ) } );
-	
-	location.hash = '';
-	App.Router1 = new App.Router();
-	Backbone.history.start({hashChange:true});
-}()); 
+		Models : new Array,
+		Views : new Array,
+		Events : _.extend({}, Backbone.Events),
+		Collections : new Array,
+		dbConnector : new Array,
+		Router : new Array,
+		State : new Array,
+		StateMachine : new Array
+
+	}
+
+  	return App;
+
+});

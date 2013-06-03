@@ -1,6 +1,7 @@
-var App = App || {};
-
-(function () {
+define([
+	'jquery',
+	'app'
+], function($, App) {
 
 	var localDatabase = {};
 	var dbName = "productDB";
@@ -575,8 +576,7 @@ var App = App || {};
 						
 						var deleteRequest = localDatabase.db.transaction( ["Tovaru"] , "readwrite" ).objectStore("Tovaru").delete( cursor.key );
 						deleteRequest.onsuccess = function( ev ) {
-							
-							console.log("deleted id:" + cursor.key + " !");
+
 							
 						}
 					
@@ -650,7 +650,8 @@ var App = App || {};
    //App.dbConnector.deleteDatabase();
 
 	App.dbConnector.createDatabase();
-	
-})();
 
+	return App.dbConnector;
+
+})
 

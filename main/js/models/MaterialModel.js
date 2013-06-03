@@ -1,6 +1,9 @@
-var App = App || {};
+define([
+	'backbone',
+	'app'
+], function(Backbone, App) {
 
-(function () {
+	var App = App || {};
 
 	App.Models.Material = Backbone.Model.extend({ 
 
@@ -8,38 +11,7 @@ var App = App || {};
 		price: 0
 	
 	});
-/*	
-	App.Models.UnitItem = Backbone.Model.extend({
-	
-		unitID: 1,
-		material: '',
-		count: 0,
-		unitItemPrice: 0
 
-	});
-	
-	App.Models.Unit = Backbone.Model.extend({
-	
-		name: 'unit',
-		mcollection: '',
-		unitPrice: 0,
+	return App.Models.Material;
 
-	});
-	
-	App.Models.Goods = Backbone.Model.extend({
-	
-		nameG: 'Goods',
-		goodsCollection: '',
-		goodsPrice: 0
-	
-	});
-	App.Models.GoodsItem = Backbone.Model.extend({
-		
-		units: '',
-		count: 0,
-		goodsItemPrice: 0
-		
-	});
-*/
-
-}()); 
+});
