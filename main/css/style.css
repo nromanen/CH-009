@@ -341,14 +341,9 @@ body {
   overflow: hidden;
 }
 
-#alertAddItem{
-
-position: fixed;
-top:2px;
-right:5px;
-
-
-
-
-
+/* line 203, ../sass/style.scss */
+.headerPrice {
+  float: right;
+  position: relative;
+  left: -30px;
 }
