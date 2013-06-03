@@ -2,9 +2,12 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'app'
+	'app',
+	'text!../templates/materialAccountant.html',
+	'text!../templates/materialStorekeeper.html'
 
-], function($, _, Backbone, App) {
+], function($, _, Backbone, App,
+	materialAccountantTemplate, materialStorekeeperTemplate) {
 
 	var Material = Backbone.View.extend({ // это вид модели
 		tagName: 'tr',
@@ -22,9 +25,9 @@ define([
 		},
 		render: function () {
 			if ( App.userRole === 'accountant' ) {
-				var Template = _.template( $('#materials-accountant').html(), this.model.toJSON() );
+				var Template = _.template( materialAccountantTemplate, this.model.toJSON() );
 			} else if ( App.userRole === 'storekeeper' ) {
-				var Template = _.template( $('#materials-storekeeper').html(), this.model.toJSON() );
+				var Template = _.template( materialStorekeeperTemplate, this.model.toJSON() );
 			}
 			this.$el.html( Template );
 		},

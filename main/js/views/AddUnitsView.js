@@ -2,9 +2,10 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'app'
+	'app',
+	'text!../templates/addUnitsView.html'
 
-], function($, _, Backbone, App) {
+], function($, _, Backbone, App, addUnitsViewTemplate) {
 
 	var AddUnitsView = Backbone.View.extend({
 
@@ -17,7 +18,7 @@ define([
 		initialize: function() {
 			this.render();
 		},
-		template: _.template( $('#addUnitsViewTemplate').html() ),
+		template: _.template( addUnitsViewTemplate ),
 		render: function() {
 			$('#units').append( this.template() );
 		},

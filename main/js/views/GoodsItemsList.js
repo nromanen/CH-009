@@ -3,9 +3,14 @@ define([
 	'underscore',
 	'backbone',
 	'app',
-	'goodsItemView'
+	'goodsItemView',
+	'text!../templates/goodsItemsListCustomer.html',
+	'text!../templates/goodsItemsListEngineer.html',
+	'text!../templates/addUnit2GoodsButton.html'
 
-], function($, _, Backbone, App, goodsItemView) {
+], function($, _, Backbone, App, goodsItemView,
+	goodsItemsListCustomerTemplate, goodsItemsListEngineerTemplate,
+	addUnit2GoodsButtonTemplate) {
 
 	var GoodsItemsList = Backbone.View.extend({  // это вид коллекции
 	
@@ -18,16 +23,16 @@ define([
 		},
 		render: function () {
 			if ( App.userRole === 'customer' ) {
-				var strTemplate = _.template( $('#units-table-customer').html(), { nameGoods:this.model.cid, goodsPrice : this.model.get('goodsPrice') } );	
+				var strTemplate = _.template( goodsItemsListCustomerTemplate, { nameGoods:this.model.cid, goodsPrice : this.model.get('goodsPrice') } );	
 			} else {
-				var strTemplate = _.template( $('#units-table').html(), { nameGoods:this.model.cid, goodsPrice : this.model.get('goodsPrice') } );	
+				var strTemplate = _.template( goodsItemsListEngineerTemplate, { nameGoods:this.model.cid, goodsPrice : this.model.get('goodsPrice') } );	
 			}
 			
 			this.$el.html( strTemplate );
 			this.collection.each(this.addOne, this);
 
 			if ( App.userRole !== 'customer' ) {
-				$('.buttonPlace').html( $('#addUnit2GoodsButton').html() );
+				$('.buttonPlace').html( addUnit2GoodsButtonTemplate );
 			}
 
 			return this;
@@ -40,7 +45,7 @@ define([
 			goodsItemViewInstance.render();
 			
 			if ( App.userRole !== 'customer' ) {
-				$('.buttonPlace').html( $('#addUnit2GoodsButton').html() );
+				$('.buttonPlace').html( addUnit2GoodsButtonTemplate );
 			}
 
 		},

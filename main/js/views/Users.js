@@ -10,11 +10,13 @@ define([
 	'addUnitsButtonView',
 	'goodsListView',
 	'addGoodsView',
-	'addGoodsButtonView'
+	'addGoodsButtonView',
+	'text!../templates/tab.html',
+	'text!../templates/addUnit2GoodsButton.html'
 
 ], function($, _, Backbone, App, listView, addMaterialView, unitsListView,
 	addUnitsView, addUnitsButtonView, goodsListView, addGoodsView, 
-	addGoodsButtonView) {
+	addGoodsButtonView, tabTemplate, addUnit2GoodsButtonTemplate) {
 
 	var Users = Backbone.View.extend({
 
@@ -47,24 +49,20 @@ define([
    						type: "POST",
    						url: "/cgi-bin/login.py",
    						data:{login:userDate['login'], password:userDate['password']},
-   							success: function(msg){
+   							success: function(msg) {
      						
-     						if(msg==='engineer'){
-     							window.location.replace('/#engineer');	
-     						}
-     						else if(msg === 'storekeeper'){
-     							window.location.replace('/#storekeeper');	
+	     						if (msg==='engineer') {
+	     							window.location.replace('/#engineer');	
+	     						} else if (msg === 'storekeeper') {
+	     							window.location.replace('/#storekeeper');	
+	     						} else if (msg === 'accauntant') {
+	     							window.location.replace('/#accountant');	
+	     						} else {
+	     							alert(msg + "Error login and password")
+	     							window.location.replace('/#customer');
+	     						}
 
-     						}else if(msg === 'accauntant'){
-     						window.location.replace('/#accountant');	
-
-     						}else{
-     							alert(msg + "Error login and password")
-     							window.location.replace('/#customer');
-     						}
-
-
-   							}
+   						}
  					});
 
 		},
@@ -83,16 +81,14 @@ define([
 			$('.container').html('');
 			$('.container').append( _.template ( $('#sendDataTmp').html() ) );
 			$('.container').append( matCol + "<br><br>");
-			$('.container').append(  uniCol +"<br><br>" );
+			$('.container').append( uniCol +"<br><br>" );
 			$('.container').append( gooCol +"<br><br>" );
 			$.ajax({
    						type: "POST",
    						url: "/cgi-bin/insertJSON.py",
    						data:{materials:matCol, units:uniCol, goods:gooCol},
-   							success: function(msg){
+   							success: function(msg) {
      							alert(msg);
-     							   						
-
    							}
  					});
 
@@ -169,7 +165,7 @@ define([
 
 			var viewProducts = new goodsListView( { collection: App.Goods } );
 			$('#TabContent').html("");
-			$('#TabContent').append ( _.template ( $('#tab').html(), { 
+			$('#TabContent').append ( _.template ( tabTemplat e, { 
 				id      : 'products',
 				active  : ' in active',
 			}) ); 
@@ -198,7 +194,7 @@ define([
 
 			var viewProducts = new goodsListView( { collection: App.Goods } );
 			
-			$('#TabContent').append ( _.template ( $('#tab').html(), { 
+			$('#TabContent').append ( _.template ( tabTemplate, { 
 				id      : 'products',
 				active  : ' in active',
 			}) ); 
@@ -223,7 +219,7 @@ define([
 			// rendering the content of the Units Tab
 			var viewUnits = new unitsListView( { collection: App.Units } );
 			viewUnits.render();
-			$('#TabContent').append ( _.template ( $('#tab').html(), { 
+			$('#TabContent').append ( _.template ( tabTemplate, { 
 				id      : 'units',
 				active  : '',
 			}) );
@@ -242,7 +238,7 @@ define([
 			// rendering the content of the Materials Tab
 			var viewMaterials = new listView( { collection: App.Materials } );
 			viewMaterials.render();
-			$('#TabContent').append ( _.template ( $('#tab').html(), { 
+			$('#TabContent').append ( _.template ( tabTemplate, { 
 				id      : 'materials',
 				active  : '',
 			}) ); 
@@ -257,7 +253,7 @@ define([
 			this.renderBeginning( 'Engineer' , App.userRole + 'Tab' );
 			
 			// rendering the content of the Products Tab			
-			$('#TabContent').append ( _.template ( $('#tab').html(), { 
+			$('#TabContent').append ( _.template ( tabTemplate, { 
 				id      : 'products',
 				active  : ' in active',
 			}) );
@@ -265,14 +261,14 @@ define([
 			var addGoodsButton = new addGoodsButtonView();
 			var addGoodsViewInstance = new addGoodsView({ collection: App.Goods });
 
-			$('.container').append($('#addUnit2GoodsTemplate').html()); 
+			$('.container').append(addUnit2GoodsButtonTemplate); 
 			var viewProducts = new goodsListView( { collection: App.Goods } );
-			$('.buttonPlace').html( $('#addUnit2GoodsButton').html() );
+			$('.buttonPlace').html( addUnit2GoodsButtonTemplate );
 			$('#addGoodsView').css({'display': 'none'});
 			
 			// rendering the content of the Units Tab
 			
-			$('#TabContent').append ( _.template ( $('#tab').html(), { 
+			$('#TabContent').append ( _.template ( tabTemplate, { 
 				id      : 'units',
 				active  : '',
 			}) );
@@ -313,7 +309,7 @@ define([
 			var viewMaterials = new listView( { collection: App.Materials } );
 			viewMaterials.render();
 			
-			$('#TabContent').append ( _.template ( $('#tab').html(), { 
+			$('#TabContent').append ( _.template ( tabTemplate, { 
 				id      : 'materials',
 				active  : ' in active',
 			}) ); 

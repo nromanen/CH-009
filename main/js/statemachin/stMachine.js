@@ -5,7 +5,7 @@ define([
 	var App = App || {};
 
 	App.StateMachine.execut = function (curentState){
-		console.log(App.State.Lest);
+
 		if(App.State.Lest){
 
 			switch(App.State.Lest){
@@ -37,7 +37,6 @@ define([
 		}
 
 		App.State.Lest = curentState;
-		console.log(App.State.Lest)
 
 	}
 

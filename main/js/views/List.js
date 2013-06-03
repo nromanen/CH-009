@@ -3,9 +3,12 @@ define([
 	'underscore',
 	'backbone',
 	'app',
-	'materialView'
+	'materialView',
+	'text!../templates/listAccountant.html',
+	'text!../templates/listStorekeeper.html'
 
-], function($, _, Backbone, App, materialView) {
+], function($, _, Backbone, App, materialView, listAccountantTemplate,
+	listStorekeeperTemplate) {
 
 	var List = Backbone.View.extend({  // это вид коллекции
 	
@@ -16,9 +19,9 @@ define([
 		},
 		render: function () {
 			if ( App.userRole === 'accountant' ) {
-				this.$el.append( $('#tableheader-materials-accountant').html() );
+				this.$el.append( listAccountantTemplate );
 			} else if ( App.userRole === 'storekeeper' ) {
-				this.$el.append( $('#tableheader-materials-storekeeper').html() );
+				this.$el.append( listStorekeeperTemplate );
 			}
 			this.collection.each(this.addOne, this);
 			return this;

@@ -2,9 +2,10 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'app'
+	'app',
+	'text!../templates/unitItem.html'
 
-], function($, _, Backbone, App) {
+], function($, _, Backbone, App, unitItemTemplate) {
 
 	var UnitItem = Backbone.View.extend({
 
@@ -21,7 +22,7 @@ define([
 			'keypress .edit_count': 'updateOnEnter',
 			'blur .edit_count': 'close'
 		},
-		template: _.template( $('#materials-row-in-unit').html() ),
+		template: _.template( unitItemTemplate ),
 		render: function () {
 	
 			var strTemplate = this.template( this.model.toJSON() );

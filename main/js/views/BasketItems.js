@@ -2,16 +2,16 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'app'
+	'app',
+	'text!../templates/BasketItems.html'
 
-], function($, _, Backbone, App) {
+], function($, _, Backbone, App, basketItemsTemplate) {
 
 	var BasketItems = Backbone.View.extend({
 
 		tagName:'tr',
 
-		initialize: function (){
-
+		initialize: function () {
 			
 		},
 		events: {
@@ -20,7 +20,7 @@ define([
 
 		render: function (){
 
-			var strTemplate = _.template( $('#basket').html(), this.model.toJSON() );
+			var strTemplate = _.template( basketItemsTemplate, this.model.toJSON() );
 			this.$el.html(strTemplate);
 
 		},
