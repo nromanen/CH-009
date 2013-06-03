@@ -15,7 +15,7 @@ define([
 			this.render();
 		},
 		render: function () {
-			
+			console.log('render list of goods');
 			$('#products').append( this.el );	
             this.$el.html('');
           	this.collection.each( this.addOne, this );

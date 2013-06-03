@@ -19,8 +19,9 @@ define([
 			this.model.on( 'changes', this.goodsChange );
 			this.model.on( 'change:nameG', this.refreshGoodsName, this );
 			this.model.on( 'change:goodsPrice', this.refreshGoodsPrice, this );
+			App.Events.on('ErrorExist', this.errorAlert, this);
+			App.Events.on( 'alertAdd', this.alertAdd, this);
 		},
-		
 		events: {
 			'click .accordion-heading' : 'goodsToggle',
 			'click .delete_goods' : 'goodsDeleteItem',
@@ -50,29 +51,47 @@ define([
 			newGoodsItemsList.render();
 			
 			this.$input = this.$('.edit_goods_name');
-			
+			console.log("render goods");
 		}, 
 		addToBasket: function (){
+
 			if($('#shoping_cart').length==0){
-				$('#myTab').append('<li class=""><a href="#shoping_cart" data-toggle="tab">Basket \
-				 <i class="icon-shopping-cart"></i>=<span id="itemCount"></span></a></li>');
-				$('#TabContent').append ( _.template ( $('#tab').html(), { 
-				id      : 'shoping_cart',
-				active  : '',
-			}) );
-				var basket = new basketView({collection:App.Basket})
-				$("#shoping_cart").html(basket.el);
+
+					$('#myTab').append('<li class=""><a href="#shoping_cart" data-toggle="tab">Basket \
+				 	<i class="icon-shopping-cart"></i>=<span id="itemCount"></span></a></li>');
+						$('#TabContent').append ( _.template ( $('#tab').html(), { 
+							id      : 'shoping_cart',
+							active  : '',
+						}) );
+
+					var basket = new basketView({collection:App.Basket})
+					$("#shoping_cart").html(basket.el);
 
 			}
 
 			
 			this.model.set('count',this.$el.find('.span1').val());
 			App.Events.trigger("addItemtToBasket", this.model);
+
 			this.$el.find('.span1').val('1');
+			
+			setTimeout( function() { $('#alertAddItem').remove() } , 1000)
+
+
+		},
+		errorAlert: function (){
+			$('#alertAddItem').remove();
+			$('body').append('<div id="alertAddItem"></div>');
+			$('#alertAddItem').html($("#alertError").html());
+
+			setTimeout( function() { $('#alertAddItem').remove() } , 1000)
+		},
+		alertAdd: function(){
+			console.log(1);
 			$('#itemCount').html(App.Basket.length);
 			$('body').append('<div id="alertAddItem"></div>');
 			$('#alertAddItem').html($("#alertAdd").html());
-			setTimeout( function() { $('#alertAddItem').remove() } , 1000)
+
 
 
 		},

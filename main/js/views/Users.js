@@ -174,7 +174,7 @@ define([
 				active  : ' in active',
 			}) ); 
 			$('#products').html( viewProducts.el );
-
+			console.log("Customer FIred rendering!!!!!!!!!!!!!!!!");
 			viewProducts.render();
 			$('.delete').remove();
 			$('.edit_right').remove();

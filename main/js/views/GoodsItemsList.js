@@ -29,7 +29,7 @@ define([
 			if ( App.userRole !== 'customer' ) {
 				$('.buttonPlace').html( $('#addUnit2GoodsButton').html() );
 			}
-
+			console.log("render goodsList");
 			return this;
 		},
 		addOne: function( modelGoodsItem ) {
