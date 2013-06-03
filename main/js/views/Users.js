@@ -211,6 +211,8 @@ define([
 			$('.buttonPlace').html("")
 			// rendering the content of the Goods Tab
 			var viewUnits = new unitsListView( { collection: App.Units } );
+			var goodsFilter = new accFilter( { collection: App.Goods } );
+			goodsFilter.render();
 			viewUnits.render();
 			$('.delete').remove();
 			$('.edit_right').remove();
@@ -225,6 +227,7 @@ define([
 			
 			// rendering the content of the Units Tab
 			var viewUnits = new unitsListView( { collection: App.Units } );
+			var unitsFilter = new accFilter( { collection: App.Units } );
 			viewUnits.render();
 			$('#TabContent').append ( _.template ( tabTemplate, { 
 				id      : 'units',
@@ -244,6 +247,7 @@ define([
 
 			// rendering the content of the Materials Tab
 			var viewMaterials = new listView( { collection: App.Materials } );
+			var materialsFilter = new accFilter( { collection: App.Materials } );
 			viewMaterials.render();
 			$('#TabContent').append ( _.template ( tabTemplate, { 
 				id      : 'materials',
