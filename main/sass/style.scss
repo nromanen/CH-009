@@ -12,7 +12,6 @@ $editor_height: 26px;
 $trEvenColor: #E7F7FF;
 $trOddColor: #FFF;
 
-
 .left20 {
     margin: 0 0 0 20px;
 }
@@ -170,8 +169,9 @@ $color2: red;
     position: block;
 }
 body{
-    background: #fff;
+    background: url('../img/grey.png');
 }
+
 #materials table tr:nth-child(even) {background: $trEvenColor}
 #materials table tr:nth-child(odd) {background: $trOddColor}
 

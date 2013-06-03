@@ -25,8 +25,6 @@ define([
 
   var init = function() {
 
-    console.log('Hello World: ' + App);
-
     //App.dbConnector = dbConnector;
     App.StateMachine = stateMachine;
 
