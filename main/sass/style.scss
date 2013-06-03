@@ -22,15 +22,15 @@ $trOddColor: #FFF;
 .edit_count, .editPrice, table tr td .edit_units_count {
     width: 20px;
 }
-.accordion-toggle .edit_goods_name, .accordion-toggle .edit_unit_name, 
-table tr td .edit_count, table tr td .editPrice, table tr td .edit_count,  
-table tr td .edit_units_count, .editing .goods_name_id, .editing .unit_name, 
-.editing .count, .editing .price, #materialsContainer ul li .add_item .additional, 
+.accordion-toggle .edit_goods_name, .accordion-toggle .edit_unit_name,
+table tr td .edit_count, table tr td .editPrice, table tr td .edit_count,
+table tr td .edit_units_count, .editing .goods_name_id, .editing .unit_name,
+.editing .count, .editing .price, #materialsContainer ul li .add_item .additional,
 #unitContainer ul li .add_item .additional {
     display: none;
 }
 .editing .edit_goods_name, .editing .edit_unit_name, table tr.editing td .edit_count, table tr.editing td .editPrice, table tr.editing td .edit_units_count {
-    display: inline-block; 
+    display: inline-block;
 }
 .nobullets {
     list-style: none;
@@ -57,7 +57,7 @@ table tr td .edit_units_count, .editing .goods_name_id, .editing .unit_name,
     font-size: 11px;
 }
 #unitContainer ul li .add_item .general, #materialsContainer ul li .add_item .general {
-    clear:both; 
+    clear:both;
     float:left;
 }
 #unitContainer ul li a, #materialsContainer ul li a {
@@ -193,7 +193,7 @@ body{
     right: 15px;
     top: -30px;
     margin-top:-3px;
-    margin-left: 300px; 
+    margin-left: 300px;
     float:right;
 }
 #products .accordion-heading {
@@ -205,4 +205,10 @@ body{
     font-size: 22px;
     font-weight: bold;
     color: #16402B;
+}
+
+.headerPrice {
+    float:right;
+    position: relative;
+    left: -30px;
 }
