@@ -175,7 +175,7 @@ define([
 			}) ); 
 			$('#products').html( viewProducts.el );
 			console.log("Customer FIred rendering!!!!!!!!!!!!!!!!");
-			viewProducts.render();
+			//viewProducts.render();
 			$('.delete').remove();
 			$('.edit_right').remove();
 			$('.delete_goods').remove();
