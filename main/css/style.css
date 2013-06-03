@@ -340,3 +340,10 @@ body {
   height: 40px;
   overflow: hidden;
 }
+
+/* line 204, ../sass/style.scss */
+.add-on .bigprice {
+  font-size: 22px;
+  font-weight: bold;
+  color: #16402B;
+}
