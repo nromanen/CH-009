@@ -1,9 +1,10 @@
 define([
 	'jquery',
 	'underscore',
-	'backbone'
+	'backbone',
+	'text!../templates/addGoodsButton.html'
 
-], function($, _, Backbone) {
+], function($, _, Backbone, addGoodsButtonTemplate) {
 
 	var AddGoodsButton = Backbone.View.extend({
 
@@ -14,7 +15,7 @@ define([
 		events: {
 			'click .addGoodsButton' : 'showAddGoodsView'
 		},
-		template: _.template( $('#addGoodsButtonTemplate').html() ),
+		template: _.template( addGoodsButtonTemplate ),
 		render: function() {
 			$('#products').append( this.template() );
 		},

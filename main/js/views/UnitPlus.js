@@ -2,9 +2,10 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'app'
+	'app',
+	'text!../templates/unitPlus.html'
 
-], function($, _, Backbone, App) {
+], function($, _, Backbone, App, unitPlusTemplate) {
 
 	var UnitPlus = Backbone.View.extend({ // это вид модели
 		tagName: 'li',
@@ -19,9 +20,8 @@ define([
 			'click .add': 'addQuantity',
 			'keypress input': 'keypress'
 		},
-		template: _.template( $('#goods-count-plus').html() ),
 		render: function () {
-			var strTemplate = this.template( this.model.toJSON() );
+			var strTemplate = _.template( unitPlusTemplate, this.model.toJSON() );
 			this.$el.html( strTemplate );
 		},
 		addOne: function () {

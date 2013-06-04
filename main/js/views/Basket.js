@@ -3,9 +3,10 @@ define([
 	'underscore',
 	'backbone',
 	'app',
-	'basketItemsView'
+	'basketItemsView',
+	'text!../templates/basket.html'
 
-], function($, _, Backbone, App, basketItemsView) {
+], function($, _, Backbone, App, basketItemsView, basketTemplate) {
 
 	var Basket =  Backbone.View.extend({
 
@@ -22,8 +23,7 @@ define([
 
 		render: function (){
 			this.$el.html('');
-			this.$el.html($('#basket-table').html());
-			this.$el.append($('#confirmFormTemplate').html());
+			this.$el.html( basketTemplate );
           	this.collection.each( this.addOne, this );
 
 			return this;

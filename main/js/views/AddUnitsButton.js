@@ -1,9 +1,10 @@
 define([
 	'jquery',
 	'underscore',
-	'backbone'
+	'backbone',
+	'text!../templates/addUnitsButton.html'
 
-], function($, _, Backbone) {
+], function($, _, Backbone, addUnitsButtonTemplate) {
 
 	var AddUnitsButton = Backbone.View.extend({
 
@@ -14,7 +15,7 @@ define([
 		events: {
 			'click .addUnitsButton' : 'showAddUnitsView'
 		},
-		template: _.template( $('#addUnitsButtonTemplate').html() ),
+		template: _.template( addUnitsButtonTemplate ),
 		render: function() {
 			$('#units').append( this.template() );
 		},

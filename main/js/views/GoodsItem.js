@@ -2,16 +2,18 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'app'
+	'app',
+	'text!../templates/goodsItemCustomer.html',
+	'text!../templates/goodsItemEngineer.html'
 
-], function($, _, Backbone, App) {
+], function($, _, Backbone, App, 
+	goodsItemCustomerTemplate, goodsItemEngineerTemplate) {
 
 	var GoodsItem = Backbone.View.extend({
 	
 	tagName: 'tr',
 		initialize: function (){
 			this.model.on( 'destroy', this.remove, this );
-
 			this.model.on( 'change', this.refresh, this);
 		},
 		events: {
@@ -26,9 +28,9 @@ define([
 			this.model.set('nameGoods', this.options.goodsModel.get('nameG'));
 
 			if ( App.userRole === 'customer' ) {
-				var strTemplate = _.template( $('#goods-count-customer').html(), this.model.toJSON() );
+				var strTemplate = _.template( goodsItemCustomerTemplate, this.model.toJSON() );
 			} else {
-				var strTemplate = _.template( $('#goods-count').html(), this.model.toJSON() );
+				var strTemplate = _.template( goodsItemEngineerTemplate, this.model.toJSON() );
 			}
 
 			this.$el.html( strTemplate );

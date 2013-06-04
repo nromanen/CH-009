@@ -5,9 +5,15 @@ define([
 	'app',
 	'addUnitsListView',
 	'basketView',
-	'goodsItemsListView'
+	'goodsItemsListView',
+	'text!../templates/goodsCustomer.html',
+	'text!../templates/goodsEngineer.html',
+	'text!../templates/tab.html',
+	'text!../templates/alertAdd.html',
+	'text!../templates/alertError.html'
 
-], function($, _, Backbone, App, addUnitsListView, basketView, goodsItemsListView) {
+], function($, _, Backbone, App, addUnitsListView, basketView, goodsItemsListView,
+	goodsCustomerTemplate, goodsEngineerTemplate, tabTemplate, alertAddTemplate, alertErrorTemplate) {
 
 	var Goods = Backbone.View.extend({
 			
@@ -39,9 +45,9 @@ define([
 			this.model.set('hrefId', goodsHrefId);
 
 			if ( App.userRole === 'customer' ) {
-				var strTemplate = _.template( $('#goods-name-customer').html(), this.model.toJSON() );
+				var strTemplate = _.template( goodsCustomerTemplate, this.model.toJSON() );
 			} else {
-				var strTemplate = _.template( $('#goods-name').html(), this.model.toJSON() );
+				var strTemplate = _.template( goodsEngineerTemplate, this.model.toJSON() );
 			}
 
 			this.$el.html( strTemplate );
@@ -57,18 +63,17 @@ define([
 
 			if($('#shoping_cart').length==0){
 
-					$('#myTab').append('<li class=""><a href="#shoping_cart" data-toggle="tab">Basket \
-				 	<i class="icon-shopping-cart"></i>=<span id="itemCount"></span></a></li>');
-						$('#TabContent').append ( _.template ( $('#tab').html(), { 
-							id      : 'shoping_cart',
-							active  : '',
-						}) );
+				$('#myTab').append('<li class=""><a href="#shoping_cart" data-toggle="tab">Basket \
+				 <i class="icon-shopping-cart"></i>=<span id="itemCount"></span></a></li>');
+				$('#TabContent').append ( _.template ( tabTemplate, { 
+					id      : 'shoping_cart',
+					active  : '',
+				}) );
+				var basket = new basketView({collection:App.Basket})
+				$("#shoping_cart").html(basket.el);
 
-					var basket = new basketView({collection:App.Basket})
-					$("#shoping_cart").html(basket.el);
 
 			}
-
 			
 			this.model.set('count',this.$el.find('.span1').val());
 			App.Events.trigger("addItemtToBasket", this.model);
@@ -82,16 +87,17 @@ define([
 		errorAlert: function (){
 			$('#alertAddItem').remove();
 			$('body').append('<div id="alertAddItem"></div>');
-			$('#alertAddItem').html($("#alertError").html());
+			$('#alertAddItem').html(alertErrorTemplate);
 
 			setTimeout( function() { $('#alertAddItem').remove() } , 1000)
 		},
 		alertAdd: function(){
-			console.log(1);
+			
 			$('#itemCount').html(App.Basket.length);
 			$('body').append('<div id="alertAddItem"></div>');
-			$('#alertAddItem').html($("#alertAdd").html());
 
+			$('#alertAddItem').html( alertAddTemplate );
+			setTimeout( function() { $('#alertAddItem').remove() } , 1000)
 
 
 		},
@@ -104,15 +110,12 @@ define([
 		refreshGoodsPrice: function (){
 			this.$el.find('.goodsPrice').html('$'+this.model.get('goodsPrice'));
 		},
-		nameUpDate: function (){
-
-		
-
+		nameUpDate: function () {
 
 		},
 		goodsToggle: function () {
 			
-				this.$('.goods_info').show();
+			this.$('.goods_info').show();
 							
 		},
 		inputUnits: function () {

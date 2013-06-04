@@ -2,9 +2,10 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'app'
+	'app',
+	'text!../templates/plusMaterial.html'
 
-], function($, _, Backbone, App) {
+], function($, _, Backbone, App, plusMaterialTemplate) {
 	
 	var PlusMaterial = Backbone.View.extend({ // это вид модели
 		tagName: 'li',
@@ -19,7 +20,7 @@ define([
 			'click .add': 'addQuantity',
 			'keypress input': 'keypress'
 		},
-		template: _.template( $('#material-price-plus').html() ),
+		template: _.template( plusMaterialTemplate ),
 		render: function () {
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
