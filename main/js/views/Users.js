@@ -80,15 +80,33 @@ define([
 			}
 			else if( href === '#units'){
 				console.log("search in units tab!");
+				unitSearch();
 			}
 			else if( href === '#materials' ){
 				console.log("search in materials tab!");
+				materialSearch();
 			}
 
 			function goodSearch(){
 				var request = $('#searchInput').val();
 				console.log(request);
-				console.log( App.Goods );
+				console.log( App.Goods.models );
+				console.log(App.Goods.where({ nameG : "g*" }));
+				//$('.accordion-group:has(#c393_goodsId)').hide();
+				var dede = "dede";
+				$('.accordion-group:has(.goods_name_id:contains(dede))').hide();
+
+			};
+			function unitSearch(){
+				var request = $('#searchInput').val();
+				console.log(request);
+				console.log( App.Units );
+			};
+			function materialSearch(){
+				var request = $('#searchInput').val();
+				console.log(request);
+				console.log( App.Materials );
+
 			}
 
 		},
