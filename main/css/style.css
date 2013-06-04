@@ -354,3 +354,8 @@ body {
   position: relative;
   left: -30px;
 }
+
+/* line 215, ../sass/style.scss */
+.filter {
+  float: right;
+}

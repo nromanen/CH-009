@@ -5,7 +5,7 @@ postInputs = cgi.FieldStorage()
 
 sys.stdout.write("Content-type: text/html \r\n\r\n")
 
-conn = psycopg2.connect("dbname='postgres' user='postgres' host='localhost' password='root' port='5433' ")
+conn = psycopg2.connect("dbname='postgres' user='postgres' host='localhost' password='root' port='5432' ")
 
 cur = conn.cursor()
 
@@ -26,8 +26,8 @@ if postInputs['fetchType'].value == "2":
 	result =cur.fetchall()
 	i=0
 	arJSON=[]
-	
-	
+
+
 	while i<len(result):
 		arJSON.append(dict({"name":result[i][1], "mcollection":result[i][2]}))
 		i +=1
@@ -40,8 +40,8 @@ if postInputs['fetchType'].value == "3":
 	result =cur.fetchall()
 	i=0
 	arJSON=[]
-	
-	
+
+
 	while i<len(result):
 		arJSON.append(dict({"nameG":result[i][1], "goodsCollection":result[i][2]}))
 		i +=1

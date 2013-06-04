@@ -11,6 +11,7 @@ define([
 	'goodsListView',
 	'addGoodsView',
 	'addGoodsButtonView',
+	'accountantFilterView',
 	'text!../templates/tab.html',
 	'text!../templates/userTabs.html',
 	'text!../templates/addUnit2GoodsButton.html',
@@ -21,11 +22,30 @@ define([
 	'text!../templates/addNewUnitModal.html',
 	'text!../templates/addNewMaterialButton.html'
 
-], function($, _, Backbone, App, listView, addMaterialView, unitsListView,
-	addUnitsView, addUnitsButtonView, goodsListView, addGoodsView, 
-	addGoodsButtonView, tabTemplate, userTabsTemplate, addUnit2GoodsButtonTemplate,
-	loginFormTemplate, addNewMaterialModalTemplate, addUnit2GoodsModalTemplate,
-	addMaterial2UnitModalTemplate, addNewUnitModalTemplate, addNewMaterialButtonTemplate ) {
+], function(
+	$,
+	_,
+	Backbone,
+	App,
+	listView,
+	addMaterialView,
+	unitsListView,
+	addUnitsView,
+	addUnitsButtonView,
+	goodsListView,
+	addGoodsView,
+	addGoodsButtonView,
+	accountantFilterView,
+	tabTemplate,
+	userTabsTemplate,
+	addUnit2GoodsButtonTemplate,
+	loginFormTemplate,
+	addNewMaterialModalTemplate,
+	addUnit2GoodsModalTemplate,
+	addMaterial2UnitModalTemplate,
+	addNewUnitModalTemplate,
+	addNewMaterialButtonTemplate
+	) {
 
 	var Users = Backbone.View.extend({
 
@@ -45,7 +65,31 @@ define([
 
 			'click #loginButton' : 'loginUser',
 			'click #addGoodsButton' : 'showAddGoodsView',
-			'click #addUnitsButton' : 'showAddUnitsView'
+			'click #addUnitsButton' : 'showAddUnitsView',
+			'click #searchButton' : 'search'
+
+		},
+		search: function(){
+			//alert('search');
+
+			var href = $(' #myTab .active a ').attr('href');
+			console.log(href);
+			if( href === '#products' ){
+				console.log("search in products tab!");
+				goodSearch();
+			}
+			else if( href === '#units'){
+				console.log("search in units tab!");
+			}
+			else if( href === '#materials' ){
+				console.log("search in materials tab!");
+			}
+
+			function goodSearch(){
+				var request = $('#searchInput').val();
+				console.log(request);
+				console.log( App.Goods );
+			}
 
 		},
 		loginUser: function(){
@@ -59,13 +103,13 @@ define([
    						url: "/cgi-bin/login.py",
    						data:{login:userDate['login'], password:userDate['password']},
    							success: function(msg) {
-     						
+
 	     						if (msg==='engineer') {
-	     							window.location.replace('/#engineer');	
+	     							window.location.replace('/#engineer');
 	     						} else if (msg === 'storekeeper') {
-	     							window.location.replace('/#storekeeper');	
+	     							window.location.replace('/#storekeeper');
 	     						} else if (msg === 'accauntant') {
-	     							window.location.replace('/#accountant');	
+	     							window.location.replace('/#accountant');
 	     						} else {
 	     							alert(msg + "Error login and password")
 	     							window.location.replace('/#customer');
@@ -120,7 +164,7 @@ define([
 
 			function fetchMaterials(){
 				$.ajax({
-   						type: "POST", 
+   						type: "POST",
    						url: "/cgi-bin/fetch.py",
    						data:{fetchType:1},
    							success: function(msg){
@@ -174,13 +218,13 @@ define([
 
 			var viewProducts = new goodsListView( { collection: App.Goods } );
 			$('#TabContent').html("");
-			$('#TabContent').append ( _.template ( tabTemplate, { 
+			$('#TabContent').append ( _.template ( tabTemplate, {
 				id      : 'products',
 				active  : ' in active',
-			}) ); 
+			}) );
 			$('#products').html( viewProducts.el );
 
-			viewProducts.render();
+
 
 			$('#login').html('login');
 			$('.delete').remove();
@@ -200,19 +244,17 @@ define([
 			this.renderBeginning( 'Accountant' , App.userRole + 'Tab' );
 
 			var viewProducts = new goodsListView( { collection: App.Goods } );
-			
-			$('#TabContent').append ( _.template ( tabTemplate, { 
+
+			$('#TabContent').append ( _.template ( tabTemplate, {
 				id      : 'products',
 				active  : ' in active',
-			}) ); 
+			}) );
 			$('#products').append( viewProducts.el );
 
 			viewProducts.render();
 			$('.buttonPlace').html("")
 			// rendering the content of the Goods Tab
 			var viewUnits = new unitsListView( { collection: App.Units } );
-			var goodsFilter = new accFilter( { collection: App.Goods } );
-			goodsFilter.render();
 			viewUnits.render();
 			$('.delete').remove();
 			$('.edit_right').remove();
@@ -224,12 +266,13 @@ define([
 			$('#products table tbody tr td:nth-child(4)').hide();
 			$('.colspan4').attr('colspan', '2');
 			$('#actionButton').remove();
-			
+
 			// rendering the content of the Units Tab
 			var viewUnits = new unitsListView( { collection: App.Units } );
-			var unitsFilter = new accFilter( { collection: App.Units } );
+			//var unitsFilter = new accountantFilterView( { collection: App.Units } );
+			//unitsFilter.render();
 			viewUnits.render();
-			$('#TabContent').append ( _.template ( tabTemplate, { 
+			$('#TabContent').append ( _.template ( tabTemplate, {
 				id      : 'units',
 				active  : '',
 			}) );
@@ -247,12 +290,11 @@ define([
 
 			// rendering the content of the Materials Tab
 			var viewMaterials = new listView( { collection: App.Materials } );
-			var materialsFilter = new accFilter( { collection: App.Materials } );
 			viewMaterials.render();
-			$('#TabContent').append ( _.template ( tabTemplate, { 
+			$('#TabContent').append ( _.template ( tabTemplate, {
 				id      : 'materials',
 				active  : '',
-			}) ); 
+			}) );
 			$('#materials').append( viewMaterials.el );
 			$('#login').html('Quit').click(function(){ window.location.replace('/#'); });
 			$('#roles').remove();
@@ -262,9 +304,9 @@ define([
 
 			App.userRole = 'engineer';
 			this.renderBeginning( 'Engineer' , App.userRole + 'Tab' );
-			
-			// rendering the content of the Products Tab			
-			$('#TabContent').append ( _.template ( tabTemplate, { 
+
+			// rendering the content of the Products Tab
+			$('#TabContent').append ( _.template ( tabTemplate, {
 				id      : 'products',
 				active  : ' in active',
 			}) );
@@ -272,24 +314,24 @@ define([
 			var addGoodsButton = new addGoodsButtonView();
 			var addGoodsViewInstance = new addGoodsView({ collection: App.Goods });
 
-			$('.container').append( addUnit2GoodsModalTemplate ); 
+			$('.container').append( addUnit2GoodsModalTemplate );
 			var viewProducts = new goodsListView( { collection: App.Goods } );
 			$('.buttonPlace').html( addUnit2GoodsButtonTemplate );
 			$('#addGoodsView').css({'display': 'none'});
-			
+
 			// rendering the content of the Units Tab
-			
-			$('#TabContent').append ( _.template ( tabTemplate, { 
+
+			$('#TabContent').append ( _.template ( tabTemplate, {
 				id      : 'units',
 				active  : '',
 			}) );
-			
+
 			var addUnitsButton = new addUnitsButtonView();
 			var addUnitsViewInstance = new addUnitsView({ collection: App.Units });
 
 
 			$('.container').append( addMaterial2UnitModalTemplate );
-			
+
 			$('#units').append( $( '#addNewUnitButton' ).html() );
 			$('#units').append( addNewUnitModalTemplate );
 
@@ -319,16 +361,16 @@ define([
 			var addNewMaterials = new addMaterialView( { collection: App.Materials } );
 			var viewMaterials = new listView( { collection: App.Materials } );
 			viewMaterials.render();
-			
-			$('#TabContent').append ( _.template ( tabTemplate, { 
+
+			$('#TabContent').append ( _.template ( tabTemplate, {
 				id      : 'materials',
 				active  : ' in active',
-			}) ); 
+			}) );
 			$('#materials').append( viewMaterials.el );
 			$('#login').html('Quit').click(function(){ window.location.replace('/#'); });
 			$('#roles').remove();
 
-			
+
 		},
 		renderBeginning: function ( userName, tabName ) {
 
@@ -341,7 +383,7 @@ define([
 			$('#saveCollectionsToDb').bind('click', function() { that.SaveCollectionsToDb(); });
 			$('#login').bind('click', function() { that.chooseRole() });
 
-			$('.container').html('');  //empty main container 
+			$('.container').html('');  //empty main container
 			$('.container').append( '<div class="row"><div class="span3"></div><div class="span6 content"></div><div class="span3"></div>' );
 			$('.content').append( $('#' + tabName ).html() );
 			$('.content').append( '<div id="TabContent" class="tab-content">' );
@@ -357,7 +399,7 @@ define([
 
 
     });
-  
+
 	return Users;
 
-}); 
+});

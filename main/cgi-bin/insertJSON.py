@@ -2,15 +2,15 @@ import cgi, json
 import psycopg2, sys, os
 
 
-postInputs = cgi.FieldStorage() 
+postInputs = cgi.FieldStorage()
 sys.stdout.write("Content-type: text/html \r\n\r\n")
 
 
 materials = json.loads(postInputs['materials'].value)
 units = json.loads(postInputs['units'].value)
-goods = json.loads(postInputs['goods'].value) 
+goods = json.loads(postInputs['goods'].value)
 
-conn = psycopg2.connect("dbname='postgres' user='postgres' host='localhost' password='root' port='5433'")
+conn = psycopg2.connect("dbname='postgres' user='postgres' host='localhost' password='root' port='5432'")
 
 
 cur = conn.cursor()

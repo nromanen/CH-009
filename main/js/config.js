@@ -21,7 +21,7 @@ requirejs.config({
 		unitModel : 'models/unitModel',
 		router : 'router/router',
 		stateMachine : 'statemachin/stMachine',
-		accountantFilter : 'views/AccountantFilter',
+		accountantFilterView : 'views/AccountantFilter',
 		addGoodsButtonView : 'views/AddGoodsButton',
 		addGoodsView : 'views/AddGoodsView',
 		addMaterialView : 'views/AddMaterial',
@@ -61,7 +61,7 @@ requirejs.config({
 		},
 		bootstrap : {
 			deps: ['jquery']
-		} 
+		}
 	}
 })
 
