@@ -180,9 +180,9 @@ define([
 			}) ); 
 			$('#products').html( viewProducts.el );
 
-			viewProducts.render();
 
 			$('#login').html('login');
+
 			$('.delete').remove();
 			$('.edit_right').remove();
 			$('.delete_goods').remove();

@@ -30,6 +30,7 @@ define([
 			this.$el.html( basketTemplate );
 			this.$el.append( confirmFormTemplate );
           	this.collection.each( this.addOne, this );
+
 			return this;
 
 
@@ -51,8 +52,8 @@ define([
 			basketItems.render();
 			var	totalPrice = 0;
 			_.each ( App.Basket.models, function ( goodsItem ) {
-				
-					totalPrice = totalPrice + goodsItem.get('price');
+					console.log(goodsItem)
+					totalPrice = totalPrice + (goodsItem.get('price')*goodsItem.get('counts'));
 				} )
 			$('.BasketPrice').html("$" + totalPrice);
 
