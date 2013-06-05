@@ -42,9 +42,9 @@ define([
 		},
 		addGoodsItem: function( quantity ) {
 
-			console.log(this.collection); // коллекція юнітів (goodsItems Collection), яка містить додані юніти
-			console.log(this.model); // модель, яка додається (на яку клікнули)
-			console.log(this.options.something);
+			// this.collection  коллекція юнітів (goodsItems Collection), яка містить додані юніти
+			// this.model  модель, яка додається (на яку клікнули)
+			// this.options.something
 			
 			console.log(this.model.get('name'));
 

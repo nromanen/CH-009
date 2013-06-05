@@ -11,7 +11,7 @@ define([
 		
 		el: 'div',
 		events: {
-			'keypress input': 'inputKeypress',
+			'keypress #goods': 'inputKeypress',
 			'click .add-goods' : 'validateItem',
 			'click .cancel-goods' : 'cancelGoods'
 		},
@@ -23,13 +23,16 @@ define([
 			$('#products').append( this.template() );
 		},
 		inputKeypress: function(e) {
+			e.stopImmediatePropagation(); //e.stopPropagation(); plus preventing other registered event handlers on the same element to be executed
 			if (e.which === 13) {
 				this.validateItem();
 			}
+			
 		},
 		validateItem: function () {
 
 			$('#addGoodsView').find('.error').remove();
+			
 			var goodsName = this.$el.find('#goods').val().trim(); 	
 			
 			if ( goodsName === "" ) {

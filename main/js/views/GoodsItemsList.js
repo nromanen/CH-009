@@ -43,7 +43,7 @@ define([
 			if ( App.userRole !== 'customer' ) {
 				$('.buttonPlace').html( addUnit2GoodsButtonTemplate );
 			}
-
+			console.log("render goodsList");
 			return this;
 		},
 		addOne: function( modelGoodsItem ) {

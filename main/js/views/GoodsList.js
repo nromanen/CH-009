@@ -16,7 +16,8 @@ define([
 		},
 		render: function () {
 
-			$('#products').append( this.el );
+			$('#products').append( this.el );	
+			
             this.$el.html('');
           	this.collection.each( this.addOne, this );
 			return this;

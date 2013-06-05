@@ -1,6 +1,7 @@
 define([
 	'jquery',
 	'app'
+
 ], function($, App) {
 
 	var localDatabase = {};
@@ -93,8 +94,9 @@ define([
    						url: "/cgi-bin/fetch.py",
    						data:{fetchType:1},
    							success: function(msg){
+   								console.log(msg);
      							App.Events.trigger("fetchMaterialsPostgDB", msg)
-     							console.log(msg);
+     							
    							}
    					});
 			};
@@ -105,8 +107,9 @@ define([
    						url: "/cgi-bin/fetch.py",
    						data:{fetchType:2},
    							success: function(msg){
+   								console.log(msg);
      							App.Events.trigger("fetchUnitsPostgDB", msg)
-     							console.log(msg);
+     							
    							}
  					});
 			};
@@ -116,8 +119,9 @@ define([
    						url: "/cgi-bin/fetch.py",
    						data:{fetchType:3},
    							success: function(msg){
+   								console.log(msg);
      							App.Events.trigger("fetchGoodsPostgDB", msg)
-     							console.log(msg);
+     							
    							}
  					});
 			};

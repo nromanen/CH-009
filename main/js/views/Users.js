@@ -242,9 +242,8 @@ define([
 			}) );
 			$('#products').html( viewProducts.el );
 
-
-
 			$('#login').html('login');
+
 			$('.delete').remove();
 			$('.edit_right').remove();
 			$('.delete_goods').remove();
@@ -408,11 +407,14 @@ define([
 
 		},
 		showAddGoodsView: function () {
-			 console.log('test');
-			 $('#addGoodsView').show();
+
+			$('#addGoodsView').show();
+
 		},
 		showAddUnitsView: function() {
+
 			$('addUnitsView').show();
+
 		}
 
 
