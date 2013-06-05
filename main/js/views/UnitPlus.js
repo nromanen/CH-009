@@ -55,7 +55,8 @@ define([
 			console.log(found);
 			if ( found === undefined ) {
 				this.model.set ( { count: quantity, units: this.model.get('name'), goodsItemPrice: quantity*this.model.get( 'unitPrice' ) } );
-				this.collection.add ( this.model );
+				var newModel = new App.Models.GoodsItem( this.model.toJSON() );
+				this.collection.add ( newModel );
 				this.options.something.set( "goodsPrice", this.options.something.get('goodsPrice')+this.model.get( 'goodsItemPrice' ) );
 			} else {
 				var sum = parseFloat( found.get( 'count' ) ) + parseFloat(quantity);

@@ -67,7 +67,6 @@ define([
 				}) );
 				var basket = new basketView({collection:App.Basket})
 				$("#shoping_cart").html(basket.el);
-
 			}
 			
 			this.model.set('count',this.$el.find('.span1').val());

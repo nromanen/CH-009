@@ -359,3 +359,11 @@ body {
 .filter {
   float: right;
 }
+
+/* line 218, ../sass/style.scss */
+#alertAddItem {
+  width: 300px;
+  position: fixed;
+  right: 30px;
+  top: 0px;
+}

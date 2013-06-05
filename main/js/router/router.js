@@ -6,8 +6,7 @@ define([
 	App.Router = Backbone.Router.extend({
 
 		routes: {
-
-			''            : 'openAccountant',
+			''            : 'openEngineer',
 			'customer'    : 'chooseRole',
 			'accountant'  : 'openAccountant',
 			'engineer'    : 'openEngineer',

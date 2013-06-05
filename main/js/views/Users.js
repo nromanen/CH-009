@@ -111,30 +111,30 @@ define([
 
 		},
 		loginUser: function(){
-				var userDate = [];
-				userDate['login'] = $('#inputLogin').val();
-				userDate['password']= $('#inputPassword').val();
-				//console.log(userDate);
+			var userDate = [];
+			userDate['login'] = $('#inputLogin').val();
+			userDate['password']= $('#inputPassword').val();
+			//console.log(userDate);
 
-					$.ajax({
-   						type: "POST",
-   						url: "/cgi-bin/login.py",
-   						data:{login:userDate['login'], password:userDate['password']},
-   							success: function(msg) {
+				$.ajax({
+						type: "POST",
+						url: "/cgi-bin/login.py",
+						data:{login:userDate['login'], password:userDate['password']},
+							success: function(msg) {
 
-	     						if (msg==='engineer') {
-	     							window.location.replace('/#engineer');
-	     						} else if (msg === 'storekeeper') {
-	     							window.location.replace('/#storekeeper');
-	     						} else if (msg === 'accauntant') {
-	     							window.location.replace('/#accountant');
-	     						} else {
-	     							alert(msg + "Error login and password")
-	     							window.location.replace('/#customer');
-	     						}
+	 						if (msg==='engineer') {
+	 							window.location.replace('/#engineer');
+	 						} else if (msg === 'storekeeper') {
+	 							window.location.replace('/#storekeeper');
+	 						} else if (msg === 'accauntant') {
+	 							window.location.replace('/#accountant');
+	 						} else {
+	 							alert(msg + "Error login and password")
+	 							window.location.replace('/#customer');
+	 						}
 
-   						}
- 					});
+						}
+					});
 
 		},
 		clearDB: function() {
