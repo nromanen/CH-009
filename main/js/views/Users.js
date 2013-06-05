@@ -91,10 +91,32 @@ define([
 				var request = $('#searchInput').val();
 				console.log(request);
 				console.log( App.Goods.models );
-				console.log(App.Goods.where({ nameG : "g*" }));
 				//$('.accordion-group:has(#c393_goodsId)').hide();
-				var dede = "dede";
-				$('.accordion-group:has(.goods_name_id:contains(dede))').hide();
+				var myExp = new RegExp('...' + request + '...', "g");
+				console.log(request);
+				var model = App.Goods.models;
+				for (var i = 0; i < App.Goods.length; i++ ){
+					console.log(model[i].get('hrefId'));
+					model[i].get('nameG').match(request)
+					if( model[i].get('nameG').match(request) ) {
+
+						$('.accordion-group:has(.goods_name_id:contains(model[i].get("nameG")))').hide();
+						console.log('hide()');
+					};
+				}
+
+				/*
+				var myExp = /request/g;
+				regexp.test([str])
+				App.Goods.models[i].get('nameG') === 'dede'
+				console.log(App.Goods.length);
+				//reject
+				//var odds = _.reject([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
+				var elemsToHide = _.reject(App.Goods.models, function(req){
+					return req.test
+				})*/
+
+
 
 			};
 			function unitSearch(){
