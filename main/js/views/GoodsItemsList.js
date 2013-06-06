@@ -4,20 +4,29 @@ define([
 	'backbone',
 	'app',
 	'goodsItemView',
+	'goodsItemModel',
 	'text!../templates/goodsItemsListCustomer.html',
 	'text!../templates/goodsItemsListEngineer.html',
 	'text!../templates/addUnit2GoodsButton.html'
 
-], function($, _, Backbone, App, goodsItemView,
-	goodsItemsListCustomerTemplate, goodsItemsListEngineerTemplate,
-	addUnit2GoodsButtonTemplate) {
+], function(
+	$, 
+	_, 
+	Backbone, 
+	App, 
+	goodsItemView,
+	goodsItemModel,
+	goodsItemsListCustomerTemplate, 
+	goodsItemsListEngineerTemplate,
+	addUnit2GoodsButtonTemplate
+	) {
 
 	var GoodsItemsList = Backbone.View.extend({  // это вид коллекции
 	
 	tagName: 'div',
 	className:'accordion-body collapse',
 		initialize: function () {
-			this.collection.off('add');
+			//this.collection.off('add');
 			this.collection.on('add', this.addOne, this);
 			this.el.id = this.model.cid;	
 		},
@@ -34,14 +43,13 @@ define([
 			if ( App.userRole !== 'customer' ) {
 				$('.buttonPlace').html( addUnit2GoodsButtonTemplate );
 			}
-
+			console.log("render goodsList");
 			return this;
 		},
 		addOne: function( modelGoodsItem ) {
-	
+			
 			var goodsItemViewInstance = new goodsItemView({ model: modelGoodsItem, goodsModel: this.model });
 			$("#"+this.model.cid+"_tableRow").prepend( goodsItemViewInstance.el );
-			
 			goodsItemViewInstance.render();
 			
 			if ( App.userRole !== 'customer' ) {

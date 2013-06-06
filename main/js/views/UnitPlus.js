@@ -2,9 +2,10 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'app'
+	'app',
+	'text!../templates/unitPlus.html'
 
-], function($, _, Backbone, App) {
+], function($, _, Backbone, App, unitPlusTemplate) {
 
 	var UnitPlus = Backbone.View.extend({ // это вид модели
 		tagName: 'li',
@@ -19,9 +20,8 @@ define([
 			'click .add': 'addQuantity',
 			'keypress input': 'keypress'
 		},
-		template: _.template( $('#goods-count-plus').html() ),
 		render: function () {
-			var strTemplate = this.template( this.model.toJSON() );
+			var strTemplate = _.template( unitPlusTemplate, this.model.toJSON() );
 			this.$el.html( strTemplate );
 		},
 		addOne: function () {
@@ -42,9 +42,9 @@ define([
 		},
 		addGoodsItem: function( quantity ) {
 
-			console.log(this.collection); // коллекція юнітів (goodsItems Collection), яка містить додані юніти
-			console.log(this.model); // модель, яка додається (на яку клікнули)
-			console.log(this.options.something);
+			// this.collection  коллекція юнітів (goodsItems Collection), яка містить додані юніти
+			// this.model  модель, яка додається (на яку клікнули)
+			// this.options.something
 			
 			console.log(this.model.get('name'));
 
@@ -55,7 +55,8 @@ define([
 			console.log(found);
 			if ( found === undefined ) {
 				this.model.set ( { count: quantity, units: this.model.get('name'), goodsItemPrice: quantity*this.model.get( 'unitPrice' ) } );
-				this.collection.add ( this.model );
+				var newModel = new App.Models.GoodsItem( this.model.toJSON() );
+				this.collection.add ( newModel );
 				this.options.something.set( "goodsPrice", this.options.something.get('goodsPrice')+this.model.get( 'goodsItemPrice' ) );
 			} else {
 				var sum = parseFloat( found.get( 'count' ) ) + parseFloat(quantity);

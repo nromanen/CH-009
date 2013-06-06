@@ -23,6 +23,7 @@ define([
 			$('#units').append( this.template() );
 		},
 		inputKeypress: function(e) {
+			e.stopImmediatePropagation();
 			if (e.which === 13) {
 				this.validateItem();
 			}

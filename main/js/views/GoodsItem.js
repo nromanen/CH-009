@@ -13,6 +13,7 @@ define([
 	
 	tagName: 'tr',
 		initialize: function (){
+			this.model.off('destroy');
 			this.model.on( 'destroy', this.remove, this );
 			this.model.on( 'change', this.refresh, this);
 		},

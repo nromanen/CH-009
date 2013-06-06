@@ -2,9 +2,10 @@ define([
 	'jquery',
 	'underscore',
 	'backbone',
-	'unitItemView'
+	'unitItemView',
+	'text!../templates/unitItemList.html'
 
-], function($, _, Backbone, unitItemView) {
+], function($, _, Backbone, unitItemView, unitItemListTemplate) {
 
 	var UnitItemsList = Backbone.View.extend({  // это вид коллекции
 	
@@ -16,7 +17,7 @@ define([
 			
 		},
 		className: 'accordion-body collapse',
-		template: _.template( $('#materials-table').html() ),
+		template: _.template( unitItemListTemplate ),
 		render: function () {
 
 			var strTemplate = this.template( this.model.toJSON() );

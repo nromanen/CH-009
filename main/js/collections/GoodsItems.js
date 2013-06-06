@@ -16,7 +16,6 @@ define([
 		editCount: function ( model, value, newPrice ) {
 			model.set({ goodPrice: newPrice});
 			model.set({ count: value });
-			console.log(model);
 		},
 		refreshPrice: function (pointerModel){
 			this.each( function (iterator){

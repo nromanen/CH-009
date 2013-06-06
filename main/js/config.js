@@ -3,7 +3,7 @@ requirejs.config({
 	paths: {
 		jquery : 'lib/jquery-min',
 		underscore: 'lib/underscore',
-		backbone: 'lib/backbone-min',
+		backbone: 'lib/backbone-min', 
 		bootstrap: 'lib/boostrap/bootstrap.min',
 		text: 'lib/text',
 		app: 'app',
@@ -21,6 +21,7 @@ requirejs.config({
 		unitModel : 'models/unitModel',
 		router : 'router/router',
 		stateMachine : 'statemachin/stMachine',
+		accountantFilterView : 'views/AccountantFilter',
 		addGoodsButtonView : 'views/AddGoodsButton',
 		addGoodsView : 'views/AddGoodsView',
 		addMaterialView : 'views/AddMaterial',
@@ -60,7 +61,7 @@ requirejs.config({
 		},
 		bootstrap : {
 			deps: ['jquery']
-		} 
+		}
 	}
 })
 
