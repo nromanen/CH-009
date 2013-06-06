@@ -88,13 +88,35 @@ define([
 			}
 
 			function goodSearch(){
+				String.prototype.RE = function() {
+				    return this.replace(/([\$\^\*\(\)\+\[\]\{\}\|\.\/\?\\])/g, '\\$1');
+				}
 				var request = $('#searchInput').val();
+				var myExp = new RegExp('^'+request.RE()+'','ig');
 				console.log(request);
-				console.log( App.Goods.models );
-				console.log(App.Goods.where({ nameG : "g*" }));
-				//$('.accordion-group:has(#c393_goodsId)').hide();
-				var dede = "dede";
-				$('.accordion-group:has(.goods_name_id:contains(dede))').hide();
+				var model = App.Goods.models;
+				for (var i = 0; i < App.Goods.length; i++ ){
+					$('.accordion-group:has( .goods_name_id:contains(' + model[i].get("nameG") + '))').hide();
+					var result = model[i].get('nameG').search( myExp );
+					if( result != -1) {
+
+						$('.accordion-group:has( .goods_name_id:contains(' + model[i].get("nameG") + '))').show();
+						console.log('hide()');
+					};
+				}
+
+				/*
+				var myExp = /request/g;
+				regexp.test([str])
+				App.Goods.models[i].get('nameG') === 'dede'
+				console.log(App.Goods.length);
+				//reject
+				//var odds = _.reject([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
+				var elemsToHide = _.reject(App.Goods.models, function(req){
+					return req.test
+				})*/
+
+
 
 			};
 			function unitSearch(){
