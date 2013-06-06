@@ -66,11 +66,18 @@ define([
 			'click #loginButton' : 'loginUser',
 			'click #addGoodsButton' : 'showAddGoodsView',
 			'click #addUnitsButton' : 'showAddUnitsView',
-			'click #searchButton' : 'search'
+			'click #resetButton' : 'clearInput',
+			'keyup #searchInput' : 'searchOnChange'
 
 		},
+		clearInput: function(){
+			$('#searchInput').val('');
+			this.search();
+		},
+		searchOnChange: function(){
+			this.search();
+		},
 		search: function(){
-			//alert('search');
 
 			var href = $(' #myTab .active a ').attr('href');
 			console.log(href);
@@ -88,49 +95,52 @@ define([
 			}
 
 			function goodSearch() {
-				String.prototype.RE = function() {
-				    return this.replace(/([\$\^\*\(\)\+\[\]\{\}\|\.\/\?\\])/g, '\\$1');
-				}
-				var request = $('#searchInput').val();
-				var myExp = new RegExp(request,'ig');
-				console.log(request);
+				var request = $('#searchInput').val().toLowerCase();
 				var model = App.Goods.models;
 				for (var i = 0; i < App.Goods.length; i++ ){
+
 					$('.accordion-group:has( .goods_name_id:contains(' + model[i].get("nameG") + '))').hide();
-					var result = model[i].get('nameG').indexOf( request );
+					var result = model[i].get('nameG').trim().toLowerCase().indexOf( request );
+
 					if( result != -1) {
 
 						$('.accordion-group:has( .goods_name_id:contains(' + model[i].get("nameG") + '))').show();
-						console.log('hide()');
+
 					};
 				}
 
-				/*
-				var myExp = /request/g;
-				regexp.test([str])
-				App.Goods.models[i].get('nameG') === 'dede'
-				console.log(App.Goods.length);
-				//reject
-				//var odds = _.reject([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
-				var elemsToHide = _.reject(App.Goods.models, function(req){
-					return req.test
-				})*/
-
-
-
 			};
 			function unitSearch(){
-				var request = $('#searchInput').val();
-				console.log(request);
-				console.log( App.Units );
+				var request = $('#searchInput').val().toLowerCase();
+				var model = App.Units.models;
+				for (var i = 0; i < App.Units.length; i++ ){
+
+					$('.accordion-group:has( .unit_name:contains(' + model[i].get("name") + '))').hide();
+					var result = model[i].get('name').trim().toLowerCase().indexOf( request );
+
+					if( result != -1) {
+
+						$('.accordion-group:has( .unit_name:contains(' + model[i].get("name") + '))').show();
+
+					};
+				}
 			};
 			function materialSearch(){
-				var request = $('#searchInput').val();
-				console.log(request);
-				console.log( App.Materials );
+				var request = $('#searchInput').val().toLowerCase();
+				var model = App.Materials.models;
+				for (var i = 0; i < App.Materials.length; i++ ){
+
+					$('#materials .table tr:contains('+ model[i].get("material") +')').hide();
+					var result = model[i].get('material').trim().toLowerCase().indexOf( request );
+
+					if( result != -1) {
+
+						$('#materials .table tr:contains('+ model[i].get("material") +')').show();
+
+					};
+				}
 
 			}
-
 		},
 		loginUser: function(){
 			var userDate = [];
