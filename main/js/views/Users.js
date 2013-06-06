@@ -88,19 +88,19 @@ define([
 			}
 
 			function goodSearch(){
+				String.prototype.RE = function() {
+				    return this.replace(/([\$\^\*\(\)\+\[\]\{\}\|\.\/\?\\])/g, '\\$1');
+				}
 				var request = $('#searchInput').val();
-				console.log(request);
-				console.log( App.Goods.models );
-				//$('.accordion-group:has(#c393_goodsId)').hide();
-				var myExp = new RegExp('...' + request + '...', "g");
+				var myExp = new RegExp('^'+request.RE()+'','ig');
 				console.log(request);
 				var model = App.Goods.models;
 				for (var i = 0; i < App.Goods.length; i++ ){
-					console.log(model[i].get('hrefId'));
-					model[i].get('nameG').match(request)
-					if( model[i].get('nameG').match(request) ) {
+					$('.accordion-group:has( .goods_name_id:contains(' + model[i].get("nameG") + '))').hide();
+					var result = model[i].get('nameG').search( myExp );
+					if( result != -1) {
 
-						$('.accordion-group:has(.goods_name_id:contains(model[i].get("nameG")))').hide();
+						$('.accordion-group:has( .goods_name_id:contains(' + model[i].get("nameG") + '))').show();
 						console.log('hide()');
 					};
 				}
