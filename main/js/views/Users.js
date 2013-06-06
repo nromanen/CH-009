@@ -87,17 +87,17 @@ define([
 				materialSearch();
 			}
 
-			function goodSearch(){
+			function goodSearch() {
 				String.prototype.RE = function() {
 				    return this.replace(/([\$\^\*\(\)\+\[\]\{\}\|\.\/\?\\])/g, '\\$1');
 				}
 				var request = $('#searchInput').val();
-				var myExp = new RegExp('^'+request.RE()+'','ig');
+				var myExp = new RegExp(request,'ig');
 				console.log(request);
 				var model = App.Goods.models;
 				for (var i = 0; i < App.Goods.length; i++ ){
 					$('.accordion-group:has( .goods_name_id:contains(' + model[i].get("nameG") + '))').hide();
-					var result = model[i].get('nameG').search( myExp );
+					var result = model[i].get('nameG').indexOf( request );
 					if( result != -1) {
 
 						$('.accordion-group:has( .goods_name_id:contains(' + model[i].get("nameG") + '))').show();
