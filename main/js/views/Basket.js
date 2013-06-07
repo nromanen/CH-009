@@ -5,9 +5,11 @@ define([
 	'app',
 	'basketItemsView',
 	'text!../templates/basket.html',
-	'text!../templates/basketConfirmForm.html'
+	'text!../templates/basketConfirmForm.html',
+	'text!../templates/alertInputForm.html',
+	'modelBinder'
 
-], function($, _, Backbone, App, basketItemsView, basketTemplate, confirmFormTemplate) {
+], function($, _, Backbone, App, basketItemsView, basketTemplate, confirmFormTemplate, alertInputFormTemplate, modelBinder) {
 
 	var Basket =  Backbone.View.extend({
 
@@ -30,20 +32,27 @@ define([
 			this.$el.html( basketTemplate );
 			this.$el.append( confirmFormTemplate );
           	this.collection.each( this.addOne, this );
-
-			return this;
-
+			this.modelBinder = new Backbone.ModelBinder();
+          	this.modelBinder.bind(this.model, this.el);
+          	return this;
 
 		},
 		validateForm: function (){
-			alert( ($('#firstName').val().trim()!='' && 
+			if (!($('#firstName').val().trim()!='' && 
+				$('#inputLastName').val().trim()!='' &&
+				$('#inputAddress').val().trim()!='')) {
+					$('#alertInputForm').remove();
+					$('.form-horizontal').append('<div id="alertInputForm"></div>');
+					$('#alertInputForm').html(alertInputFormTemplate);
+			} else {
+				this.model.set('order', this.collection);
+				
+			}
+			
+			setTimeout( function() { $('#alertInputForm').remove() } , 2000)
+			return false; /*($('#firstName').val().trim()!='' && 
 					$('#inputLastName').val().trim()!='' &&
-					$('#inputAdress').val().trim()!=''));
-			$('#prodactColletction').val(App.Basket.toJSON());
-			console.log($('#prodactColletction').val());
-			return ($('#firstName').val().trim()!='' && 
-					$('#inputLastName').val().trim()!='' &&
-					$('#inputAdress').val().trim()!='');
+					$('#inputAddress').val().trim()!=''); */
 		},
 		addOne: function(modelItems){
 			

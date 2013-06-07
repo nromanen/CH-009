@@ -10,7 +10,7 @@ define([
 	'text!../templates/goodsEngineer.html',
 	'text!../templates/tab.html',
 	'text!../templates/alertAdd.html',
-	'text!../templates/alertError.html'
+	'text!../templates/alertError.html',
 
 ], function($, _, Backbone, App, addUnitsListView, basketView, goodsItemsListView,
 	goodsCustomerTemplate, goodsEngineerTemplate, tabTemplate, alertAddTemplate, alertErrorTemplate) {
@@ -69,7 +69,8 @@ define([
 					id      : 'shoping_cart',
 					active  : '',
 				}) );
-				var basket = new basketView({collection:App.Basket})
+				var newFormModel = new App.Models.BasketFormModel();
+				var basket = new basketView({collection:App.Basket, model:newFormModel})
 				$("#shoping_cart").html(basket.el);
 
 

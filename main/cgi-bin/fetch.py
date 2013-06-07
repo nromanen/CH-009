@@ -4,10 +4,6 @@ import psycopg2, sys, os
 postInputs = cgi.FieldStorage()
 
 sys.stdout.write("Content-type: text/html \r\n\r\n")
-<<<<<<< HEAD
-
-=======
->>>>>>> 4158bf377d3e2df33970b86a1c9955bb9971acb9
 
 conn = psycopg2.connect("dbname='postgres' user='postgres' host='localhost' password='root'")
 
