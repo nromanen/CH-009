@@ -28,7 +28,7 @@ define([
 			this.$el.prepend( GoodsView.el );
 			
 			GoodsView.render();
-			
+			console.log(this.collection);
 			var jq_goods_info = '.goods_info';
 			this.$el.find( jq_goods_info ).hide();
 
