@@ -3,6 +3,7 @@ define([
 	'underscore',
 	'backbone',
 	'app',
+	'slider',
 	'listView',
 	'addMaterialView',
 	'unitsListView',
@@ -27,6 +28,7 @@ define([
 	_,
 	Backbone,
 	App,
+	slider,
 	listView,
 	addMaterialView,
 	unitsListView,
@@ -67,8 +69,25 @@ define([
 			'click #addGoodsButton' : 'showAddGoodsView',
 			'click #addUnitsButton' : 'showAddUnitsView',
 			'click #resetButton' : 'clearInput',
-			'keyup #searchInput' : 'searchOnChange'
+			'keyup #searchInput' : 'searchOnChange',
+			'click .slider' : 'priceSlider'
 
+		},
+		sortPrice: function(){
+			var href = $(' #myTab .active a ').attr('href');
+			console.log(href);
+			if( href === '#products' ){
+				console.log("search in products tab!");
+				goodSearch();
+			}
+			else if( href === '#units'){
+				console.log("search in units tab!");
+				unitSearch();
+			}
+			else if( href === '#materials' ){
+				console.log("search in materials tab!");
+				materialSearch();
+			}
 		},
 		clearInput: function(){
 			$('#searchInput').val('');
@@ -140,6 +159,19 @@ define([
 					};
 				}
 
+			}
+		},
+		priceSlider: function(){
+			//alert('move slider');
+			alert($('.slider .tooltip-inner').html());
+			var sliderValue = $('.slider .tooltip-inner').html();
+			var pos = sliderValue.indexOf(":");
+			var minValue = sliderValue.substring(0,pos);
+			var maxValue = sliderValue.substring(pos+1);
+			alert('min = ' + minValue);
+			alert('max = ' + maxValue);
+			function sortGoods(min, max){
+				//code here...
 			}
 		},
 		loginUser: function(){
@@ -275,7 +307,7 @@ define([
 			$('#products').html( viewProducts.el );
 
 			$('#login').html('login');
-
+			$('#slider').slider();
 			$('.delete').remove();
 			$('.edit_right').remove();
 			$('.delete_goods').remove();

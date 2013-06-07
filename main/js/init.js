@@ -1,7 +1,7 @@
 define([
   'backbone',
   'router',
-  'app', 
+  'app',
   'usersView',
   'stateMachine',
   'materialModel',
@@ -17,11 +17,26 @@ define([
   'unitsCollection',
   'unitsItemsCollection'
 
-], function(Backbone, Router, App, usersView,
-  stateMachine, materialModel, unitModel, unitItemModel, 
-  goodsModel, goodsItemModel, basketItemModel, basketItemsCollection,
-  goodsCollection, goodsItemsCollection, listCollection, unitsCollection,
-  unitsItemsCollection){
+], function(
+  Backbone,
+  Router,
+  App,
+  usersView,
+  stateMachine,
+  materialModel,
+  unitModel,
+  unitItemModel,
+  goodsModel,
+  goodsItemModel,
+  basketItemModel,
+  basketItemsCollection,
+  goodsCollection,
+  goodsItemsCollection,
+  listCollection,
+  unitsCollection,
+  unitsItemsCollection
+
+  ){
 
   var init = function() {
 
@@ -29,7 +44,7 @@ define([
     //App.dbConnector = dbConnector;
     App.StateMachine = stateMachine;
     App.State.Lest = "";
-    
+
     //Models
     App.Models.Material = materialModel;
     App.Models.Unit = unitModel;
@@ -47,7 +62,7 @@ define([
     App.Collections.UnitItems = unitsItemsCollection;
 
     //getting actual Views...
-    App.Materials = new App.Collections.List; 
+    App.Materials = new App.Collections.List;
     App.Units = new App.Collections.Units;
     App.Goods = new App.Collections.Goods;
     App.Basket = new App.Collections.BasketItems;
@@ -55,7 +70,7 @@ define([
 
     location.hash = '';
     new Router();
-    Backbone.history.start({ hashChange:true });   
+    Backbone.history.start({ hashChange:true });
 
   }
 

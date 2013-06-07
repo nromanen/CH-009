@@ -367,3 +367,8 @@ body {
   right: 30px;
   top: 0px;
 }
+
+/* line 224, ../sass/style.scss */
+.slider {
+  float: right;
+}
