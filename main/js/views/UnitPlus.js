@@ -30,6 +30,7 @@ define([
 		keypress: function (e) {
 			if (e.which === 13) {
 				this.addQuantity();
+				e.stopImmediatePropagation();
 			}
 		},
 		elementMouseEnter: function () {
@@ -42,9 +43,9 @@ define([
 		},
 		addGoodsItem: function( quantity ) {
 
-			console.log(this.collection); // коллекція юнітів (goodsItems Collection), яка містить додані юніти
-			console.log(this.model); // модель, яка додається (на яку клікнули)
-			console.log(this.options.something);
+			// this.collection  коллекція юнітів (goodsItems Collection), яка містить додані юніти
+			// this.model  модель, яка додається (на яку клікнули)
+			// this.options.something
 			
 			console.log(this.model.get('name'));
 
@@ -55,7 +56,8 @@ define([
 			console.log(found);
 			if ( found === undefined ) {
 				this.model.set ( { count: quantity, units: this.model.get('name'), goodsItemPrice: quantity*this.model.get( 'unitPrice' ) } );
-				this.collection.add ( this.model );
+				var newModel = new App.Models.GoodsItem( this.model.toJSON() );
+				this.collection.add ( newModel );
 				this.options.something.set( "goodsPrice", this.options.something.get('goodsPrice')+this.model.get( 'goodsItemPrice' ) );
 			} else {
 				var sum = parseFloat( found.get( 'count' ) ) + parseFloat(quantity);

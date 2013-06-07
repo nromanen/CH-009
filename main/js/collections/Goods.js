@@ -3,7 +3,7 @@ define([
 	'app'
 ], function(Backbone, App) {
 
-	var App = App || {};
+	var App = App || {}; 
 	
 	App.Collections.Goods = Backbone.Collection.extend({
 	

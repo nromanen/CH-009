@@ -7,18 +7,25 @@ define([
 	'unitItemsListView',
 	'text!../templates/units.html'
 
-], function($, _, Backbone, App, addMaterialsListView, unitItemsListView,
-	unitsTemplate) {
+], function(
+	$,
+	_,
+	Backbone,
+	App,
+	addMaterialsListView,
+	unitItemsListView,
+	unitsTemplate
+	) {
 
 	var Unit = Backbone.View.extend({
-	
+
 		tagName: 'div',
 		className: 'accordion-group',
 		initialize: function () {
 			this.model.on( 'change', this.unitChange, this);
 			this.model.on( 'destroy', this.unitRemoveItem, this );
 			this.model.on( 'change:unitPrice', this.refreshUnitPrice, this);
-		
+
 		},
 		events: {
 			'click .unit_name' : 'unitToggle',
@@ -30,10 +37,10 @@ define([
 		},
 		template: _.template( unitsTemplate ),
 
-		render: function () {	
+		render: function () {
 			var nameTrimmed = this.model.get( 'name' ).replace(/\s/g, ''); // видаляє пробіли
-			this.model.set ('hrefID', nameTrimmed);     
-			
+			this.model.set ('hrefID', nameTrimmed);
+
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
 
@@ -52,12 +59,12 @@ define([
 			App.Events.trigger('refreshGoodsPrice', this.model);
 		},
 		unitToggle: function () {
-			
-			this.$(".collapse").collapse();	
+
+			this.$(".collapse").collapse();
 
 		},
 		inputMaterials: function () {
-			
+
 			var AddMaterialsList = new addMaterialsListView( { collection: App.Materials, model : this.model } );
 			AddMaterialsList.render();
 			$( '#materialsContainer' ).html( AddMaterialsList.el );
@@ -76,20 +83,20 @@ define([
 
 			if (foundFlag === true) {
 					$('#units .accordion').before('<div class="alert alert-error">You CANNOT DELETE this unit, because it is already used in Goods!<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
-					setTimeout( function() { 
+					setTimeout( function() {
 						$('.close').click();
 					}, 2000);
 				} else {
 					if ( confirm('Are you sure you want to delete this Unit?') ) {
 						this.model.deleteUnit();
 					};
-				}		
+				}
 		},
 		unitRemoveItem: function() {
-		
+
 			this.$el.remove();
 			$('.AddMaterialsList').hide();
-	
+
 		},
 		changeUnitName: function () {
 
@@ -98,18 +105,18 @@ define([
 
 				var unitsInside = goodsModel.get('goodsCollection');
 				var found = unitsInside.find( function (goodsItem) {
-					return that.model.get('name') === goodsItem.get('units'); 
+					return that.model.get('name') === goodsItem.get('units');
 				});
 
 				if (found === undefined) {
 
 					that.$el.addClass('editing');
-					that.$el.find('input').focus();	
+					that.$el.find('input').focus();
 
 				} else {
 
 					$('#newUnitBtn').after('<div class="error">You CANNOT EDIT this name, because this unit is already used in Goods!</div>');
-					setTimeout( function() { 
+					setTimeout( function() {
 						$('.error').fadeOut('slow')
 					}, 2000);
 
@@ -149,15 +156,15 @@ define([
 				}
 
 			}
-		
+
 		},
 		updateOnEnter: function (e) {
 			console.log('update on enter');
 			if (e.keyCode == 13) {
-				this.close(); 
+				this.close();
 			}
 		},
-		
+
 	});
 
 	return Unit;

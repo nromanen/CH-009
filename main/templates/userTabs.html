@@ -8,7 +8,7 @@
 				  </a>
 				  <ul class="dropdown-menu">
 				  	<li><a id="fetchData"><span class="label label-success">Fetch Data</span></a></li>
-					<li><a id="sendData" href="#sendData"><span class="label label-success">Send Data</span></a></li> 
+					<li><a id="sendData" href="#sendData"><span class="label label-success">Send Data</span></a></li>
 					<li><a id="clearDB"><span class="label label-important">Delete Database</span></a></li>
 					<li><a id="saveCollectionsToDb"><span class="label label-info">Save to Database</span></a></li>
 				  </ul>
@@ -16,7 +16,7 @@
             </ul>
 
 		</script>
-		
+
 		<script type="text/template" id="engineerTab">
 			<ul id="myTab" class="nav nav-tabs">
               <li class="active"><a href="#products" data-toggle="tab">Products</a></li>
@@ -28,7 +28,7 @@
 				  </a>
 				  <ul class="dropdown-menu">
 				  	<li><a id="fetchData"><span class="label label-success">Fetch Data</span></a></li>
-					<li><a id="sendData" href="#sendData"><span class="label label-success">Send Data</span></a></li> 
+					<li><a id="sendData" href="#sendData"><span class="label label-success">Send Data</span></a></li>
 					<li><a id="clearDB"><span class="label label-important">Delete Database</span></a></li>
 					<li><a id="saveCollectionsToDb"><span class="label label-info">Save to Database</span></a></li>
 				  </ul>
@@ -42,6 +42,10 @@
               <li class="active"><a href="#products" data-toggle="tab">Products</a></li>
               <li><a href="#units" data-toggle="tab">Units</a></li>
               <li><a href="#materials" data-toggle="tab">Materials</a></li>
+              <div class="input-append filter">
+                <input type="text" class="span2 input-append" id="searchInput">
+                <button type="submit" class="btn " id="resetButton"><i class=" icon-remove"></i></button>
+              </div>
             </ul>
 		</script>
 

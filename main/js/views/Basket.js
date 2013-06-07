@@ -14,7 +14,6 @@ define([
 
 		initialize: function (){
 
-
 			//this.collection.off('add');
 			this.collection.on('add', this.addOne, this);
 			this.render()
@@ -28,7 +27,6 @@ define([
 
 			return this;
 
-
 		},
 		addOne: function(modelItems){
 			
@@ -37,7 +35,6 @@ define([
 			basketItems.render();
 			var	totalPrice = 0;
 			_.each ( App.Basket.models, function ( goodsItem ) {
-					console.log(goodsItem)
 					totalPrice = totalPrice + (goodsItem.get('price')*goodsItem.get('counts'));
 				} )
 			$('.BasketPrice').html("$" + totalPrice);

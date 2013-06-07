@@ -25,9 +25,11 @@ define([
 
   var init = function() {
 
+
     //App.dbConnector = dbConnector;
     App.StateMachine = stateMachine;
-
+    App.State.Lest = "";
+    
     //Models
     App.Models.Material = materialModel;
     App.Models.Unit = unitModel;

@@ -354,13 +354,16 @@ body {
   position: relative;
   left: -30px;
 }
+
+/* line 215, ../sass/style.scss */
+.filter {
+  float: right;
+}
+
+/* line 218, ../sass/style.scss */
 #alertAddItem {
-width:300px;
-position:fixed;
-
-right:30px;
-top:0px;
-
-
-
+  width: 300px;
+  position: fixed;
+  right: 30px;
+  top: 0px;
 }
