@@ -12,8 +12,9 @@ define([
 		el: 'div',
 		events: {
 			'keypress #goods': 'inputKeypress',
-			'click .add-goods' : 'validateItem',
-			'click .cancel-goods' : 'cancelGoods'
+			'blur #goods'    : 'blurInput',
+			'mousedown .add-goods' : 'validateItem',
+			'mousedown .cancel-goods' : 'cancelGoods'
 		},
 		initialize: function () {
 			this.render();
@@ -30,6 +31,9 @@ define([
 
 		},
 		validateItem: function () {
+
+			console.log('validateItem');
+			$(this.el).off('blur #goods');
 
 			$('#addGoodsView').find('.error').remove();
 
@@ -49,6 +53,10 @@ define([
 			this.addItem ( goodsName );
 			return false;
 
+		},
+		blurInput : function (e) {
+			e.stopPropagation();
+			this.$el.find('#addGoodsView').hide();
 		},
 		addItem: function ( goodsName ) {
 
@@ -76,16 +84,22 @@ define([
 
 			});
 
-			this.clearTextBoxes();
+			this.clearTextBox();
 		},
-		clearTextBoxes: function() {
+		clearTextBox: function () {
 
-			$('#goods').val('');
-			$('#goods').focus();
-
-		},
-		cancelGoods: function () {
 			$('#goods').val('').focus();
+
+		},
+		cancelGoods: function (e) {
+
+			e.stopImmediatePropagation(); 
+			$(this.el).off('blur #goods');
+			this.$el.find('#goods').focus();
+			console.log('cancelGoods');	
+			//$('#goods').val('').focus();		
+			//this.clearTextBox();
+			//$(this.el).on('blur #goods', this.blurInput);
 		}
 
 		});
