@@ -28,6 +28,8 @@ define([
 		},
 		openAccountant: function () {
 			console.log("3");
+			console.log(App.StateMachine);
+			App.StateMachine.execut("accountant")
 			App.Events.trigger( 'openAccountant' );
 		},
 		openEngineer: function () {

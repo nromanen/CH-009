@@ -79,7 +79,7 @@ define([
 
 			this.$el.find('.span1').val('1');
 			
-			setTimeout( function() { $('#alertAddItem').remove() } , 1000)
+			setTimeout( function() { $('#alertAddItem').remove() } , 2000)
 
 
 		},
@@ -88,7 +88,7 @@ define([
 			$('body').append('<div id="alertAddItem"></div>');
 			$('#alertAddItem').html(alertErrorTemplate);
 
-			setTimeout( function() { $('#alertAddItem').remove() } , 1000)
+			setTimeout( function() { $('#alertAddItem').remove() } , 2000)
 		},
 		alertAdd: function(){
 			

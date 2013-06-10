@@ -30,6 +30,7 @@ define([
 		keypress: function (e) {
 			if (e.which === 13) {
 				this.addQuantity();
+				e.stopImmediatePropagation();
 			}
 		},
 		elementMouseEnter: function () {

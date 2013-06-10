@@ -26,7 +26,7 @@ define([
 	tagName: 'div',
 	className:'accordion-body collapse',
 		initialize: function () {
-			//this.collection.off('add');
+			this.collection.off('add');
 			this.collection.on('add', this.addOne, this);
 			this.el.id = this.model.cid;
 		},
