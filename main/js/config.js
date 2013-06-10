@@ -6,6 +6,7 @@ requirejs.config({
 		backbone: 'lib/backbone-min',
 		bootstrap: 'lib/boostrap/bootstrap.min',
 		text: 'lib/text',
+		modelBinder: 'lib/Backbone.ModelBinder',
 		app: 'app',
 		listCollection : 'collections/List',
 		unitsCollection : 'collections/Units',
@@ -19,6 +20,7 @@ requirejs.config({
 		materialModel : 'models/MaterialModel',
 		unitItemModel : 'models/unitItemModel',
 		unitModel : 'models/unitModel',
+		basketFormModel: 'models/BasketFormModel',
 		router : 'router/router',
 		stateMachine : 'statemachin/stMachine',
 		addGoodsButtonView : 'views/AddGoodsButton',
@@ -43,7 +45,8 @@ requirejs.config({
 		unitsView : 'views/Units',
 		unitsListView : 'views/UnitsList',
 		usersView : 'views/Users',
-		dbConnector : 'dbConnector'
+		dbConnector : 'dbConnector',
+		Backbone: 'lib/backbone'
 	},
 	shim : {
 		jquery : {

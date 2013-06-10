@@ -10,6 +10,7 @@ define([
   'goodsModel',
   'goodsItemModel',
   'basketItemModel',
+  'basketFormModel',
   'basketItemsCollection',
   'goodsCollection',
   'goodsItemsCollection',
@@ -19,7 +20,7 @@ define([
 
 ], function(Backbone, Router, App, usersView,
   stateMachine, materialModel, unitModel, unitItemModel, 
-  goodsModel, goodsItemModel, basketItemModel, basketItemsCollection,
+  goodsModel, goodsItemModel, basketItemModel, basketFormModel, basketItemsCollection,
   goodsCollection, goodsItemsCollection, listCollection, unitsCollection,
   unitsItemsCollection){
 
@@ -35,6 +36,7 @@ define([
     App.Models.Goods = goodsModel;
     App.Models.GoodsItem = goodsItemModel;
     App.Models.BasketItem = basketItemModel;
+    App.Models.BasketFormModel = basketFormModel;
 
     //Collections
     App.Collections.BasketItems = basketItemsCollection;
@@ -54,7 +56,6 @@ define([
     location.hash = '';
     new Router();
     Backbone.history.start({ hashChange:true });   
-
   }
 
   return init;
