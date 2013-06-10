@@ -10,6 +10,7 @@ define([
   'goodsModel',
   'goodsItemModel',
   'basketItemModel',
+  'basketFormModel',
   'basketItemsCollection',
   'goodsCollection',
   'goodsItemsCollection',
@@ -35,7 +36,6 @@ define([
   listCollection,
   unitsCollection,
   unitsItemsCollection
-
   ){
 
   var init = function() {
@@ -52,6 +52,7 @@ define([
     App.Models.Goods = goodsModel;
     App.Models.GoodsItem = goodsItemModel;
     App.Models.BasketItem = basketItemModel;
+    App.Models.BasketFormModel = basketFormModel;
 
     //Collections
     App.Collections.BasketItems = basketItemsCollection;
