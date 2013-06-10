@@ -45,14 +45,32 @@ define([
 					$('.form-horizontal').append('<div id="alertInputForm"></div>');
 					$('#alertInputForm').html(alertInputFormTemplate);
 			} else {
-				this.model.set('order', this.collection);
-				
+				this.sendData();
 			}
 			
 			setTimeout( function() { $('#alertInputForm').remove() } , 2000)
-			return false; /*($('#firstName').val().trim()!='' && 
+			return ($('#firstName').val().trim()!='' && 
 					$('#inputLastName').val().trim()!='' &&
-					$('#inputAddress').val().trim()!=''); */
+					$('#inputAddress').val().trim()!=''); 
+		},
+		sendData: function (){
+			$.ajax({
+					type: "POST",
+					url: "/cgi-bin/WriteBasket.py",
+					data:{
+						firstName:this.model.get('firstName'),
+						lastName:this.model.get('lastName'),
+						address:this.model.get('address'),
+						products: JSON.stringify(this.collection)
+					},	
+					success: function(msg) {
+						console.log(msg);
+					},
+ 					error: function (er){
+ 						console.log('error ' + er);
+ 					}	
+
+			});
 		},
 		addOne: function(modelItems){
 			
