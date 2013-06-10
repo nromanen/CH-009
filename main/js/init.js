@@ -30,6 +30,7 @@ define([
   goodsModel,
   goodsItemModel,
   basketItemModel,
+  basketFormModel,
   basketItemsCollection,
   goodsCollection,
   goodsItemsCollection,
