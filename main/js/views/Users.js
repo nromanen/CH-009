@@ -108,7 +108,6 @@ define([
 
 					};
 				}
-
 			};
 			function unitSearch(){
 				var request = $('#searchInput').val().toLowerCase();
@@ -125,7 +124,7 @@ define([
 					};
 				}
 			};
-			function materialSearch(){
+			function materialSearch() {
 				var request = $('#searchInput').val().toLowerCase();
 				var model = App.Materials.models;
 				for (var i = 0; i < App.Materials.length; i++ ){
@@ -139,7 +138,6 @@ define([
 
 					};
 				}
-
 			}
 		},
 		loginUser: function(){

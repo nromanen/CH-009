@@ -23,7 +23,7 @@ define([
 			$('#products').append( this.template() );
 		},
 		inputKeypress: function(e) {
-			e.stopImmediatePropagation(); //e.stopPropagation(); plus preventing other registered event handlers on the same element to be executed
+			e.stopPropagation(); 
 			if (e.which === 13) {
 				this.validateItem();
 			}
