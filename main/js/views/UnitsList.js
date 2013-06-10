@@ -11,7 +11,7 @@ define([
 		tagName: 'div',
 		className: 'accordion',
 		initialize: function () {
-			this.collection.on('add', this.render, this);
+			this.collection.on('add', this.addOne, this);
 			this.render();
 		},
 		render: function () {

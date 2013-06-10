@@ -5,6 +5,7 @@ requirejs.config({
 		underscore: 'lib/underscore',
 		backbone: 'lib/backbone-min',
 		bootstrap: 'lib/boostrap/bootstrap.min',
+		slider: 'lib/bootstrap-slider',
 		text: 'lib/text',
 		modelBinder: 'lib/Backbone.ModelBinder',
 		app: 'app',
@@ -23,6 +24,7 @@ requirejs.config({
 		basketFormModel: 'models/BasketFormModel',
 		router : 'router/router',
 		stateMachine : 'statemachin/stMachine',
+		accountantFilterView : 'views/AccountantFilter',
 		addGoodsButtonView : 'views/AddGoodsButton',
 		addGoodsView : 'views/AddGoodsView',
 		addMaterialView : 'views/AddMaterial',
@@ -32,7 +34,7 @@ requirejs.config({
 		addUnitsView : 'views/AddUnitsView',
 		basketView : 'views/Basket',
 		basketItemsView : 'views/BasketItems',
-    	goodsListView : 'views/GoodsList',
+    		goodsListView : 'views/GoodsList',
 		goodsView : 'views/Goods',
 		goodsItemView : 'views/GoodsItem',
 		goodsItemsListView : 'views/GoodsItemsList',
@@ -41,7 +43,7 @@ requirejs.config({
 		plusMaterialView : 'views/PlusMaterial',
 		unitItemView : 'views/UnitItem',
 		unitItemsListView : 'views/UnitItemsList',
-    	unitPlusView : 'views/UnitPlus',
+    		unitPlusView : 'views/UnitPlus',
 		unitsView : 'views/Units',
 		unitsListView : 'views/UnitsList',
 		usersView : 'views/Users',
@@ -63,7 +65,7 @@ requirejs.config({
 		},
 		bootstrap : {
 			deps: ['jquery']
-		} 
+		}
 	}
 })
 

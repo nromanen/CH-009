@@ -51,6 +51,7 @@ define([
 					
 					totalPrice = totalPrice + (goodsItem.get('price')*goodsItem.get('counts'));
 				} )
+				this.$el.find('span').html("$"+this.model.get('price')*this.model.get('counts'));
 				$('.BasketPrice').html("$" + totalPrice);
 
 

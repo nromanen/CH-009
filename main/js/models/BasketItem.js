@@ -5,7 +5,7 @@ define([
 
 	var App = App || {};
 
-	App.Models.BasketItem =  Backbone.Model.extend({
+	App.Models.BasketItem = Backbone.Model.extend({
 
 		itemsName:"",
 		counts:0,

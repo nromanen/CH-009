@@ -8,10 +8,10 @@ define([
 ], function($, _, Backbone, App, addGoodsViewTemplate) {
 
 	var AddGoodsView = Backbone.View.extend({
-		
+
 		el: 'div',
 		events: {
-			'keypress input': 'inputKeypress',
+			'keypress #goods': 'inputKeypress',
 			'click .add-goods' : 'validateItem',
 			'click .cancel-goods' : 'cancelGoods'
 		},
@@ -23,18 +23,21 @@ define([
 			$('#products').append( this.template() );
 		},
 		inputKeypress: function(e) {
+			e.stopPropagation(); 
 			if (e.which === 13) {
 				this.validateItem();
 			}
+
 		},
 		validateItem: function () {
 
 			$('#addGoodsView').find('.error').remove();
-			var goodsName = this.$el.find('#goods').val().trim(); 	
-			
+
+			var goodsName = this.$el.find('#goods').val().trim();
+
 			if ( goodsName === "" ) {
 				$('#products > div.clearfix').after('<div class="alert alert-error">Enter the goods name, please<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
-					setTimeout( function() { 
+					setTimeout( function() {
 						$('.close').click();
 					}, 2000);
 
@@ -42,13 +45,13 @@ define([
 				$('#goods').focus();
 				return false;
 			}
-			
+
 			this.addItem ( goodsName );
 			return false;
-		
+
 		},
 		addItem: function ( goodsName ) {
-		
+
 			var newGoodsCollection = new App.Collections.GoodsItems(/*[
 				{
 					units: 'goods1',
@@ -56,23 +59,23 @@ define([
 					goodPrice: 0
 				}
 			]*/);
-			
+
 			var modelGoods = new App.Models.Goods ({
-				
+
 				nameG: goodsName,
 				goodsCollection: newGoodsCollection,
 				goodsPrice : 0
-				
+
 			});
 
 			App.Events.trigger( 'addGoods', modelGoods );
-			
+
 			$('.goods').each( function () {
-				
+
 				$(this).find('.goods_info').toggle();
-				
+
 			});
-			
+
 			this.clearTextBoxes();
 		},
 		clearTextBoxes: function() {
@@ -83,10 +86,10 @@ define([
 		},
 		cancelGoods: function () {
 			$('#goods').val('').focus();
-		}		
-		
+		}
+
 		});
 
 	return AddGoodsView;
-	
+
 });

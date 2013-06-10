@@ -21,7 +21,6 @@ define([
 
 		initialize: function (){
 
-
 			//this.collection.off('add');
 			this.collection.on('add', this.addOne, this);
 			this.render();
@@ -35,7 +34,6 @@ define([
 			this.modelBinder = new Backbone.ModelBinder();
           	this.modelBinder.bind(this.model, this.el);
           	return this;
-
 		},
 		validateForm: function (){
 			if (!($('#firstName').val().trim()!='' && 
@@ -79,7 +77,6 @@ define([
 			basketItems.render();
 			var	totalPrice = 0;
 			_.each ( App.Basket.models, function ( goodsItem ) {
-					console.log(goodsItem)
 					totalPrice = totalPrice + (goodsItem.get('price')*goodsItem.get('counts'));
 				} )
 			$('.BasketPrice').html("$" + totalPrice);
