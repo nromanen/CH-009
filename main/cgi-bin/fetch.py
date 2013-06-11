@@ -4,16 +4,7 @@ import psycopg2, sys, os
 postInputs = cgi.FieldStorage()
 
 sys.stdout.write("Content-type: text/html \r\n\r\n")
-<<<<<<< HEAD
-
-<<<<<<< HEAD
 conn = psycopg2.connect("dbname='postgres' user='postgres' host='localhost' password='root' port='5432' ")
-=======
-=======
->>>>>>> 4158bf377d3e2df33970b86a1c9955bb9971acb9
-
-conn = psycopg2.connect("dbname='postgres' user='postgres' host='localhost' password='root'")
->>>>>>> 0c13ffdaf8f375e6524f52d2a91e35ba83ba07af
 
 cur = conn.cursor()
 
