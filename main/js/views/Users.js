@@ -80,16 +80,25 @@ define([
 			$('.slider').hide();
 			$('#showSlider').show();
 			$('#restorePrice').hide();
-			function restore(){
-				console.log('restore price');
-			}
-			restore.prototype = sortGoods();
-			restore.sortGoods(1,1000000);
+			console.log(App.Goods.models);
+			console.log("click");
+			var model = App.Goods.models;
+				for (var i = 0; i < App.Goods.length; i++ ){
+
+					$('.accordion-group:has( .goods_name_id:contains(' + model[i].get("nameG") + '))').hide();
+					var price = model[i].get('goodsPrice');
+					if( (price >= 0) && (price <= 1000000) ){
+						$('.accordion-group:has( .goods_name_id:contains(' + model[i].get("nameG") + '))').show();
+
+					}
+				}
+			
 		},
 		showSlider: function(){
 			$('.slider').show();
 			$('#showSlider').hide();
 			$('#restorePrice').show();
+			//set slider max value
 			$('#slider').attr('data-slider-max', findCollectionMaxPrice());
 			$('#slider').slider();
 
@@ -103,7 +112,7 @@ define([
 					}
 				}
 				console.log('max === '+max);
-				return max;
+				return max + 10;
 
 			}
 
@@ -194,29 +203,26 @@ define([
 				}
 			}
 		},
-		priceSlider: function(){
+		priceSlider: function(minValue, maxValue){
 
 			var sliderValue = $('.slider .tooltip-inner').html();
 
-			//console.log(sliderValue);
 			var pos = sliderValue.indexOf(":");
 			var minValue = sliderValue.substring(0,pos);
 			var maxValue = sliderValue.substring(pos+1);
-			sortGoods(minValue, maxValue);
-			function sortGoods(min, max){
-
+			
 				var model = App.Goods.models;
 				for (var i = 0; i < App.Goods.length; i++ ){
 
 					$('.accordion-group:has( .goods_name_id:contains(' + model[i].get("nameG") + '))').hide();
 					var price = model[i].get('goodsPrice');
-					if( (price >= min) && (price <= max) ){
+					if( (price >= minValue) && (price <= maxValue) ){
 						$('.accordion-group:has( .goods_name_id:contains(' + model[i].get("nameG") + '))').show();
 
 					}
 				}
 
-			}
+			
 
 
 		},
