@@ -70,7 +70,7 @@ define([
 			'click #addUnitsButton' : 'showAddUnitsView',
 			'click #resetButton' : 'clearInput',
 			'keyup #searchInput' : 'searchOnChange',
-			'click .slider' : 'priceSlider'
+			'mouseup .slider' : 'priceSlider'
 
 		},
 		sortPrice: function(){
@@ -160,16 +160,25 @@ define([
 			}
 		},
 		priceSlider: function(){
-			//alert('move slider');
-			alert($('.slider .tooltip-inner').html());
+
 			var sliderValue = $('.slider .tooltip-inner').html();
 			var pos = sliderValue.indexOf(":");
 			var minValue = sliderValue.substring(0,pos);
 			var maxValue = sliderValue.substring(pos+1);
-			alert('min = ' + minValue);
-			alert('max = ' + maxValue);
+			sortGoods(minValue, maxValue);
 			function sortGoods(min, max){
-				//code here...
+
+				var model = App.Goods.models;
+				for (var i = 0; i < App.Goods.length; i++ ){
+
+					$('.accordion-group:has( .goods_name_id:contains(' + model[i].get("nameG") + '))').hide();
+					var price = model[i].get('goodsPrice');
+					if( (price >= min) && (price <= max) ){
+						$('.accordion-group:has( .goods_name_id:contains(' + model[i].get("nameG") + '))').show();
+
+					}
+				}
+
 			}
 		},
 		loginUser: function(){
