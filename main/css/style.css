@@ -371,4 +371,25 @@ body {
 /* line 224, ../sass/style.scss */
 .slider {
   float: right;
+  display: none;
+}
+
+/* line 228, ../sass/style.scss */
+#slider {
+  display: none;
+}
+
+/* line 231, ../sass/style.scss */
+#showSlider {
+  float: right;
+  margin-bottom: -10px;
+  background: #fff;
+  color: #000;
+  border: none;
+}
+
+/* line 238, ../sass/style.scss */
+#restorePrice {
+  float: right;
+  margin-left: 2px;
 }

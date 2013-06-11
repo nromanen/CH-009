@@ -70,7 +70,42 @@ define([
 			'click #addUnitsButton' : 'showAddUnitsView',
 			'click #resetButton' : 'clearInput',
 			'keyup #searchInput' : 'searchOnChange',
-			'mouseup .slider' : 'priceSlider'
+			'mouseup .slider' : 'priceSlider',
+			'click #showSlider' : 'showSlider',
+			'click #restorePrice' : 'restorePrice'
+
+		},
+		restorePrice: function() {
+			//alert('restore');
+			$('.slider').hide();
+			$('#showSlider').show();
+			$('#restorePrice').hide();
+			function restore(){
+				console.log('restore price');
+			}
+			restore.prototype = sortGoods();
+			restore.sortGoods(1,1000000);
+		},
+		showSlider: function(){
+			$('.slider').show();
+			$('#showSlider').hide();
+			$('#restorePrice').show();
+			$('#slider').attr('data-slider-max', findCollectionMaxPrice());
+			$('#slider').slider();
+
+			function findCollectionMaxPrice(){
+				var max = 1;
+				var model = App.Goods.models;
+				console.log(model);
+				for (var i = 0; i < App.Goods.length; i++){
+					if(model[i].get('goodsPrice') > max){
+						max = model[i].get('goodsPrice');
+					}
+				}
+				console.log('max === '+max);
+				return max;
+
+			}
 
 		},
 		sortPrice: function(){
@@ -164,6 +199,8 @@ define([
 		priceSlider: function(){
 
 			var sliderValue = $('.slider .tooltip-inner').html();
+
+			//console.log(sliderValue);
 			var pos = sliderValue.indexOf(":");
 			var minValue = sliderValue.substring(0,pos);
 			var maxValue = sliderValue.substring(pos+1);
@@ -182,6 +219,8 @@ define([
 				}
 
 			}
+
+
 		},
 		loginUser: function(){
 			var userDate = [];
@@ -316,7 +355,9 @@ define([
 			$('#products').html( viewProducts.el );
 
 			$('#login').html('login');
-			$('#slider').slider();
+			//$('#slider').slider();
+			$('.slider').hide();
+			$('#restorePrice').hide();
 			$('.delete').remove();
 			$('.edit_right').remove();
 			$('.delete_goods').remove();
@@ -326,7 +367,6 @@ define([
 			$('.buttonPlace').html("");
 			$('#actionButton').remove();
 			$('#roles').remove();
-
 		},
 		openAccountant: function () {
 

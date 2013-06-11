@@ -223,4 +223,19 @@ body{
 }
 .slider{
     float:right;
+    display:none;
 }
+#slider{
+    display:none;
+}
+#showSlider{
+    float:right;
+    margin-bottom: -10px;
+    background: #fff;
+    color: #000;
+    border: none;
+}
+#restorePrice{
+    float:right;
+    margin-left: 2px;
+    }
