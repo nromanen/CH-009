@@ -70,18 +70,16 @@ define([
 			'click #addUnitsButton' : 'showAddUnitsView',
 			'click #resetButton' : 'clearInput',
 			'keyup #searchInput' : 'searchOnChange',
-			'mouseup .slider' : 'priceSlider',
+			'click .slider' : 'priceSlider',
 			'click #showSlider' : 'showSlider',
 			'click #restorePrice' : 'restorePrice'
 
 		},
 		restorePrice: function() {
-			//alert('restore');
+
 			$('.slider').hide();
 			$('#showSlider').show();
 			$('#restorePrice').hide();
-			console.log(App.Goods.models);
-			console.log("click");
 			var model = App.Goods.models;
 				for (var i = 0; i < App.Goods.length; i++ ){
 
@@ -105,13 +103,11 @@ define([
 			function findCollectionMaxPrice(){
 				var max = 1;
 				var model = App.Goods.models;
-				console.log(model);
 				for (var i = 0; i < App.Goods.length; i++){
 					if(model[i].get('goodsPrice') > max){
 						max = model[i].get('goodsPrice');
 					}
 				}
-				console.log('max === '+max);
 				return max + 10;
 
 			}

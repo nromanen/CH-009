@@ -233,9 +233,10 @@ body{
     margin-bottom: -10px;
     background: #fff;
     color: #000;
-    border: none;
+    border: 1px solid #ddd;
+    border-bottom: none;
 }
 #restorePrice{
     float:right;
     margin-left: 2px;
-    }
+}
