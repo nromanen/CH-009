@@ -70,7 +70,7 @@ define([
     App.Basket = new App.Collections.BasketItems;
     App.Views.Show = new usersView;
 
-    location.hash = '';
+    
     new Router();
     Backbone.history.start({ hashChange:true });
 
