@@ -3,13 +3,13 @@ define([
 	'app'
 ], function(Backbone, App) {
 
-	var App = App || {}; 
-	
+	var App = App || {};
+
 	App.Collections.Goods = Backbone.Collection.extend({
-	
+
 		model:App.Models.Goods,
 		initialize: function () {
-		
+
 			App.Events.on( 'addGoods', this.addModel, this );
 			App.Events.on( 'goodsDelete', this.deleteModel, this)
 			App.Events.on( 'writeGoods', this.writeCollection, this );
@@ -19,30 +19,33 @@ define([
 			App.Events.on('fetchGoodsPostgDB', this.fetchPostgDB, this);
 			App.Events.on('changeGoodsPrice', this.changeGoodsPrice, this);
 		},
+		comparator: function(item){
+			return item.get('goodsPrice');
+		},
 		addModel: function (model) {
 			var search = this.where({nameG:model.get('nameG')})
 			if(!search[0]){
 				this.add( model );
 
 				App.dbConnector.AddGoodsToDb( 'Tovaru', model );
-		
-				
+
+
 			}else{
 				alert("this goods is already in database")
 
 			}
 
-			
+
 		},
 		fetchPostgDB: function (jsonGoods){
-			
+
 			var goodsArray = JSON.parse(jsonGoods);
 			var totalPrice = 0;
 			for(i=0; i<goodsArray.length;i++){
-				
+
 				var goodsCollection = new App.Collections.GoodsItems();
-				
-				
+
+
 				goodsCollection.add(JSON.parse(goodsArray[i].goodsCollection));
 
 				_.each( JSON.parse(goodsArray[i].goodsCollection),  function ( model ) {
@@ -55,12 +58,12 @@ define([
 					nameG:goodsArray[i].nameG,
 					goodsCollection: goodsCollection,
 					goodsPrice: totalPrice
-							
+
 				});
 
 				this.addModel(mGoods);
 				totalPrice=0;
-			}	
+			}
 
 
 		},
@@ -75,17 +78,17 @@ define([
 				});
 			};
 		},
-		deleteModel: function(model) {			
+		deleteModel: function(model) {
 			App.dbConnector.deleteGoods(this.model.get('nameG'));
 			model.destroy();
-			this.remove(model); 			
+			this.remove(model);
 		},
 		writeCollection: function(goods){
 			for(i=0; i<goods.length;i++){
-				
+
 				var goodsCollection = new App.Collections.GoodsItems();
 				_.each( goods[i].goodsCollection,  function ( model ) {
-					
+
 					App.Units.each( function (unit) {
 						if (model['units'] == unit.get('name')) {
 							model['goodsItemPrice'] = parseFloat( (unit.get('unitPrice') * model['count']).toFixed(2) );
@@ -103,25 +106,25 @@ define([
 					nameG:goods[i].nameG,
 					goodsCollection: goodsCollection,
 					goodsPrice: goods[i].goodsPrice
-							
+
 				});
 
 				this.add(mGoods);
-			}	
+			}
 
 		},
 		deleteModel: function(model){
-				
+
 				App.dbConnector.deleteGoods(model.get('nameG'));
 				model.destroy();
-				this.remove(model); 			
-			
+				this.remove(model);
+
 
 		},
 		fetchGoods: function(){
-			
+
 			App.dbConnector.fetchGood();
-		
+
 		},
 		changeName: function(model, value){
 
@@ -131,8 +134,8 @@ define([
 			model.set('hrefId', goodsHrefId);
 			console.log(model);
 			model.set({ nameG: value});
-			
-			
+
+
 		},
 		editCount: function (model, value) {
 			var found = App.Units.find( function( currentModel ) {
@@ -143,7 +146,7 @@ define([
 			model.set({ count: value, goodsItemPrice: newprice });
 
 		}
-		
+
 	});
 
 	return App.Collections.Goods;

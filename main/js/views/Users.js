@@ -90,7 +90,7 @@ define([
 
 					}
 				}
-			
+
 		},
 		showSlider: function(){
 			$('.slider').show();
@@ -200,13 +200,15 @@ define([
 			}
 		},
 		priceSlider: function(minValue, maxValue){
+			App.Goods.sort();
+			viewProducts.render();
 
 			var sliderValue = $('.slider .tooltip-inner').html();
 
 			var pos = sliderValue.indexOf(":");
 			var minValue = sliderValue.substring(0,pos);
 			var maxValue = sliderValue.substring(pos+1);
-			
+
 				var model = App.Goods.models;
 				for (var i = 0; i < App.Goods.length; i++ ){
 
@@ -218,7 +220,7 @@ define([
 					}
 				}
 
-			
+
 
 
 		},
@@ -346,7 +348,7 @@ define([
 			App.userRole = 'customer';
 			this.renderBeginning( 'Customer' , App.userRole + 'Tab' );
 
-			var viewProducts = new goodsListView( { collection: App.Goods } );
+			viewProducts = new goodsListView( { collection: App.Goods } );
 			$('#TabContent').html("");
 			$('#TabContent').append ( _.template ( tabTemplate, {
 				id      : 'products',
