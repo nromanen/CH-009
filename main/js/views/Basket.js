@@ -4,12 +4,24 @@ define([
 	'backbone',
 	'app',
 	'basketItemsView',
+	'basketItemModel',
 	'text!../templates/basket.html',
 	'text!../templates/basketConfirmForm.html',
 	'text!../templates/alertInputForm.html',
 	'modelBinder'
 
-], function($, _, Backbone, App, basketItemsView, basketTemplate, confirmFormTemplate, alertInputFormTemplate, modelBinder) {
+], function(
+	$, 
+	_, 
+	Backbone, 
+	App, 
+	basketItemsView, 
+	basketItemModel,
+	basketTemplate, 
+	confirmFormTemplate, 
+	alertInputFormTemplate, 
+	modelBinder 
+	) {
 
 	var Basket =  Backbone.View.extend({
 
@@ -39,9 +51,9 @@ define([
 			if (!($('#firstName').val().trim()!='' && 
 				$('#inputLastName').val().trim()!='' &&
 				$('#inputAddress').val().trim()!='')) {
-					$('#alertInputForm').remove();
-					$('.form-horizontal').append('<div id="alertInputForm"></div>');
-					$('#alertInputForm').html(alertInputFormTemplate);
+				$('#alertInputForm').remove();
+				$('.form-horizontal').append('<div id="alertInputForm"></div>');
+				$('#alertInputForm').html(alertInputFormTemplate);
 			} else {
 				this.sendData();
 			}
@@ -71,8 +83,13 @@ define([
 			});
 		},
 		addOne: function(modelItems){
-			
-			var basketItems =  new basketItemsView({model:modelItems});
+
+			var basketItemModelInstance = App.Basket.find(function(basketItem) {
+				return modelItems.get('itemsName') === basketItem.get('itemsName');
+			});
+			console.log(basketItemModelInstance);
+			console.log(App.Basket);
+			var basketItems =  new basketItemsView( { model: basketItemModelInstance } );
 			$('#basket_tableRow').prepend( basketItems.el );
 			basketItems.render();
 			var	totalPrice = 0;

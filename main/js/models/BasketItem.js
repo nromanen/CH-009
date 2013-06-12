@@ -6,10 +6,22 @@ define([
 	var App = App || {};
 
 	App.Models.BasketItem = Backbone.Model.extend({
+		initialize: function() {
+			this.on('error', function(model) {
+				alert('Negative number!');
+			})		
+		},
+		defaults: {
+			itemsName: "",
+			counts: 0,
+			price: 0
+		},
+		validate: function( attrs ) {
 
-		itemsName:"",
-		counts:0,
-		price:0
+			console.log( attrs.toJSON() );
+			if ( attrs.attributes.counts < 1 ) return 'This is an error message!';
+
+		}		
 
 	});
 

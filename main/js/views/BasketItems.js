@@ -44,11 +44,10 @@ define([
 			}	
 		},
 		changeCount:  function () {
-			console.log(this.$el.find('.span1').val());
+			
 			var	totalPrice = 0;
-			this.model.set('counts', this.$el.find('.span1').val())
-				_.each ( App.Basket.models, function ( goodsItem ) {
-					
+			this.model.set('counts', this.$el.find('.span1').val());
+				_.each ( App.Basket.models, function ( goodsItem ) {	
 					totalPrice = totalPrice + (goodsItem.get('price')*goodsItem.get('counts'));
 				} )
 				this.$el.find('span').html("$"+this.model.get('price')*this.model.get('counts'));
