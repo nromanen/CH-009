@@ -70,7 +70,47 @@ define([
 			'click #addUnitsButton' : 'showAddUnitsView',
 			'click #resetButton' : 'clearInput',
 			'keyup #searchInput' : 'searchOnChange',
-			'click .slider' : 'priceSlider'
+			'click .slider' : 'priceSlider',
+			'click #showSlider' : 'showSlider',
+			'click #restorePrice' : 'restorePrice'
+
+		},
+		restorePrice: function() {
+
+			$('.slider').hide();
+			$('#showSlider').show();
+			$('#restorePrice').hide();
+			var model = App.Goods.models;
+				for (var i = 0; i < App.Goods.length; i++ ){
+
+					$('.accordion-group:has( .goods_name_id:contains(' + model[i].get("nameG") + '))').hide();
+					var price = model[i].get('goodsPrice');
+					if( (price >= 0) && (price <= 1000000) ){
+						$('.accordion-group:has( .goods_name_id:contains(' + model[i].get("nameG") + '))').show();
+
+					}
+				}
+			
+		},
+		showSlider: function(){
+			$('.slider').show();
+			$('#showSlider').hide();
+			$('#restorePrice').show();
+			//set slider max value
+			$('#slider').attr('data-slider-max', findCollectionMaxPrice());
+			$('#slider').slider();
+
+			function findCollectionMaxPrice(){
+				var max = 1;
+				var model = App.Goods.models;
+				for (var i = 0; i < App.Goods.length; i++){
+					if(model[i].get('goodsPrice') > max){
+						max = model[i].get('goodsPrice');
+					}
+				}
+				return max + 10;
+
+			}
 
 		},
 		sortPrice: function(){
@@ -159,18 +199,28 @@ define([
 				}
 			}
 		},
-		priceSlider: function(){
-			//alert('move slider');
-			alert($('.slider .tooltip-inner').html());
+		priceSlider: function(minValue, maxValue){
+
 			var sliderValue = $('.slider .tooltip-inner').html();
+
 			var pos = sliderValue.indexOf(":");
 			var minValue = sliderValue.substring(0,pos);
 			var maxValue = sliderValue.substring(pos+1);
-			alert('min = ' + minValue);
-			alert('max = ' + maxValue);
-			function sortGoods(min, max){
-				//code here...
-			}
+			
+				var model = App.Goods.models;
+				for (var i = 0; i < App.Goods.length; i++ ){
+
+					$('.accordion-group:has( .goods_name_id:contains(' + model[i].get("nameG") + '))').hide();
+					var price = model[i].get('goodsPrice');
+					if( (price >= minValue) && (price <= maxValue) ){
+						$('.accordion-group:has( .goods_name_id:contains(' + model[i].get("nameG") + '))').show();
+
+					}
+				}
+
+			
+
+
 		},
 		loginUser: function(){
 			var userDate = [];
@@ -305,7 +355,9 @@ define([
 			$('#products').html( viewProducts.el );
 
 			$('#login').html('login');
-			$('#slider').slider();
+			//$('#slider').slider();
+			$('.slider').hide();
+			$('#restorePrice').hide();
 			$('.delete').remove();
 			$('.edit_right').remove();
 			$('.delete_goods').remove();
@@ -315,7 +367,6 @@ define([
 			$('.buttonPlace').html("");
 			$('#actionButton').remove();
 			$('#roles').remove();
-
 		},
 		openAccountant: function () {
 
