@@ -35,6 +35,7 @@ define([
 
 			//this.collection.off('add');
 			this.collection.on('add', this.addOne, this);
+			App.Events.on('basketItemQuantityValidation', this.showValidateError);
 			this.render();
 		},
 
@@ -62,6 +63,11 @@ define([
 			return ($('#firstName').val().trim()!='' && 
 					$('#inputLastName').val().trim()!='' &&
 					$('#inputAddress').val().trim()!=''); 
+		},
+		showValidateError: function () {
+			$('#alertAddItem').remove();
+			$('body').append('<div id="alertAddItem"><div id="alertError"><div class="alert alert-error"><button type="button" class="close" data-dismiss="alert">&times;</button><strong>Error! </strong>You may NOT enter negative or zero values!</div></div></div>');
+			setTimeout( function() { $('#alertAddItem').remove() } , 5000)
 		},
 		sendData: function (){
 			$.ajax({

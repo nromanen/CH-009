@@ -76,7 +76,7 @@ define([
 
 			}
 			
-			this.model.set('count',this.$el.find('.span1').val());
+			this.model.set( 'count', this.$el.find('.span1').val() );
 			
 			var basketItemModelInstance = new basketItemModel( this.model.toJSON() );
 			App.Events.trigger("addItemtToBasket", basketItemModelInstance);

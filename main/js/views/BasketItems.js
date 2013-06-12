@@ -46,7 +46,7 @@ define([
 		changeCount:  function () {
 			
 			var	totalPrice = 0;
-			this.model.set('counts', this.$el.find('.span1').val());
+			this.model.set('counts', this.$el.find('.span1').val(), {validate: true});
 				_.each ( App.Basket.models, function ( goodsItem ) {	
 					totalPrice = totalPrice + (goodsItem.get('price')*goodsItem.get('counts'));
 				} )

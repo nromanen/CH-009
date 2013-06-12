@@ -21,7 +21,7 @@ define([
 				itemsName: model.get('nameG'),
 				price: model.get('goodsPrice'),
 				counts:model.get('count')
-			})
+			} );
 
 			this.add(itemBasket);
 			App.Events.trigger('alertAdd');
