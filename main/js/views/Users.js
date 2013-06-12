@@ -76,7 +76,10 @@ define([
 
 		},
 		restorePrice: function() {
-
+			viewProducts.remove();
+			App.Goods.reset();
+			App.Goods.fetchGoods();
+			viewProducts.render();
 			$('.slider').hide();
 			$('#showSlider').show();
 			$('#restorePrice').hide();
@@ -199,7 +202,7 @@ define([
 				}
 			}
 		},
-		priceSlider: function(minValue, maxValue){
+		priceSlider: function(){
 			App.Goods.sort();
 			viewProducts.render();
 
