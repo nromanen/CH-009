@@ -432,18 +432,18 @@ define([
 				id      : 'materials',
 				active  : '',
 			}) );
-			$('#materials').append( viewMaterials.el );
-			
-			//rendering the content of baskets tab
 
-			var viewOrderList = new orderListView( { collection: App.Orders } );
-			viewOrderList.render();
+			//rendering the content of baskets tab
 			$('#TabContent').append ( _.template ( tabTemplate, {
-				id      : 'baskets',
+				id      : 'orders',
 				active  : '',
 			}) );
-			$('#baskets').append( viewOrderList.el );
-			
+
+			App.Orders = new App.Collections.OrdersCollection;
+			var ordersView = new orderListView({collection: App.Orders})
+			ordersView.render();
+			$('#orders').append(ordersView.el);
+
 			$('#login').html('Quit').click(function(){ window.location.replace('/#'); });
 			$('#roles').remove();
 

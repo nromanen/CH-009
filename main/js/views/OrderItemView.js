@@ -3,7 +3,7 @@ define([
 	'underscore',
 	'backbone',
 	'app',
-	'text!../templates/orderItem.html',
+	'text!../templates/orderItem.html'
 
 ], function($, _, Backbone, App,
 	orderItemTemplate) {

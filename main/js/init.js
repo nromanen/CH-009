@@ -71,11 +71,10 @@ define([
     App.Units = new App.Collections.Units;
     App.Goods = new App.Collections.Goods;
     App.Basket = new App.Collections.BasketItems;
-    App.Orders = new App.Collections.OrdersCollection;
     App.Views.Show = new usersView;
 
 
-    
+    location.hash="";
     new Router();
     Backbone.history.start({ hashChange:true });
 
