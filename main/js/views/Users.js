@@ -60,6 +60,7 @@ define([
 			App.Events.on ( 'openEngineer', this.openEngineer, this );
 			App.Events.on ( 'openStorekeeper', this.openStorekeeper, this );
 			App.Events.on ( 'sendData', this.sendData, this );
+			this.fetchData();
 
 		},
 		el: $( '.container' ),
