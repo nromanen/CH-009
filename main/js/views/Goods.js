@@ -63,8 +63,7 @@ define([
 		addToBasket: function (){
 
 			if($('#shoping_cart').length==0){
-
-				$('#myTab').append('<li class=""><a href="#shoping_cart" data-toggle="tab">Basket \
+				$('#myTab').append('<li class="" id="basketTabMarker"><a href="#shoping_cart" data-toggle="tab">Basket \
 				 <i class="icon-shopping-cart"></i>=<span id="itemCount"></span></a></li>');
 				$('#TabContent').append ( _.template ( tabTemplate, { 
 					id      : 'shoping_cart',

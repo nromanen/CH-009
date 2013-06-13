@@ -54,16 +54,18 @@ define([
 				$('#alertInputForm').remove();
 				$('.form-horizontal').append('<div id="alertInputForm"></div>');
 				$('#alertInputForm').html(alertInputFormTemplate);
+				setTimeout( function() { $('#alertInputForm').remove() } , 2000)
+
 			} else {
 				this.sendData();
 			}
 			
-			setTimeout( function() { $('#alertInputForm').remove() } , 2000)
-			return ($('#firstName').val().trim()!='' && 
+			return false;/*($('#firstName').val().trim()!='' && 
 					$('#inputLastName').val().trim()!='' &&
-					$('#inputAddress').val().trim()!=''); 
+					$('#inputAddress').val().trim()!=''); */
 		},
 		sendData: function (){
+			var that=this;
 			$.ajax({
 					type: "POST",
 					url: "/cgi-bin/WriteBasket.py",
@@ -74,13 +76,23 @@ define([
 						products: JSON.stringify(this.collection)
 					},	
 					success: function(msg) {
-						console.log(msg);
+						that.onSuccessEvent(msg);
 					},
  					error: function (er){
  						console.log('error ' + er);
  					}	
 
 			});
+		},
+		onSuccessEvent: function (msg){
+			console.log(msg);
+			$('#closeForm').click();
+			$('#shoping_cart').remove();
+			$('#basketTabMarker').remove();
+			$('#myTab a:last').tab('show');
+			App.Basket = new App.Collections.BasketItems;
+			//window.location.reload();
+			//history.go(0);
 		},
 		addOne: function(modelItems){
 
