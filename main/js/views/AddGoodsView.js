@@ -11,7 +11,7 @@ define([
 
 		el: 'div',
 		events: {
-			'keypress #goods': 'inputKeypress',
+			'keyup #goods': 'inputKeypress',
 			'click .add-goods' : 'validateItem',
 			'click .cancel-goods' : 'cancelGoods'
 		},
@@ -22,11 +22,12 @@ define([
 		render: function () {
 			$('#products').append( this.template() );
 		},
-		inputKeypress: function(e) {
-			e.stopPropagation(); 
-			if (e.which === 13) {
+		inputKeypress: function(evt) {
+			evt.stopImmediatePropagation();
+			if (evt.which === 13) {
 				this.validateItem();
 			}
+		//e.stopPropagation();
 
 		},
 		validateItem: function () {
@@ -76,15 +77,15 @@ define([
 
 			});
 
-			this.clearTextBoxes();
+			this.clearTextBox();
 		},
-		clearTextBoxes: function() {
+		clearTextBox: function () {
 
-			$('#goods').val('');
-			$('#goods').focus();
+			$('#goods').val('').focus();
 
 		},
 		cancelGoods: function () {
+
 			$('#goods').val('').focus();
 		}
 
