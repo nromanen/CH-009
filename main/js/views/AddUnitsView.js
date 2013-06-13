@@ -40,49 +40,49 @@ define([
 				if ( strUnit === "" || strUnit.length > 100) {
 
 					$('#units .accordion').before('<div class="alert alert-error">Enter unit name, please<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
-					setTimeout( function() { 
+					setTimeout( function() {
 						$('.close').click();
-					}, 2000);
+					}, 1500);
 					$('#unitsName').val('');
 					$('#unitsName').focus();
 					return false;
-				} 
+				}
 
 				this.addItem ( strUnit );
 				return false;
 
 			} else {
-				
+
 				$('#units .accordion').before('<div class="alert alert-error">Such name is used already. Please change the unit name.<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
-					setTimeout( function() { 
+					setTimeout( function() {
 						$('.close').click();
-					}, 2000);
+					}, 1500);
 				$('#unit').focus();
 				return false;
 			}
-		
+
 		},
 		addItem: function( strUnit ) {
-			
+
 
 			var newUnitCollection = new App.Collections.UnitItems([]);
-			
+
 			var modelUnit = new App.Models.Unit ({
-				
+
 				name: strUnit,
 				mcollection: newUnitCollection,
 				unitPrice: 0
-				
+
 			});
-			
+
 			App.Events.trigger( 'addUnit', modelUnit );
-			
+
 			$('.units .unit').each( function () {
-				
+
 				$(this).find('.unit_info').toggle();
-				
+
 			});
-			
+
 			this.clearTextBoxes();
 		},
 		clearTextBoxes: function() {

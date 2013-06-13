@@ -72,7 +72,9 @@ define([
 			'keyup #searchInput' : 'searchOnChange',
 			'click .slider' : 'priceSlider',
 			'click #showSlider' : 'showSlider',
-			'click #restorePrice' : 'restorePrice'
+			'click #restorePrice' : 'restorePrice',
+			'click #fetchData': 'fetchData',
+			'click #clearDB' : 'clearDB'
 
 		},
 		restorePrice: function() {
@@ -111,6 +113,7 @@ define([
 						max = model[i].get('goodsPrice');
 					}
 				}
+
 				return max;
 
 			}
@@ -460,7 +463,8 @@ define([
 				id      : 'units',
 				active  : '',
 			}) );
-
+			//$('#units').find(' .alert alert-error').remove();
+			$('#units').bind('click', function(){ $(' .alert alert-error').hide(); })
 			var addUnitsButton = new addUnitsButtonView();
 			var addUnitsViewInstance = new addUnitsView({ collection: App.Units });
 

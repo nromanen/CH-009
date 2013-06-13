@@ -11,26 +11,27 @@ define([
 			switch(App.State.Lest){
 
 				case "customer":
-				
-					App.Goods.off("add");
+
+					//App.Goods.off("add");
 					break;
 
 				case "accountant":
-				
-					App.Goods.off("add");
-					App.Units.off("add");
+				console.log("fire accountant");
+					//App.Goods.off("add");
+					//App.Units.off("add");
 					break;
 
 				case "engineer":
-				
-					App.Goods.off("add");
-					App.Units.off("add");
-					App.Materials.off("add");
+				console.log("fire engineer");
+					//App.Goods.off("add");
+					///App.Units.off("add");
+					//App.Materials.off("add");
 					break;
 
 				case "storekeeper":
-					
-					App.Materials.off("add")
+					console.log("fire storekeeper");
+					//App.Materials.off("add")
+
 					break;
 
 				default:
