@@ -460,7 +460,8 @@ define([
 				id      : 'units',
 				active  : '',
 			}) );
-
+			//$('#units').find(' .alert alert-error').remove();
+			$('#units').bind('click', function(){ $(' .alert alert-error').hide(); })
 			var addUnitsButton = new addUnitsButtonView();
 			var addUnitsViewInstance = new addUnitsView({ collection: App.Units });
 

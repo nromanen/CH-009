@@ -11,10 +11,9 @@ define([
 
 		el: 'div',
 		events: {
-			'keypress #goods': 'inputKeypress',
-			'blur #goods'    : 'blurInput',
-			'mousedown .add-goods' : 'validateItem',
-			'mousedown .cancel-goods' : 'cancelGoods'
+			'keyup #goods': 'inputKeypress',
+			'click .add-goods' : 'validateItem',
+			'click .cancel-goods' : 'cancelGoods'
 		},
 		initialize: function () {
 			this.render();
@@ -23,17 +22,16 @@ define([
 		render: function () {
 			$('#products').append( this.template() );
 		},
-		inputKeypress: function(e) {
-			e.stopPropagation(); 
-			if (e.which === 13) {
+		inputKeypress: function(evt) {
+			evt.stopImmediatePropagation();
+			console.log('input keypres func');
+			if (evt.which === 13) {
 				this.validateItem();
 			}
+		//e.stopPropagation();
 
 		},
 		validateItem: function () {
-
-			console.log('validateItem');
-			$(this.el).off('blur #goods');
 
 			$('#addGoodsView').find('.error').remove();
 
@@ -53,10 +51,6 @@ define([
 			this.addItem ( goodsName );
 			return false;
 
-		},
-		blurInput : function (e) {
-			e.stopPropagation();
-			this.$el.find('#addGoodsView').hide();
 		},
 		addItem: function ( goodsName ) {
 
@@ -91,15 +85,9 @@ define([
 			$('#goods').val('').focus();
 
 		},
-		cancelGoods: function (e) {
+		cancelGoods: function () {
 
-			e.stopImmediatePropagation(); 
-			$(this.el).off('blur #goods');
-			this.$el.find('#goods').focus();
-			console.log('cancelGoods');	
-			//$('#goods').val('').focus();		
-			//this.clearTextBox();
-			//$(this.el).on('blur #goods', this.blurInput);
+			$('#goods').val('').focus();
 		}
 
 		});
