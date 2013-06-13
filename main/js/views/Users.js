@@ -111,7 +111,7 @@ define([
 						max = model[i].get('goodsPrice');
 					}
 				}
-				return max + 10;
+				return max;
 
 			}
 

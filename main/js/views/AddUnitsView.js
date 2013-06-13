@@ -50,6 +50,7 @@ define([
 
 				this.addItem ( strUnit );
 				return false;
+
 			} else {
 				
 				$('#units .accordion').before('<div class="alert alert-error">Such name is used already. Please change the unit name.<button type="button" class="close" data-dismiss="alert">&times;</button></div>');

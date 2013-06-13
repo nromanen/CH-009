@@ -1,7 +1,8 @@
 define([
 	'backbone',
-	'app'
-], function(Backbone, App) {
+	'app',
+	'basketView'
+], function(Backbone, App, basketView) {
 
 	App.Router = Backbone.Router.extend({
 
