@@ -26,6 +26,7 @@ define([
 			 
 		},
 		fetchPostgDB: function (jsonUnits){
+			console.log(jsonUnits);
 			var unitsArray = JSON.parse(jsonUnits)
 			console.log(unitsArray)
 			var totalPrise=0;

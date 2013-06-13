@@ -42,7 +42,8 @@ define([
 
 		},
 		fetchPostgDB: function (jsonGoods){
-
+			
+			console.log(jsonGoods);
 			var goodsArray = JSON.parse(jsonGoods);
 			var totalPrice = 0;
 			for(i=0; i<goodsArray.length;i++){

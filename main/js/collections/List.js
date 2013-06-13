@@ -19,7 +19,7 @@ define([
 			
 		},
 		fetchPostDB: function (jsonDate) {
-			alert(123);
+			
 			var materialsArray = JSON.parse(jsonDate);
 	
 			for ( var i=0; i<=materialsArray .length-1; i++ )

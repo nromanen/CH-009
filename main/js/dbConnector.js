@@ -88,28 +88,25 @@ define([
 				   tovarStore.createIndex("goodsCollection", "goodsCollection", { unique: false });		
 
 
-		   function fetchMaterials(){
-					$.ajax({
-   						type: "POST", 
+		 function fetchMaterials(){
+				$.ajax({
+   						type: "POST",
    						url: "/cgi-bin/fetch.py",
    						data:{fetchType:1},
    							success: function(msg){
-   								console.log(msg);
      							App.Events.trigger("fetchMaterialsPostgDB", msg)
-     							
+     							console.log(msg);
    							}
-   					});
+ 					});
 			};
-
 			function fetchUnits() {
 						$.ajax({
    						type: "POST",
    						url: "/cgi-bin/fetch.py",
    						data:{fetchType:2},
    							success: function(msg){
-   								console.log(msg);
      							App.Events.trigger("fetchUnitsPostgDB", msg)
-     							
+     							console.log(msg);
    							}
  					});
 			};
@@ -119,17 +116,15 @@ define([
    						url: "/cgi-bin/fetch.py",
    						data:{fetchType:3},
    							success: function(msg){
-   								console.log(msg);
      							App.Events.trigger("fetchGoodsPostgDB", msg)
-     							
+     							console.log(msg);
    							}
  					});
 			};
-
 			fetchMaterials();
 			fetchUnits();
 			fetchGoods()
-
+				console.log('Creating object stores 2');
 			}
 	}	
 		
