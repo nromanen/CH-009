@@ -24,7 +24,6 @@ define([
 		},
 		inputKeypress: function(evt) {
 			evt.stopImmediatePropagation();
-			console.log('input keypres func');
 			if (evt.which === 13) {
 				this.validateItem();
 			}

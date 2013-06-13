@@ -31,7 +31,11 @@ define([
 
 
 			}else{
-				alert("this goods is already in database")
+				//alert("this goods is already in database")
+				$('#products > div.clearfix').after('<div class="alert alert-error">this goods is already in database<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+					setTimeout( function() {
+						$('.close').click();
+					}, 2000);
 
 			}
 
