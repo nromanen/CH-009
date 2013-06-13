@@ -12,25 +12,25 @@ define([
 
 				case "customer":
 					console.log("fire custumer");
-					App.Goods.off("add");
+					//App.Goods.off("add");
 					break;
 
 				case "accountant":
 				console.log("fire accountant");
-					App.Goods.off("add");
-					App.Units.off("add");
+					//App.Goods.off("add");
+					//App.Units.off("add");
 					break;
 
 				case "engineer":
 				console.log("fire engineer");
-					App.Goods.off("add");
-					App.Units.off("add");
-					App.Materials.off("add");
+					//App.Goods.off("add");
+					///App.Units.off("add");
+					//App.Materials.off("add");
 					break;
 
 				case "storekeeper":
 					console.log("fire storekeeper");
-					App.Materials.off("add")
+					//App.Materials.off("add")
 					break;
 
 				default:

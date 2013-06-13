@@ -72,7 +72,9 @@ define([
 			'keyup #searchInput' : 'searchOnChange',
 			'click .slider' : 'priceSlider',
 			'click #showSlider' : 'showSlider',
-			'click #restorePrice' : 'restorePrice'
+			'click #restorePrice' : 'restorePrice',
+			'click #fetchData': 'fetchData',
+			'click #clearDB' : 'clearDB'
 
 		},
 		restorePrice: function() {
