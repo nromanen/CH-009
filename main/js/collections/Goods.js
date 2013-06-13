@@ -27,7 +27,7 @@ define([
 			if(!search[0]){
 				this.add( model );
 
-				App.dbConnector.AddGoodsToDb( 'Tovaru', model );
+				App.dbConnector.AddGoodsToDb( 'Goods', model );
 
 
 			}else{
