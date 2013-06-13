@@ -13,6 +13,7 @@ define([
 	'addGoodsView',
 	'addGoodsButtonView',
 	'accountantFilterView',
+	'orderItemListView',
 	'text!../templates/tab.html',
 	'text!../templates/userTabs.html',
 	'text!../templates/addUnit2GoodsButton.html',
@@ -38,6 +39,7 @@ define([
 	addGoodsView,
 	addGoodsButtonView,
 	accountantFilterView,
+	orderListView,
 	tabTemplate,
 	userTabsTemplate,
 	addUnit2GoodsButtonTemplate,
@@ -384,6 +386,17 @@ define([
 				active  : '',
 			}) );
 			$('#materials').append( viewMaterials.el );
+			
+			//rendering the content of baskets tab
+
+			var viewOrderList = new orderListView( { collection: App.Orders } );
+			viewOrderList.render();
+			$('#TabContent').append ( _.template ( tabTemplate, {
+				id      : 'baskets',
+				active  : '',
+			}) );
+			$('#baskets').append( viewOrderList.el );
+			
 			$('#login').html('Quit').click(function(){ window.location.replace('/#'); });
 			$('#roles').remove();
 

@@ -16,7 +16,8 @@ define([
   'goodsItemsCollection',
   'listCollection',
   'unitsCollection',
-  'unitsItemsCollection'
+  'unitsItemsCollection',
+  'ordersCollection'
 
 ], function(
   Backbone,
@@ -36,7 +37,8 @@ define([
   goodsItemsCollection,
   listCollection,
   unitsCollection,
-  unitsItemsCollection
+  unitsItemsCollection,
+  ordersCollection
   ){
 
   var init = function() {
@@ -62,13 +64,16 @@ define([
     App.Collections.List = listCollection;
     App.Collections.Units = unitsCollection;
     App.Collections.UnitItems = unitsItemsCollection;
+    App.Collections.OrdersCollection = ordersCollection;
 
     //getting actual Views...
     App.Materials = new App.Collections.List;
     App.Units = new App.Collections.Units;
     App.Goods = new App.Collections.Goods;
     App.Basket = new App.Collections.BasketItems;
+    App.Orders = new App.Collections.OrdersCollection;
     App.Views.Show = new usersView;
+
 
     
     new Router();

@@ -15,6 +15,7 @@ requirejs.config({
 		basketItemsCollection : 'collections/BasketItems',
 		goodsCollection : 'collections/Goods',
 		goodsItemsCollection : 'collections/GoodsItems',
+		ordersCollection: 'collections/Orders',
 		basketItemModel : 'models/BasketItem',
 		goodsItemModel : 'models/GoodsItemModel',
 		goodsModel : 'models/GoodsModel',
@@ -48,7 +49,9 @@ requirejs.config({
 		unitsListView : 'views/UnitsList',
 		usersView : 'views/Users',
 		dbConnector : 'dbConnector',
-		Backbone: 'lib/backbone'
+		Backbone: 'lib/backbone',
+		orderItemView: 'views/OrderItemView',
+		orderItemListView: 'views/OrderItemListView'
 	},
 	shim : {
 		jquery : {
