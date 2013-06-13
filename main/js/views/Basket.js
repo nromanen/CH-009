@@ -85,7 +85,7 @@ define([
 			});
 		},
 		onSuccessEvent: function (msg){
-			console.log(msg);
+			console.log(msg+'sending basket');
 			$('#closeForm').click();
 			$('#shoping_cart').remove();
 			$('#basketTabMarker').remove();

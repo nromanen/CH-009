@@ -436,6 +436,7 @@ define([
 				id      : 'materials',
 				active  : '',
 			}) );
+			$('#materials').append(viewMaterials.el);
 
 			//rendering the content of baskets tab
 			$('#TabContent').append ( _.template ( tabTemplate, {
