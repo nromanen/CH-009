@@ -444,6 +444,7 @@ define([
 				active  : '',
 			}) );
 			App.Orders = new App.Collections.OrdersCollection;
+			console.log(App.Orders);
 /*
 			var ordersView = new orderItemListView({collection: App.Orders})
 			ordersView.render();

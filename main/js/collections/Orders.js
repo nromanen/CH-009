@@ -31,10 +31,9 @@ define([
  						console.log('error ' + er);
  					}	
 				})
-
 			},
 
-			writeCollection: function(msg, pointer){
+			writeCollection: function(msg){
 			var that=this;	
 				var orders = JSON.parse(msg);
 				_.each(orders, function(current) {
@@ -47,7 +46,7 @@ define([
 				ordersView.render();
 				$('#orders').append(ordersView.el);
 			return this;	
-			},
+			}
 
 	});
 
