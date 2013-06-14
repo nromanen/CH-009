@@ -1,13 +1,14 @@
 define([
 	'backbone',
-	'app'
-], function(Backbone, App) {
+	'app',
+	'basketView'
+], function(Backbone, App, basketView) {
 
 	App.Router = Backbone.Router.extend({
 
 		routes: {
-			''            : 'openAccountant',//'openCustomer',
-			'customer'    : 'chooseRole',
+			''            : 'openCustomer',
+			'customer'    : 'openCustomer',
 			'accountant'  : 'openAccountant',
 			'engineer'    : 'openEngineer',
 			'storekeeper' : 'openStorekeeper',

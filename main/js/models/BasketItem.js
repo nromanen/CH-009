@@ -6,10 +6,23 @@ define([
 	var App = App || {};
 
 	App.Models.BasketItem = Backbone.Model.extend({
-
-		itemsName:"",
-		counts:0,
-		price:0
+		initialize: function () {
+			
+		},
+		defaults: {
+			itemsName: "",
+			counts: 0,
+			price: 0
+		},
+		validate: function( attrs ) {
+			//if ( attrs.counts < 1 ) return 'error message';
+			if ( attrs.counts < 1 ) {
+				this.trigger('error', this, 'error message');
+				return 'error'; // true value means error has been returned
+			}
+			
+			//App.Events.trigger('basketItemQuantityValidation');
+		}
 
 	});
 

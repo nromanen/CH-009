@@ -27,7 +27,7 @@ define([
 			if(!search[0]){
 				this.add( model );
 
-				App.dbConnector.AddGoodsToDb( 'Tovaru', model );
+				App.dbConnector.AddGoodsToDb( 'Goods', model );
 
 
 			}else{
@@ -42,7 +42,8 @@ define([
 
 		},
 		fetchPostgDB: function (jsonGoods){
-
+			
+			console.log(jsonGoods);
 			var goodsArray = JSON.parse(jsonGoods);
 			var totalPrice = 0;
 			for(i=0; i<goodsArray.length;i++){
@@ -134,7 +135,7 @@ define([
 
 			App.dbConnector.changeGoodsName( model.get( 'nameG' ), value );
 			var goodsHrefId = value;
-			goodsHrefId = goodsHrefId.replace(" ","");
+			goodsHrefId = goodsHrefId.replace(/[\. ,():-]+/g, "-");
 			model.set('hrefId', goodsHrefId);
 			console.log(model);
 			model.set({ nameG: value});

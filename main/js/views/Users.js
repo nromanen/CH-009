@@ -62,6 +62,7 @@ define([
 			App.Events.on ( 'openEngineer', this.openEngineer, this );
 			App.Events.on ( 'openStorekeeper', this.openStorekeeper, this );
 			App.Events.on ( 'sendData', this.sendData, this );
+			this.fetchData();
 
 		},
 		el: $( '.container' ),
@@ -74,7 +75,9 @@ define([
 			'keyup #searchInput' : 'searchOnChange',
 			'click .slider' : 'priceSlider',
 			'click #showSlider' : 'showSlider',
-			'click #restorePrice' : 'restorePrice'
+			'click #restorePrice' : 'restorePrice',
+			'click #fetchData': 'fetchData',
+			'click #clearDB' : 'clearDB'
 
 		},
 		restorePrice: function() {
@@ -113,7 +116,8 @@ define([
 						max = model[i].get('goodsPrice');
 					}
 				}
-				return max + 50;
+
+				return max;
 
 			}
 
@@ -432,6 +436,7 @@ define([
 				id      : 'materials',
 				active  : '',
 			}) );
+			$('#materials').append(viewMaterials.el);
 
 			//rendering the content of baskets tab
 			$('#TabContent').append ( _.template ( tabTemplate, {

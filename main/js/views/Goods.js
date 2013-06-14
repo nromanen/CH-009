@@ -5,6 +5,7 @@ define([
 	'app',
 	'addUnitsListView',
 	'basketView',
+	'basketItemModel',
 	'goodsItemsListView',
 	'text!../templates/goodsCustomer.html',
 	'text!../templates/goodsEngineer.html',
@@ -12,7 +13,7 @@ define([
 	'text!../templates/alertAdd.html',
 	'text!../templates/alertError.html',
 
-], function($, _, Backbone, App, addUnitsListView, basketView, goodsItemsListView,
+], function($, _, Backbone, App, addUnitsListView, basketView, basketItemModel, goodsItemsListView,
 	goodsCustomerTemplate, goodsEngineerTemplate, tabTemplate, alertAddTemplate, alertErrorTemplate) {
 
 	var Goods = Backbone.View.extend({
@@ -41,7 +42,7 @@ define([
 		render: function () {	
 			
 			var goodsHrefId = this.model.cid;
-			goodsHrefId = goodsHrefId.replace(" ","");
+			goodsHrefId = goodsHrefId.replace(/[\. ,():-]+/g, "-");
 			this.model.set('hrefId', goodsHrefId);
 
 			if ( App.userRole === 'customer' ) {
@@ -74,8 +75,10 @@ define([
 
 			}
 			
-			this.model.set('count',this.$el.find('.span1').val());
-			App.Events.trigger("addItemtToBasket", this.model);
+			this.model.set( 'count', this.$el.find('.span1').val() );
+			
+			var basketItemModelInstance = new basketItemModel( this.model.toJSON() );
+			App.Events.trigger("addItemtToBasket", basketItemModelInstance);
 
 			this.$el.find('.span1').val('1');
 			
