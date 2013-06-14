@@ -42,7 +42,7 @@ define([
 		render: function () {	
 			
 			var goodsHrefId = this.model.cid;
-			goodsHrefId = goodsHrefId.replace(" ","");
+			goodsHrefId = goodsHrefId.replace(/[\. ,():-]+/g, "-");
 			this.model.set('hrefId', goodsHrefId);
 
 			if ( App.userRole === 'customer' ) {
