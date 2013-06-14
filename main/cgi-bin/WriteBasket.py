@@ -9,7 +9,7 @@ conn = psycopg2.connect("dbname='postgres' user='postgres' host='localhost' pass
 
 cur = conn.cursor()
 
-cur.execute("INSERT INTO orders (firstName, lastName, address, products) VALUES (%s, %s, %s, %s);",(order['firstName'].value, order['lastName'].value, order['address'].value, order['products'].value))
+cur.execute("INSERT INTO orders (firstName, lastName, address, products, price) VALUES (%s, %s, %s, %s,%s);",(order['firstName'].value, order['lastName'].value, order['address'].value, order['products'].value, order['price'].value))
 
 sys.stdout.write("All done!")
 

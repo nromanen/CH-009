@@ -15,7 +15,7 @@ if postInputs['fetchType'].value == "1":
 	i=0
 	arJSON=[]
 	while i<len(result):
-		arJSON.append(dict({"firstName":result[i][1], "lastName":result[i][2], "address":result[i][3]}))
+		arJSON.append(dict({"id":result[i][0],"firstName":result[i][1], "lastName":result[i][2], "address":result[i][3], "order":result[i][4], "price":result[i][5]}))
 		i +=1
 
 	sys.stdout.write(json.dumps(arJSON))

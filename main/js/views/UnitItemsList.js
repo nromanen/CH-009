@@ -13,7 +13,7 @@ define([
 		initialize: function () {
 			
 			this.collection.on('add', this.addOne, this);	
-			this.el.id = this.model.get( 'name' ).replace(/\s/g, ''); // надає ім'я id без пробілів
+			this.el.id = this.model.get( 'name' ).replace(/[\. ,():-]+/g, "-"); // надає ім'я id без пробілів
 			
 		},
 		className: 'accordion-body collapse',

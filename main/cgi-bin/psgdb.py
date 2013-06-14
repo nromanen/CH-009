@@ -10,7 +10,7 @@ cur.execute("CREATE TABLE peple ( id SERIAL PRIMARY KEY, username varchar(30), p
 cur.execute("CREATE TABLE materials ( id SERIAL PRIMARY KEY, nameMaterial varchar, priceMaterial int);")
 cur.execute("CREATE TABLE units ( id SERIAL PRIMARY KEY, nameUnits varchar, collectionMaterials text);")
 cur.execute("CREATE TABLE products ( id SERIAL PRIMARY KEY, nameProducts varchar, collectionUnists text);")
-cur.execute("CREATE TABLE orders ( id SERIAL PRIMARY KEY, firstName varchar, lastName varchar, address text, products text);")
+cur.execute("CREATE TABLE orders ( id SERIAL PRIMARY KEY, firstName varchar, lastName varchar, address text, products text, price varchar);")
 
 cur.execute("INSERT INTO peple (username, password, permition) VALUES (%s, %s, %s);",('Storekeeper','1','storekeeper'))
 cur.execute("INSERT INTO peple (username, password, permition) VALUES (%s, %s, %s);",('Engineer','1','engineer'))

@@ -13,7 +13,8 @@ define([
 				firstName:"",
 				lastName:"",
 				address:"",
-				order: ""
+				order: "",
+				price: ""
 				
 			}
 		}	

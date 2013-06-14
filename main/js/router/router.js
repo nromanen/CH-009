@@ -8,7 +8,7 @@ define([
 
 		routes: {
 			''            : 'openCustomer',
-			'customer'    : 'chooseRole',
+			'customer'    : 'openCustomer',
 			'accountant'  : 'openAccountant',
 			'engineer'    : 'openEngineer',
 			'storekeeper' : 'openStorekeeper',

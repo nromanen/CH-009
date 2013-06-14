@@ -39,7 +39,7 @@ define([
 	addGoodsView,
 	addGoodsButtonView,
 	accountantFilterView,
-	orderListView,
+	orderItemListView,
 	tabTemplate,
 	userTabsTemplate,
 	addUnit2GoodsButtonTemplate,
@@ -62,7 +62,7 @@ define([
 			App.Events.on ( 'openEngineer', this.openEngineer, this );
 			App.Events.on ( 'openStorekeeper', this.openStorekeeper, this );
 			App.Events.on ( 'sendData', this.sendData, this );
-			this.fetchData();
+			//this.fetchData();
 
 		},
 		el: $( '.container' ),
@@ -436,18 +436,19 @@ define([
 				id      : 'materials',
 				active  : '',
 			}) );
+			$('#materials').append(viewMaterials.el);
 
 			//rendering the content of baskets tab
 			$('#TabContent').append ( _.template ( tabTemplate, {
 				id      : 'orders',
 				active  : '',
 			}) );
-
 			App.Orders = new App.Collections.OrdersCollection;
-			var ordersView = new orderListView({collection: App.Orders})
+/*
+			var ordersView = new orderItemListView({collection: App.Orders})
 			ordersView.render();
 			$('#orders').append(ordersView.el);
-
+*/
 			$('#login').html('Quit').click(function(){ window.location.replace('/#'); });
 			$('#roles').remove();
 

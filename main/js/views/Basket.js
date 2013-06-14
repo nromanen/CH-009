@@ -65,6 +65,10 @@ define([
 					$('#inputAddress').val().trim()!=''); */
 		},
 		sendData: function (){
+			var	totalPrice = 0;
+			_.each ( App.Basket.models, function ( goodsItem ) {
+					totalPrice = totalPrice + (goodsItem.get('price')*goodsItem.get('counts'));
+				} );
 			var that=this;
 			$.ajax({
 					type: "POST",
@@ -73,7 +77,8 @@ define([
 						firstName:this.model.get('firstName'),
 						lastName:this.model.get('lastName'),
 						address:this.model.get('address'),
-						products: JSON.stringify(this.collection)
+						products: JSON.stringify(this.collection),
+						price:totalPrice
 					},	
 					success: function(msg) {
 						that.onSuccessEvent(msg);
@@ -85,7 +90,7 @@ define([
 			});
 		},
 		onSuccessEvent: function (msg){
-			console.log(msg);
+			console.log(msg+'sending basket');
 			$('#closeForm').click();
 			$('#shoping_cart').remove();
 			$('#basketTabMarker').remove();

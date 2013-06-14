@@ -38,7 +38,7 @@ define([
 		template: _.template( unitsTemplate ),
 
 		render: function () {
-			var nameTrimmed = this.model.get( 'name' ).replace(/\s/g, ''); // видаляє пробіли
+			var nameTrimmed = this.model.get( 'name' ).replace(/[\. ,():-]+/g, "-"); // видаляє пробіли
 			this.model.set ('hrefID', nameTrimmed);
 
 			var strTemplate = this.template( this.model.toJSON() );
@@ -48,7 +48,7 @@ define([
 			newUnitItemsList.render();
 
 			this.$el.append( newUnitItemsList.el );
-
+			$('.headerPrice').remove();
 		},
 		unitChange: function () {
 			this.$el.find('.unit_name').html(this.model.get('name'));

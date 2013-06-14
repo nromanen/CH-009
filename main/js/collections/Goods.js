@@ -135,7 +135,7 @@ define([
 
 			App.dbConnector.changeGoodsName( model.get( 'nameG' ), value );
 			var goodsHrefId = value;
-			goodsHrefId = goodsHrefId.replace(" ","");
+			goodsHrefId = goodsHrefId.replace(/[\. ,():-]+/g, "-");
 			model.set('hrefId', goodsHrefId);
 			console.log(model);
 			model.set({ nameG: value});

@@ -50,8 +50,10 @@ requirejs.config({
 		usersView : 'views/Users',
 		dbConnector : 'dbConnector',
 		Backbone: 'lib/backbone',
-		orderItemView: 'views/OrderItemView',
-		orderItemListView: 'views/OrderItemListView'
+		orderItemView: 'views/OrderItem',
+		orderItemListView: 'views/OrderItemList',
+		orderProductListView: 'views/OrderProductList',
+		orderProductView: 'views/OrderProduct'
 	},
 	shim : {
 		jquery : {
