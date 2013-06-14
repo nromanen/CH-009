@@ -1,16 +1,31 @@
-var App = App || {};
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+	'app',
+	'addMaterialsListView',
+	'unitItemsListView',
+	'text!../templates/units.html'
 
-(function () {
+], function(
+	$,
+	_,
+	Backbone,
+	App,
+	addMaterialsListView,
+	unitItemsListView,
+	unitsTemplate
+	) {
 
-	App.Views.Unit = Backbone.View.extend({
-	
+	var Unit = Backbone.View.extend({
+
 		tagName: 'div',
 		className: 'accordion-group',
 		initialize: function () {
 			this.model.on( 'change', this.unitChange, this);
 			this.model.on( 'destroy', this.unitRemoveItem, this );
 			this.model.on( 'change:unitPrice', this.refreshUnitPrice, this);
-		
+
 		},
 		events: {
 			'click .unit_name' : 'unitToggle',
@@ -20,16 +35,16 @@ var App = App || {};
 			'blur .edit_unit_name': 'close',
 			'click .add-material-to-unit' : 'inputMaterials'
 		},
-		template: _.template( $('#unit-name').html() ),
+		template: _.template( unitsTemplate ),
 
-		render: function () {	
+		render: function () {
 			var nameTrimmed = this.model.get( 'name' ).replace(/\s/g, ''); // видаляє пробіли
-			this.model.set ('hrefID', nameTrimmed);     
-			
+			this.model.set ('hrefID', nameTrimmed);
+
 			var strTemplate = this.template( this.model.toJSON() );
 			this.$el.html( strTemplate );
 
-			var newUnitItemsList = new App.Views.UnitItemsList( { collection: this.model.get( 'mcollection' ), model: this.model  } ) ;
+			var newUnitItemsList = new unitItemsListView( { collection: this.model.get( 'mcollection' ), model: this.model  } ) ;
 			newUnitItemsList.render();
 
 			this.$el.append( newUnitItemsList.el );
@@ -44,13 +59,13 @@ var App = App || {};
 			App.Events.trigger('refreshGoodsPrice', this.model);
 		},
 		unitToggle: function () {
-			
-			this.$(".collapse").collapse();	
+
+			this.$(".collapse").collapse();
 
 		},
 		inputMaterials: function () {
-			
-			var AddMaterialsList = new App.Views.AddMaterialsList( { collection: App.Materials, model : this.model } );
+
+			var AddMaterialsList = new addMaterialsListView( { collection: App.Materials, model : this.model } );
 			AddMaterialsList.render();
 			$( '#materialsContainer' ).html( AddMaterialsList.el );
 			$('#addMaterial2Unit').find('#myModalLabel').html('Add New Material to ' + this.model.get('name') );
@@ -67,21 +82,21 @@ var App = App || {};
 			foundFlag=this.model.requestUnitDelete();
 
 			if (foundFlag === true) {
-					$('#newUnitBtn').after('<div class="error">You CANNOT DELETE this unit, because it is already used in Goods!</div>');
-						setTimeout( function() { 
-							$('.error').fadeOut('slow')
-						}, 2000);
+					$('#units .accordion').before('<div class="alert alert-error">You CANNOT DELETE this unit, because it is already used in Goods!<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+					setTimeout( function() {
+						$('.close').click();
+					}, 2000);
 				} else {
 					if ( confirm('Are you sure you want to delete this Unit?') ) {
 						this.model.deleteUnit();
 					};
-				}		
+				}
 		},
 		unitRemoveItem: function() {
-		
+
 			this.$el.remove();
 			$('.AddMaterialsList').hide();
-	
+
 		},
 		changeUnitName: function () {
 
@@ -90,26 +105,24 @@ var App = App || {};
 
 				var unitsInside = goodsModel.get('goodsCollection');
 				var found = unitsInside.find( function (goodsItem) {
-					return that.model.get('name') === goodsItem.get('units'); 
+					return that.model.get('name') === goodsItem.get('units');
 				});
 
 				if (found === undefined) {
 
 					that.$el.addClass('editing');
-					that.$el.find('input').focus();	
+					that.$el.find('input').focus();
 
 				} else {
 
 					$('#newUnitBtn').after('<div class="error">You CANNOT EDIT this name, because this unit is already used in Goods!</div>');
-					setTimeout( function() { 
+					setTimeout( function() {
 						$('.error').fadeOut('slow')
 					}, 2000);
 
 				}
 
 			});
-
-				
 
 		},
 		close: function () {
@@ -143,41 +156,17 @@ var App = App || {};
 				}
 
 			}
-		
+
 		},
 		updateOnEnter: function (e) {
 			console.log('update on enter');
 			if (e.keyCode == 13) {
-				this.close(); 
+				this.close();
 			}
 		},
-		
-	});
-	
-	App.Views.UnitsList = Backbone.View.extend({  // это вид коллекции
-	
-		tagName: 'div',
-		className: 'accordion',
-		initialize: function () {
-			this.collection.on('add', this.render, this);
-		},
-		render: function () {
-			
-            this.$el.html('');
-          	this.collection.each( this.addOne, this );
-			return this;
-			
-		},
-		addOne: function( modelUnit ) {
 
-			var UnitView = new App.Views.Unit({ model: modelUnit, collection: this.collection });
-			this.$el.prepend( UnitView.el );
-			UnitView.render();
-			
-			this.$el.find( '.unit_info' ).hide();
-
-		}
-	
 	});
 
-}());
+	return Unit;
+
+});

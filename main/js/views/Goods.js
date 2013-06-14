@@ -1,78 +1,137 @@
-var App = App || {};
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+	'app',
+	'addUnitsListView',
+	'basketView',
+	'basketItemModel',
+	'goodsItemsListView',
+	'text!../templates/goodsCustomer.html',
+	'text!../templates/goodsEngineer.html',
+	'text!../templates/tab.html',
+	'text!../templates/alertAdd.html',
+	'text!../templates/alertError.html',
 
-(function () {
+], function($, _, Backbone, App, addUnitsListView, basketView, basketItemModel, goodsItemsListView,
+	goodsCustomerTemplate, goodsEngineerTemplate, tabTemplate, alertAddTemplate, alertErrorTemplate) {
 
-	App.Views.Goods = Backbone.View.extend({
-	
-			
+	var Goods = Backbone.View.extend({
+
 		tagName: 'div',
 		className:"accordion-group",
-		initialize: function () {		
+		initialize: function () {
 			this.model.on( 'change:nameG', this.nameUpDate, this);
 			this.model.on( 'destroy', this.goodsRemoveItem, this );
 			this.model.on( 'changes', this.goodsChange );
 			this.model.on( 'change:nameG', this.refreshGoodsName, this );
 			this.model.on( 'change:goodsPrice', this.refreshGoodsPrice, this );
+			App.Events.on('ErrorExist', this.errorAlert, this);
+			App.Events.on( 'alertAdd', this.alertAdd, this);
 		},
-		
 		events: {
 			'click .accordion-heading' : 'goodsToggle',
 			'click .delete_goods' : 'goodsDeleteItem',
 			'click .edit_right' : 'changeGoodsName',
 			'keypress .edit_goods_name': 'updateOnEnter',
 			'blur .edit_goods_name': 'close',
-			'click .btn': 'inputUnits'
+			'click .btn': 'inputUnits',
+			'click .Bay-item':'addToBasket'
+
 		},
-		render: function () {	
-			
+		render: function () {
+
 			var goodsHrefId = this.model.cid;
 			goodsHrefId = goodsHrefId.replace(" ","");
 			this.model.set('hrefId', goodsHrefId);
-			console.log(JSON.stringify(this.model.toJSON()));
 
 			if ( App.userRole === 'customer' ) {
-				var strTemplate = _.template( $('#goods-name-customer').html(), this.model.toJSON() );
+				var strTemplate = _.template( goodsCustomerTemplate, this.model.toJSON() );
 			} else {
-				var strTemplate = _.template( $('#goods-name').html(), this.model.toJSON() );
+				var strTemplate = _.template( goodsEngineerTemplate, this.model.toJSON() );
 			}
 
 			this.$el.html( strTemplate );
-			var newGoodsItemsList = new App.Views.GoodsItemsList( { collection: this.model.get( 'goodsCollection' ), model: this.model  } ) ;
+			var newGoodsItemsList = new goodsItemsListView( { collection: this.model.get( 'goodsCollection' ), model: this.model  } ) ;
 
 			this.$el.append( newGoodsItemsList.el );
 			newGoodsItemsList.render();
-			
+
 			this.$input = this.$('.edit_goods_name');
-			
-		}, 
+		},
+		addToBasket: function (){
+
+			if($('#shoping_cart').length==0){
+				$('#myTab').append('<li class="" id="basketTabMarker"><a href="#shoping_cart" data-toggle="tab">Basket \
+				 <i class="icon-shopping-cart"></i>=<span id="itemCount"></span></a></li>');
+				$('#TabContent').append ( _.template ( tabTemplate, {
+					id      : 'shoping_cart',
+					active  : '',
+				}) );
+				var newFormModel = new App.Models.BasketFormModel();
+				var basket = new basketView({collection:App.Basket, model:newFormModel})
+				$("#shoping_cart").html(basket.el);
+
+			}/*
+<<<<<<< HEAD
+
+			this.model.set('count',this.$el.find('.span1').val());
+			App.Events.trigger("addItemtToBasket", this.model);
+=======
+			*/
+			this.model.set( 'count', this.$el.find('.span1').val() );
+
+			var basketItemModelInstance = new basketItemModel( this.model.toJSON() );
+			App.Events.trigger("addItemtToBasket", basketItemModelInstance);
+
+			this.$el.find('.span1').val('1');
+
+			setTimeout( function() { $('#alertAddItem').remove() } , 2000)
+
+
+		},
+		errorAlert: function (){
+			$('#alertAddItem').remove();
+			$('body').append('<div id="alertAddItem"></div>');
+			$('#alertAddItem').html(alertErrorTemplate);
+
+			setTimeout( function() { $('#alertAddItem').remove() } , 2000)
+		},
+		alertAdd: function(){
+
+			$('#itemCount').html(App.Basket.length);
+			$('body').append('<div id="alertAddItem"></div>');
+
+			$('#alertAddItem').html( alertAddTemplate );
+			setTimeout( function() { $('#alertAddItem').remove() } , 1000)
+
+
+		},
 		goodsChange: function () {
 			//
 		},
 		refreshGoodsName: function (){
 			this.$el.find('.goods_name_id').html(this.model.get('nameG'));
-		}, 
+		},
 		refreshGoodsPrice: function (){
 			this.$el.find('.goodsPrice').html('$'+this.model.get('goodsPrice'));
 		},
-		nameUpDate: function (){
-
-			console.log($('#'+this.model.cid+"_goodsId").html(this.model.get("nameG")));
-
+		nameUpDate: function () {
 
 		},
 		goodsToggle: function () {
-			
-				this.$('.goods_info').show();
-							
+
+			this.$('.goods_info').show();
+
 		},
 		inputUnits: function () {
-			
-				var AddUnitsList = new App.Views.AddUnitsList( { collection: App.Units, model : this.model	} );
+
+				var AddUnitsList = new addUnitsListView( { collection: App.Units, model : this.model	} );
 				AddUnitsList.render();
 				$( '#unitContainer' ).html( AddUnitsList.el );
 
 				$('#addUnit2Goods').find('#myModalLabel').html('Add Units to ' + this.model.get('nameG') );
-				
+
 				var unitsInGoods = this.model.get( 'goodsCollection' );
 				var unitsInGoodsSentence = ''; // for #addUnit2Goods sentence
 				_.each ( unitsInGoods.models, function ( goodsItem ) {
@@ -82,23 +141,23 @@ var App = App || {};
 
 		},
 		goodsDeleteItem: function() {
-		
+
 			if ( confirm('Are you sure you want to delete this Goods?') ) {
-				
+
 				App.Events.trigger( 'goodsDelete', this.model );
 			}
-		
+
 		},
 		goodsRemoveItem: function() {
-		
+
 			this.$el.remove();
 			$('.AddUnitsList').hide();
-	
+
 		},
 		changeGoodsName: function () {
 			this.$el.addClass('editing');
 			this.$input.focus();
-			
+
 		},
 		close: function () {
 			var value = this.$input.val().trim();
@@ -115,43 +174,12 @@ var App = App || {};
 		},
 		updateOnEnter: function (e) {
 			if (e.keyCode == 13) {
-				this.close(); 
+				this.close();
 			}
-		},
-		
-		
-		
-	});
-	
-	App.Views.GoodsList = Backbone.View.extend({  // это вид коллекции
-		
-		tagName: 'div',
-
-		initialize: function () {
-			this.collection.on('add', this.render, this);
-			this.render();
-		},
-		render: function () {
-			
-			$('#products').append( this.el );	
-            this.$el.html('');
-          	this.collection.each( this.addOne, this );
-			return this;
-			
-		},
-		addOne: function( modelGoods ) {
-			
-			var GoodsView = new App.Views.Goods({ model: modelGoods });
-			this.$el.prepend( GoodsView.el );
-			
-			GoodsView.render();
-			
-			var jq_goods_info = '.goods_info';
-			this.$el.find( jq_goods_info ).hide();
-
 		}
-			
-		
+
 	});
 
-}());
+	return Goods;
+
+});

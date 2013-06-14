@@ -2,7 +2,7 @@ import cgi
 import psycopg2, sys, os
 
 form = cgi.FieldStorage()
-conn = psycopg2.connect("dbname='postgres' user='postgres' host='localhost' password='root' port='5432'")
+conn = psycopg2.connect("dbname='postgres' user='postgres' host='localhost' password='root'")
 
 cur = conn.cursor()
 cur.execute("DROP TABLE IF EXISTS peple, materials, units, products")
@@ -10,6 +10,8 @@ cur.execute("CREATE TABLE peple ( id SERIAL PRIMARY KEY, username varchar(30), p
 cur.execute("CREATE TABLE materials ( id SERIAL PRIMARY KEY, nameMaterial varchar, priceMaterial int);")
 cur.execute("CREATE TABLE units ( id SERIAL PRIMARY KEY, nameUnits varchar, collectionMaterials text);")
 cur.execute("CREATE TABLE products ( id SERIAL PRIMARY KEY, nameProducts varchar, collectionUnists text);")
+cur.execute("CREATE TABLE orders ( id SERIAL PRIMARY KEY, firstName varchar, lastName varchar, address text, products text);")
+
 cur.execute("INSERT INTO peple (username, password, permition) VALUES (%s, %s, %s);",('Storekeeper','1','storekeeper'))
 cur.execute("INSERT INTO peple (username, password, permition) VALUES (%s, %s, %s);",('Engineer','1','engineer'))
 cur.execute("INSERT INTO peple (username, password, permition) VALUES (%s, %s, %s);",('Accountant','1','accauntant'))

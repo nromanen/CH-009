@@ -1,6 +1,8 @@
-var App = App || {};
+define([
+	'jquery',
+	'app'
 
-(function () {
+], function($, App) {
 
 	var localDatabase = {};
 	var dbName = "productDB";
@@ -81,23 +83,22 @@ var App = App || {};
 					
 				  
 			var tovarStore = evt.currentTarget.result.createObjectStore
-					("Tovaru", {keyPath: "id", autoIncrement: true});
-				   tovarStore.createIndex("tovarName", "tovarName", { unique: true});        
-				   tovarStore.createIndex("tovarCollection", "tovarCollection", { unique: false });		
+					("Goods", {keyPath: "id", autoIncrement: true});
+				   tovarStore.createIndex("goodsName", "goodsName", { unique: true});        
+				   tovarStore.createIndex("goodsCollection", "goodsCollection", { unique: false });		
 
 
-		   function fetchMaterials(){
-					$.ajax({
-   						type: "POST", 
+		 function fetchMaterials(){
+				$.ajax({
+   						type: "POST",
    						url: "/cgi-bin/fetch.py",
    						data:{fetchType:1},
    							success: function(msg){
      							App.Events.trigger("fetchMaterialsPostgDB", msg)
      							console.log(msg);
    							}
-   					});
+ 					});
 			};
-
 			function fetchUnits() {
 						$.ajax({
    						type: "POST",
@@ -120,11 +121,10 @@ var App = App || {};
    							}
  					});
 			};
-
 			fetchMaterials();
 			fetchUnits();
 			fetchGoods()
-
+				console.log('Creating object stores 2');
 			}
 	}	
 		
@@ -496,7 +496,7 @@ var App = App || {};
 			var store = transaction.objectStore(objStor);            
 		  
 			if (localDatabase != null && localDatabase.db != null) {
-				var request =store.put({tovarName:model.get("nameG"), tovarCollection:JSON.stringify(model.get("goodsCollection"))}); 
+				var request =store.put({goodsName:model.get("nameG"), goodsCollection:JSON.stringify(model.get("goodsCollection"))}); 
 				
 				
 				request.onsuccess = function (e) {
@@ -523,7 +523,7 @@ var App = App || {};
 	
 	App.dbConnector.fetchGood = function()	{
 		
-		var store = localDatabase.db.transaction("Tovaru").objectStore("Tovaru");
+		var store = localDatabase.db.transaction("Goods").objectStore("Goods");
 		var request = store.openCursor();
 		var goods = new Array();
 		var pointer = 0;
@@ -540,8 +540,8 @@ var App = App || {};
 
 					if(cursor){
 						goods[pointer++] = new Goods ({
-							nameG:cursor.value.tovarName,
-							goodsCollection:JSON.parse(cursor.value.tovarCollection),
+							nameG:cursor.value.goodsName,
+							goodsCollection:JSON.parse(cursor.value.goodsCollection),
 							goodsPrice: 0
 						});
 					cursor.continue(); 	
@@ -560,7 +560,7 @@ var App = App || {};
 
 		if ( localDatabase != null && localDatabase.db != null ) {		
 			
-			var store = localDatabase.db.transaction("Tovaru").objectStore("Tovaru");
+			var store = localDatabase.db.transaction("Goods").objectStore("Goods");
 			var request = store.openCursor();
 			var pointer = -1;
 		
@@ -571,12 +571,11 @@ var App = App || {};
 				if ( cursor ) {
 		
 				
-					if ( cursor.value.tovarName ===  title ) {
+					if ( cursor.value.goodsName ===  title ) {
 						
-						var deleteRequest = localDatabase.db.transaction( ["Tovaru"] , "readwrite" ).objectStore("Tovaru").delete( cursor.key );
+						var deleteRequest = localDatabase.db.transaction( ["Goods"] , "readwrite" ).objectStore("Goods").delete( cursor.key );
 						deleteRequest.onsuccess = function( ev ) {
-							
-							console.log("deleted id:" + cursor.key + " !");
+
 							
 						}
 					
@@ -592,17 +591,17 @@ var App = App || {};
 	App.dbConnector.changeGoodsName = function( oldName, newName )  {
 		try {
 		   
-			var transaction = localDatabase.db.transaction( "Tovaru" , "readwrite");
-			var store = transaction.objectStore( "Tovaru" );
+			var transaction = localDatabase.db.transaction( "Goods" , "readwrite");
+			var store = transaction.objectStore( "Goods" );
 			if (localDatabase != null && localDatabase.db != null) {
 			var request = store.openCursor();
 			
 				request.onsuccess = function( evt ) {
 					var cursor = evt.target.result;
 					
-						if ( cursor.value.tovarName ===  oldName ) {
+						if ( cursor.value.goodsName ===  oldName ) {
 							var newValue = cursor.value;
-							newValue["tovarName"] = newName;
+							newValue["goodsName"] = newName;
 							store.put(newValue);
 							return;
 						}	
@@ -620,18 +619,18 @@ var App = App || {};
 	
 	try {
 		   
-			var transaction = localDatabase.db.transaction("Tovaru", "readwrite");
-			var store = transaction.objectStore("Tovaru");
+			var transaction = localDatabase.db.transaction("Goods", "readwrite");
+			var store = transaction.objectStore("Goods");
 			if (localDatabase != null && localDatabase.db != null) {
 			var request = store.openCursor();
 			
 				request.onsuccess = function( evt ) {
 					var cursor = evt.target.result;
 					if ( cursor ) {
-						if ( cursor.value.tovarName ===  tovarModel.get('nameG') ) {
+						if ( cursor.value.goodsName ===  tovarModel.get('nameG') ) {
 							var newValue = cursor.value;
-							newValue['tovarName'] =  tovarModel.get('nameG');
-							newValue['tovarCollection'] = JSON.stringify(tovarModel.get('goodsCollection'));
+							newValue['goodsName'] =  tovarModel.get('nameG');
+							newValue['goodsCollection'] = JSON.stringify(tovarModel.get('goodsCollection'));
 							store.put(newValue);
 							return;
 						}	
@@ -650,7 +649,8 @@ var App = App || {};
    //App.dbConnector.deleteDatabase();
 
 	App.dbConnector.createDatabase();
-	
-})();
 
+	return App.dbConnector;
+
+})
 

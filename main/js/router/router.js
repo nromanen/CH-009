@@ -1,12 +1,14 @@
-var App = App || {};
-
-(function () {
+define([
+	'backbone',
+	'app',
+	'basketView'
+], function(Backbone, App, basketView) {
 
 	App.Router = Backbone.Router.extend({
 
 		routes: {
 			''            : 'openCustomer',
-			'customer'    : 'chooseRole',
+			'customer'    : 'openCustomer',
 			'accountant'  : 'openAccountant',
 			'engineer'    : 'openEngineer',
 			'storekeeper' : 'openStorekeeper',
@@ -27,6 +29,8 @@ var App = App || {};
 		},
 		openAccountant: function () {
 			console.log("3");
+			console.log(App.StateMachine);
+			App.StateMachine.execut("accountant")
 			App.Events.trigger( 'openAccountant' );
 		},
 		openEngineer: function () {
@@ -41,4 +45,6 @@ var App = App || {};
 
 	});
 
-}())
+	return App.Router;
+
+});

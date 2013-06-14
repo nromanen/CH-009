@@ -1,11 +1,19 @@
-var App = App || {};
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+	'app',
+	'text!../templates/goodsItemCustomer.html',
+	'text!../templates/goodsItemEngineer.html'
 
-(function () {
+], function($, _, Backbone, App, 
+	goodsItemCustomerTemplate, goodsItemEngineerTemplate) {
 
-	App.Views.GoodsItem = Backbone.View.extend({
+	var GoodsItem = Backbone.View.extend({
 	
 	tagName: 'tr',
 		initialize: function (){
+			this.model.off('destroy');
 			this.model.on( 'destroy', this.remove, this );
 			this.model.on( 'change', this.refresh, this);
 		},
@@ -21,9 +29,9 @@ var App = App || {};
 			this.model.set('nameGoods', this.options.goodsModel.get('nameG'));
 
 			if ( App.userRole === 'customer' ) {
-				var strTemplate = _.template( $('#goods-count-customer').html(), this.model.toJSON() );
+				var strTemplate = _.template( goodsItemCustomerTemplate, this.model.toJSON() );
 			} else {
-				var strTemplate = _.template( $('#goods-count').html(), this.model.toJSON() );
+				var strTemplate = _.template( goodsItemEngineerTemplate, this.model.toJSON() );
 			}
 
 			this.$el.html( strTemplate );
@@ -71,58 +79,8 @@ var App = App || {};
 		},
 		
 	
-	});
-	
-	App.Views.GoodsItemsList = Backbone.View.extend({  // это вид коллекции
-	
-	tagName: 'div',
-	className:'accordion-body collapse',
-		initialize: function () {
-			this.collection.off('add');
-			this.collection.on('add', this.addOne, this);
-			this.el.id = this.model.cid;	
-		},
-		render: function () {
-			if ( App.userRole === 'customer' ) {
-				var strTemplate = _.template( $('#units-table-customer').html(), { nameGoods:this.model.cid, goodsPrice : this.model.get('goodsPrice') } );	
-			} else {
-				var strTemplate = _.template( $('#units-table').html(), { nameGoods:this.model.cid, goodsPrice : this.model.get('goodsPrice') } );	
-			}
-			
-			this.$el.html( strTemplate );
-			this.collection.each(this.addOne, this);
+	});	
 
-			if ( App.userRole !== 'customer' ) {
-				$('.buttonPlace').html( $('#addUnit2GoodsButton').html() );
-			}
+	return GoodsItem;
 
-			return this;
-		},
-		addOne: function( modelGoodsItem ) {
-	
-			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
-			$("#"+this.model.cid+"_tableRow").prepend( goodsItemView.el );
-			console.log("render");
-			
-			goodsItemView.render();
-			
-			if ( App.userRole !== 'customer' ) {
-				$('.buttonPlace').html( $('#addUnit2GoodsButton').html() );
-			}
-
-		},
-		ItemRemove: function() {
-			var goodsItemView = new App.Views.GoodsItem({ model: modelGoodsItem, goodsModel: this.model });
-			goodsItemView.render();
-			this.$el.append( goodsItemView.el );
-		},
-		ItemRemove: function() {
-			console.log(this);
-		}
-	
-	});
-	
-
-	
-
-}());
+});
