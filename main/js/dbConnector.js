@@ -89,15 +89,15 @@ define([
 
 
 		 function fetchMaterials(){
-				$.ajax({
-   						type: "POST",
-   						url: "/cgi-bin/fetch.py",
-   						data:{fetchType:1},
-   							success: function(msg){
-     							App.Events.trigger("fetchMaterialsPostgDB", msg)
-     							console.log(msg);
-   							}
- 					});
+			$.ajax({
+					type: "POST",
+					url: "/cgi-bin/fetch.py",
+					data:{fetchType:1},
+						success: function(msg){
+							App.Events.trigger("fetchMaterialsPostgDB", msg)
+							console.log(msg);
+						}
+				});
 			};
 			function fetchUnits() {
 						$.ajax({
@@ -646,7 +646,7 @@ define([
 	}
 
 	
-   //App.dbConnector.deleteDatabase();
+    //App.dbConnector.deleteDatabase();
 
 	App.dbConnector.createDatabase();
 
