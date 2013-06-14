@@ -4,12 +4,24 @@ define([
 	'backbone',
 	'app',
 	'basketItemsView',
+	'basketItemModel',
 	'text!../templates/basket.html',
 	'text!../templates/basketConfirmForm.html',
 	'text!../templates/alertInputForm.html',
 	'modelBinder'
 
-], function($, _, Backbone, App, basketItemsView, basketTemplate, confirmFormTemplate, alertInputFormTemplate, modelBinder) {
+], function(
+	$, 
+	_, 
+	Backbone, 
+	App, 
+	basketItemsView, 
+	basketItemModel,
+	basketTemplate, 
+	confirmFormTemplate, 
+	alertInputFormTemplate, 
+	modelBinder 
+	) {
 
 	var Basket =  Backbone.View.extend({
 
@@ -39,20 +51,56 @@ define([
 			if (!($('#firstName').val().trim()!='' && 
 				$('#inputLastName').val().trim()!='' &&
 				$('#inputAddress').val().trim()!='')) {
-					$('#alertInputForm').remove();
-					$('.form-horizontal').append('<div id="alertInputForm"></div>');
-					$('#alertInputForm').html(alertInputFormTemplate);
+				$('#alertInputForm').remove();
+				$('.form-horizontal').append('<div id="alertInputForm"></div>');
+				$('#alertInputForm').html(alertInputFormTemplate);
+				setTimeout( function() { $('#alertInputForm').remove() } , 2000)
+
 			} else {
-				this.model.set('order', this.collection);
-				
+				this.sendData();
 			}
 			
-			setTimeout( function() { $('#alertInputForm').remove() } , 2000)
-			return false; 
+			return false;/*($('#firstName').val().trim()!='' && 
+					$('#inputLastName').val().trim()!='' &&
+					$('#inputAddress').val().trim()!=''); */
+		},
+		sendData: function (){
+			var that=this;
+			$.ajax({
+					type: "POST",
+					url: "/cgi-bin/WriteBasket.py",
+					data:{
+						firstName:this.model.get('firstName'),
+						lastName:this.model.get('lastName'),
+						address:this.model.get('address'),
+						products: JSON.stringify(this.collection)
+					},	
+					success: function(msg) {
+						that.onSuccessEvent(msg);
+					},
+ 					error: function (er){
+ 						console.log('error ' + er);
+ 					}	
+
+			});
+		},
+		onSuccessEvent: function (msg){
+			console.log(msg+'sending basket');
+			$('#closeForm').click();
+			$('#shoping_cart').remove();
+			$('#basketTabMarker').remove();
+			$('#myTab a:last').tab('show');
+			App.Basket = new App.Collections.BasketItems;
+			//window.location.reload();
+			//history.go(0);
 		},
 		addOne: function(modelItems){
-			
-			var basketItems =  new basketItemsView({model:modelItems});
+
+			var basketItemModelInstance = App.Basket.find(function(basketItem) {
+				return modelItems.get('itemsName') === basketItem.get('itemsName');
+			});
+
+			var basketItems =  new basketItemsView( { model: basketItemModelInstance } );
 			$('#basket_tableRow').prepend( basketItems.el );
 			basketItems.render();
 			var	totalPrice = 0;

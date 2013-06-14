@@ -50,7 +50,6 @@ define([
 			if ( isNaN ( value ) || value <=0 || value == '' || value.length > 5) {
 				this.$el.find('input').val('');
 				this.$el.removeClass('editing');
-				//this.render();
 				return;
 			};	
 			this.model.setCount(value);

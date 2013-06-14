@@ -5,6 +5,7 @@ define([
 	'app',
 	'addUnitsListView',
 	'basketView',
+	'basketItemModel',
 	'goodsItemsListView',
 	'text!../templates/goodsCustomer.html',
 	'text!../templates/goodsEngineer.html',
@@ -12,7 +13,7 @@ define([
 	'text!../templates/alertAdd.html',
 	'text!../templates/alertError.html',
 
-], function($, _, Backbone, App, addUnitsListView, basketView, goodsItemsListView,
+], function($, _, Backbone, App, addUnitsListView, basketView, basketItemModel, goodsItemsListView,
 	goodsCustomerTemplate, goodsEngineerTemplate, tabTemplate, alertAddTemplate, alertErrorTemplate) {
 
 	var Goods = Backbone.View.extend({
@@ -61,8 +62,7 @@ define([
 		addToBasket: function (){
 
 			if($('#shoping_cart').length==0){
-
-				$('#myTab').append('<li class=""><a href="#shoping_cart" data-toggle="tab">Basket \
+				$('#myTab').append('<li class="" id="basketTabMarker"><a href="#shoping_cart" data-toggle="tab">Basket \
 				 <i class="icon-shopping-cart"></i>=<span id="itemCount"></span></a></li>');
 				$('#TabContent').append ( _.template ( tabTemplate, {
 					id      : 'shoping_cart',
@@ -72,10 +72,17 @@ define([
 				var basket = new basketView({collection:App.Basket, model:newFormModel})
 				$("#shoping_cart").html(basket.el);
 
-			}
+			}/*
+<<<<<<< HEAD
 
 			this.model.set('count',this.$el.find('.span1').val());
 			App.Events.trigger("addItemtToBasket", this.model);
+=======
+			*/
+			this.model.set( 'count', this.$el.find('.span1').val() );
+
+			var basketItemModelInstance = new basketItemModel( this.model.toJSON() );
+			App.Events.trigger("addItemtToBasket", basketItemModelInstance);
 
 			this.$el.find('.span1').val('1');
 

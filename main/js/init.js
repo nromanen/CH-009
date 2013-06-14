@@ -16,7 +16,8 @@ define([
   'goodsItemsCollection',
   'listCollection',
   'unitsCollection',
-  'unitsItemsCollection'
+  'unitsItemsCollection',
+  'ordersCollection'
 
 ], function(
   Backbone,
@@ -36,7 +37,8 @@ define([
   goodsItemsCollection,
   listCollection,
   unitsCollection,
-  unitsItemsCollection
+  unitsItemsCollection,
+  ordersCollection
   ){
 
   var init = function() {
@@ -62,6 +64,7 @@ define([
     App.Collections.List = listCollection;
     App.Collections.Units = unitsCollection;
     App.Collections.UnitItems = unitsItemsCollection;
+    App.Collections.OrdersCollection = ordersCollection;
 
     //getting actual Views...
     App.Materials = new App.Collections.List;
@@ -70,7 +73,8 @@ define([
     App.Basket = new App.Collections.BasketItems;
     App.Views.Show = new usersView;
 
-    location.hash = '';
+
+    location.hash="";
     new Router();
     Backbone.history.start({ hashChange:true });
 
