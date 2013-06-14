@@ -61,8 +61,15 @@ define([
 		},
 		addModel: function ( model ) {
 		  
-			this.add( model );
-			App.dbConnector.addProduct ( model.get("material"), model.get("price") );
+			var search = this.where({material:model.get('material')})
+			if(!search[0]){
+					this.add( model );
+					App.dbConnector.addProduct ( model.get("material"), model.get("price") );
+			 
+
+
+			} 
+
 			
 		}
 	});

@@ -21,9 +21,12 @@ define([
 		},
 		addModel: function ( model ) {
 
-			this.add( model );
-			dbConnector.AddUnit ( "Units", model );
-			 
+			var search = this.where({name:model.get('name')})
+			if(!search[0]){
+					this.add( model );
+					dbConnector.AddUnit ( "Units", model );
+			}
+		
 		},
 		fetchPostgDB: function (jsonUnits){
 			console.log(jsonUnits);
