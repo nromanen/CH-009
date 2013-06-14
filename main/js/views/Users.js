@@ -39,7 +39,7 @@ define([
 	addGoodsView,
 	addGoodsButtonView,
 	accountantFilterView,
-	orderListView,
+	orderItemListView,
 	tabTemplate,
 	userTabsTemplate,
 	addUnit2GoodsButtonTemplate,
@@ -438,12 +438,12 @@ define([
 				id      : 'orders',
 				active  : '',
 			}) );
-
 			App.Orders = new App.Collections.OrdersCollection;
-			var ordersView = new orderListView({collection: App.Orders})
+/*
+			var ordersView = new orderItemListView({collection: App.Orders})
 			ordersView.render();
 			$('#orders').append(ordersView.el);
-
+*/
 			$('#login').html('Quit').click(function(){ window.location.replace('/#'); });
 			$('#roles').remove();
 

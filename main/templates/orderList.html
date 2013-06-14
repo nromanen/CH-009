@@ -1,5 +1,15 @@
-<thead>
-  	<th> First Name </th>
-	<th> Last Name </th>
-	<th> Address </th>
-</thead>
+<div class="accordion-heading">
+  <a class="accordion-toggle" data-toggle="collapse" data-parent=".accordion-group" href="#<%= id %>order">
+    <table class="table">
+		<thead>
+			<tr>
+				<th> <%= id %> </th>
+				<th> <%= firstName %> <%= lastName %> </th>
+				<th> <%= address %> </th>
+				<th> Price </th>
+			</tr>
+		</thead>
+   </table> 
+  </a>
+</div>
+<div class="clear"></div>

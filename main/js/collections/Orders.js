@@ -1,8 +1,9 @@
 define([
 	'backbone',
 	'app',
-	'underscore'
-], function(Backbone, App, _) {
+	'underscore',
+	'orderItemListView'
+], function(Backbone, App, _,orderItemListView) {
 
 	var App = App || {};
 
@@ -15,6 +16,7 @@ define([
 			},
 
 			fetchFromDb: function (){
+			
 			var that = this;
 				$.ajax({
 					type: "POST",
@@ -29,16 +31,23 @@ define([
  						console.log('error ' + er);
  					}	
 				})
+
 			},
 
-			writeCollection: function(msg){
-				var that=this;	
+			writeCollection: function(msg, pointer){
+			var that=this;	
 				var orders = JSON.parse(msg);
 				_.each(orders, function(current) {
 					var currModel = new App.Models.BasketFormModel(current);
+					var products = new App.Collections.BasketItems(JSON.parse(currModel.get('order')));
+					currModel.set('order', products);
 					that.add(currModel);
 				});
-			}			
+				var ordersView = new orderItemListView({collection: this})
+				ordersView.render();
+				$('#orders').append(ordersView.el);
+			return this;	
+			},
 
 	});
 

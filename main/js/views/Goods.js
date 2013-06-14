@@ -67,7 +67,7 @@ define([
 				$('#TabContent').append ( _.template ( tabTemplate, { 
 					id      : 'shoping_cart',
 					active  : '',
-				}) );
+				}) ); 
 				var newFormModel = new App.Models.BasketFormModel();
 				var basket = new basketView({collection:App.Basket, model:newFormModel})
 				$("#shoping_cart").html(basket.el);
