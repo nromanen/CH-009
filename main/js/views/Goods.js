@@ -17,10 +17,10 @@ define([
 	goodsCustomerTemplate, goodsEngineerTemplate, tabTemplate, alertAddTemplate, alertErrorTemplate) {
 
 	var Goods = Backbone.View.extend({
-			
+
 		tagName: 'div',
 		className:"accordion-group",
-		initialize: function () {		
+		initialize: function () {
 			this.model.on( 'change:nameG', this.nameUpDate, this);
 			this.model.on( 'destroy', this.goodsRemoveItem, this );
 			this.model.on( 'changes', this.goodsChange );
@@ -39,8 +39,8 @@ define([
 			'click .Bay-item':'addToBasket'
 
 		},
-		render: function () {	
-			
+		render: function () {
+
 			var goodsHrefId = this.model.cid;
 			goodsHrefId = goodsHrefId.replace(/[\. ,():-]+/g, "-");
 			this.model.set('hrefId', goodsHrefId);
@@ -56,16 +56,15 @@ define([
 
 			this.$el.append( newGoodsItemsList.el );
 			newGoodsItemsList.render();
-			
+
 			this.$input = this.$('.edit_goods_name');
-			console.log("render goods");
-		}, 
+		},
 		addToBasket: function (){
 
 			if($('#shoping_cart').length==0){
 				$('#myTab').append('<li class="" id="basketTabMarker"><a href="#shoping_cart" data-toggle="tab">Basket \
 				 <i class="icon-shopping-cart"></i>=<span id="itemCount"></span></a></li>');
-				$('#TabContent').append ( _.template ( tabTemplate, { 
+				$('#TabContent').append ( _.template ( tabTemplate, {
 					id      : 'shoping_cart',
 					active  : '',
 				}) ); 
@@ -73,15 +72,20 @@ define([
 				var basket = new basketView({collection:App.Basket, model:newFormModel})
 				$("#shoping_cart").html(basket.el);
 
-			}
-			
+			}/*
+<<<<<<< HEAD
+
+			this.model.set('count',this.$el.find('.span1').val());
+			App.Events.trigger("addItemtToBasket", this.model);
+=======
+			*/
 			this.model.set( 'count', this.$el.find('.span1').val() );
-			
+
 			var basketItemModelInstance = new basketItemModel( this.model.toJSON() );
 			App.Events.trigger("addItemtToBasket", basketItemModelInstance);
 
 			this.$el.find('.span1').val('1');
-			
+
 			setTimeout( function() { $('#alertAddItem').remove() } , 2000)
 
 
@@ -94,7 +98,7 @@ define([
 			setTimeout( function() { $('#alertAddItem').remove() } , 2000)
 		},
 		alertAdd: function(){
-			
+
 			$('#itemCount').html(App.Basket.length);
 			$('body').append('<div id="alertAddItem"></div>');
 
@@ -108,7 +112,7 @@ define([
 		},
 		refreshGoodsName: function (){
 			this.$el.find('.goods_name_id').html(this.model.get('nameG'));
-		}, 
+		},
 		refreshGoodsPrice: function (){
 			this.$el.find('.goodsPrice').html('$'+this.model.get('goodsPrice'));
 		},
@@ -116,18 +120,18 @@ define([
 
 		},
 		goodsToggle: function () {
-			
+
 			this.$('.goods_info').show();
-							
+
 		},
 		inputUnits: function () {
-			
+
 				var AddUnitsList = new addUnitsListView( { collection: App.Units, model : this.model	} );
 				AddUnitsList.render();
 				$( '#unitContainer' ).html( AddUnitsList.el );
 
 				$('#addUnit2Goods').find('#myModalLabel').html('Add Units to ' + this.model.get('nameG') );
-				
+
 				var unitsInGoods = this.model.get( 'goodsCollection' );
 				var unitsInGoodsSentence = ''; // for #addUnit2Goods sentence
 				_.each ( unitsInGoods.models, function ( goodsItem ) {
@@ -137,23 +141,23 @@ define([
 
 		},
 		goodsDeleteItem: function() {
-		
+
 			if ( confirm('Are you sure you want to delete this Goods?') ) {
-				
+
 				App.Events.trigger( 'goodsDelete', this.model );
 			}
-		
+
 		},
 		goodsRemoveItem: function() {
-		
+
 			this.$el.remove();
 			$('.AddUnitsList').hide();
-	
+
 		},
 		changeGoodsName: function () {
 			this.$el.addClass('editing');
 			this.$input.focus();
-			
+
 		},
 		close: function () {
 			var value = this.$input.val().trim();
@@ -170,12 +174,12 @@ define([
 		},
 		updateOnEnter: function (e) {
 			if (e.keyCode == 13) {
-				this.close(); 
+				this.close();
 			}
-		}	
-		
+		}
+
 	});
-	
+
 	return Goods;
 
 });
