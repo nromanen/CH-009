@@ -48,7 +48,7 @@ define([
 			newUnitItemsList.render();
 
 			this.$el.append( newUnitItemsList.el );
-
+			$('.headerPrice').remove();
 		},
 		unitChange: function () {
 			this.$el.find('.unit_name').html(this.model.get('name'));

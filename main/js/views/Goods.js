@@ -58,7 +58,10 @@ define([
 			newGoodsItemsList.render();
 
 			this.$input = this.$('.edit_goods_name');
-		},
+
+			$('.headerPrice').remove();
+		}, 
+
 		addToBasket: function (){
 
 			if($('#shoping_cart').length==0){
