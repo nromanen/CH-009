@@ -59,6 +59,7 @@ define([
 			
 			this.$input = this.$('.edit_goods_name');
 			console.log("render goods");
+			$('.headerPrice').remove();
 		}, 
 		addToBasket: function (){
 

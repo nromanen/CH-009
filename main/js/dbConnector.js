@@ -27,9 +27,9 @@ define([
 		
 			localDatabase.db = openRequest.result;
 			console.log("database is open");
-			//App.Events.trigger( 'fetchProducts' );
-			//App.Events.trigger( 'fetchUnit' );
-			//App.Events.trigger( 'fetchGoods' );
+			App.Events.trigger( 'fetchProducts' );
+			App.Events.trigger( 'fetchUnit' );
+			App.Events.trigger( 'fetchGoods' );
 		
 		};	
 	}
