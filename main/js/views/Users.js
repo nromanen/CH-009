@@ -81,7 +81,7 @@ define([
 
 		},
 		restorePrice: function() {
-			viewProducts.remove();
+			//viewProducts.remove();
 			App.Goods.reset();
 			App.Goods.fetchGoods();
 			viewProducts.render();
